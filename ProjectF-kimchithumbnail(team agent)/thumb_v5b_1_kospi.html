@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    .thumb{width:864px;height:280px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white}
+    .thumb{background:#0a1628} .bg{position:absolute;inset:0;background:url('./images/kospi_chart_0.jpg') center/cover;opacity:0.5} .overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,22,40,0.88) 0%,rgba(10,22,40,0.4) 60%,rgba(10,22,40,0.3) 100%)}
+    
+    
+    .logo{position:absolute;top:16px;right:20px;height:22px;width:auto;z-index:5;opacity:0.9}
+    .content{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:4}
+    .title{font-size:32px;font-weight:900;line-height:1.15;max-width:430px;text-shadow:2px 2px 12px rgba(0,0,0,0.7)}
+
+    .vote-wrapper{
+      display:inline-flex;gap:8px;margin-top:18px;
+      background:rgba(255,255,255,0.08);
+      border:1.5px solid rgba(255,255,255,0.12);
+      border-radius:14px;padding:8px 10px;
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+      align-items:center;
+    }
+    .vote-btn{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      width:105px;height:58px;border-radius:10px;
+    }
+    .vote-label{font-size:16px;font-weight:800;letter-spacing:1px}
+    .vote-pct{font-size:13px;font-weight:600;margin-top:2px}
+
+    .yes-btn{
+      background:rgba(182,73,73,0.8);
+      border:2px solid rgba(182,73,73,0.95);
+      color:rgba(255,255,255,1);
+    }
+    .no-btn{
+      background:rgba(292,285,278,0.25);
+      border:2px solid rgba(292,285,278,0.35);
+      color:rgba(255,255,255,0.5);
+    }
+  </style></head><body><div class="thumb">
+    <div class="bg"></div><div class="overlay"></div>
+    <img class="logo" src="./marketmotionlogo.webp"/>
+    
+    <img style="position:absolute;right:20px;bottom:20px;width:50px;border-radius:3px;opacity:0.6;z-index:2" src="./images/kospi_flag_0.png"/>
+    <div class="content">
+      <div class="title">2026년 1분기<br/>코스피 5,500 넘길까?</div>
+      <div class="vote-wrapper">
+        <div class="vote-btn yes-btn">
+          <span class="vote-label">YES</span>
+          <span class="vote-pct">(52%)</span>
+        </div>
+        <div class="vote-btn no-btn">
+          <span class="vote-label">NO</span>
+          <span class="vote-pct">(48%)</span>
+        </div>
+      </div>
+    </div>
+  </div></body></html>

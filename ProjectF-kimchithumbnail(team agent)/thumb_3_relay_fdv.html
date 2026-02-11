@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      .thumb{width:1200px;height:400px;position:relative;overflow:hidden;
+        background:linear-gradient(135deg,#0a000f 0%,#1a0030 40%,#0f0025 100%);
+        font-family:Arial,sans-serif;color:white}
+      .tag{display:inline-block;background:#a855f7;padding:6px 16px;font-size:13px;
+        font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+      .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:2}
+      .title{font-size:44px;font-weight:900;line-height:1.2}
+      .sub{margin-top:10px;font-size:18px;color:rgba(255,255,255,0.5)}
+      .bars{position:absolute;right:50px;top:50%;transform:translateY(-50%);
+        display:flex;flex-direction:column;gap:8px;z-index:2;width:500px}
+      .bar-row{display:flex;align-items:center;gap:10px}
+      .bar-label{width:60px;text-align:right;font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)}
+      .bar-track{flex:1;height:28px;background:rgba(168,85,247,0.1);border-radius:14px;overflow:hidden;position:relative}
+      .bar-fill{height:100%;border-radius:14px;display:flex;align-items:center;padding-left:12px;
+        font-size:12px;font-weight:700}
+      .purple{background:linear-gradient(90deg,#a855f7,#7c3aed)}
+      .dim{background:linear-gradient(90deg,rgba(168,85,247,0.4),rgba(124,58,237,0.3))}
+      .bar-pct{margin-left:auto;margin-right:10px;font-size:13px}
+      .orb{position:absolute;width:400px;height:400px;border-radius:50%;
+        background:radial-gradient(circle,rgba(168,85,247,0.1),transparent 70%);
+        right:-100px;top:-100px}
+      .orb2{position:absolute;width:200px;height:200px;border-radius:50%;
+        background:radial-gradient(circle,rgba(124,58,237,0.08),transparent 70%);
+        left:300px;bottom:-50px}
+    </style></head><body><div class="thumb"><div class="orb"></div><div class="orb2"></div>
+      <div class="content">
+        <div class="tag">CRYPTO</div>
+        <div class="title">Relay 런칭<br/>하루 뒤 FDV는?</div>
+        <div class="sub">런칭 D+1 시가총액 예측</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><div class="bar-label">$100M</div><div class="bar-track"><div class="bar-fill purple" style="width:52.5%"><span class="bar-pct">52.5%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">$300M</div><div class="bar-track"><div class="bar-fill purple" style="width:38.5%"><span class="bar-pct">38.5%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">$500M</div><div class="bar-track"><div class="bar-fill dim" style="width:30%"><span class="bar-pct">30%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">$1B</div><div class="bar-track"><div class="bar-fill dim" style="width:41%"><span class="bar-pct">41%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">$1.2B</div><div class="bar-track"><div class="bar-fill dim" style="width:43%"><span class="bar-pct">43%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">$1.5B</div><div class="bar-track"><div class="bar-fill dim" style="width:9.5%"><span class="bar-pct">9.5%</span></div></div></div>
+      </div>
+    </div></body></html>

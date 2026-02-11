@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:gamma-api.polymarket.com)",
+      "WebFetch(domain:docs.polymarket.com)",
+      "WebFetch(domain:polymarket.com)",
+      "WebFetch(domain:news.nate.com)",
+      "WebFetch(domain:www.newsway.co.kr)",
+      "Bash(find:*)",
+      "WebSearch",
+      "Bash(python -m venv:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(tree:*)",
+      "Bash(python3:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(open:*)",
+      "WebFetch(domain:despread-creative.notion.site)",
+      "WebFetch(domain:polygonscan.com)",
+      "WebFetch(domain:yzc.me)",
+      "Bash(ssh:*)",
+      "WebFetch(domain:addyosmani.com)",
+      "Bash(echo:*)",
+      "Bash(~/.zshrc)",
+      "Bash(claude --version:*)",
+      "WebFetch(domain:www.bannerbear.com)",
+      "WebFetch(domain:apitemplate.io)",
+      "mcp__puppeteer__puppeteer_navigate",
+      "mcp__puppeteer__puppeteer_screenshot",
+      "Bash(curl:*)",
+      "Bash(pip3 install:*)"
+    ]
+  }
+}

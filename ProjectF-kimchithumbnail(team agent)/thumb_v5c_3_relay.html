@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    .thumb{width:864px;height:280px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white;
+      background:#0a0a2a}
+    .bg{position:absolute;inset:0;background:url('./images/relay_smart.jpg') center/cover;opacity:0.55}
+    .overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,30,0.92) 0%,rgba(10,10,30,0.5) 50%,rgba(10,10,30,0.15) 100%)}
+    .logo{position:absolute;top:16px;right:20px;height:22px;width:auto;z-index:5;opacity:0.9}
+    .content{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:4}
+
+    /* 제목 외곽선 */
+    .title{
+      font-size:32px;font-weight:900;line-height:1.15;max-width:430px;
+      -webkit-text-stroke:1px rgba(0,0,0,0.3);
+      text-shadow:
+        0 0 8px rgba(0,0,0,0.8),
+        0 2px 4px rgba(0,0,0,0.6),
+        0 0 20px rgba(0,0,0,0.4);
+    }
+
+    /* 감싸는 박스 - 외곽선 강화 */
+    .vote-wrapper{
+      display:inline-flex;gap:8px;margin-top:18px;
+      background:rgba(0,0,0,0.35);
+      border:1.5px solid rgba(255,255,255,0.2);
+      border-radius:14px;padding:8px 10px;
+      backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      box-shadow:0 2px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    /* 버튼 공통 - 외곽선 처리 */
+    .vote-btn{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      width:105px;height:58px;border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.3);
+    }
+    .vote-label{
+      font-size:16px;font-weight:800;letter-spacing:1px;
+      -webkit-text-stroke:0.5px rgba(0,0,0,0.2);
+      text-shadow:0 1px 3px rgba(0,0,0,0.5);
+    }
+    .vote-pct{
+      font-size:13px;font-weight:600;margin-top:2px;
+      text-shadow:0 1px 2px rgba(0,0,0,0.4);
+    }
+
+    .yes-btn{
+      background:rgba(189,156,66,0.25);
+      border:2px solid rgba(189,156,66,0.35);
+      color:rgba(255,255,255,0.5);
+      
+    }
+    .no-btn{
+      background:rgba(101,85,153,0.75);
+      border:2px solid rgba(101,85,153,0.9);
+      color:rgba(255,255,255,1);
+      box-shadow:0 2px 8px rgba(0,0,0,0.3), 0 0 12px rgba(101,85,153,0.25);
+    }
+  </style></head><body><div class="thumb">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <img class="logo" src="./marketmotionlogo.webp"/>
+    <div class="content">
+      <div class="title">Relay 런칭 하루 뒤<br/>FDV $1B 넘길까?</div>
+      <div class="vote-wrapper">
+        <div class="vote-btn yes-btn">
+          <span class="vote-label">YES</span>
+          <span class="vote-pct">(41%)</span>
+        </div>
+        <div class="vote-btn no-btn">
+          <span class="vote-label">NO</span>
+          <span class="vote-pct">(59%)</span>
+        </div>
+      </div>
+    </div>
+  </div></body></html>

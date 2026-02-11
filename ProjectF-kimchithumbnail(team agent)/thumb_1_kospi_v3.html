@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      
+  *{margin:0;padding:0;box-sizing:border-box}
+  .thumb{width:1200px;height:400px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white}
+  .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:4}
+  .tag{display:inline-block;padding:6px 16px;font-size:13px;font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+  .title{font-size:48px;font-weight:900;line-height:1.15;max-width:600px;text-shadow:2px 2px 12px rgba(0,0,0,0.6)}
+  .vote{margin-top:28px;max-width:480px}
+  .vote-row{display:flex;height:40px;border-radius:20px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+  .vote-yes{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-no{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-text{font-size:13px;opacity:0.9}
+  .vote-pct{font-size:17px;font-weight:900}
+
+      .thumb{background:linear-gradient(135deg,#0a1628 0%,#0d2137 40%,#132d46 100%)}
+      .tag{background:#0ea5e9}
+      .vote-yes{background:#22c55e}
+      .vote-no{background:#ef4444}
+      .bg-chart{position:absolute;right:0;top:0;width:55%;height:100%;object-fit:cover;opacity:0.3}
+      .bg-overlay{position:absolute;inset:0;background:linear-gradient(90deg,#0a1628 40%,transparent 75%)}
+      .flag{position:absolute;right:40px;top:30px;width:80px;border-radius:4px;opacity:0.8;
+        box-shadow:0 2px 8px rgba(0,0,0,0.3);z-index:2}
+    </style></head><body><div class="thumb">
+      <img class="bg-chart" src="./images/kospi_chart_0.jpg"/>
+      <div class="bg-overlay"></div>
+      <img class="flag" src="./images/kospi_flag_0.png"/>
+      <div class="content">
+        <div class="tag">ECONOMY</div>
+        <div class="title">2026년 1분기<br/>코스피 5,500 넘길까?</div>
+        
+    <div class="vote">
+      <div class="vote-row">
+        <div class="vote-yes" style="width:52%">
+          <span class="vote-text">YES</span>
+          <span class="vote-pct">52%</span>
+        </div>
+        <div class="vote-no" style="width:48%">
+          <span class="vote-pct">48%</span>
+          <span class="vote-text">NO</span>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div></body></html>

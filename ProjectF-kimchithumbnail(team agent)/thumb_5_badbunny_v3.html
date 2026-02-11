@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      
+  *{margin:0;padding:0;box-sizing:border-box}
+  .thumb{width:1200px;height:400px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white}
+  .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:4}
+  .tag{display:inline-block;padding:6px 16px;font-size:13px;font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+  .title{font-size:48px;font-weight:900;line-height:1.15;max-width:600px;text-shadow:2px 2px 12px rgba(0,0,0,0.6)}
+  .vote{margin-top:28px;max-width:480px}
+  .vote-row{display:flex;height:40px;border-radius:20px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+  .vote-yes{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-no{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-text{font-size:13px;opacity:0.9}
+  .vote-pct{font-size:17px;font-weight:900}
+
+      .thumb{background:linear-gradient(135deg,#000814 0%,#001d3d 40%,#003566 100%)}
+      .tag{background:#06b6d4;color:#000814}
+      .vote-yes{background:#06b6d4}
+      .vote-no{background:#1e3a5f}
+      .person{position:absolute;right:0;bottom:0;height:100%;width:auto;z-index:1;
+        object-fit:cover;object-position:top;
+        mask-image:linear-gradient(to left,black 60%,transparent 100%);
+        -webkit-mask-image:linear-gradient(to left,black 60%,transparent 100%)}
+    </style></head><body><div class="thumb">
+      <img class="person" src="./images/badbunny_portrait_0_nobg.png"/>
+      <div class="content">
+        <div class="tag">ENTERTAINMENT</div>
+        <div class="title">배드버니 하프타임쇼<br/>조회수 1.25억 넘길까?</div>
+        
+    <div class="vote">
+      <div class="vote-row">
+        <div class="vote-yes" style="width:58%">
+          <span class="vote-text">YES</span>
+          <span class="vote-pct">58%</span>
+        </div>
+        <div class="vote-no" style="width:42%">
+          <span class="vote-pct">42%</span>
+          <span class="vote-text">NO</span>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div></body></html>

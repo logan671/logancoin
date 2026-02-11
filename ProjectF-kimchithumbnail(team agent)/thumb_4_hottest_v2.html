@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      .thumb{width:1200px;height:400px;position:relative;overflow:hidden;
+        background:linear-gradient(135deg,#1a0000 0%,#3d0a00 30%,#2d0a00 100%);
+        font-family:Arial,sans-serif;color:white}
+      .earth{position:absolute;right:80px;top:50%;transform:translateY(-50%);
+        height:320px;width:auto;opacity:0.85;
+        filter:drop-shadow(0 0 30px rgba(239,68,68,0.4))}
+      .earth-glow{position:absolute;right:100px;top:50%;transform:translateY(-50%);
+        width:350px;height:350px;border-radius:50%;
+        background:radial-gradient(circle,rgba(239,68,68,0.2),transparent 60%)}
+      .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:2}
+      .tag{display:inline-block;background:#ef4444;padding:6px 16px;font-size:13px;
+        font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+      .title{font-size:44px;font-weight:900;line-height:1.2;max-width:550px}
+      .sub{margin-top:10px;font-size:18px;color:rgba(255,255,255,0.5)}
+      .gauge-row{margin-top:24px;display:flex;align-items:center;gap:20px}
+      .pct{font-size:56px;font-weight:900;color:#ef4444}
+      .pct-label{font-size:16px;color:rgba(255,255,255,0.5)}
+      .heat-bar{margin-top:20px;width:400px}
+      .heat-track{height:12px;border-radius:6px;
+        background:linear-gradient(90deg,#3b82f6,#22c55e,#eab308,#f97316,#ef4444);position:relative}
+      .heat-marker{position:absolute;top:-4px;left:67.5%;width:4px;height:20px;
+        background:white;border-radius:2px;transform:translateX(-50%)}
+      .heat-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:rgba(255,255,255,0.4)}
+    </style></head><body><div class="thumb">
+      <div class="earth-glow"></div>
+      <img class="earth" src="./images/hottest_earth_0_nobg.png"/>
+      <div class="content">
+        <div class="tag">CLIMATE</div>
+        <div class="title">2026년이 역대<br/>가장 더운 해일까?</div>
+        <div class="sub">역대 최고 기온 기록 갱신 여부</div>
+        <div class="gauge-row">
+          <div><div class="pct">67.5%</div><div class="pct-label">YES 예측</div></div>
+        </div>
+        <div class="heat-bar">
+          <div class="heat-track"><div class="heat-marker"></div></div>
+          <div class="heat-labels"><span>Cool</span><span>Record Hot</span></div>
+        </div>
+      </div>
+    </div></body></html>

@@ -1,0 +1,78 @@
+# Whale Activity Wallets (Address + User Name)
+
+Source: polykolscan whale_activity (KOL not specified)
+
+Total unique addresses: 70
+
+| Address | User Name |
+| --- | --- |
+| `0x0d9050aef178e976d1dc70c6f890db0d5de4eec9` | arpicf5bjkewr |
+| `0x60d3cf3fb6a305e9b4fc4ed42897c8f16763ae3c` | dghkgwoxr1zef |
+| `0x4d69aae9e49da29b8cdb91f9852383d93644a321` | 0x4d69aAe9E49dA29b8cdb91F9852383d93644a321-1768889141155 |
+| `0xc9ab7957183f92cebfd3ee6dd817c1cd7690cb66` | financeyu |
+| `0x69788e136500902559a2fb21883ab9baacbd08d8` | TruongMyLan |
+| `0x44c1dfe43260c94ed4f1d00de2e1f80fb113ebc1` | aenews2 |
+| `0xd688a761fe1893c10185ba1ad2a6e0b222a4ad8b` | 2659486 |
+| `0x7131cb618fb195c70e8e629c45199096833c29cc` | 0x7131cB618fb195C70E8e629C45199096833C29 |
+| `0x9976874011b081e1e408444c579f48aa5b5967da` | BWArmageddon |
+| `0x1b1a53f7c37765d722a048b60841975690143852` | jindoge |
+| `0x2c6a1c118fd3f5f97c7632bae9d5d056b10db518` | 0x2C6A1c118fd3f5f97C7632Bae9D5D056b10Db518-1767884255583 |
+| `0xcb32027c1de441f2148b13657c8d2bc36c90c216` | aBeanCounter |
+| `0x22d80ac2781c3446aebace796c0fc382a5385701` | ZenEchi |
+| `0xfd9035d24a960238f0008d5b7b928b0f18c4beff` | dollyinve |
+| `0x5e6e2c3f06686f2607b86c90e35f536e81a1be00` | HAVINGFUNNN |
+| `0x0d7f4e42971d13204f432650beb3ee6813f4be71` | achavs |
+| `0xcfb94193049748d4fa423a98a8c3e4d27f7a7fed` | donnyeiusqjjuhe |
+| `0x6966a9d33fc0b9939686fea0a546f67ab44dfad2` | karianne |
+| `0xead152b855effa6b5b5837f53b24c0756830c76a` | elkmonkey |
+| `0x70fab46cf4e4d6a3e42091cbdfbe67a9a999a7f8` | dcticbs |
+| `0xc4b02a163b232608e053b3b057faf5aa5227aefe` | SnapSocialite49 |
+| `0xa564aaad2a650e43684211153e01f3eb112daa16` | SHERARD |
+| `0xee76e1ce78311ca51bd96dd4818735f0f13abacb` | dshgsdgsg |
+| `0x4f092157c2642c0297aef5e07e98850d4cfcdf23` | swjml |
+| `0xb2c6b97f34dedcda047831c5a362f087d55a0814` | victorwindle |
+| `0xfa31986922be595d6ab95fc704025f3e09938c8b` | ivahhermanacugr |
+| `0x8408b0b415160546c86897cd147bee7d29c57be9` | coltenbl |
+| `0x14b9ca37e18f6596a185d2e472b12739f1de2724` | cristinaka |
+| `0x5b7368ad066ee5b2ce4dfc3e98a3915649dce3c8` | matol |
+| `0x2b7de7dd9b07f7979b763cb35f6aa8c68f34d6c9` | feisfdgsd |
+| `0xfda652623bcf0c7104d3080a7cda3b2dba825cf7` | 0xfda652623b.... |
+| `0xc6dd722558dbfbd8fa780efcbe819ed8c6604b9f` | tourists |
+| `0x855660fc800024eed2b577e81b7a2a5dbae4fad9` | 0x855660fc800024Eed2B577e81b7A2a5DbAe4fAd9-1768001094046 |
+| `0x408f38295ad7ba9ea40efb0b88e210c320eec126` | wandadaretnt |
+| `0x7606bbe7358282fc977e99be24132107ae80e66b` | vicentatene |
+| `0x6b40b668598bd310b4c4353575a9561132e35aea` | iyzdy |
+| `0x96ba3a293062f1cc6bfb5fa9c79079b82fb93d04` | lonnyvolup |
+| `0x97317409bfd9e992611596acee93e8b938019b35` | BlindOrangutan |
+| `0xe90bec87d9ef430f27f9dcfe72c34b76967d5da2` | gmanas |
+| `0x6d9fc316c3b8377060a44b852ba664adbfd59790` | MEPP |
+| `0x62ba5ddec1c92d18185e6590bdcb849bf7abef56` | 0x62bA5DdEC1c92D18185E6590BDCb849bf7ABeF56-1769811120812 |
+| `0xeeee195c07ba174097d4a42bb3b5731b83f99293` | oklr |
+| `0xd4de300dec7942db0e6f927c3e728c680e156145` | 0xD4De300DEC7942DB0e6F927c3E728C680e156145-1769482882567 |
+| `0x0b9518e5b0a1cdd16142e39c43e4b58c7ba8a222` | 0x0b9518E5b0A1CdD16142E39C43E4B58c7BA8a222-1769660747691 |
+| `0x5e61a328e15074da5f583b1c54e5ec8ee40b3948` | u88 |
+| `0x45c588a61c9f8a4a4c1187c33d8bce4d0fb3558d` | JP-Yuina |
+| `0x8615f7dcd2687d59e9c5864b7d4cef4536a1af3c` | 0x8615f7dcd2.... |
+| `0x439b4cac193239c5769ac26e1d0b167e22182c9a` | ruby007 |
+| `0xd471ded336bdc74f4d258f77fb8d14907c4e3589` | 89980o |
+| `0x2dc19b37c4e3aa62a74a65e39f9e9cdd1e2174fc` | toanhtoanh |
+| `0x8967942026fc0e64ff83c2366e056c632e53d7da` | luckee2026 |
+| `0xebe75a7eced2871a864c63c44198e3e43a21ddf5` | M1sTake |
+| `0x05ef909a8cbece461b09c18472bca323ebfe85bd` | gfh5 |
+| `0x7d787c72c8317046fda90814a93c87fc192529a5` | MD14 |
+| `0x1d620ed68c4fd00b189207ed1f8c13222766d76b` | QMG-SCALAR |
+| `0xab19716584931d81cd9e7763402673a64baa4876` | SlenderMan |
+| `0xcaab19659b995951a44cc992447cb2ad5be324dd` | QMG-CORE |
+| `0xe60a9b0be459d9849bc2339dac20517639ae6a47` | 0xb7511d7b0dcb75ffad0507cbac7223653d08915 |
+| `0x901f92d8944092bd857b3748d173a8975ba274e9` | ZhouRunFa001 |
+| `0x2fe8abfbadf9dd52bb5524d76e70a7f1dcc13549` | 0x98ksa2K15s4m912kal |
+| `0x960b975c28e34241644d283df9b13b35c1f64a03` | A324252 |
+| `0x1521b47bf0c41f6b7fd3ad41cdec566812c8f23e` | alliswell |
+| `0x89e75fd541c6cb6549f13e98c78b971c8f3e50e9` | ClaudeAI |
+| `0x55b636e5639b4de5e0c79f09a1f005d6bee109e2` | xenuity |
+| `0xb84a0da40c1d2c1d28413166905a1311eb7d055d` | maldinifi |
+| `0xcf6c5492124794394dd9eac46498a8babbe47e66` | one8tyfive |
+| `0x161eb16874e34f545991e774b4e1ac5b65f86ef0` | piston777 |
+| `0x45b39e1f71e47fd4afe4b988ffad690b644735bc` | onekey09 |
+| `0x86d8cd437d7d94fe45fdba8254a23f0063dd2bde` | 990ll9 |
+| `0x699dbf0a103daed6cb6d5fc5a7c2e4a911d30501` | edseah |

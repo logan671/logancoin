@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      .thumb{width:1200px;height:400px;position:relative;overflow:hidden;
+        background:linear-gradient(135deg,#0a1628 0%,#0d2137 40%,#132d46 100%);
+        font-family:Arial,sans-serif;color:white}
+      .bg-chart{position:absolute;right:0;top:0;width:600px;height:100%;
+        object-fit:cover;opacity:0.25;filter:brightness(0.8) contrast(1.2)}
+      .bg-overlay{position:absolute;inset:0;
+        background:linear-gradient(90deg,#0a1628 0%,#0a1628 35%,transparent 70%)}
+      .flag{position:absolute;right:40px;top:30px;width:80px;height:auto;opacity:0.7;
+        border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+      .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:2}
+      .tag{display:inline-block;background:#0ea5e9;padding:6px 16px;font-size:13px;
+        font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+      .title{font-size:46px;font-weight:900;line-height:1.2;max-width:520px}
+      .sub{margin-top:10px;font-size:18px;color:rgba(255,255,255,0.5)}
+      .prices{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;max-width:500px}
+      .chip{padding:8px 16px;border-radius:20px;font-size:14px;font-weight:700}
+      .chip.hot{background:rgba(34,197,94,0.2);border:1px solid #22c55e;color:#22c55e}
+      .chip.mid{background:rgba(234,179,8,0.2);border:1px solid #eab308;color:#eab308}
+      .chip.cold{background:rgba(100,116,139,0.2);border:1px solid #64748b;color:#94a3b8}
+    </style></head><body><div class="thumb">
+      <img class="bg-chart" src="./images/kospi_chart_0.jpg"/>
+      <div class="bg-overlay"></div>
+      <img class="flag" src="./images/kospi_flag_0.png"/>
+      <div class="content">
+        <div class="tag">ECONOMY</div>
+        <div class="title">2026년 1분기<br/>코스피 마감은?</div>
+        <div class="sub">Polymarket 실시간 예측</div>
+        <div class="prices">
+          <div class="chip hot">5500↑ 52%</div>
+          <div class="chip hot">5300↑ 100%</div>
+          <div class="chip mid">5000↑ 50%</div>
+          <div class="chip cold">4500↓ 44%</div>
+        </div>
+      </div>
+    </div></body></html>

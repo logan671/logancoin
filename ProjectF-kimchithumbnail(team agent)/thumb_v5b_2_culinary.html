@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    .thumb{width:864px;height:280px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white}
+    .thumb{background:#0a0a0a} .bg{position:absolute;inset:0;background:url('./images/culinary_logo_0.png') center/contain no-repeat;opacity:0.2} .overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,0.9) 0%,rgba(10,10,10,0.5) 50%,rgba(10,10,10,0.3) 100%)}
+    .person{position:absolute;right:0;bottom:0;height:110%;width:auto;z-index:1;mask-image:linear-gradient(to left,black 50%,transparent 95%);-webkit-mask-image:linear-gradient(to left,black 50%,transparent 95%)}
+    
+    .logo{position:absolute;top:16px;right:20px;height:22px;width:auto;z-index:5;opacity:0.9}
+    .content{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:4}
+    .title{font-size:32px;font-weight:900;line-height:1.15;max-width:430px;text-shadow:2px 2px 12px rgba(0,0,0,0.7)}
+
+    .vote-wrapper{
+      display:inline-flex;gap:8px;margin-top:18px;
+      background:rgba(255,255,255,0.08);
+      border:1.5px solid rgba(255,255,255,0.12);
+      border-radius:14px;padding:8px 10px;
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+      align-items:center;
+    }
+    .vote-btn{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      width:105px;height:58px;border-radius:10px;
+    }
+    .vote-label{font-size:16px;font-weight:800;letter-spacing:1px}
+    .vote-pct{font-size:13px;font-weight:600;margin-top:2px}
+
+    .yes-btn{
+      background:rgba(89,166,128,0.8);
+      border:2px solid rgba(89,166,128,0.95);
+      color:rgba(255,255,255,1);
+    }
+    .no-btn{
+      background:rgba(174,156,156,0.25);
+      border:2px solid rgba(174,156,156,0.35);
+      color:rgba(255,255,255,0.5);
+    }
+  </style></head><body><div class="thumb">
+    <div class="bg"></div><div class="overlay"></div>
+    <img class="logo" src="./marketmotionlogo.webp"/>
+    <img class="person" src="./images/culinary_person_0_nobg.png"/>
+    
+    <div class="content">
+      <div class="title">흑백요리사 시즌2<br/>White Spoon이 이길까?</div>
+      <div class="vote-wrapper">
+        <div class="vote-btn yes-btn">
+          <span class="vote-label">YES</span>
+          <span class="vote-pct">(100%)</span>
+        </div>
+        <div class="vote-btn no-btn">
+          <span class="vote-label">NO</span>
+          <span class="vote-pct">(0%)</span>
+        </div>
+      </div>
+    </div>
+  </div></body></html>

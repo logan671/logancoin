@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      .thumb{width:1200px;height:400px;position:relative;overflow:hidden;
+        background:linear-gradient(135deg,#0a1628 0%,#0d2137 40%,#132d46 100%);
+        font-family:Arial,sans-serif;color:white}
+      .grid{position:absolute;inset:0;
+        background-image:linear-gradient(rgba(0,200,255,0.05) 1px,transparent 1px),
+          linear-gradient(90deg,rgba(0,200,255,0.05) 1px,transparent 1px);
+        background-size:40px 40px}
+      .chart{position:absolute;right:40px;bottom:30px;width:550px;height:280px}
+      .chart svg{width:100%;height:100%}
+      .tag{display:inline-block;background:#0ea5e9;padding:6px 16px;font-size:13px;
+        font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+      .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:2}
+      .title{font-size:44px;font-weight:900;line-height:1.2;max-width:520px}
+      .sub{margin-top:10px;font-size:18px;color:rgba(255,255,255,0.6)}
+      .prices{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;max-width:500px}
+      .chip{padding:8px 16px;border-radius:20px;font-size:14px;font-weight:700}
+      .chip.hot{background:rgba(34,197,94,0.2);border:1px solid #22c55e;color:#22c55e}
+      .chip.mid{background:rgba(234,179,8,0.2);border:1px solid #eab308;color:#eab308}
+      .chip.cold{background:rgba(100,116,139,0.2);border:1px solid #64748b;color:#94a3b8}
+      .glow{position:absolute;width:300px;height:300px;border-radius:50%;
+        background:radial-gradient(circle,rgba(14,165,233,0.15),transparent 70%);
+        right:200px;top:-50px}
+    </style></head><body><div class="thumb"><div class="grid"></div><div class="glow"></div>
+      <div class="content">
+        <div class="tag">ECONOMY</div>
+        <div class="title">2026년 1분기<br/>코스피 마감은?</div>
+        <div class="sub">Polymarket 실시간 예측</div>
+        <div class="prices">
+          <div class="chip hot">5500↑ 52%</div>
+          <div class="chip hot">5300↑ 100%</div>
+          <div class="chip mid">5000↑ 50%</div>
+          <div class="chip cold">4500↓ 44%</div>
+        </div>
+      </div>
+      <div class="chart"><svg viewBox="0 0 550 280">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+        </linearGradient></defs>
+        <polyline fill="url(#g1)" stroke="none" points="0,200 50,180 100,160 150,170 200,120 250,100 300,110 350,80 400,90 450,60 500,70 550,50 550,280 0,280"/>
+        <polyline fill="none" stroke="#0ea5e9" stroke-width="3" points="0,200 50,180 100,160 150,170 200,120 250,100 300,110 350,80 400,90 450,60 500,70 550,50"/>
+        <circle cx="550" cy="50" r="5" fill="#0ea5e9"/>
+        <text x="500" y="42" fill="rgba(255,255,255,0.5)" font-size="12">5,500</text>
+        <line x1="0" y1="200" x2="550" y2="200" stroke="rgba(255,255,255,0.1)" stroke-dasharray="4"/>
+        <text x="0" y="215" fill="rgba(255,255,255,0.3)" font-size="11">4,500</text>
+      </svg></div>
+    </div></body></html>

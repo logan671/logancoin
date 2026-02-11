@@ -1,0 +1,23 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Dependencies / virtualenvs
+node_modules/
+venv/
+.venv/
+
+# Secrets / local env
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local data / logs
+*.db
+*.sqlite
+*.sqlite3
+*.log
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    .thumb{width:864px;height:280px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white;background:#080810}
+    .bg{position:absolute;inset:0;background:url('./images/hottest_smart2.png') center/cover;opacity:0.6}
+    .overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,15,25,0.9) 0%,rgba(12,15,25,0.45) 50%,rgba(12,15,25,0.1) 100%)}
+    .logo{position:absolute;top:16px;right:20px;height:22px;width:auto;z-index:5;opacity:0.9}
+    .content{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:4}
+    .label{position:absolute;top:8px;left:36px;font-size:10px;color:rgba(255,255,255,0.4);z-index:6;letter-spacing:1px}
+
+    /* 제목 외곽선 강화 */
+    .title{
+      font-size:38px;font-weight:900;line-height:1.15;max-width:430px;
+      color:white;
+      -webkit-text-stroke:1.5px rgba(0,0,0,0.6);
+      paint-order:stroke fill;
+      text-shadow:
+        0 0 6px rgba(0,0,0,1),
+        0 0 12px rgba(0,0,0,0.8),
+        0 2px 4px rgba(0,0,0,0.9),
+        0 0 30px rgba(0,0,0,0.5);
+    }
+
+    /* wrapper 외곽선 */
+    .vote-wrapper{
+      display:inline-flex;gap:8px;margin-top:18px;
+      background:rgba(0,0,0,0.4);
+      border:2px solid rgba(255,255,255,0.15);
+      border-radius:14px;padding:8px 10px;
+      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      box-shadow:0 4px 16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    /* 버튼 */
+    .vote-btn{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      width:105px;height:58px;border-radius:10px;
+    }
+    .vote-label{
+      font-size:16px;font-weight:800;letter-spacing:1.5px;
+      text-shadow:0 1px 4px rgba(0,0,0,0.7);
+    }
+    .vote-pct{
+      font-size:13px;font-weight:700;margin-top:2px;
+      text-shadow:0 1px 3px rgba(0,0,0,0.6);
+    }
+
+    .yes-btn{
+      background:rgba(57,184,198,0.8);
+      border:2.5px solid rgba(57,184,198,0.95);
+      color:rgba(255,255,255,1);
+      box-shadow:0 2px 10px rgba(0,0,0,0.4), 0 0 15px rgba(57,184,198,0.3);
+    }
+    .no-btn{
+      background:rgba(121,96,58,0.25);
+      border:2.5px solid rgba(121,96,58,0.35);
+      color:rgba(255,255,255,0.5);
+      box-shadow:0 2px 8px rgba(0,0,0,0.3);
+    }
+  </style></head><body><div class="thumb">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <img class="logo" src="./marketmotionlogo.webp"/>
+    <div class="label">B: 스마트 검색</div>
+    <div class="content">
+      <div class="title">2026년이 역대<br/>가장 더운 해일까?</div>
+      <div class="vote-wrapper">
+        <div class="vote-btn yes-btn">
+          <span class="vote-label">YES</span>
+          <span class="vote-pct">(68%)</span>
+        </div>
+        <div class="vote-btn no-btn">
+          <span class="vote-label">NO</span>
+          <span class="vote-pct">(32%)</span>
+        </div>
+      </div>
+    </div>
+  </div></body></html>

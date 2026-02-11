@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      .thumb{width:1200px;height:400px;position:relative;overflow:hidden;
+        background:linear-gradient(135deg,#1a0a00 0%,#2d1a0a 40%,#3d2415 100%);
+        font-family:Arial,sans-serif;color:white}
+      .tag{display:inline-block;background:#f59e0b;color:#1a0a00;padding:6px 16px;font-size:13px;
+        font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+      .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:2}
+      .title{font-size:44px;font-weight:900;line-height:1.2}
+      .sub{margin-top:10px;font-size:18px;color:rgba(255,255,255,0.6)}
+      .result-box{margin-top:24px;background:rgba(245,158,11,0.15);border:2px solid #f59e0b;
+        border-radius:12px;padding:20px 28px;display:inline-block}
+      .result-label{font-size:13px;color:#f59e0b;letter-spacing:1px;font-weight:700}
+      .result-value{font-size:36px;font-weight:900;margin-top:4px;color:#fbbf24}
+      .spoons{position:absolute;right:60px;top:50%;transform:translateY(-50%);
+        display:flex;gap:30px;align-items:center;z-index:2}
+      .spoon{text-align:center}
+      .spoon-icon{font-size:80px;margin-bottom:8px}
+      .spoon-label{font-size:16px;font-weight:700;padding:6px 20px;border-radius:20px}
+      .white-bg{background:rgba(255,255,255,0.15);color:white;border:2px solid white}
+      .black-bg{background:rgba(100,100,100,0.15);color:#666;border:2px solid #666;text-decoration:line-through}
+      .vs{font-size:32px;font-weight:900;color:rgba(255,255,255,0.3)}
+      .resolved{position:absolute;top:20px;right:20px;background:#22c55e;color:white;
+        padding:6px 14px;border-radius:4px;font-size:12px;font-weight:700}
+      .flame1{position:absolute;right:350px;bottom:0;font-size:120px;opacity:0.08}
+      .flame2{position:absolute;right:150px;bottom:-20px;font-size:160px;opacity:0.06}
+    </style></head><body><div class="thumb">
+      <div class="flame1">🔥</div><div class="flame2">🍳</div>
+      <div class="resolved">RESOLVED</div>
+      <div class="content">
+        <div class="tag">ENTERTAINMENT</div>
+        <div class="title">흑백요리사<br/>시즌2 승자는?</div>
+        <div class="sub">Culinary Class Wars Season 2</div>
+        <div class="result-box">
+          <div class="result-label">WINNER</div>
+          <div class="result-value">🥄 White Spoon 승리!</div>
+        </div>
+      </div>
+      <div class="spoons">
+        <div class="spoon">
+          <div class="spoon-icon">🥄</div>
+          <div class="spoon-label white-bg">White 100%</div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="spoon">
+          <div class="spoon-icon" style="opacity:0.4">🥄</div>
+          <div class="spoon-label black-bg">Black 0%</div>
+        </div>
+      </div>
+    </div></body></html>

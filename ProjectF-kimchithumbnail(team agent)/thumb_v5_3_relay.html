@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    .thumb{width:864px;height:280px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white}
+    .thumb{background:linear-gradient(135deg,#0a000f 0%,#1a0030 50%,#12001e 100%)}
+    
+    .grid{position:absolute;inset:0;
+      background-image:linear-gradient(rgba(168,85,247,0.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(168,85,247,0.04) 1px,transparent 1px);
+      background-size:30px 30px}
+    .logo{position:absolute;top:16px;right:20px;height:22px;width:auto;z-index:5;opacity:0.9}
+    .content{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:4}
+    .title{font-size:32px;font-weight:900;line-height:1.15;max-width:430px;text-shadow:2px 2px 12px rgba(0,0,0,0.7)}
+
+    .vote-wrapper{
+      display:flex;gap:10px;margin-top:18px;
+      background:rgba(255,255,255,0.10);
+      border:1.5px solid rgba(255,255,255,0.15);
+      border-radius:16px;padding:10px 12px;
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+      align-items:center;
+    }
+    .vote-btn{display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .vote-label{font-weight:800;letter-spacing:1px}
+    .vote-pct{font-weight:600;opacity:0.85;margin-top:2px}
+
+    .yes-btn{
+      width:88px;height:62px;
+      border-radius:8px;
+      background:rgba(209,217,38,0.3);
+      border:2px solid rgba(209,217,38,0.4);
+    }
+    .yes-btn .vote-label{font-size:15px}
+    .yes-btn .vote-pct{font-size:12px}
+
+    .no-btn{
+      width:120px;height:62px;
+      border-radius:10px;
+      background:rgba(92,54,125,0.7);
+      border:2px solid rgba(92,54,125,0.9);
+    }
+    .no-btn .vote-label{font-size:18px}
+    .no-btn .vote-pct{font-size:14px}
+  </style></head><body><div class="thumb">
+    <div class="grid"></div>
+    <img class="logo" src="./marketmotionlogo.webp"/>
+    
+    <img style="position:absolute;right:100px;top:50%;transform:translateY(-50%);width:160px;height:160px;border-radius:50%;object-fit:contain;padding:25px;background:rgba(168,85,247,0.08);box-shadow:0 0 50px rgba(168,85,247,0.2),0 0 100px rgba(168,85,247,0.08);z-index:1" src="./images/relay_coin_0.png"/>
+    <div class="content">
+      <div class="title">Relay 런칭 하루 뒤<br/>FDV $1B 넘길까?</div>
+      <div class="vote-wrapper">
+        <div class="vote-btn yes-btn">
+          <span class="vote-label">YES</span>
+          <span class="vote-pct">(41%)</span>
+        </div>
+        <div class="vote-btn no-btn">
+          <span class="vote-label">NO</span>
+          <span class="vote-pct">(59%)</span>
+        </div>
+      </div>
+    </div>
+  </div></body></html>

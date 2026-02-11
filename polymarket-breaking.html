@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polymarket Breaking Top 10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .refresh-btn {
+            background: #2a2a4a;
+            border: 1px solid #3a3a6a;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .refresh-btn:hover {
+            background: #3a3a6a;
+        }
+
+        .interval-select {
+            background: #2a2a4a;
+            border: 1px solid #3a3a6a;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .markets-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .market-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: grid;
+            grid-template-columns: 40px 44px 1fr auto;
+            gap: 16px;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .market-image {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .market-image-placeholder {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .market-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(4px);
+        }
+
+        .rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .rank.top3 {
+            color: #00ff88;
+        }
+
+        .market-info {
+            overflow: hidden;
+        }
+
+        .market-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .market-title a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .market-title a:hover {
+            color: #00d9ff;
+        }
+
+        .market-meta {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .market-stats {
+            text-align: right;
+            min-width: 120px;
+        }
+
+        .price-change {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .price-change.positive {
+            color: #00ff88;
+        }
+
+        .price-change.negative {
+            color: #ff4757;
+        }
+
+        .current-price {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #333;
+            border-top-color: #00d9ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid #ff4757;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #ff4757;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: #00d9ff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Polymarket Breaking</h1>
+            <div class="status-bar">
+                <div class="live-indicator">
+                    <div class="live-dot"></div>
+                    <span>LIVE</span>
+                </div>
+                <span id="lastUpdate">업데이트 중...</span>
+                <select class="interval-select" id="intervalSelect">
+                    <option value="10000">10초</option>
+                    <option value="30000" selected>30초</option>
+                    <option value="60000">1분</option>
+                    <option value="300000">5분</option>
+                </select>
+                <button class="refresh-btn" onclick="fetchMarkets()">새로고침</button>
+            </div>
+        </header>
+
+        <main id="marketsContainer">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>데이터 로딩 중...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Data from <a href="https://polymarket.com/breaking" target="_blank">Polymarket</a> |
+               API: <a href="https://gamma-api.polymarket.com" target="_blank">Gamma API</a></p>
+        </footer>
+    </div>
+
+    <script>
+        const API_URL = 'https://gamma-api.polymarket.com/markets';
+        let refreshInterval;
+
+        async function fetchMarkets() {
+            const container = document.getElementById('marketsContainer');
+
+            try {
+                const params = new URLSearchParams({
+                    limit: '10',
+                    active: 'true',
+                    order: 'oneDayPriceChange',
+                    ascending: 'false'
+                });
+
+                const response = await fetch(`${API_URL}?${params}`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const markets = await response.json();
+                renderMarkets(markets);
+                updateTimestamp();
+
+            } catch (error) {
+                console.error('Fetch error:', error);
+                container.innerHTML = `
+                    <div class="error">
+                        <p>데이터를 불러오는데 실패했습니다.</p>
+                        <p style="font-size: 0.8rem; margin-top: 10px;">${error.message}</p>
+                        <p style="font-size: 0.8rem; margin-top: 10px; color: #888;">
+                            CORS 문제일 경우, 로컬 서버를 통해 실행하거나<br>
+                            브라우저 확장 프로그램을 사용해주세요.
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderMarkets(markets) {
+            const container = document.getElementById('marketsContainer');
+
+            if (!markets || markets.length === 0) {
+                container.innerHTML = '<div class="loading">표시할 마켓이 없습니다.</div>';
+                return;
+            }
+
+            const html = markets.map((market, index) => {
+                const priceChange = parseFloat(market.oneDayPriceChange) || 0;
+                const changePercent = (Math.abs(priceChange) * 100).toFixed(0);
+                const isPositive = priceChange >= 0;
+
+                // outcomePrices 배열에서 첫번째 가격 추출
+                let currentPrice = 0;
+                if (market.outcomePrices && Array.isArray(market.outcomePrices)) {
+                    currentPrice = parseFloat(market.outcomePrices[0]) || 0;
+                } else if (market.currentPrice) {
+                    currentPrice = parseFloat(market.currentPrice) || 0;
+                }
+
+                const slug = market.slug || market.id;
+                const imageUrl = market.image || '';
+                const eventSlug = market.events?.[0]?.slug || slug;
+
+                return `
+                    <div class="market-card">
+                        <div class="rank ${index < 3 ? 'top3' : ''}">${index + 1}</div>
+                        ${imageUrl ? `<img src="${imageUrl}" class="market-image" alt="">` : '<div class="market-image-placeholder"></div>'}
+                        <div class="market-info">
+                            <div class="market-title">
+                                <a href="https://polymarket.com/event/${eventSlug}" target="_blank">
+                                    ${market.question || market.title || 'Unknown Market'}
+                                </a>
+                            </div>
+                            <div class="market-meta">
+                                ${market.closed ? 'Resolved' : 'Active'}
+                            </div>
+                        </div>
+                        <div class="market-stats">
+                            <div class="current-price">
+                                ${(currentPrice * 100).toFixed(0)}%
+                            </div>
+                            <div class="price-change ${isPositive ? 'positive' : 'negative'}">
+                                ${isPositive ? '↑' : '↓'}${changePercent}%
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = `<div class="markets-grid">${html}</div>`;
+        }
+
+        function formatVolume(vol) {
+            const num = parseFloat(vol);
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toFixed(0);
+        }
+
+        function updateTimestamp() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('ko-KR', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('lastUpdate').textContent = `마지막 업데이트: ${timeStr}`;
+        }
+
+        function setupAutoRefresh() {
+            const select = document.getElementById('intervalSelect');
+
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+            }
+
+            const interval = parseInt(select.value);
+            refreshInterval = setInterval(fetchMarkets, interval);
+        }
+
+        document.getElementById('intervalSelect').addEventListener('change', setupAutoRefresh);
+
+        // 초기 로드
+        fetchMarkets();
+        setupAutoRefresh();
+    </script>
+</body>
+</html>

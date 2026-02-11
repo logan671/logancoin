@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      
+  *{margin:0;padding:0;box-sizing:border-box}
+  .thumb{width:1200px;height:400px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white}
+  .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:4}
+  .tag{display:inline-block;padding:6px 16px;font-size:13px;font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+  .title{font-size:48px;font-weight:900;line-height:1.15;max-width:600px;text-shadow:2px 2px 12px rgba(0,0,0,0.6)}
+  .vote{margin-top:28px;max-width:480px}
+  .vote-row{display:flex;height:40px;border-radius:20px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+  .vote-yes{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-no{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-text{font-size:13px;opacity:0.9}
+  .vote-pct{font-size:17px;font-weight:900}
+
+      .thumb{background:linear-gradient(135deg,#1a0000 0%,#3d0a00 30%,#2d0a00 100%)}
+      .tag{background:#ef4444}
+      .vote-yes{background:#ef4444}
+      .vote-no{background:#3b82f6}
+      .earth{position:absolute;right:60px;top:50%;transform:translateY(-50%);
+        height:340px;width:auto;z-index:1;
+        filter:drop-shadow(0 0 40px rgba(239,68,68,0.4)) drop-shadow(0 0 80px rgba(239,68,68,0.2))}
+    </style></head><body><div class="thumb">
+      <img class="earth" src="./images/hottest_earth_0_nobg.png"/>
+      <div class="content">
+        <div class="tag">CLIMATE</div>
+        <div class="title">2026년이 역대<br/>가장 더운 해일까?</div>
+        
+    <div class="vote">
+      <div class="vote-row">
+        <div class="vote-yes" style="width:68%">
+          <span class="vote-text">YES</span>
+          <span class="vote-pct">68%</span>
+        </div>
+        <div class="vote-no" style="width:32%">
+          <span class="vote-pct">32%</span>
+          <span class="vote-text">NO</span>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div></body></html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    .thumb{width:864px;height:280px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white;
+      background:linear-gradient(135deg,#000814 0%,#001d3d 40%,#002244 100%)}
+    .logo{position:absolute;top:16px;right:20px;height:22px;width:auto;z-index:5;opacity:0.9}
+    .person{position:absolute;right:0;bottom:0;height:110%;width:auto;z-index:1;
+      mask-image:linear-gradient(to left,black 50%,transparent 95%);
+      -webkit-mask-image:linear-gradient(to left,black 50%,transparent 95%)}
+
+    .content{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:4}
+    .title{font-size:38px;font-weight:900;line-height:1.15;max-width:430px;text-shadow:2px 2px 12px rgba(0,0,0,0.7)}
+
+    .vote-wrapper{
+      display:flex;gap:10px;margin-top:18px;
+      background:rgba(255,255,255,0.10);
+      border:1.5px solid rgba(255,255,255,0.15);
+      border-radius:16px;
+      padding:10px 12px;
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+      align-items:center;
+    }
+    .vote-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px}
+    .vote-label{font-weight:800;letter-spacing:1px}
+    .vote-pct{font-weight:600;opacity:0.85;margin-top:2px}
+
+    /* YES 버튼 */
+    .yes-btn{
+      width:120px;height:62px;
+      border-radius:10px;
+      background:rgba(6,182,212,0.75);
+      border:2px solid rgba(6,182,212,0.95);
+    }
+    .yes-btn .vote-label{font-size:18px}
+    .yes-btn .vote-pct{font-size:14px}
+
+    /* NO 버튼 */
+    .no-btn{
+      width:88px;height:62px;
+      border-radius:8px;
+      background:rgba(30,58,95,0.4);
+      border:2px solid rgba(30,58,95,0.5);
+    }
+    .no-btn .vote-label{font-size:15px}
+    .no-btn .vote-pct{font-size:12px}
+
+    .label{position:absolute;top:8px;left:36px;font-size:11px;color:rgba(255,255,255,0.5);z-index:6;letter-spacing:1px}
+  </style></head><body><div class="thumb">
+    <img class="logo" src="./marketmotionlogo.webp"/>
+    <img class="person" src="./images/badbunny_portrait_0_nobg.png"/>
+    <div class="label">YES 72% vs NO 28% — YES 우세</div>
+    <div class="content">
+      <div class="title">배드버니 하프타임쇼<br/>조회수 1.25억 넘길까?</div>
+      <div class="vote-wrapper">
+        <div class="vote-btn yes-btn">
+          <span class="vote-label">YES</span>
+          <span class="vote-pct">(72%)</span>
+        </div>
+        <div class="vote-btn no-btn">
+          <span class="vote-label">NO</span>
+          <span class="vote-pct">(28%)</span>
+        </div>
+      </div>
+    </div>
+  </div></body></html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      
+  *{margin:0;padding:0;box-sizing:border-box}
+  .thumb{width:1200px;height:400px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white}
+  .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:4}
+  .tag{display:inline-block;padding:6px 16px;font-size:13px;font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+  .title{font-size:48px;font-weight:900;line-height:1.15;max-width:600px;text-shadow:2px 2px 12px rgba(0,0,0,0.6)}
+  .vote{margin-top:28px;max-width:480px}
+  .vote-row{display:flex;height:40px;border-radius:20px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+  .vote-yes{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-no{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-text{font-size:13px;opacity:0.9}
+  .vote-pct{font-size:17px;font-weight:900}
+
+      .thumb{background:linear-gradient(135deg,#1a0a00 0%,#2d1a0a 40%,#1a0f05 100%)}
+      .tag{background:#f59e0b;color:#1a0a00}
+      .vote-yes{background:#22c55e}
+      .vote-no{background:#ef4444}
+      .logo{position:absolute;right:30px;top:50%;transform:translateY(-50%);
+        width:480px;opacity:0.9;z-index:1}
+      .logo-overlay{position:absolute;inset:0;
+        background:linear-gradient(90deg,#1a0a00 38%,transparent 65%);z-index:2}
+      .resolved{position:absolute;top:20px;right:20px;background:#22c55e;color:white;
+        padding:6px 14px;border-radius:4px;font-size:12px;font-weight:700;z-index:5}
+    </style></head><body><div class="thumb">
+      <img class="logo" src="./images/culinary_logo_0.png"/>
+      <div class="logo-overlay"></div>
+      <div class="resolved">RESOLVED</div>
+      <div class="content">
+        <div class="tag">ENTERTAINMENT</div>
+        <div class="title">흑백요리사 시즌2<br/>White Spoon이 이길까?</div>
+        
+    <div class="vote">
+      <div class="vote-row">
+        <div class="vote-yes" style="width:100%">
+          <span class="vote-text">YES</span>
+          <span class="vote-pct">100%</span>
+        </div>
+        <div class="vote-no" style="width:0%">
+          <span class="vote-pct">0%</span>
+          <span class="vote-text">NO</span>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div></body></html>

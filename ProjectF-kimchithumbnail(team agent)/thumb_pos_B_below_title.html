@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      
+  *{margin:0;padding:0;box-sizing:border-box}
+  .thumb{width:864px;height:280px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white}
+  .logo{position:absolute;top:16px;right:20px;height:22px;width:auto;z-index:5;opacity:0.9}
+  .title{font-size:38px;font-weight:900;line-height:1.15;max-width:430px;text-shadow:2px 2px 12px rgba(0,0,0,0.7)}
+  .thumb{background:#1a0000}
+  .bg{position:absolute;inset:0;background:url('./images/hottest_earth_alt_clean.jpeg') center/cover;opacity:0.5}
+  .overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,0,0,0.85) 0%,rgba(20,0,0,0.4) 50%,rgba(20,0,0,0.2) 100%)}
+  .vote-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100px;height:52px;border-radius:10px}
+  .vote-label{font-size:16px;font-weight:800;letter-spacing:1px}
+  .vote-pct{font-size:13px;font-weight:600;opacity:0.8;margin-top:1px}
+  .yes-btn{background:rgba(239,68,68,0.8);border:2px solid rgba(239,68,68,1)}
+  .no-btn{background:rgba(59,130,246,0.6);border:2px solid rgba(59,130,246,0.8)}
+  .label{position:absolute;top:8px;left:36px;font-size:11px;color:rgba(255,255,255,0.5);z-index:6;letter-spacing:1px}
+ 
+      .content{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:4}
+      .vote-area{display:flex;gap:10px;margin-top:18px}
+    
+    </style></head><body><div class="thumb">
+      <div class="bg"></div><div class="overlay"></div>
+      <img class="logo" src="./marketmotionlogo.webp"/>
+      <div class="label">B: 제목 바로 아래</div>
+      <div class="content">
+        <div class="title">2026년이 역대<br/>가장 더운 해일까?</div>
+        <div class="vote-area">
+  <div class="vote-btn yes-btn">
+    <span class="vote-label">YES</span>
+    <span class="vote-pct">(68%)</span>
+  </div>
+  <div class="vote-btn no-btn">
+    <span class="vote-label">NO</span>
+    <span class="vote-pct">(32%)</span>
+  </div></div>
+      </div>
+      
+    </div></body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .thumbnail {
+    width: 1200px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4e 50%, #2d1b69 100%);
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* dark overlay pattern */
+  .thumbnail::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(255,255,255,0.03) 0%, transparent 60%);
+  }
+
+  /* person image - right side */
+  .person {
+    position: absolute;
+    right: -20px;
+    bottom: 0;
+    height: 110%;
+    width: auto;
+    z-index: 2;
+  }
+
+  /* gradient fade over the person edge */
+  .person-fade {
+    position: absolute;
+    right: 200px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(90deg, #0a0a2e 0%, transparent 100%);
+    z-index: 3;
+  }
+
+  /* text area - left side */
+  .content {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    color: white;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #e63946;
+    color: white;
+    padding: 6px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.2;
+    max-width: 600px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  }
+
+  .subtitle {
+    margin-top: 12px;
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+    max-width: 500px;
+  }
+
+  /* vote bar */
+  .vote-section {
+    margin-top: 24px;
+    max-width: 450px;
+  }
+
+  .vote-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .vote-bar {
+    width: 100%;
+    height: 32px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .vote-yes {
+    background: #4ade80;
+    width: 62%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    color: #0a0a2e;
+  }
+
+  .vote-no {
+    background: #f87171;
+    width: 38%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    color: #0a0a2e;
+  }
+</style>
+</head>
+<body>
+  <div class="thumbnail">
+    <div class="person-fade"></div>
+    <img class="person" src="test_nobg.png" />
+
+    <div class="content">
+      <div class="tag">POLITICS</div>
+      <div class="title">트럼프, 2026년<br/>탄핵될까?</div>
+      <div class="subtitle">Polymarket 실시간 예측</div>
+
+      <div class="vote-section">
+        <div class="vote-labels">
+          <span>YES (탄핵된다)</span>
+          <span>NO (안 된다)</span>
+        </div>
+        <div class="vote-bar">
+          <div class="vote-yes">62%</div>
+          <div class="vote-no">38%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

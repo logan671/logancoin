@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+      
+  *{margin:0;padding:0;box-sizing:border-box}
+  .thumb{width:1200px;height:400px;position:relative;overflow:hidden;font-family:Arial,sans-serif;color:white}
+  .content{position:absolute;left:50px;top:50%;transform:translateY(-50%);z-index:4}
+  .tag{display:inline-block;padding:6px 16px;font-size:13px;font-weight:700;border-radius:4px;letter-spacing:1px;margin-bottom:14px}
+  .title{font-size:48px;font-weight:900;line-height:1.15;max-width:600px;text-shadow:2px 2px 12px rgba(0,0,0,0.6)}
+  .vote{margin-top:28px;max-width:480px}
+  .vote-row{display:flex;height:40px;border-radius:20px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+  .vote-yes{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-no{display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font-weight:700;font-size:15px;color:white}
+  .vote-text{font-size:13px;opacity:0.9}
+  .vote-pct{font-size:17px;font-weight:900}
+
+      .thumb{background:linear-gradient(135deg,#0a000f 0%,#1a0030 40%,#0f0025 100%)}
+      .tag{background:#a855f7}
+      .vote-yes{background:#a855f7}
+      .vote-no{background:#4b2080}
+      .coin{position:absolute;right:120px;top:50%;transform:translateY(-50%);
+        width:200px;height:200px;border-radius:50%;object-fit:contain;padding:30px;
+        background:rgba(168,85,247,0.1);
+        box-shadow:0 0 60px rgba(168,85,247,0.25),0 0 120px rgba(168,85,247,0.1);z-index:1}
+      .orb{position:absolute;right:50px;top:50%;transform:translateY(-50%);
+        width:400px;height:400px;border-radius:50%;
+        background:radial-gradient(circle,rgba(168,85,247,0.08),transparent 60%)}
+    </style></head><body><div class="thumb">
+      <div class="orb"></div>
+      <img class="coin" src="./images/relay_coin_0.png"/>
+      <div class="content">
+        <div class="tag">CRYPTO</div>
+        <div class="title">Relay 런칭 하루 뒤<br/>FDV $1B 넘길까?</div>
+        
+    <div class="vote">
+      <div class="vote-row">
+        <div class="vote-yes" style="width:41%">
+          <span class="vote-text">YES</span>
+          <span class="vote-pct">41%</span>
+        </div>
+        <div class="vote-no" style="width:59%">
+          <span class="vote-pct">59%</span>
+          <span class="vote-text">NO</span>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div></body></html>

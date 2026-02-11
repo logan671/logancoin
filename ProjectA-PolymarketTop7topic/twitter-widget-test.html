@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter Widget Test</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #e7e9ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      gap: 30px;
+    }
+    h2 { color: #71767b; font-size: 14px; }
+    .label { color: #1d9bf0; font-size: 13px; margin-bottom: 8px; }
+
+    /* Method 1: widgets.js */
+    .widget-wrapper {
+      width: 400px;
+      height: 280px;
+      border: 1px solid #2f3336;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* Method 2: iframe (syndication) */
+    .iframe-wrapper {
+      width: 400px;
+      height: 280px;
+      border: 1px solid #2f3336;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .iframe-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Method 1: Official widgets.js -->
+  <div>
+    <div class="label">Method 1: widgets.js</div>
+    <div class="widget-wrapper">
+      <a class="twitter-timeline"
+         href="https://twitter.com/Polymarket"
+         data-height="280"
+         data-theme="dark"
+         data-chrome="noheader nofooter noborders">
+      </a>
+    </div>
+  </div>
+
+  <!-- Method 2: Syndication iframe -->
+  <div>
+    <div class="label">Method 2: iframe (syndication)</div>
+    <div class="iframe-wrapper">
+      <iframe
+        src="https://syndication.twitter.com/srv/timeline-profile/screen-name/Polymarket?dnt=true&theme=dark"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Method 3: List via syndication iframe -->
+  <div>
+    <div class="label">Method 3: Your list (iframe)</div>
+    <div class="iframe-wrapper">
+      <iframe
+        src="https://syndication.twitter.com/srv/timeline-list/list/2016075039087722874?dnt=true&theme=dark"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

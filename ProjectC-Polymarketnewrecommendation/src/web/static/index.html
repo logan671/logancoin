@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polymarket Alpha Scanner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .alpha-high { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); }
+        .alpha-medium { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+        .alpha-low { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="flex h-screen">
+        <!-- 메인 컨텐츠 -->
+        <div class="flex-1 overflow-auto p-6">
+            <!-- 헤더 -->
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-gray-800">Polymarket Alpha Scanner</h1>
+                <p class="text-gray-500">신규 마켓에서 알파 기회를 찾아보세요</p>
+            </div>
+
+            <!-- 필터 탭 -->
+            <div class="flex gap-2 mb-6">
+                <button onclick="loadMarkets('recent')" class="filter-btn px-4 py-2 rounded-lg bg-blue-500 text-white" data-filter="recent">
+                    최신 마켓
+                </button>
+                <button onclick="loadMarkets('high_alpha')" class="filter-btn px-4 py-2 rounded-lg bg-gray-200" data-filter="high_alpha">
+                    높은 알파
+                </button>
+                <button onclick="loadMarkets('passed')" class="filter-btn px-4 py-2 rounded-lg bg-gray-200" data-filter="passed">
+                    스크리닝 통과
+                </button>
+                <button onclick="loadMarkets('failed')" class="filter-btn px-4 py-2 rounded-lg bg-gray-200" data-filter="failed">
+                    패스됨
+                </button>
+                <button onclick="loadMarkets('favorites')" class="filter-btn px-4 py-2 rounded-lg bg-gray-200" data-filter="favorites">
+                    ⭐ 즐겨찾기
+                </button>
+            </div>
+
+            <!-- 마켓 목록 -->
+            <div id="markets-container" class="grid gap-4">
+                <div class="text-center py-10 text-gray-500">로딩 중...</div>
+            </div>
+        </div>
+
+        <!-- 사이드바: 채팅/피드백 -->
+        <div class="w-96 bg-white border-l border-gray-200 flex flex-col">
+            <!-- 탭 -->
+            <div class="flex border-b">
+                <button onclick="showTab('feedback')" class="tab-btn flex-1 py-3 text-center font-medium text-blue-600 border-b-2 border-blue-600" data-tab="feedback">
+                    피드백
+                </button>
+                <button onclick="showTab('rules')" class="tab-btn flex-1 py-3 text-center font-medium text-gray-500" data-tab="rules">
+                    학습 규칙
+                </button>
+            </div>
+
+            <!-- 피드백 탭 -->
+            <div id="feedback-tab" class="flex-1 flex flex-col p-4">
+                <div class="mb-4">
+                    <h3 class="font-bold text-gray-700 mb-2">AI에게 피드백 남기기</h3>
+                    <p class="text-sm text-gray-500">입력한 내용은 AI 분석에 반영됩니다</p>
+                </div>
+
+                <!-- 피드백 입력 -->
+                <div class="mb-4">
+                    <select id="feedback-type" class="w-full p-2 border rounded-lg mb-2">
+                        <option value="NOTE">일반 메모</option>
+                        <option value="SKIP_SIMILAR">이런 거 추천 안해줘</option>
+                        <option value="GOOD_CALL">좋은 추천이었어</option>
+                        <option value="BAD_CALL">잘못된 추천이었어</option>
+                    </select>
+                    <textarea id="feedback-content" class="w-full p-3 border rounded-lg h-24 resize-none" placeholder="피드백을 입력하세요...&#10;예: 크립토 관련 마켓은 패스해줘"></textarea>
+                    <button onclick="submitFeedback()" class="mt-2 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                        전송
+                    </button>
+                </div>
+
+                <!-- 피드백 히스토리 -->
+                <div class="flex-1 overflow-auto">
+                    <h4 class="font-medium text-gray-600 mb-2">최근 피드백</h4>
+                    <div id="feedback-list" class="space-y-2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 학습 규칙 탭 -->
+            <div id="rules-tab" class="flex-1 flex flex-col p-4 hidden">
+                <div class="mb-4">
+                    <h3 class="font-bold text-gray-700 mb-2">학습된 규칙</h3>
+                    <p class="text-sm text-gray-500">AI가 학습한 규칙들</p>
+                </div>
+
+                <div id="rules-list" class="flex-1 overflow-auto space-y-2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 마켓 상세 모달 -->
+    <div id="detail-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl max-w-2xl w-full mx-4 max-h-[80vh] overflow-auto">
+            <div id="detail-content" class="p-6">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentFilter = 'recent';
+        let selectedMarketId = null;
+
+        // 초기 로드
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMarkets('recent');
+            loadFeedbacks();
+            loadRules();
+        });
+
+        // 마켓 로드
+        async function loadMarkets(filter) {
+            currentFilter = filter;
+            updateFilterButtons(filter);
+
+            const container = document.getElementById('markets-container');
+            container.innerHTML = '<div class="text-center py-10 text-gray-500">로딩 중...</div>';
+
+            try {
+                const res = await fetch(`/api/markets?filter=${filter}`);
+                const markets = await res.json();
+
+                if (markets.length === 0) {
+                    container.innerHTML = '<div class="text-center py-10 text-gray-500">마켓이 없습니다</div>';
+                    return;
+                }
+
+                container.innerHTML = markets.map(m => renderMarketCard(m)).join('');
+            } catch (e) {
+                container.innerHTML = '<div class="text-center py-10 text-red-500">로드 실패</div>';
+            }
+        }
+
+        // 마켓 카드 렌더링
+        function renderMarketCard(m) {
+            const alphaClass = m.alpha_score >= 80 ? 'alpha-high' : m.alpha_score >= 50 ? 'alpha-medium' : 'alpha-low';
+            const statusBadge = m.screening_passed === true
+                ? '<span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded">통과</span>'
+                : m.screening_passed === false
+                ? '<span class="px-2 py-1 text-xs bg-gray-100 text-gray-500 rounded">패스</span>'
+                : '';
+
+            const recommendation = m.recommendation || '';
+            const recBadge = recommendation.includes('STRONG_BUY')
+                ? '<span class="px-2 py-1 text-xs bg-red-500 text-white rounded font-bold">강력 추천</span>'
+                : recommendation.includes('BUY')
+                ? '<span class="px-2 py-1 text-xs bg-orange-400 text-white rounded">추천</span>'
+                : '';
+
+            return `
+                <div class="bg-white rounded-xl p-4 shadow-sm card-hover transition-all cursor-pointer ${alphaClass}"
+                     onclick="showDetail('${m.id}')">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                ${statusBadge}
+                                ${recBadge}
+                                <span class="text-xs text-gray-400">${m.category || 'other'}</span>
+                            </div>
+                            <h3 class="font-bold text-gray-800">${m.title_ko || m.title}</h3>
+                            ${m.title_ko ? `<p class="text-sm text-gray-500">${m.title}</p>` : ''}
+                        </div>
+                        <button onclick="event.stopPropagation(); toggleFavorite('${m.id}')"
+                                class="text-2xl ${m.is_favorite ? 'text-yellow-400' : 'text-gray-300'} hover:text-yellow-400">
+                            ${m.is_favorite ? '★' : '☆'}
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-4 mt-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-green-600">YES ${(m.yes_price * 100).toFixed(0)}%</span>
+                                <span class="text-red-600">NO ${(m.no_price * 100).toFixed(0)}%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-green-500" style="width: ${m.yes_price * 100}%"></div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold ${m.alpha_score >= 80 ? 'text-red-600' : m.alpha_score >= 50 ? 'text-orange-500' : 'text-gray-400'}">
+                                ${m.alpha_score || 0}
+                            </div>
+                            <div class="text-xs text-gray-500">알파점수</div>
+                        </div>
+                    </div>
+
+                    ${m.screening_reason ? `
+                        <div class="mt-3 text-sm text-gray-600 bg-white bg-opacity-50 p-2 rounded">
+                            ${m.screening_reason}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        // 상세 모달
+        async function showDetail(marketId) {
+            selectedMarketId = marketId;
+            const modal = document.getElementById('detail-modal');
+            const content = document.getElementById('detail-content');
+
+            modal.classList.remove('hidden');
+            content.innerHTML = '<div class="text-center py-10">로딩 중...</div>';
+
+            try {
+                const res = await fetch(`/api/markets/${marketId}`);
+                const m = await res.json();
+
+                content.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="text-xl font-bold">${m.title_ko || m.title}</h2>
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                    </div>
+
+                    ${m.title_ko ? `<p class="text-gray-500 mb-4">${m.title}</p>` : ''}
+
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="bg-green-50 p-3 rounded-lg">
+                            <div class="text-sm text-gray-500">YES 가격</div>
+                            <div class="text-2xl font-bold text-green-600">${(m.yes_price * 100).toFixed(1)}%</div>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-lg">
+                            <div class="text-sm text-gray-500">NO 가격</div>
+                            <div class="text-2xl font-bold text-red-600">${(m.no_price * 100).toFixed(1)}%</div>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <div class="text-sm text-gray-500">AI 예측</div>
+                            <div class="text-2xl font-bold text-blue-600">${m.ai_prediction ? (m.ai_prediction * 100).toFixed(1) + '%' : '-'}</div>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded-lg">
+                            <div class="text-sm text-gray-500">알파 점수</div>
+                            <div class="text-2xl font-bold text-purple-600">${m.alpha_score || 0}</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex gap-2 mb-2">
+                            ${m.alpha_type ? `<span class="px-2 py-1 text-xs bg-gray-100 rounded">${m.alpha_type}</span>` : ''}
+                            ${m.recommendation ? `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded">${m.recommendation}</span>` : ''}
+                        </div>
+                    </div>
+
+                    ${m.analysis_summary ? `
+                        <div class="mb-4">
+                            <h3 class="font-bold text-gray-700 mb-2">분석</h3>
+                            <p class="text-gray-600 bg-gray-50 p-3 rounded-lg">${m.analysis_summary}</p>
+                        </div>
+                    ` : ''}
+
+                    ${m.key_evidence && m.key_evidence.length > 0 ? `
+                        <div class="mb-4">
+                            <h3 class="font-bold text-gray-700 mb-2">근거</h3>
+                            <ul class="list-disc list-inside text-gray-600">
+                                ${m.key_evidence.map(e => `<li>${e}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+
+                    <div class="flex gap-2 mt-4">
+                        ${m.polymarket_url ? `
+                            <a href="${m.polymarket_url}" target="_blank"
+                               class="flex-1 py-2 bg-purple-500 text-white rounded-lg text-center hover:bg-purple-600">
+                                Polymarket에서 보기
+                            </a>
+                        ` : ''}
+                        <button onclick="quickFeedback('GOOD_CALL', '${marketId}')"
+                                class="px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200">
+                            👍 좋아
+                        </button>
+                        <button onclick="quickFeedback('BAD_CALL', '${marketId}')"
+                                class="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200">
+                            👎 별로
+                        </button>
+                    </div>
+                `;
+            } catch (e) {
+                content.innerHTML = '<div class="text-red-500">로드 실패</div>';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        // 모달 외부 클릭 시 닫기
+        document.getElementById('detail-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'detail-modal') closeModal();
+        });
+
+        // 즐겨찾기 토글
+        async function toggleFavorite(marketId) {
+            const markets = document.querySelectorAll(`[onclick*="${marketId}"]`);
+            try {
+                const res = await fetch(`/api/favorites/${marketId}`, { method: 'POST' });
+                const data = await res.json();
+                if (!data.success) {
+                    await fetch(`/api/favorites/${marketId}`, { method: 'DELETE' });
+                }
+                loadMarkets(currentFilter);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // 피드백 제출
+        async function submitFeedback() {
+            const type = document.getElementById('feedback-type').value;
+            const content = document.getElementById('feedback-content').value.trim();
+
+            if (!content) return;
+
+            try {
+                await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        market_id: selectedMarketId,
+                        feedback_type: type,
+                        content: content,
+                    }),
+                });
+
+                document.getElementById('feedback-content').value = '';
+                loadFeedbacks();
+                if (type === 'SKIP_SIMILAR') loadRules();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // 빠른 피드백
+        async function quickFeedback(type, marketId) {
+            try {
+                await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        market_id: marketId,
+                        feedback_type: type,
+                        content: `Market ${marketId} - ${type}`,
+                    }),
+                });
+                closeModal();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // 피드백 목록 로드
+        async function loadFeedbacks() {
+            try {
+                const res = await fetch('/api/feedback');
+                const feedbacks = await res.json();
+
+                const container = document.getElementById('feedback-list');
+                container.innerHTML = feedbacks.slice(0, 10).map(f => `
+                    <div class="p-2 bg-gray-50 rounded text-sm">
+                        <div class="flex justify-between">
+                            <span class="font-medium text-gray-700">${f.feedback_type}</span>
+                            <span class="text-xs text-gray-400">${new Date(f.created_at).toLocaleDateString()}</span>
+                        </div>
+                        <p class="text-gray-600 mt-1">${f.content}</p>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // 학습 규칙 로드
+        async function loadRules() {
+            try {
+                const res = await fetch('/api/learning-rules');
+                const rules = await res.json();
+
+                const container = document.getElementById('rules-list');
+                if (rules.length === 0) {
+                    container.innerHTML = '<div class="text-gray-400 text-center py-4">아직 학습된 규칙이 없습니다</div>';
+                    return;
+                }
+
+                container.innerHTML = rules.map(r => `
+                    <div class="p-3 bg-gray-50 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded">${r.rule_type}</span>
+                            <label class="flex items-center">
+                                <input type="checkbox" ${r.is_active ? 'checked' : ''}
+                                       onchange="toggleRule(${r.id}, this.checked)"
+                                       class="w-4 h-4">
+                            </label>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">${r.rule_content}</p>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function toggleRule(ruleId, isActive) {
+            try {
+                await fetch(`/api/learning-rules/${ruleId}?is_active=${isActive}`, { method: 'PATCH' });
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // 탭 전환
+        function showTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+                btn.classList.add('text-gray-500');
+            });
+            document.querySelector(`[data-tab="${tab}"]`).classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+            document.querySelector(`[data-tab="${tab}"]`).classList.remove('text-gray-500');
+
+            document.getElementById('feedback-tab').classList.toggle('hidden', tab !== 'feedback');
+            document.getElementById('rules-tab').classList.toggle('hidden', tab !== 'rules');
+        }
+
+        // 필터 버튼 업데이트
+        function updateFilterButtons(active) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === active) {
+                    btn.classList.remove('bg-gray-200');
+                    btn.classList.add('bg-blue-500', 'text-white');
+                } else {
+                    btn.classList.add('bg-gray-200');
+                    btn.classList.remove('bg-blue-500', 'text-white');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
