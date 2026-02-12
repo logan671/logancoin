@@ -274,6 +274,165 @@ def normalize_posts(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return normalized
 
 
+def extract_tweet_id_from_url(url: str) -> str:
+    try:
+        parsed = urlparse(url)
+    except Exception:
+        return ""
+    path = parsed.path or ""
+    match = re.search(r"/status/(\d+)", path)
+    return match.group(1) if match else ""
+
+
+def fetch_top_refs_from_grok(api_key: str, model: str, target_count: int = 10) -> list[dict[str, Any]]:
+    system_prompt = "You are a ranking assistant. Return valid JSON only."
+    user_prompt = (
+        f"Find the top {target_count} hottest X posts from the last 24 hours about Polymarket alpha/strategy/whale/copy-trade. "
+        "Return JSON object with key 'posts'. "
+        "Each post must include: rank (1..N), tweet_id, url. "
+        "url must be real x.com or twitter.com status link. "
+        "Do not use example.com or placeholders. "
+        "Do not include markdown fences."
+    )
+    os.environ["GROK_MODEL"] = model
+    content = grok_chat_completion(
+        api_key=api_key,
+        messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+        timeout_sec=int(os.getenv("GROK_TIMEOUT", "30")),
+    )
+    payload = extract_json_object(content)
+    rows = payload.get("posts", [])
+    if not isinstance(rows, list):
+        return []
+
+    refs: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for idx, row in enumerate(rows, start=1):
+        if not isinstance(row, dict):
+            continue
+        tweet_id = str(row.get("tweet_id") or row.get("id") or "").strip()
+        url = str(row.get("url") or "").strip()
+        if not tweet_id and url:
+            tweet_id = extract_tweet_id_from_url(url)
+        if not url and tweet_id:
+            url = f"https://x.com/i/status/{tweet_id}"
+        if not tweet_id or not url:
+            continue
+
+        parsed = urlparse(url)
+        host = (parsed.netloc or "").lower()
+        if host.startswith("www."):
+            host = host[4:]
+        if host not in {"x.com", "twitter.com"} or "/status/" not in (parsed.path or ""):
+            continue
+
+        if tweet_id in seen:
+            continue
+        seen.add(tweet_id)
+
+        rank_raw = row.get("rank")
+        rank = int(rank_raw) if isinstance(rank_raw, int) else idx
+        refs.append({"rank": rank, "tweet_id": tweet_id, "url": url})
+        if len(refs) >= target_count:
+            break
+
+    refs.sort(key=lambda x: int(x.get("rank") or 9999))
+    return refs
+
+
+def fetch_posts_by_ids_from_x_api(
+    bearer_token: str,
+    tweet_ids: list[str],
+    rank_map: dict[str, int] | None = None,
+) -> list[dict[str, Any]]:
+    ids = [x for x in tweet_ids if x.isdigit()]
+    if not ids:
+        return []
+
+    url = "https://api.x.com/2/tweets"
+    headers = {"Authorization": f"Bearer {bearer_token}"}
+    params = {
+        "ids": ",".join(ids[:100]),
+        "tweet.fields": "created_at,public_metrics,author_id,attachments,referenced_tweets",
+        "expansions": "author_id,attachments.media_keys",
+        "user.fields": "username,name",
+        "media.fields": "url,preview_image_url,type",
+    }
+
+    response = requests.get(url, headers=headers, params=params, timeout=int(os.getenv("X_TIMEOUT", "30")))
+    response.raise_for_status()
+    payload = response.json()
+
+    data_rows = payload.get("data", [])
+    includes = payload.get("includes", {})
+    users = includes.get("users", [])
+    media = includes.get("media", [])
+
+    user_by_id: dict[str, dict[str, Any]] = {}
+    for row in users:
+        if isinstance(row, dict) and isinstance(row.get("id"), str):
+            user_by_id[row["id"]] = row
+
+    media_by_key: dict[str, dict[str, Any]] = {}
+    for row in media:
+        if isinstance(row, dict) and isinstance(row.get("media_key"), str):
+            media_by_key[row["media_key"]] = row
+
+    posts: list[dict[str, Any]] = []
+    for row in data_rows:
+        if not isinstance(row, dict):
+            continue
+        tweet_id = str(row.get("id", "")).strip()
+        text_en = str(row.get("text", "")).strip()
+        if not tweet_id or not text_en:
+            continue
+
+        author_id = str(row.get("author_id", "")).strip()
+        user = user_by_id.get(author_id, {})
+        username = str(user.get("username", "")).strip() if isinstance(user, dict) else ""
+        author = username or "unknown"
+        post_url = f"https://x.com/{author}/status/{tweet_id}" if username else f"https://x.com/i/status/{tweet_id}"
+
+        metrics = row.get("public_metrics", {})
+        like_count = metrics.get("like_count", 0) if isinstance(metrics, dict) else 0
+        repost_count = metrics.get("retweet_count", 0) if isinstance(metrics, dict) else 0
+        reply_count = metrics.get("reply_count", 0) if isinstance(metrics, dict) else 0
+        quote_count = metrics.get("quote_count", 0) if isinstance(metrics, dict) else 0
+
+        images: list[str] = []
+        attachments = row.get("attachments", {})
+        if isinstance(attachments, dict):
+            media_keys = attachments.get("media_keys", [])
+            if isinstance(media_keys, list):
+                for key in media_keys:
+                    media_row = media_by_key.get(str(key))
+                    if not media_row:
+                        continue
+                    media_url = str(media_row.get("url") or media_row.get("preview_image_url") or "").strip()
+                    if media_url:
+                        images.append(media_url)
+
+        posts.append(
+            {
+                "tweet_id": tweet_id,
+                "author": author,
+                "url": post_url,
+                "text_en": text_en,
+                "images": images,
+                "rank": (rank_map or {}).get(tweet_id),
+                "view_count": None,
+                "like_count": like_count,
+                "repost_count": repost_count + quote_count,
+                "reply_count": reply_count,
+            }
+        )
+
+    normalized = normalize_posts(posts)
+    if rank_map:
+        normalized.sort(key=lambda x: int(rank_map.get(x["tweet_id"], 9999)))
+    return normalized
+
+
 def fetch_posts_from_grok(
     api_key: str,
     model: str,
@@ -618,6 +777,9 @@ def main() -> None:
     target_posts = int(os.getenv("TARGET_POSTS", "10"))
     use_mock_on_failure = os.getenv("USE_MOCK_ON_FAILURE", "true").lower() == "true"
     enable_translation = os.getenv("ENABLE_GROK_TRANSLATION", "false").lower() == "true"
+    use_grok_top_refs = os.getenv("USE_GROK_TOP_REFS", "true").lower() == "true"
+    grok_ref_candidates = int(os.getenv("GROK_TOP_REF_CANDIDATES", "20"))
+    use_x_search_fallback = os.getenv("GROK_REF_X_SEARCH_FALLBACK", "true").lower() == "true"
 
     status = load_status()
     status.setdefault("is_mock_data", False)
@@ -626,8 +788,24 @@ def main() -> None:
     if api_key:
         model = resolve_grok_model(api_key)
 
+    using_ref_pipeline = bool(x_bearer_token and api_key and use_grok_top_refs)
     try:
-        if x_bearer_token:
+        if using_ref_pipeline:
+            refs = fetch_top_refs_from_grok(
+                api_key=api_key,
+                model=model,
+                target_count=max(target_posts, grok_ref_candidates),
+            )
+            rank_map = {str(row["tweet_id"]): int(row["rank"]) for row in refs}
+            raw_posts = fetch_posts_by_ids_from_x_api(
+                bearer_token=x_bearer_token,
+                tweet_ids=[str(row["tweet_id"]) for row in refs],
+                rank_map=rank_map,
+            )
+            raw_posts = [x for x in raw_posts if x["tweet_id"] in rank_map]
+            if not raw_posts:
+                status["last_error"] = "no_valid_x_posts_from_grok_refs"
+        elif x_bearer_token:
             raw_posts = fetch_posts_from_x_api(bearer_token=x_bearer_token, candidate_count=candidate_count)
         elif api_key:
             raw_posts = fetch_posts_from_grok(
@@ -641,7 +819,7 @@ def main() -> None:
         if not raw_posts and use_mock_on_failure:
             raw_posts = get_mock_posts(candidate_count)
             status["is_mock_data"] = True
-            status["last_error"] = "no_posts_from_grok_response"
+            status["last_error"] = "no_posts_from_primary_source"
         else:
             status["is_mock_data"] = False
             status["needs_credit_topup"] = False
@@ -650,7 +828,12 @@ def main() -> None:
         error_text = str(exc)
         if exc.response is not None:
             error_text = f"{error_text} | body: {exc.response.text[:300]}"
-        source = "x_fetch_error" if x_bearer_token else "fetch_error"
+        if using_ref_pipeline:
+            source = "grok_ref_or_x_lookup_error"
+        elif x_bearer_token:
+            source = "x_fetch_error"
+        else:
+            source = "fetch_error"
         status["last_error"] = f"{source}: {error_text}"
         if "quota" in error_text.lower() or "credit" in error_text.lower() or "billing" in error_text.lower():
             status["needs_credit_topup"] = True
@@ -670,7 +853,17 @@ def main() -> None:
     selected_raw = filtered[:target_posts]
 
     if len(selected_raw) < target_posts:
-        if x_bearer_token:
+        if using_ref_pipeline and x_bearer_token and use_x_search_fallback:
+            try:
+                extra_rows = fetch_posts_from_x_api(
+                    bearer_token=x_bearer_token,
+                    candidate_count=max(candidate_count, target_posts * 4),
+                )
+                extra_rows = [x for x in extra_rows if x["tweet_id"] not in blocked_ids and x not in selected_raw]
+                raw_posts.extend(extra_rows)
+            except Exception as exc:  # noqa: BLE001
+                status["last_error"] = f"x_fallback_error: {exc}"
+        elif x_bearer_token:
             # X recent search already returns broad candidates; avoid duplicate fetch.
             pass
         elif api_key:

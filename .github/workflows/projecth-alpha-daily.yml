@@ -50,6 +50,9 @@ jobs:
           TARGET_POSTS=10
           USE_MOCK_ON_FAILURE=false
           ENABLE_GROK_TRANSLATION=false
+          USE_GROK_TOP_REFS=true
+          GROK_TOP_REF_CANDIDATES=20
+          GROK_REF_X_SEARCH_FALLBACK=true
           X_SEARCH_QUERY=(polymarket (alpha OR whale OR strategy OR "copy trade")) -is:retweet -is:reply lang:en
           X_SORT_ORDER=relevancy
           X_MIN_LIKES=5
