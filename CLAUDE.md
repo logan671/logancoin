@@ -88,3 +88,11 @@ Q=ㅃ W=ㅉ E=ㄸ R=ㄲ T=ㅆ O=ㅒ P=ㅖ
 - 배포 서버: 47.80.2.58 (Ubuntu 24.04, 4 vCPU, 7GB RAM)
 - 서버 상세 정보: `SERVER_INFO.md`, `SERVER_SPECS.md` 참고
 - 민감 정보(API 키, 비밀번호 등)를 코드에 하드코딩하지 마라
+
+## GitHub SSH 설정
+
+- 이 저장소는 GitHub SSH 인증을 사용한다 (HTTPS 토큰 방식 아님).
+- 원격 `origin`: `git@github.com:logan671/logancoin.git`
+- SSH 공개키 fingerprint: `SHA256:tOEY83qfXpEsjHIHPSA10vicQ7CNUzs2b2pteKT4E0s`
+- 개인키(Private key)는 절대 기록/공유하지 않는다.
+- 이 저장소의 주요 사용 개발자는 개발을 시작한 지 1주도 안 된 초보자다.
