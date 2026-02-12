@@ -266,17 +266,18 @@
           textEl.textContent = fullText;
           const expandBtn = node.querySelector(".expand-btn");
           if (fullText.length > shortLimit) {
-            let expanded = false;
-            textEl.textContent = `${fullText.slice(0, shortLimit)}...`;
+            const shortText = `${fullText.slice(0, shortLimit)}...`;
+            textEl.textContent = shortText;
+            textEl.dataset.fullText = fullText;
+            textEl.dataset.shortText = shortText;
+            textEl.dataset.expanded = "false";
             expandBtn.hidden = false;
             expandBtn.textContent = "펼치기";
-            expandBtn.addEventListener("click", () => {
-              expanded = !expanded;
-              textEl.textContent = expanded ? fullText : `${fullText.slice(0, shortLimit)}...`;
-              expandBtn.textContent = expanded ? "접기" : "펼치기";
-            });
           } else {
             expandBtn.hidden = true;
+            textEl.dataset.fullText = fullText;
+            textEl.dataset.shortText = fullText;
+            textEl.dataset.expanded = "true";
           }
           const btn = node.querySelector(".btn");
           btn.href = post.url || "#";
@@ -298,6 +299,25 @@
           cardsContainer.appendChild(node);
         });
       }
+
+      cardsContainer.addEventListener("click", (event) => {
+        const btn = event.target.closest(".expand-btn");
+        if (!btn) return;
+        const card = btn.closest(".card");
+        if (!card) return;
+        const textEl = card.querySelector(".text-ko");
+        if (!textEl) return;
+        const isExpanded = textEl.dataset.expanded === "true";
+        if (isExpanded) {
+          textEl.textContent = textEl.dataset.shortText || textEl.textContent;
+          textEl.dataset.expanded = "false";
+          btn.textContent = "펼치기";
+        } else {
+          textEl.textContent = textEl.dataset.fullText || textEl.textContent;
+          textEl.dataset.expanded = "true";
+          btn.textContent = "접기";
+        }
+      });
 
       function renderDateButtons(currentDate) {
         archiveRow.innerHTML = "";

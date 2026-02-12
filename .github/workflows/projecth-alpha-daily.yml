@@ -46,6 +46,9 @@ jobs:
           GROK_MODEL=grok-2-latest
           GROK_MODEL_CANDIDATES=grok-2-latest,grok-2,grok-beta
           GROK_TIMEOUT=30
+          GROK_TRANSLATE_TIMEOUT=60
+          TRANSLATE_BATCH_SIZE=3
+          TRANSLATE_RETRIES=3
           TOP_N_CANDIDATES=80
           TARGET_POSTS=10
           USE_MOCK_ON_FAILURE=false

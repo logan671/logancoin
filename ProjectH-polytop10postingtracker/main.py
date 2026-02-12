@@ -688,31 +688,51 @@ def translate_to_korean(api_key: str, model: str, posts: list[dict[str, Any]]) -
         "Keep slang tone when present, but avoid awkward literal translation. "
         "Return valid JSON only."
     )
-    user_prompt = (
-        "Translate the following English post texts to Korean.\n"
-        "Return a JSON object with key 'translations'.\n"
-        "Each item must contain: tweet_id, text_ko.\n"
-        "Do not omit any item. Do not add explanations.\n"
-        f"Input: {json.dumps(inputs, ensure_ascii=False)}"
-    )
-    os.environ["GROK_MODEL"] = model
-    content = grok_chat_completion(
-        api_key=api_key,
-        messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
-        timeout_sec=int(os.getenv("GROK_TIMEOUT", "30")),
-    )
-    payload = extract_json_object(content)
-    rows = payload.get("translations", [])
     result: dict[str, str] = {}
-    if not isinstance(rows, list):
-        return result
-    for row in rows:
-        if not isinstance(row, dict):
+    batch_size = max(1, int(os.getenv("TRANSLATE_BATCH_SIZE", "3")))
+    translate_timeout = int(os.getenv("GROK_TRANSLATE_TIMEOUT", os.getenv("GROK_TIMEOUT", "30")))
+    max_retries = max(1, int(os.getenv("TRANSLATE_RETRIES", "3")))
+
+    for i in range(0, len(inputs), batch_size):
+        chunk = inputs[i:i + batch_size]
+        user_prompt = (
+            "Translate the following English post texts to Korean.\n"
+            "Return a JSON object with key 'translations'.\n"
+            "Each item must contain: tweet_id, text_ko.\n"
+            "Do not omit any item. Do not add explanations.\n"
+            f"Input: {json.dumps(chunk, ensure_ascii=False)}"
+        )
+        os.environ["GROK_MODEL"] = model
+
+        content = ""
+        last_error = ""
+        for _ in range(max_retries):
+            try:
+                content = grok_chat_completion(
+                    api_key=api_key,
+                    messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+                    timeout_sec=translate_timeout,
+                )
+                last_error = ""
+                break
+            except Exception as exc:  # noqa: BLE001
+                last_error = str(exc)
+
+        if last_error:
             continue
-        tweet_id = str(row.get("tweet_id", "")).strip()
-        text_ko = str(row.get("text_ko", "")).strip()
-        if tweet_id and text_ko:
-            result[tweet_id] = text_ko
+
+        payload = extract_json_object(content)
+        rows = payload.get("translations", [])
+        if not isinstance(rows, list):
+            continue
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            tweet_id = str(row.get("tweet_id", "")).strip()
+            text_ko = str(row.get("text_ko", "")).strip()
+            if tweet_id and text_ko:
+                result[tweet_id] = text_ko
+
     return result
 
 
