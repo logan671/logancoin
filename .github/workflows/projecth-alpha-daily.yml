@@ -41,6 +41,7 @@ jobs:
         run: |
           cat > ProjectH-polytop10postingtracker/.env << 'EOF'
           GROK_API_KEY=${{ secrets.GROK_API_KEY }}
+          X_BEARER_TOKEN=${{ secrets.X_BEARER_TOKEN }}
           GROK_API_BASE_URL=https://api.x.ai/v1
           GROK_MODEL=grok-2-latest
           GROK_MODEL_CANDIDATES=grok-2-latest,grok-2,grok-beta
@@ -49,6 +50,8 @@ jobs:
           TARGET_POSTS=10
           USE_MOCK_ON_FAILURE=false
           ENABLE_GROK_TRANSLATION=false
+          X_SEARCH_QUERY=(polymarket (alpha OR whale OR strategy OR "copy trade")) -is:retweet lang:en
+          X_TIMEOUT=30
           EOF
 
       - name: Generate daily page

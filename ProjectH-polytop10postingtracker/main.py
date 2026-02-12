@@ -306,6 +306,94 @@ def fetch_posts_from_grok(
     return normalize_posts(posts if isinstance(posts, list) else [])
 
 
+def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list[dict[str, Any]]:
+    url = "https://api.x.com/2/tweets/search/recent"
+    headers = {"Authorization": f"Bearer {bearer_token}"}
+    query = os.getenv(
+        "X_SEARCH_QUERY",
+        '(polymarket (alpha OR whale OR strategy OR "copy trade")) -is:retweet lang:en',
+    )
+    max_results = min(max(candidate_count, 10), 100)
+    params = {
+        "query": query,
+        "max_results": max_results,
+        "tweet.fields": "created_at,public_metrics,author_id,attachments",
+        "expansions": "author_id,attachments.media_keys",
+        "user.fields": "username,name",
+        "media.fields": "url,preview_image_url,type",
+    }
+
+    response = requests.get(url, headers=headers, params=params, timeout=int(os.getenv("X_TIMEOUT", "30")))
+    response.raise_for_status()
+    payload = response.json()
+
+    data_rows = payload.get("data", [])
+    includes = payload.get("includes", {})
+    users = includes.get("users", [])
+    media = includes.get("media", [])
+
+    user_by_id: dict[str, dict[str, Any]] = {}
+    for row in users:
+        if isinstance(row, dict) and isinstance(row.get("id"), str):
+            user_by_id[row["id"]] = row
+
+    media_by_key: dict[str, dict[str, Any]] = {}
+    for row in media:
+        if isinstance(row, dict) and isinstance(row.get("media_key"), str):
+            media_by_key[row["media_key"]] = row
+
+    posts: list[dict[str, Any]] = []
+    for row in data_rows:
+        if not isinstance(row, dict):
+            continue
+        tweet_id = str(row.get("id", "")).strip()
+        text_en = str(row.get("text", "")).strip()
+        if not tweet_id or not text_en:
+            continue
+
+        author_id = str(row.get("author_id", "")).strip()
+        user = user_by_id.get(author_id, {})
+        username = str(user.get("username", "")).strip() if isinstance(user, dict) else ""
+        author = username or "unknown"
+        post_url = f"https://x.com/{author}/status/{tweet_id}" if username else f"https://x.com/i/status/{tweet_id}"
+
+        metrics = row.get("public_metrics", {})
+        like_count = metrics.get("like_count", 0) if isinstance(metrics, dict) else 0
+        repost_count = metrics.get("retweet_count", 0) if isinstance(metrics, dict) else 0
+        reply_count = metrics.get("reply_count", 0) if isinstance(metrics, dict) else 0
+        quote_count = metrics.get("quote_count", 0) if isinstance(metrics, dict) else 0
+
+        images: list[str] = []
+        attachments = row.get("attachments", {})
+        if isinstance(attachments, dict):
+            media_keys = attachments.get("media_keys", [])
+            if isinstance(media_keys, list):
+                for key in media_keys:
+                    media_row = media_by_key.get(str(key))
+                    if not media_row:
+                        continue
+                    media_url = str(media_row.get("url") or media_row.get("preview_image_url") or "").strip()
+                    if media_url:
+                        images.append(media_url)
+
+        posts.append(
+            {
+                "tweet_id": tweet_id,
+                "author": author,
+                "url": post_url,
+                "text_en": text_en,
+                "images": images,
+                "rank": None,
+                "view_count": None,
+                "like_count": like_count,
+                "repost_count": repost_count + quote_count,
+                "reply_count": reply_count,
+            }
+        )
+
+    return normalize_posts(posts)
+
+
 def translate_to_korean(api_key: str, model: str, posts: list[dict[str, Any]]) -> dict[str, str]:
     inputs = []
     for row in posts:
@@ -499,6 +587,7 @@ def main() -> None:
     PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 
     api_key = os.getenv("GROK_API_KEY", "").strip()
+    x_bearer_token = os.getenv("X_BEARER_TOKEN", "").strip()
     candidate_count = int(os.getenv("TOP_N_CANDIDATES", "20"))
     target_posts = int(os.getenv("TARGET_POSTS", "10"))
     use_mock_on_failure = os.getenv("USE_MOCK_ON_FAILURE", "true").lower() == "true"
@@ -512,11 +601,17 @@ def main() -> None:
         model = resolve_grok_model(api_key)
 
     try:
-        raw_posts = (
-            fetch_posts_from_grok(api_key=api_key, model=model, candidate_count=candidate_count, range_label="top 1-10")
-            if api_key
-            else []
-        )
+        if x_bearer_token:
+            raw_posts = fetch_posts_from_x_api(bearer_token=x_bearer_token, candidate_count=candidate_count)
+        elif api_key:
+            raw_posts = fetch_posts_from_grok(
+                api_key=api_key,
+                model=model,
+                candidate_count=candidate_count,
+                range_label="top 1-10",
+            )
+        else:
+            raw_posts = []
         if not raw_posts and use_mock_on_failure:
             raw_posts = get_mock_posts(candidate_count)
             status["is_mock_data"] = True
@@ -529,7 +624,8 @@ def main() -> None:
         error_text = str(exc)
         if exc.response is not None:
             error_text = f"{error_text} | body: {exc.response.text[:300]}"
-        status["last_error"] = f"fetch_error: {error_text}"
+        source = "x_fetch_error" if x_bearer_token else "fetch_error"
+        status["last_error"] = f"{source}: {error_text}"
         if "quota" in error_text.lower() or "credit" in error_text.lower() or "billing" in error_text.lower():
             status["needs_credit_topup"] = True
         raw_posts = get_mock_posts(candidate_count) if use_mock_on_failure else []
@@ -548,7 +644,10 @@ def main() -> None:
     selected_raw = filtered[:target_posts]
 
     if len(selected_raw) < target_posts:
-        if api_key:
+        if x_bearer_token:
+            # X recent search already returns broad candidates; avoid duplicate fetch.
+            pass
+        elif api_key:
             try:
                 extra_rows = fetch_posts_from_grok(
                     api_key=api_key,
