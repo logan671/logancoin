@@ -1,6 +1,6 @@
 {
   "needs_credit_topup": false,
-  "last_error": "",
-  "updated_at": "2026-02-12T18:42:51.502297+09:00",
+  "last_error": "no_valid_x_posts_from_grok_refs | no_posts_selected_keep_previous",
+  "updated_at": "2026-02-12T18:45:01.627018+09:00",
   "is_mock_data": false
 }
