@@ -1,0 +1,61 @@
+name: ProjectH Alpha Daily
+
+on:
+  schedule:
+    # UTC 00:00 = KST 09:00
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: projecth-alpha-daily
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r ProjectH-polytop10postingtracker/requirements.txt
+
+      - name: Write runtime env
+        run: |
+          cat > ProjectH-polytop10postingtracker/.env << 'EOF'
+          GROK_API_KEY=${{ secrets.GROK_API_KEY }}
+          GROK_API_BASE_URL=https://api.x.ai/v1
+          GROK_MODEL=grok-2-latest
+          GROK_TIMEOUT=30
+          TOP_N_CANDIDATES=20
+          TARGET_POSTS=10
+          USE_MOCK_ON_FAILURE=false
+          EOF
+
+      - name: Generate daily page
+        working-directory: ProjectH-polytop10postingtracker
+        run: python main.py
+
+      - name: Commit changes if needed
+        run: |
+          if git diff --quiet -- ProjectH-polytop10postingtracker/public/index.html ProjectH-polytop10postingtracker/previous_posts.json ProjectH-polytop10postingtracker/status.json; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ProjectH-polytop10postingtracker/public/index.html ProjectH-polytop10postingtracker/previous_posts.json ProjectH-polytop10postingtracker/status.json
+          git commit -m "ProjectH daily update [skip ci]"
+          git push

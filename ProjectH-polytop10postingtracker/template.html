@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Polymarket Alpha Daily</title>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --text: #102040;
+      --card: #ffffff;
+      --line: #d7e0ef;
+      --brand: #0d5bd7;
+      --banner-bg: #fff5d6;
+      --banner-text: #7a4b00;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #f6f8fc 0%, #ebf2ff 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .container {
+      width: min(980px, 92vw);
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+    .header {
+      margin-bottom: 18px;
+    }
+    .title {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .meta {
+      margin-top: 8px;
+      color: #4f6488;
+      font-size: 14px;
+    }
+    .banner {
+      background: var(--banner-bg);
+      color: var(--banner-text);
+      border: 1px solid #f6da8c;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin: 14px 0 16px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(16, 32, 64, 0.06);
+    }
+    .card-body {
+      padding: 14px;
+    }
+    .index-tag {
+      display: inline-block;
+      font-size: 12px;
+      border: 1px solid #c8d7f5;
+      color: #0f4ebf;
+      background: #eef4ff;
+      border-radius: 999px;
+      padding: 4px 8px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .author {
+      font-size: 13px;
+      color: #58709a;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .text-ko {
+      margin: 0;
+      line-height: 1.5;
+      font-size: 15px;
+      white-space: pre-wrap;
+    }
+    .actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #c6d6f4;
+      color: #0d5bd7;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      background: #f4f8ff;
+    }
+    .images {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .images img {
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .title { font-size: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1 class="title">Polymarket Alpha Daily</h1>
+      <div class="meta">최근 24시간 Polymarket 알파 포스트 | 생성 시각: {{ generated_at }}</div>
+      {% if banner_message %}
+      <div class="banner">{{ banner_message }}</div>
+      {% endif %}
+    </header>
+
+    <section class="grid">
+      {% for post in posts %}
+      <article class="card">
+        <div class="card-body">
+          <span class="index-tag">#{{ loop.index }}</span>
+          <div class="author">@{{ post.author }}</div>
+          <p class="text-ko">{{ post.text_ko }}</p>
+
+          <div class="actions">
+            <a class="btn" href="{{ post.url }}" target="_blank" rel="noopener noreferrer">원문 보기 (X)</a>
+          </div>
+
+          {% if post.images and post.images|length > 0 %}
+          <div class="images">
+            {% for image in post.images %}
+            <img loading="lazy" src="{{ image }}" alt="tweet image" />
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+  </main>
+</body>
+</html>
