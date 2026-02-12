@@ -59,6 +59,20 @@ def init_db() -> None:
         )
         conn.execute(
             """
+            CREATE TABLE IF NOT EXISTS directional_streaks (
+                address TEXT,
+                market_key TEXT,
+                outcome TEXT,
+                side TEXT,
+                streak_count INTEGER,
+                last_milestone_alert INTEGER,
+                updated_at INTEGER,
+                PRIMARY KEY (address, market_key, outcome)
+            )
+            """
+        )
+        conn.execute(
+            """
             CREATE TABLE IF NOT EXISTS tracked_markets (
                 chat_id TEXT,
                 market_slug TEXT,
@@ -233,6 +247,61 @@ def increment_trade_count(address: str, market_key: str, date: str) -> int:
             (address, market_key, date, new_count, now),
         )
         return new_count
+
+
+def update_directional_streak(
+    address: str,
+    market_key: str,
+    outcome: str,
+    side: str,
+) -> tuple[int, bool]:
+    now = int(time.time())
+    with get_conn() as conn:
+        row = conn.execute(
+            """
+            SELECT side, streak_count, last_milestone_alert
+            FROM directional_streaks
+            WHERE address=? AND market_key=? AND outcome=?
+            """,
+            (address, market_key, outcome),
+        ).fetchone()
+
+        if row and row[0] == side:
+            streak_count = int(row[1]) + 1
+            last_milestone_alert = int(row[2] or 0)
+        else:
+            streak_count = 1
+            last_milestone_alert = 0
+
+        milestones = {5, 10, 20}
+        is_milestone = streak_count in milestones and streak_count > last_milestone_alert
+        next_milestone_alert = streak_count if is_milestone else last_milestone_alert
+
+        conn.execute(
+            """
+            INSERT INTO directional_streaks(
+                address, market_key, outcome, side, streak_count, last_milestone_alert, updated_at
+            )
+            VALUES(?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(address, market_key, outcome)
+            DO UPDATE SET
+                side=excluded.side,
+                streak_count=excluded.streak_count,
+                last_milestone_alert=excluded.last_milestone_alert,
+                updated_at=excluded.updated_at
+            """,
+            (
+                address,
+                market_key,
+                outcome,
+                side,
+                streak_count,
+                next_milestone_alert,
+                now,
+            ),
+        )
+
+        return streak_count, is_milestone
 
 
 def add_tracked_market(chat_id: str, market_slug: str, market_title: str) -> None:

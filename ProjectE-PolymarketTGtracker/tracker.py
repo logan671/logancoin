@@ -31,8 +31,7 @@ from db import (
     set_state,
     is_sent_any,
     mark_sent_any,
-    get_trade_count,
-    increment_trade_count,
+    update_directional_streak,
     get_active_tracked_position,
     mark_tracked_position_exited,
     add_track_button,
@@ -178,6 +177,39 @@ def build_message(
     if warn_multi:
         lines.insert(2, "⚠️ 이 트레이더는 이번 블록에 많은 거래를 진행했습니다. 실제 activity를 확인해주세요.")
     return "\n".join(lines)
+
+
+def build_add_message(
+    address: str,
+    alias: Optional[str],
+    note: Optional[str],
+    market: Optional[dict],
+    outcome: str,
+    streak_count: int,
+    tx_hash: str,
+) -> str:
+    safe_alias = html.escape(alias) if alias else address
+    safe_note = html.escape(note) if note else ""
+    safe_address = html.escape(address)
+
+    if safe_note:
+        label = f"{safe_alias} - {safe_note} ({safe_address})"
+    else:
+        label = f"{safe_alias} ({safe_address})" if alias else safe_address
+
+    title = html.escape((market or {}).get("question") or "-")
+    outcome_label = html.escape(outcome) if outcome else "?"
+    market_link = f"https://polymarket.com/market/{(market or {}).get('slug', '')}"
+    tx_link = f"https://polygonscan.com/tx/{html.escape(tx_hash)}"
+
+    return (
+        "🔁 동일 방향 추매 반복 감지\n"
+        f"지갑: {label}\n"
+        f"종목: {title}\n"
+        f"방향: {outcome_label} 매수 연속 {streak_count}회\n"
+        f"시장: {market_link if (market or {}).get('slug') else '-'}\n"
+        f"tx: {tx_link}"
+    )
 
 
 def detect_side(
@@ -407,11 +439,43 @@ def poll() -> None:
                     elif item.get("taker_asset_id"):
                         market_key = f"token:{item['taker_asset_id']}"
 
-                if market_key:
-                    day_key = time.strftime("%Y-%m-%d", time.gmtime())
-                    new_count = increment_trade_count(item["addr"], market_key, day_key)
-                    if new_count >= 3:
+                if not market_key:
+                    continue
+
+                streak_count, is_milestone = update_directional_streak(
+                    item["addr"],
+                    market_key,
+                    item["outcome"],
+                    item["side"],
+                )
+
+                if item["side"] == "매수":
+                    if streak_count == 1:
+                        pass
+                    elif is_milestone:
+                        msg = build_add_message(
+                            item["addr"],
+                            item["alias"],
+                            item["note"],
+                            item["market"],
+                            item["outcome"],
+                            streak_count,
+                            item["tx_hash"],
+                        )
+                        send_message(msg)
+                        mark_sent_any(item["tx_hash"], item["addr"])
+                        alert_count += 1
+                        logging.info(
+                            "alerted_add_only address=%s tx=%s streak=%s",
+                            item["addr"],
+                            item["tx_hash"],
+                            streak_count,
+                        )
                         continue
+                    else:
+                        mark_sent_any(item["tx_hash"], item["addr"])
+                        continue
+
                 warn_multi = block_counts.get((item["addr"], item["block_number"]), 0) > 1
                 msg = build_message(
                     item["addr"],
