@@ -2,7 +2,18 @@
   "history": [
     {
       "date": "2026-02-12",
-      "tweet_ids": []
+      "tweet_ids": [
+        "mock-1001",
+        "mock-1002",
+        "mock-1003",
+        "mock-1004",
+        "mock-1005",
+        "mock-1006",
+        "mock-1007",
+        "mock-1008",
+        "mock-1009",
+        "mock-1010"
+      ]
     }
   ]
 }
