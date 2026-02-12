@@ -141,8 +141,20 @@ def grok_chat_completion(api_key: str, messages: list[dict[str, str]], timeout_s
 
 
 def normalize_post(row: dict[str, Any]) -> dict[str, Any] | None:
-    tweet_id = str(row.get("tweet_id", "")).strip()
-    text_en = str(row.get("text_en", "")).strip()
+    tweet_id = str(
+        row.get("tweet_id")
+        or row.get("tweetId")
+        or row.get("id")
+        or row.get("post_id")
+        or ""
+    ).strip()
+    text_en = str(
+        row.get("text_en")
+        or row.get("text")
+        or row.get("content")
+        or row.get("body")
+        or ""
+    ).strip()
     if not tweet_id or not text_en:
         return None
 
@@ -162,20 +174,33 @@ def normalize_post(row: dict[str, Any]) -> dict[str, Any] | None:
     rank_value = to_number(row.get("rank"))
     rank = int(rank_value) if rank_value is not None else None
 
-    images_raw = row.get("images", [])
+    images_raw = row.get("images")
+    if not isinstance(images_raw, list):
+        images_raw = row.get("image_urls") or row.get("media") or []
+
+    author_raw = row.get("author")
+    if isinstance(author_raw, dict):
+        author = str(author_raw.get("username") or author_raw.get("name") or "unknown").strip() or "unknown"
+    else:
+        author = str(author_raw or row.get("username") or row.get("user") or "unknown").strip() or "unknown"
+
+    url = str(row.get("url") or row.get("link") or row.get("tweet_url") or "").strip()
+    if not url:
+        url = f"https://x.com/i/status/{tweet_id}"
+
     images = [str(x).strip() for x in images_raw] if isinstance(images_raw, list) else []
 
     return {
         "tweet_id": tweet_id,
-        "author": str(row.get("author", "unknown")).strip() or "unknown",
-        "url": str(row.get("url", "")).strip() or f"https://x.com/i/status/{tweet_id}",
+        "author": author,
+        "url": url,
         "text_en": text_en,
         "images": [x for x in images if x],
         "rank": rank,
-        "view_count": to_number(row.get("view_count")),
-        "like_count": to_number(row.get("like_count")) or 0,
-        "repost_count": to_number(row.get("repost_count")) or 0,
-        "reply_count": to_number(row.get("reply_count")) or 0,
+        "view_count": to_number(row.get("view_count") or row.get("views") or row.get("impressions")),
+        "like_count": to_number(row.get("like_count") or row.get("likes") or row.get("favorite_count")) or 0,
+        "repost_count": to_number(row.get("repost_count") or row.get("retweet_count") or row.get("reposts")) or 0,
+        "reply_count": to_number(row.get("reply_count") or row.get("replies")) or 0,
     }
 
 
