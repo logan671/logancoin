@@ -47,7 +47,7 @@ jobs:
           GROK_TIMEOUT=30
           TOP_N_CANDIDATES=20
           TARGET_POSTS=10
-          USE_MOCK_ON_FAILURE=true
+          USE_MOCK_ON_FAILURE=false
           ENABLE_GROK_TRANSLATION=false
           EOF
 

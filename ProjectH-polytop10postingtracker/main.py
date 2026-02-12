@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import re
+from urllib.parse import urlparse
 from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -231,6 +232,14 @@ def normalize_post(row: dict[str, Any]) -> dict[str, Any] | None:
     url = str(row.get("url") or row.get("link") or row.get("tweet_url") or "").strip()
     if not url:
         url = f"https://x.com/i/status/{tweet_id}"
+    parsed = urlparse(url)
+    host = (parsed.netloc or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    if host not in {"x.com", "twitter.com"}:
+        return None
+    if "/status/" not in parsed.path:
+        return None
 
     images = [str(x).strip() for x in images_raw] if isinstance(images_raw, list) else []
 
@@ -280,6 +289,8 @@ def fetch_posts_from_grok(
         "Return a JSON object with key 'posts'. "
         "Each post item must include only these required keys: tweet_id, text_en. "
         "Optional keys: author, url, images, rank, view_count, like_count, repost_count, reply_count. "
+        "IMPORTANT: url must be real x.com or twitter.com status links only (no example.com, no placeholders). "
+        "If you are unsure about factual links, return an empty posts array. "
         "If optional fields are unavailable, set them to null or empty list. "
         f"Return up to {candidate_count} items. "
         "Do not include markdown fences."
