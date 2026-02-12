@@ -1,6 +1,6 @@
 {
   "needs_credit_topup": false,
-  "last_error": "",
-  "updated_at": "2026-02-12T19:12:55.703417+09:00",
+  "last_error": "translation_error: HTTPSConnectionPool(host='api.x.ai', port=443): Read timed out. (read timeout=30)",
+  "updated_at": "2026-02-12T19:18:44.591770+09:00",
   "is_mock_data": false
 }

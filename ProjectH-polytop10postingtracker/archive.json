@@ -4,8 +4,8 @@
       "tweet_id": "2020829223582138643",
       "author": "ArchiveExplorer",
       "url": "https://x.com/ArchiveExplorer/status/2020829223582138643",
-      "text_en": "Some guy deposited $150 on polymarket\n\njust checked his wallet\n\nnow sitting at $104k profit\n\nasked what's his strategy\n\nit's simple \nhis bot buys everything under 5 cents\n\nno analysis \nno predictions\n\nsome of his winning trades:\nS&P 500 direction: $4.55 → $2,531 \nSyria strikes https://t.co/2okcQjGiiF",
-      "text_ko": "어떤 사람이 폴리마켓에 $150를 입금했어요\n\n지금 그의 지갑을 확인했는데\n\n현재 $104k의 수익을 내고 있네요\n\n그의 전략이 뭐냐고 물어봤어요\n\n단순해요\n그의 봇이 5센트 이하의 모든 것을 사요\n\n분석 없음\n예측 없음\n\n그의 승리 트레이드 몇 가지:\nS&P 500 방향: $4.55 → $2,531\n시리아 공습 https://t.co/2okcQjGiiF",
+      "text_en": "Some guy deposited $150 on polymarket\n\njust checked his wallet\n\nnow sitting at $104k profit\n\nasked what's his strategy\n\nit's simple \nhis bot buys everything under 5 cents\n\nno analysis \nno predictions\n\nsome of his winning trades:\nS&P 500 direction: $4.55 → $2,531 \nSyria strikes Israel: $16.78 → $2,324\n\ntrades obscure markets \nwhere prices can be random\n\nthese markets have low liquidity nobody wants to research them for small profit\n\nhe started with only $150 \nwhat's stopping you?",
+      "text_ko": "[자동 번역] Some guy deposited $150 on 폴리마켓\n\njust checked his wallet\n\nnow sitting at $104k profit\n\nasked what's his 전략\n\nit's simple \nhis bot buys everything under 5 cents\n\nno analysis \nno predictions\n\nsome of his winning trades:\nS&P 500 direction: $4.55 → $2,531 \nSyria strikes Israel: $16.78 → $2,324\n\ntrades obscure markets \nwhere prices can be random\n\nthese markets have low liquidity nobody wants to research them for small profit\n\nhe started with only $150 \nwhat's stopping you?",
       "images": [
         "https://pbs.twimg.com/amplify_video_thumb/2020828944950337536/img/rKUoq3s7OKDgMfga.jpg"
       ],
@@ -16,14 +16,14 @@
         "repost_count": 157.0,
         "reply_count": 127.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698343+09:00"
+      "fetched_at": "2026-02-12T19:18:44.585155+09:00"
     },
     {
       "tweet_id": "2021246735549346159",
       "author": "0xMovez",
       "url": "https://x.com/0xMovez/status/2021246735549346159",
-      "text_en": "Polymarket traders Python strategy decoder script\n\nCopy-trading a wallet without understanding its strategy is \"gambling\"\n\nThis Python script can decode any Polymarket wallet’s strategy in 30 seconds.\n\nYou can send the results to your Clawdbot and ask it to copy the strategy ! https://t.co/sMDUiomxiz https://t.co/aQU2kvgEzc",
-      "text_ko": "폴리마켓 트레이더를 위한 파이썬 전략 디코더 스크립트\n\n전략을 이해하지 않고 지갑을 복사 트레이딩하는 것은 '도박'입니다\n\n이 파이썬 스크립트는 어떤 폴리마켓 지갑의 전략도 30초 안에 디코딩할 수 있습니다.\n\n결과를 Clawdbot에 보내서 전략을 복사하도록 요청할 수 있습니다! https://t.co/sMDUiomxiz https://t.co/aQU2kvgEzc",
+      "text_en": "Polymarket traders Python strategy decoder script\n\nCopy-trading a wallet without understanding its strategy is \"gambling\"\n\nThis Python script can decode any Polymarket wallet’s strategy in 30 seconds.\n\nYou can send the results to your Clawdbot and ask it to copy the strategy !\n\nHow to run script in 30-sec: \n \n> Download Python3.1 on your Mac/PC\n> Install dependencies using: \"pip3 install requests\"\n> Upload { analyze_user.py, analyze_trades.py }\n> Run \"python3 analyze_user.py {market} {wallet}\"\n\nAs a result, you’ll get raw data showing whether a trader is just gambling or has a consistent strategy.\n\nUse Jayden’s article to find all the files and an explanation of how to use them.",
+      "text_ko": "[자동 번역] 폴리마켓 traders Python 전략 decoder script\n\nCopy-trading a wallet without understanding its 전략 is \"gambling\"\n\nThis Python script can decode any 폴리마켓 wallet’s 전략 in 30 seconds.\n\nYou can send the results to your Clawdbot and ask it to copy the 전략 !\n\nHow to run script in 30-sec: \n \n> Download Python3.1 on your Mac/PC\n> Install dependencies using: \"pip3 install requests\"\n> Upload { analyze_user.py, analyze_trades.py }\n> Run \"python3 analyze_user.py {market} {wallet}\"\n\nAs a result, you’ll get raw data showing whether a trader is just gambling or has a consistent 전략.\n\nUse Jayden’s article to find all the files and an explanation of how to use them.",
       "images": [
         "https://pbs.twimg.com/media/HAzpDpFWoAAWIg0.jpg",
         "https://pbs.twimg.com/media/HAzpEBDbkAAEQf1.jpg"
@@ -35,14 +35,14 @@
         "repost_count": 78.0,
         "reply_count": 36.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698367+09:00"
+      "fetched_at": "2026-02-12T19:18:44.585265+09:00"
     },
     {
       "tweet_id": "2019404617566523781",
       "author": "SolSt1ne",
       "url": "https://x.com/SolSt1ne/status/2019404617566523781",
-      "text_en": "I built a powerful real-time edge terminal specifically for @Polymarket - multi-timeframe dashboard covering all coins! (100% FREE & fully open-source)\n\nIn one sentence: This Python bot gives you live alpha on Polymarket’s Up/Down crypto binaries by fusing real-time Binance order https://t.co/iWejoNtXj6",
-      "text_ko": "나는 @Polymarket을 위해 특별히 강력한 실시간 에지 터미널을 만들었습니다 - 모든 코인을 다루는 멀티타임프레임 대시보드! (100% 무료 & 완전히 오픈소스)\n\n한 문장으로: 이 파이썬 봇은 실시간 바이낸스 주문을 융합하여 폴리마켓의 Up/Down 크립토 바이너리에 실시간 알파를 제공합니다 https://t.co/iWejoNtXj6",
+      "text_en": "I built a powerful real-time edge terminal specifically for @Polymarket - multi-timeframe dashboard covering all coins! (100% FREE & fully open-source)\n\nIn one sentence: This Python bot gives you live alpha on Polymarket’s Up/Down crypto binaries by fusing real-time Binance order flow, current Polymarket probabilities, and multi-TF technical analysis.\n\nSpot mispricings fast - where the market odds haven’t yet caught up to momentum, aggressive delta, or strong signals. \nPerfect for lightning-fast 15-minute scalps (markets resolve every 15 min with constant repricing) or cleaner swings on 1h / 4h / daily horizons.\nPure decision-support tool - no auto-trading, just sharp, actionable insight delivered straight to your terminal.\n\n> Coins covered: BTC, ETH, SOL, XRP \n> Timeframes: 15m, 1h, 4h, daily - All 16 market combinations are live and heavily traded on Polymarket (especially the 15m contracts - ultra-fast flips)\n\nFeatures at a glance: \n\n> Streams live trades + full order book from Binance > Pulls real-time Up/Down prices & depth via Polymarket WebSocket \n> Computes 11+ indicators on the fly \n> Rolls everything up into a clear BULLISH / BEARISH / NEUTRAL bias score + probability estimate per timeframe \n> Displays a clean, colorful, auto-refreshing terminal dashboard\n\nOrder-book signals: \n\n> OBI (imbalance)\n> visible buy/sell walls\n> liquidity depth (0.1% / 0.5% / 1.0%)\n> net flow & volume\n> CVD (across 1m/3m/5m windows)\n> 1m delta\n> Volume Profile + POC\n\nTechnical indicators: \n> RSI (14)\n> MACD (12/26/9) + signal line + histogram\n> VWAP\n> EMA 5 / EMA 20 cross\n>Heikin-Ashi candle streak count\n\nImportant: \nthis is NOT an auto-trading bot. It highlights where Polymarket odds are lagging real Binance order-flow and multi-timeframe TA - giving you an edge on 15m scalping, 1–4h momentum trades, and daily directional confirmation.\n\nBuilt with: \nPython (asyncio + Rich/Textual for a slick CLI look) One-line start: \npython https://t.co/ATX2BzEFRH Refreshes every few seconds Completely free & open-source → GitHub repo\n\nWant access? Like + RT + drop a reply or quote below - I’ll DM you the GitHub link\n\nDon’t miss the edge - especially on those 15-minute markets that flip every quarter hour. Seeing all timeframes at once is real alpha.\n\nHere’s to green candles and fat PnL!",
+      "text_ko": "[자동 번역] I built a powerful real-time edge terminal specifically for @폴리마켓 - multi-timeframe dashboard covering all coins! (100% FREE & fully open-source)\n\nIn one sentence: This Python bot gives you live 알파 on 폴리마켓’s Up/Down crypto binaries by fusing real-time Binance order flow, current 폴리마켓 probabilities, and multi-TF technical analysis.\n\nSpot mispricings fast - where the market odds haven’t yet caught up to 모멘텀, aggressive delta, or strong 시그널s. \nPerfect for lightning-fast 15-minute scalps (markets resolve every 15 min with constant repricing) or cleaner swings on 1h / 4h / daily horizons.\nPure decision-support tool - no auto-trading, just sharp, actionable insight delivered straight to your terminal.\n\n> Coins covered: BTC, ETH, SOL, XRP \n> Timeframes: 15m, 1h, 4h, daily - All 16 market combinations are live and heavily traded on 폴리마켓 (especially the 15m contracts - ultra-fast flips)\n\nFeatures at a glance: \n\n> Streams live trades + full order book from Binance > Pulls real-time Up/Down prices & depth via 폴리마켓 WebSocket \n> Computes 11+ indicators on the fly \n> Rolls everything up into a clear BULLISH / BEARISH / NEUTRAL bias score + probability estimate per timeframe \n> Displays a clean, colorful, auto-refreshing terminal dashboard\n\nOrder-book 시그널s: \n\n> OBI (imbalance)\n> visible buy/sell walls\n> liquidity depth (0.1% / 0.5% / 1.0%)\n> net flow & volume\n> CVD (across 1m/3m/5m windows)\n> 1m delta\n> Volume Profile + POC\n\nTechnical indicators: \n> RSI (14)\n> MACD (12/26/9) + 시그널 line + histogram\n> VWAP\n> EMA 5 / EMA 20 cross\n>Heikin-Ashi candle streak count\n\nImportant: \nthis is NOT an auto-trading bot. It highlights where 폴리마켓 odds are lagging real Binance order-flow and multi-timeframe TA - giving you an edge on 15m scalping, 1–4h 모멘텀 trades, and daily directional confirmation.\n\nBuilt with: \nPython (asyncio + Rich/Textual for a slick CLI look) One-line start: \npython https://t.co/ATX2BzEFRH Refreshes every few seconds Completely free & open-source → GitHub repo\n\nWant access? Like + RT + drop a reply or quote below - I’ll DM you the GitHub link\n\nDon’t miss the edge - especially on those 15-minute markets that flip every quarter hour. Seeing all timeframes at once is real 알파.\n\nHere’s to green candles and fat PnL!",
       "images": [
         "https://pbs.twimg.com/media/HAZb9RSW8AAnGI-.jpg",
         "https://pbs.twimg.com/amplify_video_thumb/2019404279547645952/img/Vkv3pdk3_g6urQVh.jpg"
@@ -54,14 +54,14 @@
         "repost_count": 181.0,
         "reply_count": 259.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698377+09:00"
+      "fetched_at": "2026-02-12T19:18:44.585473+09:00"
     },
     {
       "tweet_id": "2021149679942238458",
       "author": "Satori_btc",
       "url": "https://x.com/Satori_btc/status/2021149679942238458",
-      "text_en": "Stop trading manually like a caveman.\n\nIf you can type, anyone can copy my Polymarket high-frequency bot.\n\nI didn’t write a single line of code. I built a top-tier strategy just by “chatting” with AI,one that self-debugs, self-repairs, and even uses “large model decision-making + https://t.co/GvqfiN3SRY",
-      "text_ko": "동굴인처럼 수동으로 트레이딩하지 마세요.\n\n타이핑할 수 있으면 누구나 내 폴리마켓 고빈도 봇을 복사할 수 있습니다.\n\n한 줄의 코드도 작성하지 않았어요. AI와 '대화'하면서 최고 수준의 전략을 만들었죠, 자체 디버깅, 자체 수리, 심지어 '대형 모델 의사결정 + https://t.co/GvqfiN3SRY",
+      "text_en": "Stop trading manually like a caveman.\n\nIf you can type, anyone can copy my Polymarket high-frequency bot.\n\nI didn’t write a single line of code. I built a top-tier strategy just by “chatting” with AI,one that self-debugs, self-repairs, and even uses “large model decision-making + small model monitoring”.\n\nThis is a life-changing, dimension-dropping opportunity for ordinary people:\nLet AI write the script (working > perfect)\nLet AI review losses (the key to evolution)\nLet AI fix bugs on its own (24/7 passive income)\n\nMachines have no emotions, only execution.\n\nCopy this system, and you become the market’s harvester. 🛠️💸",
+      "text_ko": "[자동 번역] Stop trading manually like a caveman.\n\nIf you can type, anyone can copy my 폴리마켓 high-frequency bot.\n\nI didn’t write a single line of code. I built a top-tier 전략 just by “chatting” with AI,one that self-debugs, self-repairs, and even uses “large model decision-making + small model monitoring”.\n\nThis is a life-changing, dimension-dropping opportunity for ordinary people:\nLet AI write the script (working > perfect)\nLet AI review losses (the key to evolution)\nLet AI fix bugs on its own (24/7 passive income)\n\nMachines have no emotions, only execution.\n\nCopy this system, and you become the market’s harvester. 🛠️💸",
       "images": [
         "https://pbs.twimg.com/amplify_video_thumb/2021149508114247680/img/ca1Gr5EpLRjVyi_v.jpg"
       ],
@@ -72,32 +72,32 @@
         "repost_count": 12.0,
         "reply_count": 119.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698384+09:00"
+      "fetched_at": "2026-02-12T19:18:44.585540+09:00"
     },
     {
-      "tweet_id": "2021539469917298709",
-      "author": "0xDPool",
-      "url": "https://x.com/0xDPool/status/2021539469917298709",
-      "text_en": "This guy invested only $150 in Polymarket\n\nNow he has $104,000 in net profit\n\nHis strategy is simple:\n\n> A bot buys everything under 5¢\n> No analysis required\n> No “market intuition” required\n\nSome examples:\n\n> Direction of S&P 500: $4.55 to $2,531 (55,545%)\n> Syria strikes https://t.co/YsltuYlDF0",
-      "text_ko": "이 사람이 폴리마켓에 단 $150만 투자했어요\n\n지금은 순수익이 $104,000이에요\n\n그의 전략은 간단해요:\n\n> 봇이 5¢ 이하의 모든 것을 사요\n> 분석 필요 없음\n> '시장 직관' 필요 없음\n\n몇 가지 예시:\n\n> S&P 500 방향: $4.55에서 $2,531로 (55,545%)\n> 시리아 공습 https://t.co/YsltuYlDF0",
+      "tweet_id": "2021618491208405460",
+      "author": "krajekis",
+      "url": "https://x.com/krajekis/status/2021618491208405460",
+      "text_en": "The Hidden Power of Time in @Polymarket BTC 15m Trading [Full Guide]\n\nOn Polymarket, you must decide:  \nWill BTC close UP or DOWN in the next 15 minutes?\n\nMost traders don’t lose because of strategy.  \nThey lose because they ignore time.  \nTime determines edge.\n\nKey: TIME – BTC Trading Sessions (EST)\n\n• WEEKDAYS:\n\n1) Asian Session (7:00 PM – 3:00 AM EST)\n\nMarket State: \nCompression / Range / Low volatility  \nThis is mean-reversion time.\n\nBlueprint:\nUse VWAP + RSI(14) + low ATR + volume + MACD divergence  \n- Price stretched above flat VWAP + RSI overbought + weak volume → Choose DOWN  \n- Price stretched below VWAP + RSI oversold + weak selling → Choose UP  \n- Low ATR confirms compression  \n- Ignore MACD crossovers  \n- Only trade MACD divergence: Higher high in price + lower high in MACD → DOWN  \n  Lower low in price + higher low in MACD → UP  \n- Avoid breakouts. Avoid mid-range trades.  \n\nEdge: Fade extremes.\n\n2) London Kill Zone (2:00 AM – 5:00 AM EST) \n\nMarket State: \nExpansion / Liquidity sweep  \nAsian high or low often gets attacked first.\n\nBlueprint:\nUse Volume spike + EMA21 + VWAP reclaim + rising ATR + MACD acceleration  \n- Sweep high + strong red 15m close below VWAP & EMA21 + expanding bearish MACD histogram → Choose DOWN  \n- Sweep low + strong green close above VWAP & EMA21 + expanding bullish MACD histogram → Choose UP  \n- Volume must expand  \n- ATR must increase  \n- MACD histogram expansion > simple crossover  \n- Never enter during sweep candle. Enter after confirmation close.\n\nEdge: Trade after liquidity grab.\n\n3) NY Open / Overlap (7:00 AM – 11:00 AM EST)  \n\nMarket State:\n Maximum volatility / Momentum phase  \nLarge moves happen here.\n\nBlueprint:\nUse VWAP slope + EMA21/EMA50 alignment + high volume + high ATR + MACD momentum  \n- Strong 15m close breaking structure + volume expansion → Follow direction  \n- Break above level + MACD above zero expanding → UP  \n- Break below level + MACD below zero expanding → DOWN  \n- Price above rising VWAP + EMA21 > EMA50 → bullish bias  \n- Price below falling VWAP → bearish bias  \n- ATR must confirm expansion  \n- If MACD histogram contracts after strong move → potential short-term reversal  \n- Wait for candle close. Never click mid-spike.\n\nEdge: Confirmation + aligned momentum.\n\n4) London Close (10:00 AM – 12:00 PM EST)\n\nMarket State: \nExhaustion / Slowdown  \nMomentum fades. Wicks increase.\n\nBlueprint:\nUse RSI divergence + VWAP stretch + ATR contraction + MACD histogram slowdown  \n- Extended move far from VWAP + rejection candle → Fade move  \n- Price makes marginal new high but MACD histogram shrinks → Choose DOWN  \n- Price makes marginal new low but histogram shrinks → Choose UP  \n- Decreasing ATR confirms volatility contraction  \n- Reduce size in choppy conditions.\n\nEdge: Fade overextended trends.\n\n• WEEKENDS:\n\nMarket State: \nThin liquidity / Lower institutional participation  \nMore fake breakouts. Less follow-through.\n\nBlueprint:\nUse VWAP mean reversion + strict volume filter + ATR + cautious MACD divergence  \n- Breakout without volume expansion → Ignore  \n- Price stretched far from VWAP inside range → Fade  \n  Upper stretch + weak momentum → DOWN  \n  Lower stretch + weak momentum → UP  \n- Smaller ATR = smaller expected move  \n- Ignore MACD crossovers; only use divergence as confirmation  \n- Trade smaller size.\n\nEdge: Patience + reduced risk.\n\nIndicator Hierarchy:\n1. Time (session behavior)  \n2. Volume  \n3. VWAP  \n4. ATR  \n5. EMA structure  \n6. MACD  \n7. RSI  \n\nFinal Rule: \n- Asian → Fade extremes  \n- London → Trade post-sweep momentum  \n- NY → Trade confirmed acceleration  \n- Close → Fade exhaustion  \n- Weekend → Trade small and selective   \n\n15m Execution Checklist Before Clicking UP or DOWN:\n\n- Which session is active?\n- Compression or expansion?\n- Range extreme or breakout level?\n- Volume confirming move?\n- ATR expanding or contracting?\n- MACD accelerating or slowing?\n- Did the 15m candle close strong?\n\nIf unclear → no trade.\n\nTime defines probability.  \nIndicators confirm it.  \nThen you click UP or DOWN.",
+      "text_ko": "[자동 번역] The Hidden Power of Time in @폴리마켓 BTC 15m Trading [Full Guide]\n\nOn 폴리마켓, you must decide:  \nWill BTC close UP or DOWN in the next 15 minutes?\n\nMost traders don’t lose because of 전략.  \nThey lose because they ignore time.  \nTime determines edge.\n\nKey: TIME – BTC Trading Sessions (EST)\n\n• WEEKDAYS:\n\n1) Asian Session (7:00 PM – 3:00 AM EST)\n\nMarket State: \nCompression / Range / Low volatility  \nThis is mean-reversion time.\n\nBlueprint:\nUse VWAP + RSI(14) + low ATR + volume + MACD divergence  \n- Price stretched above flat VWAP + RSI overbought + weak volume → Choose DOWN  \n- Price stretched below VWAP + RSI oversold + weak selling → Choose UP  \n- Low ATR confirms compression  \n- Ignore MACD crossovers  \n- Only trade MACD divergence: Higher high in price + lower high in MACD → DOWN  \n  Lower low in price + higher low in MACD → UP  \n- Avoid breakouts. Avoid mid-range trades.  \n\nEdge: Fade extremes.\n\n2) London Kill Zone (2:00 AM – 5:00 AM EST) \n\nMarket State: \nExpansion / Liquidity sweep  \nAsian high or low often gets attacked first.\n\nBlueprint:\nUse Volume spike + EMA21 + VWAP reclaim + rising ATR + MACD acceleration  \n- Sweep high + strong red 15m close below VWAP & EMA21 + expanding bearish MACD histogram → Choose DOWN  \n- Sweep low + strong green close above VWAP & EMA21 + expanding bullish MACD histogram → Choose UP  \n- Volume must expand  \n- ATR must increase  \n- MACD histogram expansion > simple crossover  \n- Never enter during sweep candle. Enter after confirmation close.\n\nEdge: Trade after liquidity grab.\n\n3) NY Open / Overlap (7:00 AM – 11:00 AM EST)  \n\nMarket State:\n Maximum volatility / 모멘텀 phase  \nLarge moves happen here.\n\nBlueprint:\nUse VWAP slope + EMA21/EMA50 alignment + high volume + high ATR + MACD 모멘텀  \n- Strong 15m close breaking structure + volume expansion → Follow direction  \n- Break above level + MACD above zero expanding → UP  \n- Break below level + MACD below zero expanding → DOWN  \n- Price above rising VWAP + EMA21 > EMA50 → bullish bias  \n- Price below falling VWAP → bearish bias  \n- ATR must confirm expansion  \n- If MACD histogram contracts after strong move → potential short-term reversal  \n- Wait for candle close. Never click mid-spike.\n\nEdge: Confirmation + aligned 모멘텀.\n\n4) London Close (10:00 AM – 12:00 PM EST)\n\nMarket State: \nExhaustion / Slowdown  \n모멘텀 fades. Wicks increase.\n\nBlueprint:\nUse RSI divergence + VWAP stretch + ATR contraction + MACD histogram slowdown  \n- Extended move far from VWAP + rejection candle → Fade move  \n- Price makes marginal new high but MACD histogram shrinks → Choose DOWN  \n- Price makes marginal new low but histogram shrinks → Choose UP  \n- Decreasing ATR confirms volatility contraction  \n- Reduce size in choppy conditions.\n\nEdge: Fade overextended trends.\n\n• WEEKENDS:\n\nMarket State: \nThin liquidity / Lower institutional participation  \nMore fake breakouts. Less follow-through.\n\nBlueprint:\nUse VWAP mean reversion + strict volume filter + ATR + cautious MACD divergence  \n- Breakout without volume expansion → Ignore  \n- Price stretched far from VWAP inside range → Fade  \n  Upper stretch + weak 모멘텀 → DOWN  \n  Lower stretch + weak 모멘텀 → UP  \n- Smaller ATR = smaller expected move  \n- Ignore MACD crossovers; only use divergence as confirmation  \n- Trade smaller size.\n\nEdge: Patience + reduced risk.\n\nIndicator Hierarchy:\n1. Time (session behavior)  \n2. Volume  \n3. VWAP  \n4. ATR  \n5. EMA structure  \n6. MACD  \n7. RSI  \n\nFinal Rule: \n- Asian → Fade extremes  \n- London → Trade post-sweep 모멘텀  \n- NY → Trade confirmed acceleration  \n- Close → Fade exhaustion  \n- Weekend → Trade small and selective   \n\n15m Execution Checklist Before Clicking UP or DOWN:\n\n- Which session is active?\n- Compression or expansion?\n- Range extreme or breakout level?\n- Volume confirming move?\n- ATR expanding or contracting?\n- MACD accelerating or slowing?\n- Did the 15m candle close strong?\n\nIf unclear → no trade.\n\nTime defines probability.  \nIndicators confirm it.  \nThen you click UP or DOWN.",
       "images": [
-        "https://pbs.twimg.com/amplify_video_thumb/2021539418109345792/img/Pbb-HzaF7JVHW7NY.jpg"
+        "https://pbs.twimg.com/media/HA469yeaMAAc-t4.jpg"
       ],
       "rank_meta": {
         "rank": 5,
         "view_count": null,
-        "like_count": 312.0,
-        "repost_count": 23.0,
-        "reply_count": 42.0
+        "like_count": 302.0,
+        "repost_count": 22.0,
+        "reply_count": 38.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698394+09:00"
+      "fetched_at": "2026-02-12T19:18:44.585884+09:00"
     },
     {
       "tweet_id": "2020131735971713349",
       "author": "phosphenq",
       "url": "https://x.com/phosphenq/status/2020131735971713349",
-      "text_en": "holy shit.. you can install claude code in 2 minutes and automate your entire polymarket strategy\n\nbuy claude pro ($20)\n\ninstall:\nwindows: winget install Anthropic.ClaudeCode\nmac: brew install claude\n\nauthorize:\nrun claude → oauth login → done\n\nnavigate to folder:\ncd https://t.co/PG7ompmIOD",
-      "text_ko": "세상에.. 클로드 코드를 2분 만에 설치해서 당신의 폴리마켓 전략을 자동화할 수 있어요\n\n클로드 프로 구매 ($20)\n\n설치:\n윈도우: winget install Anthropic.ClaudeCode\n맥: brew install claude\n\n인증:\n클로드 실행 → oauth 로그인 → 완료\n\n폴더로 이동:\ncd https://t.co/PG7ompmIOD",
+      "text_en": "holy shit.. you can install claude code in 2 minutes and automate your entire polymarket strategy\n\nbuy claude pro ($20)\n\ninstall:\nwindows: winget install Anthropic.ClaudeCode\nmac: brew install claude\n\nauthorize:\nrun claude → oauth login → done\n\nnavigate to folder:\ncd ~/polymarket-bot\nrun claude\n\npaste one prompt and it builds everything ⭣",
+      "text_ko": "[자동 번역] holy shit.. you can install claude code in 2 minutes and automate your entire 폴리마켓 전략\n\nbuy claude pro ($20)\n\ninstall:\nwindows: winget install Anthropic.ClaudeCode\nmac: brew install claude\n\nauthorize:\nrun claude → oauth login → done\n\nnavigate to folder:\ncd ~/폴리마켓-bot\nrun claude\n\npaste one prompt and it builds everything ⭣",
       "images": [
         "https://pbs.twimg.com/amplify_video_thumb/2020129334946635776/img/kJ0wOQp5QdByJzO-.jpg"
       ],
@@ -108,32 +108,34 @@
         "repost_count": 16.0,
         "reply_count": 16.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698401+09:00"
+      "fetched_at": "2026-02-12T19:18:44.585925+09:00"
     },
     {
-      "tweet_id": "2021618491208405460",
-      "author": "krajekis",
-      "url": "https://x.com/krajekis/status/2021618491208405460",
-      "text_en": "The Hidden Power of Time in @Polymarket BTC 15m Trading [Full Guide]\n\nOn Polymarket, you must decide:  \nWill BTC close UP or DOWN in the next 15 minutes?\n\nMost traders don’t lose because of strategy.  \nThey lose because they ignore time.  \nTime determines edge.\n\nKey: TIME – BTC https://t.co/0ccilp32am https://t.co/zJHbFquyeN",
-      "text_ko": "@Polymarket BTC 15분 트레이딩에서 시간의 숨겨진 힘 [전체 가이드]\n\n폴리마켓에서는 결정해야 합니다:  \n다음 15분 동안 BTC가 UP 또는 DOWN으로 마감할까요?\n\n대부분의 트레이더는 전략 때문에 잃는 것이 아닙니다.  \n시간을 무시해서 잃습니다.  \n시간이 에지를 결정합니다.\n\n핵심: 시간 – BTC https://t.co/0ccilp32am https://t.co/zJHbFquyeN",
+      "tweet_id": "2021727771190321460",
+      "author": "JeongHaeju",
+      "url": "https://x.com/JeongHaeju/status/2021727771190321460",
+      "text_en": "A Polymarket user just turned $1,000 → $150K risk-free.\n\n157x.\n\nHere’s how:\nA whale was bonding the \"SOLV Energy IPO Closing Market Cap\" market.\n\nThe trading day closed and most public platforms were showing a ~$6B valuation. That made the “Over $5.4B” market look like a free bond at YES. The whale bought 286,000 shares at 98c.\n\nHere's the crazy part: the publicly visible price wasn’t accurate.\n\nThe only accurate closing market cap was available on Bloomberg Terminal, showing a market cap of $3.4B\n\nA user with Bloomberg Terminal access bought 157,000 NO shares at .6c.\n\nThe NO is now trading at 97¢ and will resolve as the correct bet.\n\nHe’s currently up $150K.\n\nThe whale is down $270K.\n\nOne of the craziest risk-free flips I’ve seen on the platform.",
+      "text_ko": "[자동 번역] A 폴리마켓 user just turned $1,000 → $150K risk-free.\n\n157x.\n\nHere’s how:\nA 고래 was bonding the \"SOLV Energy IPO Closing Market Cap\" market.\n\nThe trading day closed and most public platforms were showing a ~$6B valuation. That made the “Over $5.4B” market look like a free bond at YES. The 고래 bought 286,000 shares at 98c.\n\nHere's the crazy part: the publicly visible price wasn’t accurate.\n\nThe only accurate closing market cap was available on Bloomberg Terminal, showing a market cap of $3.4B\n\nA user with Bloomberg Terminal access bought 157,000 NO shares at .6c.\n\nThe NO is now trading at 97¢ and will resolve as the correct bet.\n\nHe’s currently up $150K.\n\nThe 고래 is down $270K.\n\nOne of the craziest risk-free flips I’ve seen on the platform.",
       "images": [
-        "https://pbs.twimg.com/media/HA469yeaMAAc-t4.jpg"
+        "https://pbs.twimg.com/media/HA6eHxybgAA2hCh.jpg",
+        "https://pbs.twimg.com/media/HA6eJBUWwAAAzZm.jpg",
+        "https://pbs.twimg.com/media/HA6eKPPbcAAthTx.jpg"
       ],
       "rank_meta": {
         "rank": 7,
         "view_count": null,
-        "like_count": 301.0,
-        "repost_count": 22.0,
-        "reply_count": 38.0
+        "like_count": 257.0,
+        "repost_count": 8.0,
+        "reply_count": 18.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698406+09:00"
+      "fetched_at": "2026-02-12T19:18:44.585996+09:00"
     },
     {
       "tweet_id": "2020598056446566829",
       "author": "LunaETHWhale",
       "url": "https://x.com/LunaETHWhale/status/2020598056446566829",
-      "text_en": "OMG! THEY KILLED MY LIQUIDITY! YOU BASTARDS!\n\nListen up, you midgets! If you’ve ever mashed buttons on Polymarket or Chance, or even just shilled them on X, you’re eligible for a box. Eric says these are even better than tickets to Casa Bonita!\n\nCartman’s Plan for World https://t.co/atpbrFGTi3 https://t.co/mpymwHxpSz",
-      "text_ko": "OMG! 내 유동성을 죽였어! 이 자식들아!\n\n들어라, 너희 난쟁이들아! 폴리마켓이나 챈스에서 버튼을 눌러본 적이 있거나, 심지어 X에서 홍보한 적이 있다면, 너희는 상자를 받을 자격이 있어. 에릭 말로는 이게 카사 보네타 티켓보다 더 낫다고 해!\n\n카트먼의 세계 정복 계획 https://t.co/atpbrFGTi3 https://t.co/mpymwHxpSz",
+      "text_en": "OMG! THEY KILLED MY LIQUIDITY! YOU BASTARDS!\n\nListen up, you midgets! If you’ve ever mashed buttons on Polymarket or Chance, or even just shilled them on X, you’re eligible for a box. Eric says these are even better than tickets to Casa Bonita!\n\nCartman’s Plan for World Domination:\n\n- Claim your box before Kyle’s Jewish sense kicks in and he tries to regulate it. \n- Shill your invites to your friends to hoard even more boxes like a goddamn king. \n- Trade on Chance to secure that fat $POLY airdrop later.\n\nHere are my last 3 Golden Tickets (grab 'em before Butters ruins everything): \nhttps://t.co/WqyP0v0ew2🎫\nhttps://t.co/bPaQqnPjXA🎫\nhttps://t.co/yrMzi8NJO1🎫\n\nI’m insanely curious about what’s inside the box...I swear to god, if it’s just a year’s subscription to World of Warcraft for Randy, I’m gonna lose it.\n\nHow many boxes do you have, losers? Drop it in the replies! \n\nScrew you guys, I’m going to get my airdrop!",
+      "text_ko": "[자동 번역] OMG! THEY KILLED MY LIQUIDITY! YOU BASTARDS!\n\nListen up, you midgets! If you’ve ever mashed buttons on 폴리마켓 or Chance, or even just shilled them on X, you’re eligible for a box. Eric says these are even better than tickets to Casa Bonita!\n\nCartman’s Plan for World Domination:\n\n- Claim your box before Kyle’s Jewish sense kicks in and he tries to regulate it. \n- Shill your invites to your friends to hoard even more boxes like a goddamn king. \n- Trade on Chance to secure that fat $POLY airdrop later.\n\nHere are my last 3 Golden Tickets (grab 'em before Butters ruins everything): \nhttps://t.co/WqyP0v0ew2🎫\nhttps://t.co/bPaQqnPjXA🎫\nhttps://t.co/yrMzi8NJO1🎫\n\nI’m insanely curious about what’s inside the box...I swear to god, if it’s just a year’s subscription to World of Warcraft for Randy, I’m gonna lose it.\n\nHow many boxes do you have, losers? Drop it in the replies! \n\nScrew you guys, I’m going to get my airdrop!",
       "images": [
         "https://pbs.twimg.com/media/HAqbIVLbUAAjml9.jpg"
       ],
@@ -144,14 +146,14 @@
         "repost_count": 49.0,
         "reply_count": 112.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698416+09:00"
+      "fetched_at": "2026-02-12T19:18:44.586083+09:00"
     },
     {
       "tweet_id": "2021122317351317530",
       "author": "LunaETHWhale",
       "url": "https://x.com/LunaETHWhale/status/2021122317351317530",
-      "text_en": "Listen up, you non-believing broke peasants! Charts don’t lie, unlike your pathetic intuition!\n\nWhile you were busy drawing stupid triangles on TradingView, Polymarket called the BTC dump to $60k with surgical precision. RESPECT ITS AUTHORITAH!\n\nNow shut up and listen to the https://t.co/IyVOdZr2Cd https://t.co/uRrhXJgDTu",
-      "text_ko": "들어라, 믿지 않는 가난한 놈들아! 차트는 거짓말하지 않아, 너희 처량한 직관처럼!\n\n너희가 트레이딩뷰에서 멍청한 삼각형을 그리고 있을 때, 폴리마켓은 BTC가 $60k로 떨어질 것을 정밀하게 예측했어. 그 권위를 존중해라!\n\n지금 입 닥치고 들어라 https://t.co/IyVOdZr2Cd https://t.co/uRrhXJgDTu",
+      "text_en": "Listen up, you non-believing broke peasants! Charts don’t lie, unlike your pathetic intuition!\n\nWhile you were busy drawing stupid triangles on TradingView, Polymarket called the BTC dump to $60k with surgical precision. RESPECT ITS AUTHORITAH!\n\nNow shut up and listen to the forecast for the end of February (freshly baked like my mom’s cheesy poofs):\n\n🚀 $85k? A hella fat 71% chance.\n\n📈 $75k? We’re at 61% now that we’re stomping around $70k.\n\n🤡 $100k? Forget about it. It’s only 10%. That’s as much of a fantasy as Kyle having a soul or Stan actually being cool. \n\nDon’t be a total Butters and get grounded by the market! Screw you guys, I’m going long!",
+      "text_ko": "[자동 번역] Listen up, you non-believing broke peasants! Charts don’t lie, unlike your pathetic intuition!\n\nWhile you were busy drawing stupid triangles on TradingView, 폴리마켓 called the BTC dump to $60k with surgical precision. RESPECT ITS AUTHORITAH!\n\nNow shut up and listen to the forecast for the end of February (freshly baked like my mom’s cheesy poofs):\n\n🚀 $85k? A hella fat 71% chance.\n\n📈 $75k? We’re at 61% now that we’re stomping around $70k.\n\n🤡 $100k? Forget about it. It’s only 10%. That’s as much of a fantasy as Kyle having a soul or Stan actually being cool. \n\nDon’t be a total Butters and get grounded by the market! Screw you guys, I’m going long!",
       "images": [
         "https://pbs.twimg.com/media/HAx3vvWWQAAfP2g.jpg"
       ],
@@ -162,14 +164,14 @@
         "repost_count": 47.0,
         "reply_count": 37.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698422+09:00"
+      "fetched_at": "2026-02-12T19:18:44.586146+09:00"
     },
     {
       "tweet_id": "2020788491945124262",
       "author": "LunaETHWhale",
       "url": "https://x.com/LunaETHWhale/status/2020788491945124262",
-      "text_en": "MAJOR ALPHA LEAK: The Negative P&L Filter & The Ghost Snapshot \n\nWhispers from the dev underworld and top-tier validators are getting loud. Polymarket is allegedly cooking up a radical Sybil-slaughtering algorithm for the $POLY airdrop.\n\nWord on the street is that the real https://t.co/HgTctqKxMI https://t.co/2jRFi9oPIK",
-      "text_ko": "중요한 알파 유출: 음수 P&L 필터 & 고스트 스냅샷\n\n개발자 지하세계와 최고급 검증자들 사이에서 소문이 커지고 있어요. 폴리마켓이 $POLY 에어드롭을 위해 급진적인 시빌 공격 방지 알고리즘을 준비 중이라는군요.\n\n거리에서 들리는 소문에 따르면 진짜 https://t.co/HgTctqKxMI https://t.co/2jRFi9oPIK",
+      "text_en": "MAJOR ALPHA LEAK: The Negative P&L Filter & The Ghost Snapshot \n\nWhispers from the dev underworld and top-tier validators are getting loud. Polymarket is allegedly cooking up a radical Sybil-slaughtering algorithm for the $POLY airdrop.\n\nWord on the street is that the real snapshot was taken BEFORE the Chance box frenzy even started. That means the current hype on X? It’s just a massive stress test for the system. You’re not farming rewards, you’re the load-test dummy. \n\nThe algo is reportedly pivoting from volume to conviction. If your history is just spamming 99% sure-thing bets to wash volume, you’re getting a Black Mark. Polymarket wants real predictors, not liquidity bots. No skin in the game = No airdrop.\n\nThis is the ultimate plot twist: rumors say there’s a massive multiplier for traders who actually lost money on complex, high-effort predictions. Real degens who took a hit are being prioritized over wash-traders who just cycled liquidity between two wallets.\n\nIf this is true, the volume farmers are absolutely cooked. The oracle doesn't just see the truth, it sees your lack of conviction.",
+      "text_ko": "[자동 번역] MAJOR 알파 LEAK: The Negative P&L Filter & The Ghost Snapshot \n\nWhispers from the dev underworld and top-tier validators are getting loud. 폴리마켓 is allegedly cooking up a radical Sybil-slaughtering algorithm for the $POLY airdrop.\n\nWord on the street is that the real snapshot was taken BEFORE the Chance box frenzy even started. That means the current hype on X? It’s just a massive stress test for the system. You’re not farming rewards, you’re the load-test dummy. \n\nThe algo is reportedly pivoting from volume to conviction. If your history is just spamming 99% sure-thing bets to wash volume, you’re getting a Black Mark. 폴리마켓 wants real predictors, not liquidity bots. No skin in the game = No airdrop.\n\nThis is the ultimate plot twist: rumors say there’s a massive multiplier for traders who actually lost money on complex, high-effort predictions. Real degens who took a hit are being prioritized over wash-traders who just cycled liquidity between two wallets.\n\nIf this is true, the volume farmers are absolutely cooked. The oracle doesn't just see the truth, it sees your lack of conviction.",
       "images": [
         "https://pbs.twimg.com/media/HAtIUHQW8AEuO9I.jpg"
       ],
@@ -180,7 +182,7 @@
         "repost_count": 43.0,
         "reply_count": 48.0
       },
-      "fetched_at": "2026-02-12T19:12:55.698433+09:00"
+      "fetched_at": "2026-02-12T19:18:44.586252+09:00"
     }
   ]
 }
