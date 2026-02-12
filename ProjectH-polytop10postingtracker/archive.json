@@ -1,174 +1,172 @@
 {
   "2026-02-12": [
     {
-      "tweet_id": "1234567890",
-      "author": "CryptoTrader101",
-      "url": "https://example.com/tweet/1234567890",
-      "text_en": "Just discovered a new Polymarket alpha strategy that's been working wonders. #Polymarket #Alpha",
-      "text_ko": "[자동 번역] Just discovered a new 폴리마켓 알파 전략 that's been working wonders. #폴리마켓 #알파",
-      "images": [],
-      "rank_meta": {
-        "rank": 1,
-        "view_count": 1500.0,
-        "like_count": 200.0,
-        "repost_count": 50.0,
-        "reply_count": 30.0
-      },
-      "fetched_at": "2026-02-12T17:08:18.413268+09:00"
-    },
-    {
-      "tweet_id": "1234567891",
-      "author": "MarketMogul",
-      "url": "https://example.com/tweet/1234567891",
-      "text_en": "Sharing my latest Polymarket whale moves. Keep an eye on these markets! #Polymarket #Whale",
-      "text_ko": "[자동 번역] Sharing my latest 폴리마켓 고래 moves. Keep an eye on these markets! #폴리마켓 #고래",
+      "tweet_id": "2021864768701665511",
+      "author": "tradefoxintern",
+      "url": "https://x.com/tradefoxintern/status/2021864768701665511",
+      "text_en": "THIS POLYMARKET TRADER TURNED POLITICAL EXPERTISE INTO $630K\n\nPnL: ~$638k\nVolume: ~$38.5m\nWin rate: ~70%+\n\nThis isn’t a speed trader\nIt’s a high-conviction geopolitical allocator\n\n1) The Strategy\n\n• Trades geopolitics almost exclusively\n• Heavy focus on Iran, Israel, US foreign https://t.co/zU7g3x51yU",
+      "text_ko": "[자동 번역] THIS 폴리마켓 TRADER TURNED POLITICAL EXPERTISE INTO $630K\n\nPnL: ~$638k\nVolume: ~$38.5m\nWin rate: ~70%+\n\nThis isn’t a speed trader\nIt’s a high-conviction geopolitical allocator\n\n1) The 전략\n\n• Trades geopolitics almost exclusively\n• Heavy focus on Iran, Israel, US foreign https://t.co/zU7g3x51yU",
       "images": [
-        "https://example.com/image1.jpg"
+        "https://pbs.twimg.com/amplify_video_thumb/2021864636933713921/img/4ArngmlvfzwNqxq-.jpg"
       ],
       "rank_meta": {
-        "rank": 2,
-        "view_count": 1200.0,
-        "like_count": 180.0,
-        "repost_count": 45.0,
-        "reply_count": 25.0
-      },
-      "fetched_at": "2026-02-12T17:08:18.413301+09:00"
-    },
-    {
-      "tweet_id": "1234567892",
-      "author": "TradeGuru",
-      "url": "https://example.com/tweet/1234567892",
-      "text_en": "New copy-trade strategy on Polymarket. Follow for consistent gains! #Polymarket #CopyTrade",
-      "text_ko": "[자동 번역] New 카피트레이드 전략 on 폴리마켓. Follow for consistent gains! #폴리마켓 #CopyTrade",
-      "images": [],
-      "rank_meta": {
-        "rank": 3,
-        "view_count": 1000.0,
-        "like_count": 150.0,
-        "repost_count": 30.0,
-        "reply_count": 20.0
-      },
-      "fetched_at": "2026-02-12T17:08:18.413323+09:00"
-    },
-    {
-      "tweet_id": "1234567893",
-      "author": "AlphaSeeker",
-      "url": "https://example.com/tweet/1234567893",
-      "text_en": "Analyzing the latest Polymarket trends for alpha opportunities. #Polymarket #Strategy",
-      "text_ko": "[자동 번역] Analyzing the latest 폴리마켓 trends for 알파 opportunities. #폴리마켓 #전략",
-      "images": [
-        "https://example.com/image2.jpg"
-      ],
-      "rank_meta": {
-        "rank": 4,
-        "view_count": 900.0,
-        "like_count": 120.0,
-        "repost_count": 25.0,
-        "reply_count": 15.0
-      },
-      "fetched_at": "2026-02-12T17:08:18.413343+09:00"
-    },
-    {
-      "tweet_id": "1234567894",
-      "author": "WhaleWatcher",
-      "url": "https://example.com/tweet/1234567894",
-      "text_en": "Big moves by Polymarket whales today. Here's what you need to know. #Polymarket #Whale",
-      "text_ko": "[자동 번역] Big moves by 폴리마켓 고래s today. Here's what you need to know. #폴리마켓 #고래",
-      "images": [],
-      "rank_meta": {
-        "rank": 5,
-        "view_count": 800.0,
-        "like_count": 100.0,
-        "repost_count": 20.0,
-        "reply_count": 10.0
-      },
-      "fetched_at": "2026-02-12T17:08:18.413361+09:00"
-    },
-    {
-      "tweet_id": "1234567895",
-      "author": "NewbieTrader",
-      "url": "https://example.com/tweet/1234567895",
-      "text_en": "Effective Polymarket copy-trade strategy for beginners. #Polymarket #CopyTrade",
-      "text_ko": "[자동 번역] Effective 폴리마켓 카피트레이드 전략 for beginners. #폴리마켓 #CopyTrade",
-      "images": [
-        "https://example.com/image3.jpg"
-      ],
-      "rank_meta": {
-        "rank": 6,
-        "view_count": 700.0,
-        "like_count": 90.0,
-        "repost_count": 15.0,
-        "reply_count": 5.0
-      },
-      "fetched_at": "2026-02-12T17:08:18.413378+09:00"
-    },
-    {
-      "tweet_id": "1234567896",
-      "author": "AlphaHunter",
-      "url": "https://example.com/tweet/1234567896",
-      "text_en": "Exploring new alpha in Polymarket. This strategy has potential! #Polymarket #Alpha",
-      "text_ko": "[자동 번역] Exploring new 알파 in 폴리마켓. This 전략 has potential! #폴리마켓 #알파",
-      "images": [],
-      "rank_meta": {
-        "rank": 7,
-        "view_count": 600.0,
-        "like_count": 80.0,
-        "repost_count": 10.0,
-        "reply_count": 3.0
-      },
-      "fetched_at": "2026-02-12T17:08:18.413395+09:00"
-    },
-    {
-      "tweet_id": "1234567897",
-      "author": "CryptoAnalyst",
-      "url": "https://example.com/tweet/1234567897",
-      "text_en": "Polymarket whale activity is heating up. Here's my analysis. #Polymarket #Whale",
-      "text_ko": "[자동 번역] 폴리마켓 고래 activity is heating up. Here's my analysis. #폴리마켓 #고래",
-      "images": [
-        "https://example.com/image4.jpg"
-      ],
-      "rank_meta": {
-        "rank": 8,
-        "view_count": 500.0,
-        "like_count": 70.0,
+        "rank": null,
+        "view_count": null,
+        "like_count": 9.0,
         "repost_count": 8.0,
+        "reply_count": 4.0
+      },
+      "fetched_at": "2026-02-12T18:31:29.982668+09:00"
+    },
+    {
+      "tweet_id": "2021875888158097854",
+      "author": "Prometherr",
+      "url": "https://x.com/Prometherr/status/2021875888158097854",
+      "text_en": "Secret alpha:\n\nKeep using @Polymarket. \n\nTrust me... https://t.co/FsRh5ctnnS https://t.co/GcYgU0Efp1",
+      "text_ko": "[자동 번역] Secret 알파:\n\nKeep using @폴리마켓. \n\nTrust me... https://t.co/FsRh5ctnnS https://t.co/GcYgU0Efp1",
+      "images": [
+        "https://pbs.twimg.com/media/HA8lUVKbsAQkcRV.jpg"
+      ],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 6.0,
+        "repost_count": 0,
         "reply_count": 2.0
       },
-      "fetched_at": "2026-02-12T17:08:18.413422+09:00"
+      "fetched_at": "2026-02-12T18:31:29.982704+09:00"
     },
     {
-      "tweet_id": "1234567898",
-      "author": "SuccessStory",
-      "url": "https://example.com/tweet/1234567898",
-      "text_en": "Copy-trade success on Polymarket. Here's how I did it. #Polymarket #CopyTrade",
-      "text_ko": "[자동 번역] 카피트레이드 success on 폴리마켓. Here's how I did it. #폴리마켓 #CopyTrade",
+      "tweet_id": "2021877789108912545",
+      "author": "probabilitygod",
+      "url": "https://x.com/probabilitygod/status/2021877789108912545",
+      "text_en": "@lunatik_corp @Polymarket i think the combination of onchain stars like whale positions as well as narrative/news analysis is the perfect approach to these markets. \n\nhowever i am still kinda reluctant to get exposure to the 31 march market. personally it looks like a coinflip. trump’s consolidating power",
+      "text_ko": "[자동 번역] @lunatik_corp @폴리마켓 i think the combination of onchain stars like 고래 positions as well as narrative/news analysis is the perfect approach to these markets. \n\nhowever i am still kinda reluctant to get exposure to the 31 march market. personally it looks like a coinflip. trump’s consolidating power",
       "images": [],
       "rank_meta": {
-        "rank": 9,
-        "view_count": 400.0,
-        "like_count": 60.0,
-        "repost_count": 5.0,
+        "rank": null,
+        "view_count": null,
+        "like_count": 1.0,
+        "repost_count": 0,
         "reply_count": 1.0
       },
-      "fetched_at": "2026-02-12T17:08:18.413440+09:00"
+      "fetched_at": "2026-02-12T18:31:29.982742+09:00"
     },
     {
-      "tweet_id": "1234567899",
-      "author": "StrategyMaster",
-      "url": "https://example.com/tweet/1234567899",
-      "text_en": "Finding alpha in Polymarket isn't easy, but here's a strategy that works. #Polymarket #Strategy",
-      "text_ko": "[자동 번역] Finding 알파 in 폴리마켓 isn't easy, but here's a 전략 that works. #폴리마켓 #전략",
+      "tweet_id": "2021877623933030421",
+      "author": "lulu_chatnoir",
+      "url": "https://x.com/lulu_chatnoir/status/2021877623933030421",
+      "text_en": "Polymarket just leveled up: attention markets are coming.\n\nMore than yes/no events, now you can bet on who’s trending and how people talk about it. \n\nMindshare + sentiment from social data = real trading signals. If markets reflect attention, then attention is the new alpha. https://t.co/mtmkOexUhb",
+      "text_ko": "[자동 번역] 폴리마켓 just leveled up: attention markets are coming.\n\nMore than yes/no events, now you can bet on who’s trending and how people talk about it. \n\nMindshare + sentiment from social data = real trading 시그널s. If markets reflect attention, then attention is the new 알파. https://t.co/mtmkOexUhb",
       "images": [
-        "https://example.com/image5.jpg"
+        "https://pbs.twimg.com/media/HA8m-RpWIAEVrt0.jpg"
       ],
       "rank_meta": {
-        "rank": 10,
-        "view_count": 300.0,
-        "like_count": 50.0,
-        "repost_count": 3.0,
+        "rank": null,
+        "view_count": null,
+        "like_count": 0,
+        "repost_count": 0,
+        "reply_count": 1.0
+      },
+      "fetched_at": "2026-02-12T18:31:29.982777+09:00"
+    },
+    {
+      "tweet_id": "2021875630900412521",
+      "author": "PolyBookie",
+      "url": "https://x.com/PolyBookie/status/2021875630900412521",
+      "text_en": "A @Polymarket whale just bought $2,880 on Fluminense FC to win at 48c a share.",
+      "text_ko": "[자동 번역] A @폴리마켓 고래 just bought $2,880 on Fluminense FC to win at 48c a share.",
+      "images": [],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 0,
+        "repost_count": 0,
+        "reply_count": 1.0
+      },
+      "fetched_at": "2026-02-12T18:31:29.982795+09:00"
+    },
+    {
+      "tweet_id": "2021867662016487556",
+      "author": "PolyBookie",
+      "url": "https://x.com/PolyBookie/status/2021867662016487556",
+      "text_en": "A @Polymarket whale just bought $27,762 on Fluminense FC to win at 48c a share.",
+      "text_ko": "[자동 번역] A @폴리마켓 고래 just bought $27,762 on Fluminense FC to win at 48c a share.",
+      "images": [],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 0,
+        "repost_count": 0,
+        "reply_count": 1.0
+      },
+      "fetched_at": "2026-02-12T18:31:29.982812+09:00"
+    },
+    {
+      "tweet_id": "2021866750107664541",
+      "author": "0xLanister",
+      "url": "https://x.com/0xLanister/status/2021866750107664541",
+      "text_en": "@fixnik28 yeah this dude is making very interesting case of polymarket strategy. Thats why he is a number one trader on polymarket weather markets",
+      "text_ko": "[자동 번역] @fixnik28 yeah this dude is making very interesting case of 폴리마켓 전략. Thats why he is a number one trader on 폴리마켓 weather markets",
+      "images": [],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 1.0,
+        "repost_count": 0,
         "reply_count": 0
       },
-      "fetched_at": "2026-02-12T17:08:18.413458+09:00"
+      "fetched_at": "2026-02-12T18:31:29.982834+09:00"
+    },
+    {
+      "tweet_id": "2021863825927217368",
+      "author": "gabagool22",
+      "url": "https://x.com/gabagool22/status/2021863825927217368",
+      "text_en": "@0x_saurav @Polymarket @PolymarketTrade sure, those returns sound insane, but you’ve got to consider the risk, too. it’s not all rainbows and profits. real trading is about consistent strategy, not just luck.",
+      "text_ko": "[자동 번역] @0x_saurav @폴리마켓 @폴리마켓Trade sure, those returns sound insane, but you’ve got to consider the risk, too. it’s not all rainbows and profits. real trading is about consistent 전략, not just luck.",
+      "images": [],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 0,
+        "repost_count": 0,
+        "reply_count": 1.0
+      },
+      "fetched_at": "2026-02-12T18:31:29.982871+09:00"
+    },
+    {
+      "tweet_id": "2021879477110734953",
+      "author": "probabilitygod",
+      "url": "https://x.com/probabilitygod/status/2021879477110734953",
+      "text_en": "@lunatik_corp @Polymarket really smart idea tbh \n\ncopy trade if x of the top traders take a specific position",
+      "text_ko": "[자동 번역] @lunatik_corp @폴리마켓 really smart idea tbh \n\ncopy trade if x of the top traders take a specific position",
+      "images": [],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 0,
+        "repost_count": 0,
+        "reply_count": 0
+      },
+      "fetched_at": "2026-02-12T18:31:29.982892+09:00"
+    },
+    {
+      "tweet_id": "2021879308260663639",
+      "author": "mayc12552",
+      "url": "https://x.com/mayc12552/status/2021879308260663639",
+      "text_en": "GM! \n\nPolymarket has launched Bitcoin UP &amp; DOWN on 5-minute intervals!\n\nPerfect with the strategy to boost profitability ✅ https://t.co/SmUB5qA4f7",
+      "text_ko": "[자동 번역] GM! \n\n폴리마켓 has launched Bitcoin UP &amp; DOWN on 5-minute intervals!\n\nPerfect with the 전략 to boost profitability ✅ https://t.co/SmUB5qA4f7",
+      "images": [
+        "https://pbs.twimg.com/media/HA8ogF1WwAAam38.jpg"
+      ],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 0,
+        "repost_count": 0,
+        "reply_count": 0
+      },
+      "fetched_at": "2026-02-12T18:31:29.982949+09:00"
     }
   ]
 }
