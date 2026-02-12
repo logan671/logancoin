@@ -141,6 +141,44 @@ def grok_chat_completion(api_key: str, messages: list[dict[str, str]], timeout_s
     return str(content)
 
 
+def get_available_models(api_key: str, timeout_sec: int = 15) -> list[str]:
+    base_url = os.getenv("GROK_API_BASE_URL", "https://api.x.ai/v1").rstrip("/")
+    url = f"{base_url}/models"
+    response = requests.get(
+        url,
+        headers={"Authorization": f"Bearer {api_key}"},
+        timeout=timeout_sec,
+    )
+    response.raise_for_status()
+    data = response.json()
+    rows = data.get("data", [])
+    model_ids = []
+    if isinstance(rows, list):
+        for row in rows:
+            if isinstance(row, dict) and isinstance(row.get("id"), str):
+                model_ids.append(row["id"])
+    return model_ids
+
+
+def resolve_grok_model(api_key: str) -> str:
+    preferred = [x.strip() for x in os.getenv("GROK_MODEL_CANDIDATES", "grok-2-latest,grok-2,grok-beta").split(",") if x.strip()]
+    explicit = os.getenv("GROK_MODEL", "").strip()
+    if explicit:
+        preferred.insert(0, explicit)
+
+    try:
+        available = set(get_available_models(api_key=api_key, timeout_sec=int(os.getenv("GROK_TIMEOUT", "30"))))
+        for model in preferred:
+            if model in available:
+                return model
+        if available:
+            return sorted(available)[0]
+    except Exception:
+        pass
+
+    return preferred[0] if preferred else "grok-2-latest"
+
+
 def normalize_post(row: dict[str, Any]) -> dict[str, Any] | None:
     tweet_id = str(
         row.get("tweet_id")
@@ -222,7 +260,12 @@ def normalize_posts(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return normalized
 
 
-def fetch_posts_from_grok(api_key: str, candidate_count: int = 20, range_label: str = "top 1-10") -> list[dict[str, Any]]:
+def fetch_posts_from_grok(
+    api_key: str,
+    model: str,
+    candidate_count: int = 20,
+    range_label: str = "top 1-10",
+) -> list[dict[str, Any]]:
     system_prompt = (
         "You are a data extractor for social posts. "
         "Return valid JSON only."
@@ -234,6 +277,7 @@ def fetch_posts_from_grok(api_key: str, candidate_count: int = 20, range_label: 
         f"Return up to {candidate_count} items. "
         "Do not include markdown fences."
     )
+    os.environ["GROK_MODEL"] = model
     content = grok_chat_completion(
         api_key=api_key,
         messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
@@ -244,7 +288,7 @@ def fetch_posts_from_grok(api_key: str, candidate_count: int = 20, range_label: 
     return normalize_posts(posts if isinstance(posts, list) else [])
 
 
-def translate_to_korean(api_key: str, posts: list[dict[str, Any]]) -> dict[str, str]:
+def translate_to_korean(api_key: str, model: str, posts: list[dict[str, Any]]) -> dict[str, str]:
     inputs = []
     for row in posts:
         tweet_id = str(row.get("tweet_id", "")).strip()
@@ -264,6 +308,7 @@ def translate_to_korean(api_key: str, posts: list[dict[str, Any]]) -> dict[str, 
         "Each item must contain: tweet_id, text_ko.\n"
         f"Input: {json.dumps(inputs, ensure_ascii=False)}"
     )
+    os.environ["GROK_MODEL"] = model
     content = grok_chat_completion(
         api_key=api_key,
         messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
@@ -383,7 +428,10 @@ def get_mock_posts(count: int = 20) -> list[dict[str, Any]]:
 
 
 def load_status() -> dict[str, Any]:
-    return load_json(STATUS_PATH, {"needs_credit_topup": False, "last_error": "", "updated_at": ""})
+    return load_json(
+        STATUS_PATH,
+        {"needs_credit_topup": False, "is_mock_data": False, "last_error": "", "updated_at": ""},
+    )
 
 
 def save_status(status: dict[str, Any]) -> None:
@@ -438,24 +486,38 @@ def main() -> None:
     use_mock_on_failure = os.getenv("USE_MOCK_ON_FAILURE", "true").lower() == "true"
 
     status = load_status()
+    status.setdefault("is_mock_data", False)
     banner_message = ""
+    model = os.getenv("GROK_MODEL", "grok-2-latest")
+    if api_key:
+        model = resolve_grok_model(api_key)
 
     try:
-        raw_posts = fetch_posts_from_grok(api_key=api_key, candidate_count=candidate_count, range_label="top 1-10") if api_key else []
+        raw_posts = (
+            fetch_posts_from_grok(api_key=api_key, model=model, candidate_count=candidate_count, range_label="top 1-10")
+            if api_key
+            else []
+        )
         if not raw_posts and use_mock_on_failure:
             raw_posts = get_mock_posts(candidate_count)
+            status["is_mock_data"] = True
         else:
+            status["is_mock_data"] = False
             status["needs_credit_topup"] = False
             status["last_error"] = ""
     except requests.HTTPError as exc:
         error_text = str(exc)
+        if exc.response is not None:
+            error_text = f"{error_text} | body: {exc.response.text[:300]}"
         if "quota" in error_text.lower() or "credit" in error_text.lower() or "billing" in error_text.lower():
             status["needs_credit_topup"] = True
             status["last_error"] = error_text
         raw_posts = get_mock_posts(candidate_count) if use_mock_on_failure else []
+        status["is_mock_data"] = bool(raw_posts)
     except Exception as exc:  # noqa: BLE001
         status["last_error"] = str(exc)
         raw_posts = get_mock_posts(candidate_count) if use_mock_on_failure else []
+        status["is_mock_data"] = bool(raw_posts)
 
     raw_posts.sort(key=ranking_key)
 
@@ -470,6 +532,7 @@ def main() -> None:
             try:
                 extra_rows = fetch_posts_from_grok(
                     api_key=api_key,
+                    model=model,
                     candidate_count=max(target_posts, 10),
                     range_label="rank 11-20",
                 )
@@ -486,7 +549,7 @@ def main() -> None:
     text_ko_map: dict[str, str] = {}
     if api_key and selected_raw:
         try:
-            text_ko_map = translate_to_korean(api_key=api_key, posts=selected_raw)
+            text_ko_map = translate_to_korean(api_key=api_key, model=model, posts=selected_raw)
         except Exception as exc:  # noqa: BLE001
             status["last_error"] = f"translation_error: {exc}"
 
@@ -498,6 +561,8 @@ def main() -> None:
 
     if status.get("needs_credit_topup"):
         banner_message = "잔액 충전하세요"
+    elif status.get("is_mock_data"):
+        banner_message = "실데이터 수집 실패로 샘플 데이터가 표시 중입니다."
 
     index_path = PUBLIC_DIR / "index.html"
     wrote_new_page = False

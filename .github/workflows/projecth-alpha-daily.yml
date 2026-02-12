@@ -43,6 +43,7 @@ jobs:
           GROK_API_KEY=${{ secrets.GROK_API_KEY }}
           GROK_API_BASE_URL=https://api.x.ai/v1
           GROK_MODEL=grok-2-latest
+          GROK_MODEL_CANDIDATES=grok-2-latest,grok-2,grok-beta
           GROK_TIMEOUT=30
           TOP_N_CANDIDATES=20
           TARGET_POSTS=10
