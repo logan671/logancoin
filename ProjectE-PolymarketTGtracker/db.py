@@ -219,6 +219,18 @@ def mark_sent_any(tx_hash: str, address: str) -> None:
         )
 
 
+def prune_old_sent_events(ttl_days: int) -> int:
+    if ttl_days <= 0:
+        return 0
+    cutoff = int(time.time()) - (ttl_days * 86400)
+    with get_conn() as conn:
+        cur = conn.execute(
+            "DELETE FROM sent_events WHERE sent_at < ?",
+            (cutoff,),
+        )
+        return int(cur.rowcount or 0)
+
+
 def get_trade_count(address: str, market_key: str, date: str) -> int:
     with get_conn() as conn:
         row = conn.execute(

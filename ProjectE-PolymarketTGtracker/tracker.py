@@ -21,6 +21,8 @@ from config import (
     MAX_RETRIES,
     MIN_USDC_ALERT,
     MIN_USDC_EXEMPT,
+    SENT_EVENTS_TTL_DAYS,
+    SENT_EVENTS_CLEANUP_INTERVAL_SECONDS,
     LOG_DIR,
     TRACKER_LOG_PATH,
 )
@@ -31,6 +33,7 @@ from db import (
     set_state,
     is_sent_any,
     mark_sent_any,
+    prune_old_sent_events,
     update_directional_streak,
     get_active_tracked_position,
     mark_tracked_position_exited,
@@ -284,10 +287,22 @@ def poll() -> None:
     topic0 = w3.keccak(text=EVENT_SIG).hex()
 
     last_block = int(get_state("last_block") or "0")
+    last_cleanup_at = 0
 
     while True:
         target = None
         try:
+            now = int(time.time())
+            if now - last_cleanup_at >= SENT_EVENTS_CLEANUP_INTERVAL_SECONDS:
+                deleted = prune_old_sent_events(SENT_EVENTS_TTL_DAYS)
+                last_cleanup_at = now
+                if deleted > 0:
+                    logging.info(
+                        "sent_events_pruned deleted=%s ttl_days=%s",
+                        deleted,
+                        SENT_EVENTS_TTL_DAYS,
+                    )
+
             latest = w3.eth.block_number
             target = max(latest - CONFIRMATIONS, 0)
             if last_block == 0:
