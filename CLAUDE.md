@@ -96,3 +96,5 @@ Q=ㅃ W=ㅉ E=ㄸ R=ㄲ T=ㅆ O=ㅒ P=ㅖ
 - SSH 공개키 fingerprint: `SHA256:tOEY83qfXpEsjHIHPSA10vicQ7CNUzs2b2pteKT4E0s`
 - 개인키(Private key)는 절대 기록/공유하지 않는다.
 - 이 저장소의 주요 사용 개발자는 개발을 시작한 지 1주도 안 된 초보자다.
+- 커밋 메시지는 기본적으로 날짜/시간 형식(`YYMMDD HHAM/PM`)을 사용한다.
+- 에이전트/작업자 태그를 커밋 메시지 끝에 괄호로 추가한다. 예: `260212 11AM (Codex)`
