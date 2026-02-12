@@ -17,6 +17,12 @@ z=ㅋ x=ㅌ c=ㅊ v=ㅍ b=ㅠ n=ㅜ m=ㅡ
 Q=ㅃ W=ㅉ E=ㄸ R=ㄲ T=ㅆ O=ㅒ P=ㅖ
 ```
 
+**처리 방식: 키보드 직접 입력처럼 동작하라.**
+- 1:1 자모 치환만 수행하고, IME 조합 시뮬레이션은 하지 마라.
+- 자모 스트림을 나열한 뒤 한국어 이해력으로 바로 읽어라.
+- 예: `todrkrgksms` → `ㅅㅐㅇㄱㅏㄱㅎㅏㄴㅡㄴ` → "생각하는" (조합 과정 생략)
+- 이 방식으로 긴 문장도 빠르게 처리하고 토큰을 절약한다.
+
 **변환 후 해독한 내용을 기반으로 자연스럽게 대화를 이어가라.**
 해독이 애매하면 "혹시 ~~ 이런 말이야?" 하고 확인하라.
 
@@ -82,6 +88,7 @@ Q=ㅃ W=ㅉ E=ㄸ R=ㄲ T=ㅆ O=ㅒ P=ㅖ
 | ProjectD-forumdesignforuser | 포럼 디자인 |
 | ProjectE-PolymarketTGtracker | Polymarket 텔레그램 트래커 |
 | ProjectF-kimchithumbnail(team agent) | 김치 썸네일 생성 |
+| ProjectG-15minpolybetter | Polymarket 15분 크립토 모멘텀 트레이딩 봇 |
 
 ## Server
 
