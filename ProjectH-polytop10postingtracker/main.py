@@ -311,17 +311,23 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
     headers = {"Authorization": f"Bearer {bearer_token}"}
     query = os.getenv(
         "X_SEARCH_QUERY",
-        '(polymarket (alpha OR whale OR strategy OR "copy trade")) -is:retweet lang:en',
+        '(polymarket (alpha OR whale OR strategy OR "copy trade")) -is:retweet -is:reply lang:en',
     )
     max_results = min(max(candidate_count, 10), 100)
     params = {
         "query": query,
         "max_results": max_results,
-        "tweet.fields": "created_at,public_metrics,author_id,attachments",
+        "tweet.fields": "created_at,public_metrics,author_id,attachments,referenced_tweets",
         "expansions": "author_id,attachments.media_keys",
         "user.fields": "username,name",
         "media.fields": "url,preview_image_url,type",
     }
+    sort_order = os.getenv("X_SORT_ORDER", "relevancy").strip().lower()
+    if sort_order in {"relevancy", "recency"}:
+        params["sort_order"] = sort_order
+
+    min_likes = int(os.getenv("X_MIN_LIKES", "5"))
+    min_score = int(os.getenv("X_MIN_SCORE", "12"))
 
     response = requests.get(url, headers=headers, params=params, timeout=int(os.getenv("X_TIMEOUT", "30")))
     response.raise_for_status()
@@ -351,6 +357,18 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
         if not tweet_id or not text_en:
             continue
 
+        referenced = row.get("referenced_tweets", [])
+        if isinstance(referenced, list):
+            has_reply_ref = any(
+                isinstance(ref, dict) and str(ref.get("type", "")).lower() == "replied_to"
+                for ref in referenced
+            )
+            if has_reply_ref:
+                continue
+
+        if text_en.lstrip().startswith("@"):
+            continue
+
         author_id = str(row.get("author_id", "")).strip()
         user = user_by_id.get(author_id, {})
         username = str(user.get("username", "")).strip() if isinstance(user, dict) else ""
@@ -362,6 +380,9 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
         repost_count = metrics.get("retweet_count", 0) if isinstance(metrics, dict) else 0
         reply_count = metrics.get("reply_count", 0) if isinstance(metrics, dict) else 0
         quote_count = metrics.get("quote_count", 0) if isinstance(metrics, dict) else 0
+        score = int(like_count) + (2 * int(repost_count)) + int(reply_count) + int(quote_count)
+        if int(like_count) < min_likes or score < min_score:
+            continue
 
         images: list[str] = []
         attachments = row.get("attachments", {})
@@ -391,6 +412,11 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
             }
         )
 
+    posts.sort(
+        key=lambda x: (
+            -(float(x.get("like_count") or 0) + 2 * float(x.get("repost_count") or 0) + float(x.get("reply_count") or 0))
+        )
+    )
     return normalize_posts(posts)
 
 
