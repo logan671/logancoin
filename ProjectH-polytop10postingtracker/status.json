@@ -1,6 +1,6 @@
 {
   "needs_credit_topup": false,
-  "last_error": "no_valid_x_posts_from_grok_refs | no_posts_selected_keep_previous",
-  "updated_at": "2026-02-12T18:45:01.627018+09:00",
+  "last_error": "no_valid_x_posts_from_grok_refs | grok_excerpt=```json { \"posts\": [ { \"rank\": 1, \"tweet_id\": \"1789345678901234567\", \"url\": \"https://x.com/i/status/1789345678901234567\" }, { \"rank\": 2, \"tweet_id\": \"1789345678901234568\", \"url\": \" | no_posts_selected_keep_previous",
+  "updated_at": "2026-02-12T18:48:34.674856+09:00",
   "is_mock_data": false
 }
