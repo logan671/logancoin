@@ -121,13 +121,18 @@
       font-weight: 600;
     }
     .expand-btn {
-      border: 0;
-      background: transparent;
-      color: #0b63e5;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #c6d6f4;
+      background: #f4f8ff;
+      color: #0d5bd7;
+      text-decoration: none;
       font-size: 13px;
       font-weight: 700;
-      padding: 0;
-      margin: 2px 0 8px;
+      margin: 0;
       cursor: pointer;
     }
     .actions {
@@ -190,9 +195,9 @@
           <span class="index-tag"></span>
           <div class="author"></div>
           <p class="text-ko"></p>
-          <button class="expand-btn" type="button" hidden>더보기</button>
           <div class="actions">
             <a class="btn" target="_blank" rel="noopener noreferrer">원문 보기 (X)</a>
+            <button class="expand-btn" type="button" hidden>펼치기</button>
           </div>
         </div>
       </article>
@@ -205,6 +210,11 @@
       const cardsContainer = document.getElementById("cardsContainer");
       const dateMeta = document.getElementById("dateMeta");
       const cardTemplate = document.getElementById("cardTemplate");
+      function decodeHtml(value) {
+        const textarea = document.createElement("textarea");
+        textarea.innerHTML = value || "";
+        return textarea.value;
+      }
 
       function renderCards(dateKey) {
         cardsContainer.innerHTML = "";
@@ -224,19 +234,19 @@
           node.querySelector(".index-tag").textContent = `#${idx + 1}`;
           node.querySelector(".author").textContent = `@${post.author || "unknown"}`;
           const textEl = node.querySelector(".text-ko");
-          const fullText = (post.text_ko || "").trim();
-          const shortLimit = 260;
+          const fullText = decodeHtml((post.text_ko || "").trim());
+          const shortLimit = 180;
           textEl.textContent = fullText;
           const expandBtn = node.querySelector(".expand-btn");
           if (fullText.length > shortLimit) {
             let expanded = false;
             textEl.textContent = `${fullText.slice(0, shortLimit)}...`;
             expandBtn.hidden = false;
-            expandBtn.textContent = "더보기";
+            expandBtn.textContent = "펼치기";
             expandBtn.addEventListener("click", () => {
               expanded = !expanded;
               textEl.textContent = expanded ? fullText : `${fullText.slice(0, shortLimit)}...`;
-              expandBtn.textContent = expanded ? "접기" : "더보기";
+              expandBtn.textContent = expanded ? "접기" : "펼치기";
             });
           } else {
             expandBtn.hidden = true;

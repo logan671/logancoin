@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import html
 from urllib.parse import urlparse
 from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
@@ -195,13 +196,14 @@ def normalize_post(row: dict[str, Any]) -> dict[str, Any] | None:
         or row.get("post_id")
         or ""
     ).strip()
-    text_en = str(
+    text_en_raw = str(
         row.get("text_en")
         or row.get("text")
         or row.get("content")
         or row.get("body")
         or ""
     ).strip()
+    text_en = html.unescape(text_en_raw)
     if not tweet_id or not text_en:
         return None
 
@@ -706,7 +708,7 @@ def translate_to_korean(api_key: str, model: str, posts: list[dict[str, Any]]) -
 
 
 def fallback_korean_text(text_en: str) -> str:
-    text = text_en.strip()
+    text = html.unescape(text_en).strip()
     if not text:
         return ""
 
@@ -754,7 +756,7 @@ def build_tweet_item(row: dict[str, Any], text_ko_map: dict[str, str]) -> TweetI
     tweet_id = str(row.get("tweet_id", "")).strip()
     if not tweet_id:
         return None
-    text_en = str(row.get("text_en", "")).strip()
+    text_en = html.unescape(str(row.get("text_en", "")).strip())
     if not text_en:
         return None
     images_raw = row.get("images", [])
@@ -765,10 +767,12 @@ def build_tweet_item(row: dict[str, Any], text_ko_map: dict[str, str]) -> TweetI
         author=str(row.get("author", "unknown")).strip() or "unknown",
         url=str(row.get("url", "")).strip() or f"https://x.com/i/status/{tweet_id}",
         text_en=text_en,
-        text_ko=(
+        text_ko=html.unescape(
+            (
             text_ko_map.get(tweet_id)
             or str(row.get("text_ko", "")).strip()
             or fallback_korean_text(text_en)
+            )
         ),
         images=[x for x in images if x],
         rank_meta={
