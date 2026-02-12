@@ -48,6 +48,7 @@ jobs:
           TOP_N_CANDIDATES=20
           TARGET_POSTS=10
           USE_MOCK_ON_FAILURE=true
+          ENABLE_GROK_TRANSLATION=false
           EOF
 
       - name: Generate daily page

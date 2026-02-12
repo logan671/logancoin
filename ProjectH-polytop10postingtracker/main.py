@@ -486,6 +486,7 @@ def main() -> None:
     candidate_count = int(os.getenv("TOP_N_CANDIDATES", "20"))
     target_posts = int(os.getenv("TARGET_POSTS", "10"))
     use_mock_on_failure = os.getenv("USE_MOCK_ON_FAILURE", "true").lower() == "true"
+    enable_translation = os.getenv("ENABLE_GROK_TRANSLATION", "false").lower() == "true"
 
     status = load_status()
     status.setdefault("is_mock_data", False)
@@ -550,7 +551,7 @@ def main() -> None:
         selected_raw.extend(fallback_pool[:needed])
 
     text_ko_map: dict[str, str] = {}
-    if api_key and selected_raw and not status.get("is_mock_data"):
+    if api_key and selected_raw and not status.get("is_mock_data") and enable_translation:
         try:
             text_ko_map = translate_to_korean(api_key=api_key, model=model, posts=selected_raw)
         except requests.HTTPError as exc:
