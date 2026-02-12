@@ -177,6 +177,9 @@ def build_message(
         f"🧑‍🎓 <a href=\"{html.escape(profile_link)}\">스마트 월렛 프로필 바로가기</a>",
         f"📲 <a href=\"https://polygonscan.com/tx/{html.escape(tx_hash)}\">트랜잭션 링크(폴리곤스캔)</a>",
     ]
+    if side == "매도":
+        lines.insert(8, "⚠️ << 그의 판단에 변경이 생긴것으로 보입니다! >>")
+        lines.insert(9, "")
     if warn_multi:
         lines.insert(2, "⚠️ 이 트레이더는 이번 블록에 많은 거래를 진행했습니다. 실제 activity를 확인해주세요.")
     return "\n".join(lines)
@@ -189,6 +192,8 @@ def build_add_message(
     market: Optional[dict],
     outcome: str,
     streak_count: int,
+    usdc_amount: Optional[int],
+    price: str,
     tx_hash: str,
 ) -> str:
     safe_alias = html.escape(alias) if alias else address
@@ -201,18 +206,38 @@ def build_add_message(
         label = f"{safe_alias} ({safe_address})" if alias else safe_address
 
     title = html.escape((market or {}).get("question") or "-")
+    slug = (market or {}).get("slug") or ""
     outcome_label = html.escape(outcome) if outcome else "?"
-    market_link = f"https://polymarket.com/market/{(market or {}).get('slug', '')}"
-    tx_link = f"https://polygonscan.com/tx/{html.escape(tx_hash)}"
+    market_link = f"https://polymarket.com/market/{slug}" if slug else ""
+    profile_link = f"https://polymarket.com/profile/{address}"
 
-    return (
-        "🔁 동일 방향 추매 반복 감지\n"
-        f"지갑: {label}\n"
-        f"종목: {title}\n"
-        f"방향: {outcome_label} 매수 연속 {streak_count}회\n"
-        f"시장: {market_link if (market or {}).get('slug') else '-'}\n"
-        f"tx: {tx_link}"
-    )
+    lines = [
+        f"지갑: {label}",
+        "",
+        "===================",
+        "",
+        "🔁 반복 매수 감지",
+        "",
+        f"💡 종목: {title}",
+        "",
+        (
+            f"방향: {outcome_label}를 같은 방향으로 연속 {streak_count}회 매수 중입니다. "
+            f"최근 매수 규모는 {format_usdc(usdc_amount)} / 가격 {format_price(price)} 입니다."
+        ),
+        "",
+        "포지션 따라하려면?: 기존 포지션 유지 + 리스크 재점검",
+        "",
+        "===================",
+        "",
+        (
+            f"👉 <a href=\"{html.escape(market_link)}\">해당 종목 폴리마켓 바로가기</a>"
+            if market_link
+            else "👉 해당 종목 폴리마켓 바로가기 (-)"
+        ),
+        f"🧑‍🎓 <a href=\"{html.escape(profile_link)}\">스마트 월렛 프로필 바로가기</a>",
+        f"📲 <a href=\"https://polygonscan.com/tx/{html.escape(tx_hash)}\">트랜잭션 링크(폴리곤스캔)</a>",
+    ]
+    return "\n".join(lines)
 
 
 def detect_side(
@@ -467,7 +492,7 @@ def poll() -> None:
                 if item["side"] == "매수":
                     if streak_count == 1:
                         pass
-                    elif is_milestone:
+                    elif is_milestone and usdc_amount is not None and (usdc_amount / 1_000_000) >= MIN_USDC_ALERT:
                         msg = build_add_message(
                             item["addr"],
                             item["alias"],
@@ -475,6 +500,8 @@ def poll() -> None:
                             item["market"],
                             item["outcome"],
                             streak_count,
+                            item["usdc_amount"],
+                            item["price"],
                             item["tx_hash"],
                         )
                         send_message(msg)

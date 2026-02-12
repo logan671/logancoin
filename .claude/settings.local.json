@@ -28,7 +28,8 @@
       "mcp__puppeteer__puppeteer_navigate",
       "mcp__puppeteer__puppeteer_screenshot",
       "Bash(curl:*)",
-      "Bash(pip3 install:*)"
+      "Bash(pip3 install:*)",
+      "Skill(claude-pulse:configure)"
     ]
   }
 }
