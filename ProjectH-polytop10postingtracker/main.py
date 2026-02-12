@@ -415,13 +415,27 @@ def main() -> None:
     if status.get("needs_credit_topup"):
         banner_message = "잔액 충전하세요"
 
-    html = render_html(posts=selected_items, banner_message=banner_message)
-    (PUBLIC_DIR / "index.html").write_text(html, encoding="utf-8")
+    index_path = PUBLIC_DIR / "index.html"
+    wrote_new_page = False
+    if selected_items:
+        html = render_html(posts=selected_items, banner_message=banner_message)
+        index_path.write_text(html, encoding="utf-8")
+        update_previous_posts(previous_posts, [x.tweet_id for x in selected_items], days=3)
+        wrote_new_page = True
+    else:
+        status["last_error"] = (
+            f"{status.get('last_error', '')} | no_posts_selected_keep_previous".strip(" |")
+        )
+        if not index_path.exists():
+            html = render_html(posts=[], banner_message=banner_message)
+            index_path.write_text(html, encoding="utf-8")
 
-    update_previous_posts(previous_posts, [x.tweet_id for x in selected_items], days=3)
     save_status(status)
 
-    print(f"Generated {PUBLIC_DIR / 'index.html'} with {len(selected_items)} posts.")
+    if wrote_new_page:
+        print(f"Generated {PUBLIC_DIR / 'index.html'} with {len(selected_items)} posts.")
+    else:
+        print(f"Kept previous {PUBLIC_DIR / 'index.html'} (selected posts: {len(selected_items)}).")
 
 
 if __name__ == "__main__":
