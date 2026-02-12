@@ -513,9 +513,9 @@ def main() -> None:
         error_text = str(exc)
         if exc.response is not None:
             error_text = f"{error_text} | body: {exc.response.text[:300]}"
+        status["last_error"] = f"fetch_error: {error_text}"
         if "quota" in error_text.lower() or "credit" in error_text.lower() or "billing" in error_text.lower():
             status["needs_credit_topup"] = True
-            status["last_error"] = error_text
         raw_posts = get_mock_posts(candidate_count) if use_mock_on_failure else []
         status["is_mock_data"] = bool(raw_posts)
     except Exception as exc:  # noqa: BLE001
