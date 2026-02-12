@@ -284,6 +284,35 @@ def translate_to_korean(api_key: str, posts: list[dict[str, Any]]) -> dict[str, 
     return result
 
 
+def fallback_korean_text(text_en: str) -> str:
+    text = text_en.strip()
+    if not text:
+        return ""
+
+    mock_match = re.match(
+        r"Polymarket alpha signal #(\d+): whale flow and momentum setup\.",
+        text,
+        flags=re.IGNORECASE,
+    )
+    if mock_match:
+        n = mock_match.group(1)
+        return f"Polymarket 알파 시그널 #{n}: 고래 자금 흐름과 모멘텀 세팅입니다."
+
+    replacements = {
+        "Polymarket": "폴리마켓",
+        "alpha": "알파",
+        "signal": "시그널",
+        "strategy": "전략",
+        "momentum": "모멘텀",
+        "whale": "고래",
+        "copy-trade": "카피트레이드",
+    }
+    converted = text
+    for src, dst in replacements.items():
+        converted = re.sub(src, dst, converted, flags=re.IGNORECASE)
+    return f"[자동 번역] {converted}"
+
+
 def ranking_key(row: dict[str, Any]) -> tuple[int, float]:
     rank = row.get("rank")
     if isinstance(rank, int):
@@ -315,7 +344,11 @@ def build_tweet_item(row: dict[str, Any], text_ko_map: dict[str, str]) -> TweetI
         author=str(row.get("author", "unknown")).strip() or "unknown",
         url=str(row.get("url", "")).strip() or f"https://x.com/i/status/{tweet_id}",
         text_en=text_en,
-        text_ko=text_ko_map.get(tweet_id, text_en),
+        text_ko=(
+            text_ko_map.get(tweet_id)
+            or str(row.get("text_ko", "")).strip()
+            or fallback_korean_text(text_en)
+        ),
         images=[x for x in images if x],
         rank_meta={
             "rank": row.get("rank"),
@@ -337,6 +370,7 @@ def get_mock_posts(count: int = 20) -> list[dict[str, Any]]:
                 "author": f"trader_{i}",
                 "url": f"https://x.com/trader_{i}/status/{1000 + i}",
                 "text_en": f"Polymarket alpha signal #{i}: whale flow and momentum setup.",
+                "text_ko": f"Polymarket 알파 시그널 #{i}: 고래 자금 흐름과 모멘텀 세팅입니다.",
                 "images": [],
                 "rank": i,
                 "view_count": 10000 - i * 100,

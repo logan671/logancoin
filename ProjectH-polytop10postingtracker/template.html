@@ -120,13 +120,6 @@
       white-space: pre-wrap;
       font-weight: 600;
     }
-    .text-en {
-      margin: 0;
-      color: #6c84aa;
-      line-height: 1.45;
-      font-size: 13px;
-      white-space: pre-wrap;
-    }
     .actions {
       margin-top: 12px;
       display: flex;
@@ -150,14 +143,15 @@
     .images {
       display: grid;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 0;
+      background: #e8eef9;
     }
     .images img {
       width: 100%;
-      max-height: 260px;
+      max-height: 340px;
       object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid var(--line);
+      border-radius: 0;
+      border: 0;
     }
     @media (max-width: 860px) {
       .title { font-size: 25px; }
@@ -181,15 +175,14 @@
     <section class="grid" id="cardsContainer"></section>
     <template id="cardTemplate">
       <article class="card">
+        <div class="images"></div>
         <div class="card-body">
           <span class="index-tag"></span>
           <div class="author"></div>
           <p class="text-ko"></p>
-          <p class="text-en"></p>
           <div class="actions">
             <a class="btn" target="_blank" rel="noopener noreferrer">원문 보기 (X)</a>
           </div>
-          <div class="images"></div>
         </div>
       </article>
     </template>
@@ -220,12 +213,14 @@
           node.querySelector(".index-tag").textContent = `#${idx + 1}`;
           node.querySelector(".author").textContent = `@${post.author || "unknown"}`;
           node.querySelector(".text-ko").textContent = post.text_ko || "";
-          node.querySelector(".text-en").textContent = post.text_en || "";
           const btn = node.querySelector(".btn");
           btn.href = post.url || "#";
 
           const imagesWrap = node.querySelector(".images");
           const images = Array.isArray(post.images) ? post.images : [];
+          if (!images.length) {
+            imagesWrap.style.display = "none";
+          }
           images.forEach((imgUrl) => {
             const img = document.createElement("img");
             img.loading = "lazy";
