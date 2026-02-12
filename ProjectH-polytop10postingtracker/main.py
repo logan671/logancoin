@@ -54,7 +54,7 @@ def load_previous_posts() -> dict[str, Any]:
     return data
 
 
-def recent_tweet_ids(previous_posts: dict[str, Any], days: int = 3) -> set[str]:
+def recent_tweet_ids(previous_posts: dict[str, Any], days: int = 3, exclude_today: bool = False) -> set[str]:
     now = datetime.now(KST).date()
     result: set[str] = set()
     for row in previous_posts.get("history", []):
@@ -65,6 +65,8 @@ def recent_tweet_ids(previous_posts: dict[str, Any], days: int = 3) -> set[str]:
         try:
             row_date = datetime.strptime(row_date_raw, "%Y-%m-%d").date()
         except ValueError:
+            continue
+        if exclude_today and row_date == now:
             continue
         if (now - row_date).days < days:
             result.update(str(x) for x in ids)
@@ -860,6 +862,7 @@ def main() -> None:
     grok_ref_candidates = int(os.getenv("GROK_TOP_REF_CANDIDATES", "20"))
     use_x_search_fallback = os.getenv("GROK_REF_X_SEARCH_FALLBACK", "true").lower() == "true"
     use_grok_rank_on_x_candidates = os.getenv("USE_GROK_RANK_ON_X_CANDIDATES", "true").lower() == "true"
+    exclude_today_from_dedup = os.getenv("EXCLUDE_TODAY_FROM_DEDUP", "true").lower() == "true"
 
     status = load_status()
     status.setdefault("is_mock_data", False)
@@ -952,7 +955,7 @@ def main() -> None:
     raw_posts.sort(key=ranking_key)
 
     previous_posts = load_previous_posts()
-    blocked_ids = recent_tweet_ids(previous_posts, days=3)
+    blocked_ids = recent_tweet_ids(previous_posts, days=3, exclude_today=exclude_today_from_dedup)
 
     filtered = [row for row in raw_posts if row["tweet_id"] not in blocked_ids]
     selected_raw = filtered[:target_posts]

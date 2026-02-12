@@ -59,6 +59,7 @@ jobs:
           X_MIN_LIKES=5
           X_MIN_SCORE=12
           X_TIMEOUT=30
+          EXCLUDE_TODAY_FROM_DEDUP=true
           EOF
 
       - name: Generate daily page
