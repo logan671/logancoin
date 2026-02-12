@@ -120,10 +120,10 @@
     }
     .text-ko {
       margin: 0 0 6px;
-      line-height: 1.58;
-      font-size: 16px;
+      line-height: 1.5;
+      font-size: 13px;
       white-space: pre-wrap;
-      font-weight: 600;
+      font-weight: 550;
     }
     .expand-btn {
       display: inline-flex;
@@ -178,7 +178,7 @@
       .title { font-size: 25px; }
       .card { grid-template-columns: 1fr; }
       .card-body { padding: 12px; }
-      .text-ko { font-size: 15px; }
+      .text-ko { font-size: 13px; }
       .images img { min-height: 190px; max-height: 280px; }
     }
   </style>
@@ -243,7 +243,7 @@
           node.querySelector(".author").textContent = `@${post.author || "unknown"}`;
           const textEl = node.querySelector(".text-ko");
           const fullText = decodeHtml((post.text_ko || "").trim());
-          const shortLimit = 320;
+          const shortLimit = 1200;
           textEl.textContent = fullText;
           const expandBtn = node.querySelector(".expand-btn");
           if (fullText.length > shortLimit) {
