@@ -284,7 +284,11 @@ def extract_tweet_id_from_url(url: str) -> str:
     return match.group(1) if match else ""
 
 
-def fetch_top_refs_from_grok(api_key: str, model: str, target_count: int = 10) -> list[dict[str, Any]]:
+def fetch_top_refs_from_grok(
+    api_key: str,
+    model: str,
+    target_count: int = 10,
+) -> tuple[list[dict[str, Any]], str]:
     system_prompt = "You are a ranking assistant. Return valid JSON only."
     user_prompt = (
         f"Find the top {target_count} hottest X posts from the last 24 hours about Polymarket alpha/strategy/whale/copy-trade. "
@@ -303,7 +307,7 @@ def fetch_top_refs_from_grok(api_key: str, model: str, target_count: int = 10) -
     payload = extract_json_object(content)
     rows = payload.get("posts", [])
     if not isinstance(rows, list):
-        return []
+        rows = []
 
     refs: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -337,7 +341,30 @@ def fetch_top_refs_from_grok(api_key: str, model: str, target_count: int = 10) -
             break
 
     refs.sort(key=lambda x: int(x.get("rank") or 9999))
-    return refs
+
+    # Fallback: if JSON parsing fails or refs are empty, recover directly from URL patterns.
+    if not refs:
+        url_matches = re.findall(
+            r"https?://(?:x\.com|twitter\.com)/[A-Za-z0-9_]+/status/(\d+)",
+            content,
+            flags=re.IGNORECASE,
+        )
+        seen_ids: set[str] = set()
+        for idx, tweet_id in enumerate(url_matches, start=1):
+            if tweet_id in seen_ids:
+                continue
+            seen_ids.add(tweet_id)
+            refs.append(
+                {
+                    "rank": idx,
+                    "tweet_id": tweet_id,
+                    "url": f"https://x.com/i/status/{tweet_id}",
+                }
+            )
+            if len(refs) >= target_count:
+                break
+
+    return refs, content
 
 
 def fetch_posts_by_ids_from_x_api(
@@ -791,7 +818,7 @@ def main() -> None:
     using_ref_pipeline = bool(x_bearer_token and api_key and use_grok_top_refs)
     try:
         if using_ref_pipeline:
-            refs = fetch_top_refs_from_grok(
+            refs, grok_raw_content = fetch_top_refs_from_grok(
                 api_key=api_key,
                 model=model,
                 target_count=max(target_posts, grok_ref_candidates),
@@ -804,7 +831,8 @@ def main() -> None:
             )
             raw_posts = [x for x in raw_posts if x["tweet_id"] in rank_map]
             if not raw_posts:
-                status["last_error"] = "no_valid_x_posts_from_grok_refs"
+                excerpt = re.sub(r"\s+", " ", grok_raw_content).strip()[:180]
+                status["last_error"] = f"no_valid_x_posts_from_grok_refs | grok_excerpt={excerpt}"
         elif x_bearer_token:
             raw_posts = fetch_posts_from_x_api(bearer_token=x_bearer_token, candidate_count=candidate_count)
         elif api_key:
