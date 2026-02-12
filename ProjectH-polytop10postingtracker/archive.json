@@ -1,164 +1,164 @@
 {
   "2026-02-12": [
     {
-      "tweet_id": "mock-1001",
-      "author": "trader_1",
-      "url": "https://x.com/trader_1/status/1001",
-      "text_en": "Polymarket alpha signal #1: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #1: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1011",
+      "author": "trader_11",
+      "url": "https://x.com/trader_11/status/1011",
+      "text_en": "Polymarket alpha signal #11: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #11: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 1,
-        "view_count": 9900.0,
-        "like_count": 990.0,
-        "repost_count": 249.0,
-        "reply_count": 119.0
+        "rank": 11,
+        "view_count": 8900.0,
+        "like_count": 890.0,
+        "repost_count": 239.0,
+        "reply_count": 109.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138632+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036175+09:00"
     },
     {
-      "tweet_id": "mock-1002",
-      "author": "trader_2",
-      "url": "https://x.com/trader_2/status/1002",
-      "text_en": "Polymarket alpha signal #2: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #2: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1012",
+      "author": "trader_12",
+      "url": "https://x.com/trader_12/status/1012",
+      "text_en": "Polymarket alpha signal #12: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #12: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 2,
-        "view_count": 9800.0,
-        "like_count": 980.0,
-        "repost_count": 248.0,
-        "reply_count": 118.0
+        "rank": 12,
+        "view_count": 8800.0,
+        "like_count": 880.0,
+        "repost_count": 238.0,
+        "reply_count": 108.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138656+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036194+09:00"
     },
     {
-      "tweet_id": "mock-1003",
-      "author": "trader_3",
-      "url": "https://x.com/trader_3/status/1003",
-      "text_en": "Polymarket alpha signal #3: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #3: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1013",
+      "author": "trader_13",
+      "url": "https://x.com/trader_13/status/1013",
+      "text_en": "Polymarket alpha signal #13: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #13: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 3,
-        "view_count": 9700.0,
-        "like_count": 970.0,
-        "repost_count": 247.0,
-        "reply_count": 117.0
+        "rank": 13,
+        "view_count": 8700.0,
+        "like_count": 870.0,
+        "repost_count": 237.0,
+        "reply_count": 107.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138665+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036202+09:00"
     },
     {
-      "tweet_id": "mock-1004",
-      "author": "trader_4",
-      "url": "https://x.com/trader_4/status/1004",
-      "text_en": "Polymarket alpha signal #4: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #4: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1014",
+      "author": "trader_14",
+      "url": "https://x.com/trader_14/status/1014",
+      "text_en": "Polymarket alpha signal #14: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #14: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 4,
-        "view_count": 9600.0,
-        "like_count": 960.0,
-        "repost_count": 246.0,
-        "reply_count": 116.0
+        "rank": 14,
+        "view_count": 8600.0,
+        "like_count": 860.0,
+        "repost_count": 236.0,
+        "reply_count": 106.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138672+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036209+09:00"
     },
     {
-      "tweet_id": "mock-1005",
-      "author": "trader_5",
-      "url": "https://x.com/trader_5/status/1005",
-      "text_en": "Polymarket alpha signal #5: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #5: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1015",
+      "author": "trader_15",
+      "url": "https://x.com/trader_15/status/1015",
+      "text_en": "Polymarket alpha signal #15: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #15: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 5,
-        "view_count": 9500.0,
-        "like_count": 950.0,
-        "repost_count": 245.0,
-        "reply_count": 115.0
+        "rank": 15,
+        "view_count": 8500.0,
+        "like_count": 850.0,
+        "repost_count": 235.0,
+        "reply_count": 105.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138678+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036216+09:00"
     },
     {
-      "tweet_id": "mock-1006",
-      "author": "trader_6",
-      "url": "https://x.com/trader_6/status/1006",
-      "text_en": "Polymarket alpha signal #6: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #6: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1016",
+      "author": "trader_16",
+      "url": "https://x.com/trader_16/status/1016",
+      "text_en": "Polymarket alpha signal #16: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #16: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 6,
-        "view_count": 9400.0,
-        "like_count": 940.0,
-        "repost_count": 244.0,
-        "reply_count": 114.0
+        "rank": 16,
+        "view_count": 8400.0,
+        "like_count": 840.0,
+        "repost_count": 234.0,
+        "reply_count": 104.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138684+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036222+09:00"
     },
     {
-      "tweet_id": "mock-1007",
-      "author": "trader_7",
-      "url": "https://x.com/trader_7/status/1007",
-      "text_en": "Polymarket alpha signal #7: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #7: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1017",
+      "author": "trader_17",
+      "url": "https://x.com/trader_17/status/1017",
+      "text_en": "Polymarket alpha signal #17: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #17: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 7,
-        "view_count": 9300.0,
-        "like_count": 930.0,
-        "repost_count": 243.0,
-        "reply_count": 113.0
+        "rank": 17,
+        "view_count": 8300.0,
+        "like_count": 830.0,
+        "repost_count": 233.0,
+        "reply_count": 103.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138690+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036228+09:00"
     },
     {
-      "tweet_id": "mock-1008",
-      "author": "trader_8",
-      "url": "https://x.com/trader_8/status/1008",
-      "text_en": "Polymarket alpha signal #8: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #8: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1018",
+      "author": "trader_18",
+      "url": "https://x.com/trader_18/status/1018",
+      "text_en": "Polymarket alpha signal #18: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #18: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 8,
-        "view_count": 9200.0,
-        "like_count": 920.0,
-        "repost_count": 242.0,
-        "reply_count": 112.0
+        "rank": 18,
+        "view_count": 8200.0,
+        "like_count": 820.0,
+        "repost_count": 232.0,
+        "reply_count": 102.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138707+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036244+09:00"
     },
     {
-      "tweet_id": "mock-1009",
-      "author": "trader_9",
-      "url": "https://x.com/trader_9/status/1009",
-      "text_en": "Polymarket alpha signal #9: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #9: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1019",
+      "author": "trader_19",
+      "url": "https://x.com/trader_19/status/1019",
+      "text_en": "Polymarket alpha signal #19: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #19: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 9,
-        "view_count": 9100.0,
-        "like_count": 910.0,
-        "repost_count": 241.0,
-        "reply_count": 111.0
+        "rank": 19,
+        "view_count": 8100.0,
+        "like_count": 810.0,
+        "repost_count": 231.0,
+        "reply_count": 101.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138714+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036252+09:00"
     },
     {
-      "tweet_id": "mock-1010",
-      "author": "trader_10",
-      "url": "https://x.com/trader_10/status/1010",
-      "text_en": "Polymarket alpha signal #10: whale flow and momentum setup.",
-      "text_ko": "Polymarket 알파 시그널 #10: 고래 자금 흐름과 모멘텀 세팅입니다.",
+      "tweet_id": "mock-1020",
+      "author": "trader_20",
+      "url": "https://x.com/trader_20/status/1020",
+      "text_en": "Polymarket alpha signal #20: whale flow and momentum setup.",
+      "text_ko": "Polymarket 알파 시그널 #20: 고래 자금 흐름과 모멘텀 세팅입니다.",
       "images": [],
       "rank_meta": {
-        "rank": 10,
-        "view_count": 9000.0,
-        "like_count": 900.0,
-        "repost_count": 240.0,
-        "reply_count": 110.0
+        "rank": 20,
+        "view_count": 8000.0,
+        "like_count": 800.0,
+        "repost_count": 230.0,
+        "reply_count": 100.0
       },
-      "fetched_at": "2026-02-12T17:05:01.138720+09:00"
+      "fetched_at": "2026-02-12T17:06:30.036257+09:00"
     }
   ]
 }

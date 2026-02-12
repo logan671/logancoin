@@ -1,6 +1,6 @@
 {
   "needs_credit_topup": false,
-  "last_error": "translation_error: 400 Client Error: Bad Request for url: https://api.x.ai/v1/chat/completions",
-  "updated_at": "2026-02-12T17:05:01.143421+09:00",
+  "last_error": "fetch_error: 400 Client Error: Bad Request for url: https://api.x.ai/v1/chat/completions | body: {\"code\":\"Client specified an invalid argument\",\"error\":\"Model not found: grok-2-image-1212\"}",
+  "updated_at": "2026-02-12T17:06:30.040714+09:00",
   "is_mock_data": true
 }
