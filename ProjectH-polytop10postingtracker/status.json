@@ -1,5 +1,5 @@
 {
   "needs_credit_topup": false,
-  "last_error": "extra_fetch_error: 400 Client Error: Bad Request for url: https://api.x.ai/v1/chat/completions",
-  "updated_at": "2026-02-12T16:20:36.791611+09:00"
+  "last_error": "extra_fetch_error: 400 Client Error: Bad Request for url: https://api.x.ai/v1/chat/completions | no_posts_selected_keep_previous",
+  "updated_at": "2026-02-12T16:41:21.362608+09:00"
 }
