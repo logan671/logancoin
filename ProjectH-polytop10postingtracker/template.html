@@ -262,7 +262,7 @@
           node.querySelector(".author").textContent = `@${post.author || "unknown"}`;
           const textEl = node.querySelector(".text-ko");
           const fullText = decodeHtml((post.text_ko || "").trim());
-          const shortLimit = 3600;
+          const shortLimit = window.innerWidth <= 860 ? 520 : 900;
           textEl.textContent = fullText;
           const expandBtn = node.querySelector(".expand-btn");
           if (fullText.length > shortLimit) {
