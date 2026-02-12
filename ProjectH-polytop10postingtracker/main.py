@@ -460,6 +460,58 @@ def fetch_posts_by_ids_from_x_api(
     return normalized
 
 
+def rank_x_candidates_with_grok(
+    api_key: str,
+    model: str,
+    candidates: list[dict[str, Any]],
+    target_count: int = 10,
+) -> list[str]:
+    if not candidates:
+        return []
+
+    compact = []
+    for row in candidates[:80]:
+        compact.append(
+            {
+                "tweet_id": row.get("tweet_id"),
+                "author": row.get("author"),
+                "text_en": str(row.get("text_en", ""))[:220],
+                "like_count": row.get("like_count", 0),
+                "repost_count": row.get("repost_count", 0),
+                "reply_count": row.get("reply_count", 0),
+                "url": row.get("url"),
+            }
+        )
+
+    system_prompt = "You are a ranking assistant. Return valid JSON only."
+    user_prompt = (
+        f"From ONLY the provided candidates, pick top {target_count} hottest posts for Polymarket alpha audience. "
+        "Do not invent new IDs. Use only candidate tweet_id values. "
+        "Return JSON object: {\"ordered_tweet_ids\": [\"id1\", ...]}. "
+        f"Candidates: {json.dumps(compact, ensure_ascii=False)}"
+    )
+
+    os.environ["GROK_MODEL"] = model
+    content = grok_chat_completion(
+        api_key=api_key,
+        messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+        timeout_sec=int(os.getenv("GROK_TIMEOUT", "30")),
+    )
+    payload = extract_json_object(content)
+    rows = payload.get("ordered_tweet_ids", [])
+    if not isinstance(rows, list):
+        return []
+    allowed = {str(x.get("tweet_id")) for x in compact}
+    ordered: list[str] = []
+    for row in rows:
+        tweet_id = str(row).strip()
+        if tweet_id in allowed and tweet_id not in ordered:
+            ordered.append(tweet_id)
+        if len(ordered) >= target_count:
+            break
+    return ordered
+
+
 def fetch_posts_from_grok(
     api_key: str,
     model: str,
@@ -807,6 +859,7 @@ def main() -> None:
     use_grok_top_refs = os.getenv("USE_GROK_TOP_REFS", "true").lower() == "true"
     grok_ref_candidates = int(os.getenv("GROK_TOP_REF_CANDIDATES", "20"))
     use_x_search_fallback = os.getenv("GROK_REF_X_SEARCH_FALLBACK", "true").lower() == "true"
+    use_grok_rank_on_x_candidates = os.getenv("USE_GROK_RANK_ON_X_CANDIDATES", "true").lower() == "true"
 
     status = load_status()
     status.setdefault("is_mock_data", False)
@@ -833,6 +886,24 @@ def main() -> None:
             if not raw_posts:
                 excerpt = re.sub(r"\s+", " ", grok_raw_content).strip()[:180]
                 status["last_error"] = f"no_valid_x_posts_from_grok_refs | grok_excerpt={excerpt}"
+                if use_grok_rank_on_x_candidates:
+                    x_candidates = fetch_posts_from_x_api(
+                        bearer_token=x_bearer_token,
+                        candidate_count=max(candidate_count, target_posts * 6),
+                    )
+                    ordered_ids = rank_x_candidates_with_grok(
+                        api_key=api_key,
+                        model=model,
+                        candidates=x_candidates,
+                        target_count=target_posts,
+                    )
+                    if ordered_ids:
+                        rank_map2 = {tweet_id: idx + 1 for idx, tweet_id in enumerate(ordered_ids)}
+                        raw_posts = [row for row in x_candidates if row["tweet_id"] in rank_map2]
+                        raw_posts.sort(key=lambda x: int(rank_map2.get(x["tweet_id"], 9999)))
+                        for row in raw_posts:
+                            row["rank"] = rank_map2.get(row["tweet_id"])
+                        status["last_error"] = "grok_refs_invalid_fallback_to_grok_rank_on_x_candidates"
         elif x_bearer_token:
             raw_posts = fetch_posts_from_x_api(bearer_token=x_bearer_token, candidate_count=candidate_count)
         elif api_key:
