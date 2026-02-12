@@ -816,10 +816,16 @@ def main() -> None:
             )
         else:
             raw_posts = []
-        if not raw_posts and use_mock_on_failure:
-            raw_posts = get_mock_posts(candidate_count)
-            status["is_mock_data"] = True
-            status["last_error"] = "no_posts_from_primary_source"
+        if not raw_posts:
+            if use_mock_on_failure:
+                raw_posts = get_mock_posts(candidate_count)
+                status["is_mock_data"] = True
+                status["last_error"] = "no_posts_from_primary_source"
+            else:
+                status["is_mock_data"] = False
+                status["needs_credit_topup"] = False
+                if not status.get("last_error"):
+                    status["last_error"] = "no_posts_from_primary_source"
         else:
             status["is_mock_data"] = False
             status["needs_credit_topup"] = False
