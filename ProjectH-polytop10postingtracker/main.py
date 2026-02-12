@@ -17,6 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PUBLIC_DIR = BASE_DIR / "public"
 PREVIOUS_POSTS_PATH = BASE_DIR / "previous_posts.json"
 STATUS_PATH = BASE_DIR / "status.json"
+ARCHIVE_PATH = BASE_DIR / "archive.json"
 TEMPLATE_PATH = BASE_DIR / "template.html"
 
 
@@ -356,7 +357,29 @@ def save_status(status: dict[str, Any]) -> None:
     save_json(STATUS_PATH, status)
 
 
-def render_html(posts: list[TweetItem], banner_message: str) -> str:
+def load_archive() -> dict[str, list[dict[str, Any]]]:
+    data = load_json(ARCHIVE_PATH, {})
+    if not isinstance(data, dict):
+        return {}
+    cleaned: dict[str, list[dict[str, Any]]] = {}
+    for date_key, rows in data.items():
+        if not isinstance(date_key, str) or not isinstance(rows, list):
+            continue
+        cleaned_rows = [row for row in rows if isinstance(row, dict)]
+        cleaned[date_key] = cleaned_rows
+    return cleaned
+
+
+def save_archive(archive: dict[str, list[dict[str, Any]]]) -> None:
+    save_json(ARCHIVE_PATH, archive)
+
+
+def render_html(
+    posts: list[TweetItem],
+    banner_message: str,
+    archive_data: dict[str, list[dict[str, Any]]],
+    selected_date: str,
+) -> str:
     env = Environment(
         loader=FileSystemLoader(str(BASE_DIR)),
         autoescape=select_autoescape(["html", "xml"]),
@@ -366,6 +389,8 @@ def render_html(posts: list[TweetItem], banner_message: str) -> str:
         generated_at=datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
         posts=[asdict(x) for x in posts],
         banner_message=banner_message,
+        selected_date=selected_date,
+        archive_data=archive_data,
     )
 
 
@@ -442,8 +467,17 @@ def main() -> None:
 
     index_path = PUBLIC_DIR / "index.html"
     wrote_new_page = False
+    today_raw = datetime.now(KST).strftime("%Y-%m-%d")
+    archive_data = load_archive()
     if selected_items:
-        html = render_html(posts=selected_items, banner_message=banner_message)
+        archive_data[today_raw] = [asdict(x) for x in selected_items]
+        save_archive(archive_data)
+        html = render_html(
+            posts=selected_items,
+            banner_message=banner_message,
+            archive_data=archive_data,
+            selected_date=today_raw,
+        )
         index_path.write_text(html, encoding="utf-8")
         update_previous_posts(previous_posts, [x.tweet_id for x in selected_items], days=3)
         wrote_new_page = True
@@ -452,7 +486,12 @@ def main() -> None:
             f"{status.get('last_error', '')} | no_posts_selected_keep_previous".strip(" |")
         )
         if not index_path.exists():
-            html = render_html(posts=[], banner_message=banner_message)
+            html = render_html(
+                posts=[],
+                banner_message=banner_message,
+                archive_data=archive_data,
+                selected_date=today_raw,
+            )
             index_path.write_text(html, encoding="utf-8")
 
     save_status(status)

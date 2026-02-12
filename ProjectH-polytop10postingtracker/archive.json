@@ -1,0 +1,164 @@
+{
+  "2026-02-12": [
+    {
+      "tweet_id": "mock-1001",
+      "author": "trader_1",
+      "url": "https://x.com/trader_1/status/1001",
+      "text_en": "Polymarket alpha signal #1: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #1: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 1,
+        "view_count": 9900.0,
+        "like_count": 990.0,
+        "repost_count": 249.0,
+        "reply_count": 119.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556751+09:00"
+    },
+    {
+      "tweet_id": "mock-1002",
+      "author": "trader_2",
+      "url": "https://x.com/trader_2/status/1002",
+      "text_en": "Polymarket alpha signal #2: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #2: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 2,
+        "view_count": 9800.0,
+        "like_count": 980.0,
+        "repost_count": 248.0,
+        "reply_count": 118.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556759+09:00"
+    },
+    {
+      "tweet_id": "mock-1003",
+      "author": "trader_3",
+      "url": "https://x.com/trader_3/status/1003",
+      "text_en": "Polymarket alpha signal #3: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #3: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 3,
+        "view_count": 9700.0,
+        "like_count": 970.0,
+        "repost_count": 247.0,
+        "reply_count": 117.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556762+09:00"
+    },
+    {
+      "tweet_id": "mock-1004",
+      "author": "trader_4",
+      "url": "https://x.com/trader_4/status/1004",
+      "text_en": "Polymarket alpha signal #4: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #4: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 4,
+        "view_count": 9600.0,
+        "like_count": 960.0,
+        "repost_count": 246.0,
+        "reply_count": 116.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556764+09:00"
+    },
+    {
+      "tweet_id": "mock-1005",
+      "author": "trader_5",
+      "url": "https://x.com/trader_5/status/1005",
+      "text_en": "Polymarket alpha signal #5: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #5: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 5,
+        "view_count": 9500.0,
+        "like_count": 950.0,
+        "repost_count": 245.0,
+        "reply_count": 115.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556766+09:00"
+    },
+    {
+      "tweet_id": "mock-1006",
+      "author": "trader_6",
+      "url": "https://x.com/trader_6/status/1006",
+      "text_en": "Polymarket alpha signal #6: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #6: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 6,
+        "view_count": 9400.0,
+        "like_count": 940.0,
+        "repost_count": 244.0,
+        "reply_count": 114.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556767+09:00"
+    },
+    {
+      "tweet_id": "mock-1007",
+      "author": "trader_7",
+      "url": "https://x.com/trader_7/status/1007",
+      "text_en": "Polymarket alpha signal #7: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #7: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 7,
+        "view_count": 9300.0,
+        "like_count": 930.0,
+        "repost_count": 243.0,
+        "reply_count": 113.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556768+09:00"
+    },
+    {
+      "tweet_id": "mock-1008",
+      "author": "trader_8",
+      "url": "https://x.com/trader_8/status/1008",
+      "text_en": "Polymarket alpha signal #8: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #8: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 8,
+        "view_count": 9200.0,
+        "like_count": 920.0,
+        "repost_count": 242.0,
+        "reply_count": 112.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556770+09:00"
+    },
+    {
+      "tweet_id": "mock-1009",
+      "author": "trader_9",
+      "url": "https://x.com/trader_9/status/1009",
+      "text_en": "Polymarket alpha signal #9: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #9: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 9,
+        "view_count": 9100.0,
+        "like_count": 910.0,
+        "repost_count": 241.0,
+        "reply_count": 111.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556771+09:00"
+    },
+    {
+      "tweet_id": "mock-1010",
+      "author": "trader_10",
+      "url": "https://x.com/trader_10/status/1010",
+      "text_en": "Polymarket alpha signal #10: whale flow and momentum setup.",
+      "text_ko": "Polymarket alpha signal #10: whale flow and momentum setup.",
+      "images": [],
+      "rank_meta": {
+        "rank": 10,
+        "view_count": 9000.0,
+        "like_count": 900.0,
+        "repost_count": 240.0,
+        "reply_count": 110.0
+      },
+      "fetched_at": "2026-02-12T16:50:41.556773+09:00"
+    }
+  ]
+}

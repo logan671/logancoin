@@ -6,11 +6,11 @@
   <title>Polymarket Alpha Daily</title>
   <style>
     :root {
-      --bg: #f6f8fc;
-      --text: #102040;
+      --bg: #e9edf5;
+      --text: #152747;
       --card: #ffffff;
-      --line: #d7e0ef;
-      --brand: #0d5bd7;
+      --line: #cfdaee;
+      --brand: #0b63e5;
       --banner-bg: #fff5d6;
       --banner-text: #7a4b00;
     }
@@ -23,9 +23,9 @@
       min-height: 100vh;
     }
     .container {
-      width: min(980px, 92vw);
+      width: min(1080px, 92vw);
       margin: 0 auto;
-      padding: 24px 0 48px;
+      padding: 22px 0 48px;
     }
     .header {
       margin-bottom: 18px;
@@ -51,30 +51,60 @@
       font-size: 14px;
       font-weight: 700;
     }
+    .archive-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .date-btn {
+      border: 1px solid #bed1f4;
+      background: #f4f8ff;
+      color: #1752b3;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 11px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .date-btn.active {
+      background: #0b63e5;
+      border-color: #0b63e5;
+      color: #fff;
+    }
+    .date-meta {
+      margin: 4px 0 12px;
+      color: #59739e;
+      font-size: 13px;
+      font-weight: 600;
+    }
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 12px;
     }
     .card {
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 10px 24px rgba(16, 32, 64, 0.06);
+      box-shadow: 0 10px 28px rgba(16, 32, 64, 0.08);
     }
     .card-body {
       padding: 14px;
     }
     .index-tag {
       display: inline-block;
-      font-size: 12px;
+      font-size: 13px;
       border: 1px solid #c8d7f5;
       color: #0f4ebf;
       background: #eef4ff;
       border-radius: 999px;
-      padding: 4px 8px;
-      margin-bottom: 10px;
+      padding: 5px 10px;
+      margin-bottom: 8px;
       font-weight: 700;
     }
     .author {
@@ -84,9 +114,17 @@
       font-weight: 600;
     }
     .text-ko {
+      margin: 0 0 6px;
+      line-height: 1.58;
+      font-size: 16px;
+      white-space: pre-wrap;
+      font-weight: 600;
+    }
+    .text-en {
       margin: 0;
-      line-height: 1.5;
-      font-size: 15px;
+      color: #6c84aa;
+      line-height: 1.45;
+      font-size: 13px;
       white-space: pre-wrap;
     }
     .actions {
@@ -122,8 +160,9 @@
       border: 1px solid var(--line);
     }
     @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
       .title { font-size: 25px; }
+      .card-body { padding: 12px; }
+      .text-ko { font-size: 15px; }
     }
   </style>
 </head>
@@ -137,29 +176,87 @@
       {% endif %}
     </header>
 
-    <section class="grid">
-      {% for post in posts %}
+    <section class="archive-row" id="archiveRow"></section>
+    <div class="date-meta" id="dateMeta"></div>
+    <section class="grid" id="cardsContainer"></section>
+    <template id="cardTemplate">
       <article class="card">
         <div class="card-body">
-          <span class="index-tag">#{{ loop.index }}</span>
-          <div class="author">@{{ post.author }}</div>
-          <p class="text-ko">{{ post.text_ko }}</p>
-
+          <span class="index-tag"></span>
+          <div class="author"></div>
+          <p class="text-ko"></p>
+          <p class="text-en"></p>
           <div class="actions">
-            <a class="btn" href="{{ post.url }}" target="_blank" rel="noopener noreferrer">원문 보기 (X)</a>
+            <a class="btn" target="_blank" rel="noopener noreferrer">원문 보기 (X)</a>
           </div>
-
-          {% if post.images and post.images|length > 0 %}
-          <div class="images">
-            {% for image in post.images %}
-            <img loading="lazy" src="{{ image }}" alt="tweet image" />
-            {% endfor %}
-          </div>
-          {% endif %}
+          <div class="images"></div>
         </div>
       </article>
-      {% endfor %}
-    </section>
+    </template>
+    <script>
+      const archiveData = {{ archive_data | tojson }};
+      const selectedDateFromBuild = {{ selected_date | tojson }};
+      const dateKeys = Object.keys(archiveData).sort().reverse();
+      const archiveRow = document.getElementById("archiveRow");
+      const cardsContainer = document.getElementById("cardsContainer");
+      const dateMeta = document.getElementById("dateMeta");
+      const cardTemplate = document.getElementById("cardTemplate");
+
+      function renderCards(dateKey) {
+        cardsContainer.innerHTML = "";
+        const rows = archiveData[dateKey] || [];
+        dateMeta.textContent = `${dateKey} 핫 트윗 아카이브 (${rows.length}개)`;
+
+        if (!rows.length) {
+          const empty = document.createElement("div");
+          empty.className = "card";
+          empty.innerHTML = '<div class="card-body">해당 날짜 데이터가 없습니다.</div>';
+          cardsContainer.appendChild(empty);
+          return;
+        }
+
+        rows.slice(0, 10).forEach((post, idx) => {
+          const node = cardTemplate.content.firstElementChild.cloneNode(true);
+          node.querySelector(".index-tag").textContent = `#${idx + 1}`;
+          node.querySelector(".author").textContent = `@${post.author || "unknown"}`;
+          node.querySelector(".text-ko").textContent = post.text_ko || "";
+          node.querySelector(".text-en").textContent = post.text_en || "";
+          const btn = node.querySelector(".btn");
+          btn.href = post.url || "#";
+
+          const imagesWrap = node.querySelector(".images");
+          const images = Array.isArray(post.images) ? post.images : [];
+          images.forEach((imgUrl) => {
+            const img = document.createElement("img");
+            img.loading = "lazy";
+            img.src = imgUrl;
+            img.alt = "tweet image";
+            imagesWrap.appendChild(img);
+          });
+
+          cardsContainer.appendChild(node);
+        });
+      }
+
+      function renderDateButtons(currentDate) {
+        archiveRow.innerHTML = "";
+        dateKeys.forEach((dateKey) => {
+          const btn = document.createElement("button");
+          btn.className = "date-btn" + (dateKey === currentDate ? " active" : "");
+          btn.textContent = dateKey;
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".date-btn").forEach((el) => el.classList.remove("active"));
+            btn.classList.add("active");
+            renderCards(dateKey);
+          });
+          archiveRow.appendChild(btn);
+        });
+      }
+
+      const initialDate = dateKeys.includes(selectedDateFromBuild) ? selectedDateFromBuild : (dateKeys[0] || "");
+      renderDateButtons(initialDate);
+      renderCards(initialDate);
+    </script>
   </main>
 </body>
 </html>

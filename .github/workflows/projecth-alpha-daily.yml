@@ -55,13 +55,13 @@ jobs:
 
       - name: Commit changes if needed
         run: |
-          if git diff --quiet -- ProjectH-polytop10postingtracker/public/index.html ProjectH-polytop10postingtracker/previous_posts.json ProjectH-polytop10postingtracker/status.json; then
+          if git diff --quiet -- ProjectH-polytop10postingtracker/public/index.html ProjectH-polytop10postingtracker/previous_posts.json ProjectH-polytop10postingtracker/status.json ProjectH-polytop10postingtracker/archive.json; then
             echo "No changes to commit."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ProjectH-polytop10postingtracker/public/index.html ProjectH-polytop10postingtracker/previous_posts.json ProjectH-polytop10postingtracker/status.json
+          git add ProjectH-polytop10postingtracker/public/index.html ProjectH-polytop10postingtracker/previous_posts.json ProjectH-polytop10postingtracker/status.json ProjectH-polytop10postingtracker/archive.json
           git commit -m "ProjectH daily update [skip ci]"
           git push
