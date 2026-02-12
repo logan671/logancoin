@@ -167,12 +167,17 @@ def resolve_grok_model(api_key: str) -> str:
         preferred.insert(0, explicit)
 
     try:
-        available = set(get_available_models(api_key=api_key, timeout_sec=int(os.getenv("GROK_TIMEOUT", "30"))))
+        available_list = get_available_models(api_key=api_key, timeout_sec=int(os.getenv("GROK_TIMEOUT", "30")))
+        available = set(available_list)
         for model in preferred:
-            if model in available:
+            if model in available and "image" not in model.lower():
                 return model
-        if available:
-            return sorted(available)[0]
+        for model in available_list:
+            lower = model.lower()
+            if "grok" in lower and "image" not in lower:
+                return model
+        if available_list:
+            return available_list[0]
     except Exception:
         pass
 
