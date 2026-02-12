@@ -671,13 +671,17 @@ def translate_to_korean(api_key: str, model: str, posts: list[dict[str, Any]]) -
         return {}
 
     system_prompt = (
-        "You are a professional Korean translator for crypto trading audience. "
-        "Keep meaning accurate and concise. Return valid JSON only."
+        "You are a professional Korean translator for Korean crypto traders. "
+        "Translate naturally in fluent Korean, not word-by-word. "
+        "Preserve numbers, tickers, odds, percentages, and URLs exactly. "
+        "Keep slang tone when present, but avoid awkward literal translation. "
+        "Return valid JSON only."
     )
     user_prompt = (
         "Translate the following English post texts to Korean.\n"
         "Return a JSON object with key 'translations'.\n"
         "Each item must contain: tweet_id, text_ko.\n"
+        "Do not omit any item. Do not add explanations.\n"
         f"Input: {json.dumps(inputs, ensure_ascii=False)}"
     )
     os.environ["GROK_MODEL"] = model

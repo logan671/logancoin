@@ -49,7 +49,7 @@ jobs:
           TOP_N_CANDIDATES=80
           TARGET_POSTS=10
           USE_MOCK_ON_FAILURE=false
-          ENABLE_GROK_TRANSLATION=false
+          ENABLE_GROK_TRANSLATION=true
           USE_GROK_TOP_REFS=true
           GROK_TOP_REF_CANDIDATES=20
           GROK_REF_X_SEARCH_FALLBACK=false

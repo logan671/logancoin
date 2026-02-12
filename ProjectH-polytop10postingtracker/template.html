@@ -120,6 +120,16 @@
       white-space: pre-wrap;
       font-weight: 600;
     }
+    .expand-btn {
+      border: 0;
+      background: transparent;
+      color: #0b63e5;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 0;
+      margin: 2px 0 8px;
+      cursor: pointer;
+    }
     .actions {
       margin-top: 12px;
       display: flex;
@@ -180,6 +190,7 @@
           <span class="index-tag"></span>
           <div class="author"></div>
           <p class="text-ko"></p>
+          <button class="expand-btn" type="button" hidden>더보기</button>
           <div class="actions">
             <a class="btn" target="_blank" rel="noopener noreferrer">원문 보기 (X)</a>
           </div>
@@ -212,7 +223,24 @@
           const node = cardTemplate.content.firstElementChild.cloneNode(true);
           node.querySelector(".index-tag").textContent = `#${idx + 1}`;
           node.querySelector(".author").textContent = `@${post.author || "unknown"}`;
-          node.querySelector(".text-ko").textContent = post.text_ko || "";
+          const textEl = node.querySelector(".text-ko");
+          const fullText = (post.text_ko || "").trim();
+          const shortLimit = 260;
+          textEl.textContent = fullText;
+          const expandBtn = node.querySelector(".expand-btn");
+          if (fullText.length > shortLimit) {
+            let expanded = false;
+            textEl.textContent = `${fullText.slice(0, shortLimit)}...`;
+            expandBtn.hidden = false;
+            expandBtn.textContent = "더보기";
+            expandBtn.addEventListener("click", () => {
+              expanded = !expanded;
+              textEl.textContent = expanded ? fullText : `${fullText.slice(0, shortLimit)}...`;
+              expandBtn.textContent = expanded ? "접기" : "더보기";
+            });
+          } else {
+            expandBtn.hidden = true;
+          }
           const btn = node.querySelector(".btn");
           btn.href = post.url || "#";
 
