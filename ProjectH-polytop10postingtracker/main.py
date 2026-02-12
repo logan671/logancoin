@@ -273,7 +273,9 @@ def fetch_posts_from_grok(
     user_prompt = (
         f"Find {range_label} X posts from the last 24 hours about Polymarket alpha/strategy/whale/copy-trade. "
         "Return a JSON object with key 'posts'. "
-        "Each post item must include: tweet_id, author, url, text_en, images, rank, view_count, like_count, repost_count, reply_count. "
+        "Each post item must include only these required keys: tweet_id, text_en. "
+        "Optional keys: author, url, images, rank, view_count, like_count, repost_count, reply_count. "
+        "If optional fields are unavailable, set them to null or empty list. "
         f"Return up to {candidate_count} items. "
         "Do not include markdown fences."
     )
