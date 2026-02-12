@@ -501,6 +501,7 @@ def main() -> None:
         if not raw_posts and use_mock_on_failure:
             raw_posts = get_mock_posts(candidate_count)
             status["is_mock_data"] = True
+            status["last_error"] = "no_posts_from_grok_response"
         else:
             status["is_mock_data"] = False
             status["needs_credit_topup"] = False
@@ -547,9 +548,14 @@ def main() -> None:
         selected_raw.extend(fallback_pool[:needed])
 
     text_ko_map: dict[str, str] = {}
-    if api_key and selected_raw:
+    if api_key and selected_raw and not status.get("is_mock_data"):
         try:
             text_ko_map = translate_to_korean(api_key=api_key, model=model, posts=selected_raw)
+        except requests.HTTPError as exc:
+            error_text = str(exc)
+            if exc.response is not None:
+                error_text = f"{error_text} | body: {exc.response.text[:300]}"
+            status["last_error"] = f"translation_error: {error_text}"
         except Exception as exc:  # noqa: BLE001
             status["last_error"] = f"translation_error: {exc}"
 
