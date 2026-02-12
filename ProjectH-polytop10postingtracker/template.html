@@ -87,6 +87,7 @@
       gap: 12px;
     }
     .card {
+      position: relative;
       display: grid;
       grid-template-columns: 340px minmax(0, 1fr);
       background: var(--card);
@@ -141,7 +142,7 @@
       cursor: pointer;
     }
     .actions {
-      margin-top: 12px;
+      margin-top: 0;
       display: flex;
       gap: 8px;
       align-items: center;
@@ -161,6 +162,7 @@
       background: #f4f8ff;
     }
     .images {
+      position: relative;
       display: grid;
       background: #e8eef9;
       min-height: 100%;
@@ -174,12 +176,29 @@
       border-radius: 0;
       border: 0;
     }
+    .image-actions {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      z-index: 2;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .card.no-image .image-actions {
+      position: static;
+      padding: 10px 12px 0;
+    }
     @media (max-width: 860px) {
       .title { font-size: 25px; }
       .card { grid-template-columns: 1fr; }
       .card-body { padding: 12px; }
       .text-ko { font-size: 13px; }
       .images img { min-height: 190px; max-height: 280px; }
+      .image-actions {
+        right: 8px;
+        bottom: 8px;
+      }
     }
   </style>
 </head>
@@ -199,14 +218,14 @@
     <template id="cardTemplate">
       <article class="card">
         <div class="images"></div>
+        <div class="image-actions actions">
+          <a class="btn" target="_blank" rel="noopener noreferrer">원문 보기 (X)</a>
+          <button class="expand-btn" type="button" hidden>펼치기</button>
+        </div>
         <div class="card-body">
           <span class="index-tag"></span>
           <div class="author"></div>
           <p class="text-ko"></p>
-          <div class="actions">
-            <a class="btn" target="_blank" rel="noopener noreferrer">원문 보기 (X)</a>
-            <button class="expand-btn" type="button" hidden>펼치기</button>
-          </div>
         </div>
       </article>
     </template>
@@ -243,7 +262,7 @@
           node.querySelector(".author").textContent = `@${post.author || "unknown"}`;
           const textEl = node.querySelector(".text-ko");
           const fullText = decodeHtml((post.text_ko || "").trim());
-          const shortLimit = 1200;
+          const shortLimit = 3600;
           textEl.textContent = fullText;
           const expandBtn = node.querySelector(".expand-btn");
           if (fullText.length > shortLimit) {

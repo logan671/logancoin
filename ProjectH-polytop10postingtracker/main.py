@@ -288,6 +288,15 @@ def extract_tweet_id_from_url(url: str) -> str:
     return match.group(1) if match else ""
 
 
+def get_full_text_from_tweet_row(row: dict[str, Any]) -> str:
+    note_tweet = row.get("note_tweet", {})
+    if isinstance(note_tweet, dict):
+        note_text = str(note_tweet.get("text", "")).strip()
+        if note_text:
+            return html.unescape(note_text)
+    return html.unescape(str(row.get("text", "")).strip())
+
+
 def fetch_top_refs_from_grok(
     api_key: str,
     model: str,
@@ -384,7 +393,7 @@ def fetch_posts_by_ids_from_x_api(
     headers = {"Authorization": f"Bearer {bearer_token}"}
     params = {
         "ids": ",".join(ids[:100]),
-        "tweet.fields": "created_at,public_metrics,author_id,attachments,referenced_tweets",
+        "tweet.fields": "created_at,public_metrics,author_id,attachments,referenced_tweets,note_tweet",
         "expansions": "author_id,attachments.media_keys",
         "user.fields": "username,name",
         "media.fields": "url,preview_image_url,type",
@@ -414,7 +423,7 @@ def fetch_posts_by_ids_from_x_api(
         if not isinstance(row, dict):
             continue
         tweet_id = str(row.get("id", "")).strip()
-        text_en = str(row.get("text", "")).strip()
+        text_en = get_full_text_from_tweet_row(row)
         if not tweet_id or not text_en:
             continue
 
@@ -559,7 +568,7 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
     params = {
         "query": query,
         "max_results": max_results,
-        "tweet.fields": "created_at,public_metrics,author_id,attachments,referenced_tweets",
+        "tweet.fields": "created_at,public_metrics,author_id,attachments,referenced_tweets,note_tweet",
         "expansions": "author_id,attachments.media_keys",
         "user.fields": "username,name",
         "media.fields": "url,preview_image_url,type",
@@ -595,7 +604,7 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
         if not isinstance(row, dict):
             continue
         tweet_id = str(row.get("id", "")).strip()
-        text_en = str(row.get("text", "")).strip()
+        text_en = get_full_text_from_tweet_row(row)
         if not tweet_id or not text_en:
             continue
 
