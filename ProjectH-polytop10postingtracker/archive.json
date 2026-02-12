@@ -1,190 +1,185 @@
 {
   "2026-02-12": [
     {
-      "tweet_id": "2019404617566523781",
-      "author": "SolSt1ne",
-      "url": "https://x.com/SolSt1ne/status/2019404617566523781",
-      "text_en": "I built a powerful real-time edge terminal specifically for @Polymarket - multi-timeframe dashboard covering all coins! (100% FREE &amp; fully open-source)\n\nIn one sentence: This Python bot gives you live alpha on Polymarket’s Up/Down crypto binaries by fusing real-time Binance order https://t.co/iWejoNtXj6",
-      "text_ko": "[자동 번역] I built a powerful real-time edge terminal specifically for @폴리마켓 - multi-timeframe dashboard covering all coins! (100% FREE &amp; fully open-source)\n\nIn one sentence: This Python bot gives you live 알파 on 폴리마켓’s Up/Down crypto binaries by fusing real-time Binance order https://t.co/iWejoNtXj6",
+      "tweet_id": "2020829223582138643",
+      "author": "ArchiveExplorer",
+      "url": "https://x.com/ArchiveExplorer/status/2020829223582138643",
+      "text_en": "Some guy deposited $150 on polymarket\n\njust checked his wallet\n\nnow sitting at $104k profit\n\nasked what's his strategy\n\nit's simple \nhis bot buys everything under 5 cents\n\nno analysis \nno predictions\n\nsome of his winning trades:\nS&amp;P 500 direction: $4.55 → $2,531 \nSyria strikes https://t.co/2okcQjGiiF",
+      "text_ko": "[자동 번역] Some guy deposited $150 on 폴리마켓\n\njust checked his wallet\n\nnow sitting at $104k profit\n\nasked what's his 전략\n\nit's simple \nhis bot buys everything under 5 cents\n\nno analysis \nno predictions\n\nsome of his winning trades:\nS&amp;P 500 direction: $4.55 → $2,531 \nSyria strikes https://t.co/2okcQjGiiF",
       "images": [
-        "https://pbs.twimg.com/media/HAZb9RSW8AAnGI-.jpg",
-        "https://pbs.twimg.com/amplify_video_thumb/2019404279547645952/img/Vkv3pdk3_g6urQVh.jpg"
+        "https://pbs.twimg.com/amplify_video_thumb/2020828944950337536/img/rKUoq3s7OKDgMfga.jpg"
       ],
       "rank_meta": {
         "rank": null,
         "view_count": null,
-        "like_count": 764.0,
-        "repost_count": 181.0,
-        "reply_count": 259.0
+        "like_count": 3334.0,
+        "repost_count": 157.0,
+        "reply_count": 127.0
       },
-      "fetched_at": "2026-02-12T18:36:11.755950+09:00"
+      "fetched_at": "2026-02-12T18:42:51.497433+09:00"
     },
     {
-      "tweet_id": "2019737233654432040",
-      "author": "igor_mikerin",
-      "url": "https://x.com/igor_mikerin/status/2019737233654432040",
-      "text_en": "The only strategy on Polymarket that actually works flawlessly.\n\nBot that consistently makes $20,000 to $30,000/day.\n\nIt started on January 6 with just $50. One month later the balance is close to $500,000. Honestly, I’m shocked.\n\nYes, you’re right. It uses the same strategy on https://t.co/wpyzf8EVZ9 https://t.co/4VMBDbPV4g",
-      "text_ko": "[자동 번역] The only 전략 on 폴리마켓 that actually works flawlessly.\n\nBot that consistently makes $20,000 to $30,000/day.\n\nIt started on January 6 with just $50. One month later the balance is close to $500,000. Honestly, I’m shocked.\n\nYes, you’re right. It uses the same 전략 on https://t.co/wpyzf8EVZ9 https://t.co/4VMBDbPV4g",
+      "tweet_id": "2021246735549346159",
+      "author": "0xMovez",
+      "url": "https://x.com/0xMovez/status/2021246735549346159",
+      "text_en": "Polymarket traders Python strategy decoder script\n\nCopy-trading a wallet without understanding its strategy is \"gambling\"\n\nThis Python script can decode any Polymarket wallet’s strategy in 30 seconds.\n\nYou can send the results to your Clawdbot and ask it to copy the strategy ! https://t.co/sMDUiomxiz https://t.co/aQU2kvgEzc",
+      "text_ko": "[자동 번역] 폴리마켓 traders Python 전략 decoder script\n\nCopy-trading a wallet without understanding its 전략 is \"gambling\"\n\nThis Python script can decode any 폴리마켓 wallet’s 전략 in 30 seconds.\n\nYou can send the results to your Clawdbot and ask it to copy the 전략 ! https://t.co/sMDUiomxiz https://t.co/aQU2kvgEzc",
       "images": [
-        "https://pbs.twimg.com/media/HAeMJ_zbIAAiMzj.png",
-        "https://pbs.twimg.com/amplify_video_thumb/2019737115748339712/img/0m-gp00ZigYUT8b4.jpg"
+        "https://pbs.twimg.com/media/HAzpDpFWoAAWIg0.jpg",
+        "https://pbs.twimg.com/media/HAzpEBDbkAAEQf1.jpg"
       ],
       "rank_meta": {
         "rank": null,
         "view_count": null,
-        "like_count": 635.0,
-        "repost_count": 56.0,
+        "like_count": 857.0,
+        "repost_count": 78.0,
+        "reply_count": 36.0
+      },
+      "fetched_at": "2026-02-12T18:42:51.497484+09:00"
+    },
+    {
+      "tweet_id": "2021149679942238458",
+      "author": "Satori_btc",
+      "url": "https://x.com/Satori_btc/status/2021149679942238458",
+      "text_en": "Stop trading manually like a caveman.\n\nIf you can type, anyone can copy my Polymarket high-frequency bot.\n\nI didn’t write a single line of code. I built a top-tier strategy just by “chatting” with AI,one that self-debugs, self-repairs, and even uses “large model decision-making + https://t.co/GvqfiN3SRY",
+      "text_ko": "[자동 번역] Stop trading manually like a caveman.\n\nIf you can type, anyone can copy my 폴리마켓 high-frequency bot.\n\nI didn’t write a single line of code. I built a top-tier 전략 just by “chatting” with AI,one that self-debugs, self-repairs, and even uses “large model decision-making + https://t.co/GvqfiN3SRY",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2021149508114247680/img/ca1Gr5EpLRjVyi_v.jpg"
+      ],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 734.0,
+        "repost_count": 12.0,
+        "reply_count": 119.0
+      },
+      "fetched_at": "2026-02-12T18:42:51.497519+09:00"
+    },
+    {
+      "tweet_id": "2020598056446566829",
+      "author": "LunaETHWhale",
+      "url": "https://x.com/LunaETHWhale/status/2020598056446566829",
+      "text_en": "OMG! THEY KILLED MY LIQUIDITY! YOU BASTARDS!\n\nListen up, you midgets! If you’ve ever mashed buttons on Polymarket or Chance, or even just shilled them on X, you’re eligible for a box. Eric says these are even better than tickets to Casa Bonita!\n\nCartman’s Plan for World https://t.co/atpbrFGTi3 https://t.co/mpymwHxpSz",
+      "text_ko": "[자동 번역] OMG! THEY KILLED MY LIQUIDITY! YOU BASTARDS!\n\nListen up, you midgets! If you’ve ever mashed buttons on 폴리마켓 or Chance, or even just shilled them on X, you’re eligible for a box. Eric says these are even better than tickets to Casa Bonita!\n\nCartman’s Plan for World https://t.co/atpbrFGTi3 https://t.co/mpymwHxpSz",
+      "images": [
+        "https://pbs.twimg.com/media/HAqbIVLbUAAjml9.jpg"
+      ],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 301.0,
+        "repost_count": 49.0,
+        "reply_count": 112.0
+      },
+      "fetched_at": "2026-02-12T18:42:51.497554+09:00"
+    },
+    {
+      "tweet_id": "2021122317351317530",
+      "author": "LunaETHWhale",
+      "url": "https://x.com/LunaETHWhale/status/2021122317351317530",
+      "text_en": "Listen up, you non-believing broke peasants! Charts don’t lie, unlike your pathetic intuition!\n\nWhile you were busy drawing stupid triangles on TradingView, Polymarket called the BTC dump to $60k with surgical precision. RESPECT ITS AUTHORITAH!\n\nNow shut up and listen to the https://t.co/IyVOdZr2Cd https://t.co/uRrhXJgDTu",
+      "text_ko": "[자동 번역] Listen up, you non-believing broke peasants! Charts don’t lie, unlike your pathetic intuition!\n\nWhile you were busy drawing stupid triangles on TradingView, 폴리마켓 called the BTC dump to $60k with surgical precision. RESPECT ITS AUTHORITAH!\n\nNow shut up and listen to the https://t.co/IyVOdZr2Cd https://t.co/uRrhXJgDTu",
+      "images": [
+        "https://pbs.twimg.com/media/HAx3vvWWQAAfP2g.jpg"
+      ],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 300.0,
+        "repost_count": 47.0,
+        "reply_count": 37.0
+      },
+      "fetched_at": "2026-02-12T18:42:51.497587+09:00"
+    },
+    {
+      "tweet_id": "2021539469917298709",
+      "author": "0xDPool",
+      "url": "https://x.com/0xDPool/status/2021539469917298709",
+      "text_en": "This guy invested only $150 in Polymarket\n\nNow he has $104,000 in net profit\n\nHis strategy is simple:\n\n&gt; A bot buys everything under 5¢\n&gt; No analysis required\n&gt; No “market intuition” required\n\nSome examples:\n\n&gt; Direction of S&amp;P 500: $4.55 to $2,531 (55,545%)\n&gt; Syria strikes https://t.co/YsltuYlDF0",
+      "text_ko": "[자동 번역] This guy invested only $150 in 폴리마켓\n\nNow he has $104,000 in net profit\n\nHis 전략 is simple:\n\n&gt; A bot buys everything under 5¢\n&gt; No analysis required\n&gt; No “market intuition” required\n\nSome examples:\n\n&gt; Direction of S&amp;P 500: $4.55 to $2,531 (55,545%)\n&gt; Syria strikes https://t.co/YsltuYlDF0",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2021539418109345792/img/Pbb-HzaF7JVHW7NY.jpg"
+      ],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 306.0,
+        "repost_count": 23.0,
+        "reply_count": 42.0
+      },
+      "fetched_at": "2026-02-12T18:42:51.497620+09:00"
+    },
+    {
+      "tweet_id": "2021618491208405460",
+      "author": "krajekis",
+      "url": "https://x.com/krajekis/status/2021618491208405460",
+      "text_en": "The Hidden Power of Time in @Polymarket BTC 15m Trading [Full Guide]\n\nOn Polymarket, you must decide:  \nWill BTC close UP or DOWN in the next 15 minutes?\n\nMost traders don’t lose because of strategy.  \nThey lose because they ignore time.  \nTime determines edge.\n\nKey: TIME – BTC https://t.co/0ccilp32am https://t.co/zJHbFquyeN",
+      "text_ko": "[자동 번역] The Hidden Power of Time in @폴리마켓 BTC 15m Trading [Full Guide]\n\nOn 폴리마켓, you must decide:  \nWill BTC close UP or DOWN in the next 15 minutes?\n\nMost traders don’t lose because of 전략.  \nThey lose because they ignore time.  \nTime determines edge.\n\nKey: TIME – BTC https://t.co/0ccilp32am https://t.co/zJHbFquyeN",
+      "images": [
+        "https://pbs.twimg.com/media/HA469yeaMAAc-t4.jpg"
+      ],
+      "rank_meta": {
+        "rank": null,
+        "view_count": null,
+        "like_count": 295.0,
+        "repost_count": 22.0,
         "reply_count": 38.0
       },
-      "fetched_at": "2026-02-12T18:36:11.756038+09:00"
+      "fetched_at": "2026-02-12T18:42:51.497654+09:00"
     },
     {
-      "tweet_id": "2020009293890646463",
-      "author": "Wassieweb3",
-      "url": "https://x.com/Wassieweb3/status/2020009293890646463",
-      "text_en": "polymarket alpha foresee ico\n\nforesee sagapad ~30% filled in 2 hours refund model attracts whale capital\n\nwe're 67% filled in less than 1 day in the middle of the bear market right now\n\npolymarket odds\n\n200k 93%\n500k 54%\n1m 17%\nhttps://t.co/GzIJTD6Yl9\n\nwhy &gt;500k is in play\nsocial https://t.co/uLzLk8pGED",
-      "text_ko": "[자동 번역] 폴리마켓 알파 foresee ico\n\nforesee sagapad ~30% filled in 2 hours refund model attracts 고래 capital\n\nwe're 67% filled in less than 1 day in the middle of the bear market right now\n\n폴리마켓 odds\n\n200k 93%\n500k 54%\n1m 17%\nhttps://t.co/GzIJTD6Yl9\n\nwhy &gt;500k is in play\nsocial https://t.co/uLzLk8pGED",
+      "tweet_id": "2020788491945124262",
+      "author": "LunaETHWhale",
+      "url": "https://x.com/LunaETHWhale/status/2020788491945124262",
+      "text_en": "MAJOR ALPHA LEAK: The Negative P&amp;L Filter &amp; The Ghost Snapshot \n\nWhispers from the dev underworld and top-tier validators are getting loud. Polymarket is allegedly cooking up a radical Sybil-slaughtering algorithm for the $POLY airdrop.\n\nWord on the street is that the real https://t.co/HgTctqKxMI https://t.co/2jRFi9oPIK",
+      "text_ko": "[자동 번역] MAJOR 알파 LEAK: The Negative P&amp;L Filter &amp; The Ghost Snapshot \n\nWhispers from the dev underworld and top-tier validators are getting loud. 폴리마켓 is allegedly cooking up a radical Sybil-slaughtering algorithm for the $POLY airdrop.\n\nWord on the street is that the real https://t.co/HgTctqKxMI https://t.co/2jRFi9oPIK",
       "images": [
-        "https://pbs.twimg.com/media/HAiA_WXXMAEhNiZ.jpg"
+        "https://pbs.twimg.com/media/HAtIUHQW8AEuO9I.jpg"
       ],
       "rank_meta": {
         "rank": null,
         "view_count": null,
-        "like_count": 107.0,
-        "repost_count": 0,
-        "reply_count": 107.0
+        "like_count": 252.0,
+        "repost_count": 43.0,
+        "reply_count": 48.0
       },
-      "fetched_at": "2026-02-12T18:36:11.756081+09:00"
+      "fetched_at": "2026-02-12T18:42:51.497698+09:00"
     },
     {
-      "tweet_id": "2019940108867366983",
-      "author": "MrBitcoinWhalee",
-      "url": "https://x.com/MrBitcoinWhalee/status/2019940108867366983",
-      "text_en": "🚨 JUST IN:\n\n🇺🇸 THE FED HAS RULED OUT ANY RATE CUTS IN MARCH\n\nPOLYMARKET PROBABILITIES HAVE COLLAPSED TO UNDER 12%\n\nRISK ASSETS WON’T LIKE THIS AT ALL… https://t.co/A1sTL9h5PO",
-      "text_ko": "[자동 번역] 🚨 JUST IN:\n\n🇺🇸 THE FED HAS RULED OUT ANY RATE CUTS IN MARCH\n\n폴리마켓 PROBABILITIES HAVE COLLAPSED TO UNDER 12%\n\nRISK ASSETS WON’T LIKE THIS AT ALL… https://t.co/A1sTL9h5PO",
+      "tweet_id": "2020131735971713349",
+      "author": "phosphenq",
+      "url": "https://x.com/phosphenq/status/2020131735971713349",
+      "text_en": "holy shit.. you can install claude code in 2 minutes and automate your entire polymarket strategy\n\nbuy claude pro ($20)\n\ninstall:\nwindows: winget install Anthropic.ClaudeCode\nmac: brew install claude\n\nauthorize:\nrun claude → oauth login → done\n\nnavigate to folder:\ncd https://t.co/PG7ompmIOD",
+      "text_ko": "[자동 번역] holy shit.. you can install claude code in 2 minutes and automate your entire 폴리마켓 전략\n\nbuy claude pro ($20)\n\ninstall:\nwindows: winget install Anthropic.ClaudeCode\nmac: brew install claude\n\nauthorize:\nrun claude → oauth login → done\n\nnavigate to folder:\ncd https://t.co/PG7ompmIOD",
       "images": [
-        "https://pbs.twimg.com/media/HAhE0lFX0AEwuxG.jpg"
+        "https://pbs.twimg.com/amplify_video_thumb/2020129334946635776/img/kJ0wOQp5QdByJzO-.jpg"
       ],
       "rank_meta": {
         "rank": null,
         "view_count": null,
-        "like_count": 130.0,
-        "repost_count": 42.0,
-        "reply_count": 30.0
+        "like_count": 311.0,
+        "repost_count": 16.0,
+        "reply_count": 16.0
       },
-      "fetched_at": "2026-02-12T18:36:11.756110+09:00"
+      "fetched_at": "2026-02-12T18:42:51.497732+09:00"
     },
     {
-      "tweet_id": "2019824734855180704",
-      "author": "RetroValix",
-      "url": "https://x.com/RetroValix/status/2019824734855180704",
-      "text_en": "This guy made $600,000 on Polymarket using software, buying markets for $20\n\nHis trading bot makes 2,774 trades per hour or 46 trades per minute. He trades the divergence between Binance/Chainlink data and people’s reaction on Polymarket.\n\nHis strategy is simple:\n\n&gt; Enters https://t.co/ILaMTbiAYE",
-      "text_ko": "[자동 번역] This guy made $600,000 on 폴리마켓 using software, buying markets for $20\n\nHis trading bot makes 2,774 trades per hour or 46 trades per minute. He trades the divergence between Binance/Chainlink data and people’s reaction on 폴리마켓.\n\nHis 전략 is simple:\n\n&gt; Enters https://t.co/ILaMTbiAYE",
+      "tweet_id": "2020798832691253528",
+      "author": "LunaETHWhale",
+      "url": "https://x.com/LunaETHWhale/status/2020798832691253528",
+      "text_en": "Bro is ignoring the field and staring at Polymarket like Mr. Burns looking at a worker slipping on ice https://t.co/8nkLOjf8k0 https://t.co/ahjxfQwp0c",
+      "text_ko": "[자동 번역] Bro is ignoring the field and staring at 폴리마켓 like Mr. Burns looking at a worker slipping on ice https://t.co/8nkLOjf8k0 https://t.co/ahjxfQwp0c",
       "images": [
-        "https://pbs.twimg.com/amplify_video_thumb/2019824647064199168/img/2K71eUG99r5-lkl1.jpg",
-        "https://pbs.twimg.com/media/HAfb0KLWIAAYqRz.jpg"
+        "https://pbs.twimg.com/amplify_video_thumb/2020798688591790080/img/QbIc02zXaGoDloH2.jpg"
       ],
       "rank_meta": {
         "rank": null,
         "view_count": null,
-        "like_count": 159.0,
-        "repost_count": 11.0,
-        "reply_count": 19.0
+        "like_count": 236.0,
+        "repost_count": 33.0,
+        "reply_count": 50.0
       },
-      "fetched_at": "2026-02-12T18:36:11.756144+09:00"
-    },
-    {
-      "tweet_id": "2021179881183121798",
-      "author": "Shelpid_WI3M",
-      "url": "https://x.com/Shelpid_WI3M/status/2021179881183121798",
-      "text_en": "🚨 UNREAL… this guy turned $9 cash into $105K on Polymarket\n\nIt didn’t start as a “strategy”.\n\nHe had $9 left and nothing to lose, so he started clicking into the weirdest markets he could find.\n\nMarkets nobody cared about\nMarkets with zero attention\nMarkets where prices barely https://t.co/NX74uqOkbo",
-      "text_ko": "[자동 번역] 🚨 UNREAL… this guy turned $9 cash into $105K on 폴리마켓\n\nIt didn’t start as a “전략”.\n\nHe had $9 left and nothing to lose, so he started clicking into the weirdest markets he could find.\n\nMarkets nobody cared about\nMarkets with zero attention\nMarkets where prices barely https://t.co/NX74uqOkbo",
-      "images": [
-        "https://pbs.twimg.com/amplify_video_thumb/2021179473413144577/img/auuTMq2MHKH796jW.jpg",
-        "https://pbs.twimg.com/media/HAysBbMWAAAaMOY.jpg"
-      ],
-      "rank_meta": {
-        "rank": null,
-        "view_count": null,
-        "like_count": 119.0,
-        "repost_count": 6.0,
-        "reply_count": 7.0
-      },
-      "fetched_at": "2026-02-12T18:36:11.756180+09:00"
-    },
-    {
-      "tweet_id": "2021309651984285743",
-      "author": "PolymarketIntel",
-      "url": "https://x.com/PolymarketIntel/status/2021309651984285743",
-      "text_en": "Elon Musk’s Moon Base Alpha may pave the way for humanity’s next steps in space exploration. https://t.co/jlpmJAtPJS",
-      "text_ko": "[자동 번역] Elon Musk’s Moon Base 알파 may pave the way for humanity’s next steps in space exploration. https://t.co/jlpmJAtPJS",
-      "images": [
-        "https://pbs.twimg.com/amplify_video_thumb/2021309527577292800/img/Zz6I21RiglotmzFA.jpg"
-      ],
-      "rank_meta": {
-        "rank": null,
-        "view_count": null,
-        "like_count": 51.0,
-        "repost_count": 10.0,
-        "reply_count": 55.0
-      },
-      "fetched_at": "2026-02-12T18:36:11.756201+09:00"
-    },
-    {
-      "tweet_id": "2020207613196243237",
-      "author": "rakshitbv",
-      "url": "https://x.com/rakshitbv/status/2020207613196243237",
-      "text_en": "A whale dropped $1.1M in the final minute, pushing Hurupay past $2M+ total committed and Polymarket resolving to YES🤯 https://t.co/w9fpLq61EZ",
-      "text_ko": "[자동 번역] A 고래 dropped $1.1M in the final minute, pushing Hurupay past $2M+ total committed and 폴리마켓 resolving to YES🤯 https://t.co/w9fpLq61EZ",
-      "images": [
-        "https://pbs.twimg.com/media/HAk3cDoakAAfQbh.png",
-        "https://pbs.twimg.com/media/HAk3jXtbwAAnzj9.jpg"
-      ],
-      "rank_meta": {
-        "rank": null,
-        "view_count": null,
-        "like_count": 84.0,
-        "repost_count": 4.0,
-        "reply_count": 23.0
-      },
-      "fetched_at": "2026-02-12T18:36:11.756233+09:00"
-    },
-    {
-      "tweet_id": "2021544006845624685",
-      "author": "0xCristal",
-      "url": "https://x.com/0xCristal/status/2021544006845624685",
-      "text_en": "MY Friend Created a BOT that Predicts the Weather!\n\nWhen I asked how he did it, he said it was based on another bot he found on Polymarket\n\nHere's that bot's strategy:\n\n- Buys YES/NO shares at 0.1¢-5¢\n- Trades only with very small amounts\n\nThe market priced the outcome lower than https://t.co/W6rKJSi3Xb",
-      "text_ko": "[자동 번역] MY Friend Created a BOT that Predicts the Weather!\n\nWhen I asked how he did it, he said it was based on another bot he found on 폴리마켓\n\nHere's that bot's 전략:\n\n- Buys YES/NO shares at 0.1¢-5¢\n- Trades only with very small amounts\n\nThe market priced the outcome lower than https://t.co/W6rKJSi3Xb",
-      "images": [
-        "https://pbs.twimg.com/amplify_video_thumb/2021543942819651585/img/p8j0Z6F-OwBfQTJs.jpg",
-        "https://pbs.twimg.com/media/HA33j5laIAAyKLa.jpg"
-      ],
-      "rank_meta": {
-        "rank": null,
-        "view_count": null,
-        "like_count": 72.0,
-        "repost_count": 6.0,
-        "reply_count": 11.0
-      },
-      "fetched_at": "2026-02-12T18:36:11.756269+09:00"
-    },
-    {
-      "tweet_id": "2020474689999491518",
-      "author": "nnevvesss",
-      "url": "https://x.com/nnevvesss/status/2020474689999491518",
-      "text_en": "He bet $1.7M on the Seahawks\n\nA whale on Polymarket entered the Seahawks vs Patriots market with $1,698,001\n\nHe's backing the Seahawks with 69% odds.\n\nPotential profit: +$762k -&gt; payout $2,460,874\n\nIs this free +31%? https://t.co/qXaiPb96W4",
-      "text_ko": "[자동 번역] He bet $1.7M on the Seahawks\n\nA 고래 on 폴리마켓 entered the Seahawks vs Patriots market with $1,698,001\n\nHe's backing the Seahawks with 69% odds.\n\nPotential profit: +$762k -&gt; payout $2,460,874\n\nIs this free +31%? https://t.co/qXaiPb96W4",
-      "images": [
-        "https://pbs.twimg.com/media/HAopIIYaAAAW98F.png"
-      ],
-      "rank_meta": {
-        "rank": null,
-        "view_count": null,
-        "like_count": 62.0,
-        "repost_count": 1.0,
-        "reply_count": 18.0
-      },
-      "fetched_at": "2026-02-12T18:36:11.756297+09:00"
+      "fetched_at": "2026-02-12T18:42:51.497753+09:00"
     }
   ]
 }
