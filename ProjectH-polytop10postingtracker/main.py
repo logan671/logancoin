@@ -733,6 +733,41 @@ def translate_to_korean(api_key: str, model: str, posts: list[dict[str, Any]]) -
             if tweet_id and text_ko:
                 result[tweet_id] = text_ko
 
+    # Retry untranslated items one by one for better coverage.
+    missing = [x for x in inputs if str(x.get("tweet_id")) not in result]
+    for item in missing:
+        single_prompt = (
+            "Translate the following English post text to Korean.\n"
+            "Return JSON object: {\"translations\":[{\"tweet_id\":\"...\",\"text_ko\":\"...\"}]}.\n"
+            f"Input: {json.dumps([item], ensure_ascii=False)}"
+        )
+        content = ""
+        last_error = ""
+        for _ in range(max(1, max_retries - 1)):
+            try:
+                content = grok_chat_completion(
+                    api_key=api_key,
+                    messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": single_prompt}],
+                    timeout_sec=translate_timeout,
+                )
+                last_error = ""
+                break
+            except Exception as exc:  # noqa: BLE001
+                last_error = str(exc)
+        if last_error:
+            continue
+        payload = extract_json_object(content)
+        rows = payload.get("translations", [])
+        if not isinstance(rows, list):
+            continue
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            tweet_id = str(row.get("tweet_id", "")).strip()
+            text_ko = str(row.get("text_ko", "")).strip()
+            if tweet_id and text_ko:
+                result[tweet_id] = text_ko
+
     return result
 
 
