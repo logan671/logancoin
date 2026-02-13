@@ -1,0 +1,7 @@
+py-clob-client
+websockets
+python-telegram-bot
+pydantic
+pydantic-settings
+pandas
+aiohttp
