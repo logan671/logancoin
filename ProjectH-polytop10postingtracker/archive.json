@@ -184,5 +184,62 @@
       },
       "fetched_at": "2026-02-12T19:30:21.945108+09:00"
     }
+  ],
+  "2026-02-13": [
+    {
+      "tweet_id": "2020785938327110126",
+      "author": "bored2boar",
+      "url": "https://x.com/bored2boar/status/2020785938327110126",
+      "text_en": "Ever heard of Martingale strategy?\n\nYou simply double down after every loss until you win.\n\nQuestion is:\n\nWill this work on 15-min Polymarket markets?\n\nThinking about testing it live.\n\nReply if you want this as a public experiment. https://t.co/zeGXWd69JL",
+      "text_ko": "마팅게일 전략에 대해 들어본 적 있나요?\n\n단순히 매번 손해 볼 때마다 배팅을 두 배로 늘려서 이길 때까지 가는 겁니다.\n\n질문은:\n\n이게 15분 Polymarket 시장에서 통할까요?\n\n실시간으로 테스트해볼까 생각 중입니다.\n\n이걸 공개 실험으로 보고 싶으면 답글 달아주세요. https://t.co/zeGXWd69JL",
+      "images": [
+        "https://pbs.twimg.com/media/HAtGCnwbEAA-GQc.jpg",
+        "https://pbs.twimg.com/media/HAtGD3wXYAM7zmG.png"
+      ],
+      "rank_meta": {
+        "rank": 7,
+        "view_count": null,
+        "like_count": 297.0,
+        "repost_count": 14.0,
+        "reply_count": 94.0
+      },
+      "fetched_at": "2026-02-13T11:15:42.718557+09:00"
+    },
+    {
+      "tweet_id": "2020798832691253528",
+      "author": "LunaETHWhale",
+      "url": "https://x.com/LunaETHWhale/status/2020798832691253528",
+      "text_en": "Bro is ignoring the field and staring at Polymarket like Mr. Burns looking at a worker slipping on ice https://t.co/8nkLOjf8k0 https://t.co/ahjxfQwp0c",
+      "text_ko": "브로가 필드를 무시하고 Polymarket을 바라보는 게 마치 버너스 씨가 얼음판에서 미끄러지는 직원을 보는 것처럼 https://t.co/8nkLOjf8k0 https://t.co/ahjxfQwp0c",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2020798688591790080/img/QbIc02zXaGoDloH2.jpg"
+      ],
+      "rank_meta": {
+        "rank": 9,
+        "view_count": null,
+        "like_count": 236.0,
+        "repost_count": 32.0,
+        "reply_count": 50.0
+      },
+      "fetched_at": "2026-02-13T11:15:42.718582+09:00"
+    },
+    {
+      "tweet_id": "2019621386344448019",
+      "author": "LunaETHWhale",
+      "url": "https://x.com/LunaETHWhale/status/2019621386344448019",
+      "text_en": "Morning digest for those who haven’t been liquidated yet:\n\nBTC bulls are in the mud - market pricing $55k with 43% confidence. \n\nNVIDIA is sitting at a massive 63% probability on Polymarket to end the month at #1, while Apple is lagging behind at 23%. \n\nClaude 5 imminent? Odds for March release pumping to 75% after the 4.6 drop. \n\nRams are the favorites for Super Bowl LX this Sunday (14%).\n\nWe’re either hitting the jackpot on NVDA calls or asking Claude 5 to optimize our resumes for the fry station. Place your bets, degens.",
+      "text_ko": "아직 청산되지 않은 분들을 위한 아침 소식:\n\nBTC 황소들은 진창에 빠졌어요 - 시장은 43% 확률로 $55k를 예측하고 있습니다.\n\nNVIDIA는 이달 말에 #1로 끝날 확률이 Polymarket에서 엄청난 63%인데, 애플은 23%로 뒤처지고 있습니다.\n\nClaude 5 곧 나올까요? 4.6 버전 출시 후 3월 출시 확률이 75%로 상승했습니다.\n\n이번 일요일 슈퍼볼 LX에서 램스가 14%로 우승 후보입니다.\n\n우리는 NVDA 콜에서 대박을 터뜨리거나, 아니면 Claude 5에게 프라이 스테이션용 이력서를 최적화해달라고 부탁할 겁니다. 베팅하세요, 디겐들.",
+      "images": [
+        "https://pbs.twimg.com/media/HAcg0PtWoAAzUOq.jpg"
+      ],
+      "rank_meta": {
+        "rank": 10,
+        "view_count": null,
+        "like_count": 251.0,
+        "repost_count": 38.0,
+        "reply_count": 16.0
+      },
+      "fetched_at": "2026-02-13T11:15:42.718590+09:00"
+    }
   ]
 }
