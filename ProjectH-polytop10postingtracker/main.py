@@ -978,14 +978,13 @@ def main() -> None:
     archive_data = load_archive()
     index_path = PUBLIC_DIR / "index.html"
     if freeze_daily_snapshot and not force_refresh_today and today_raw in archive_data:
-        if not index_path.exists():
-            html = render_html(
-                posts=archive_data[today_raw],
-                banner_message="",
-                archive_data=archive_data,
-                selected_date=today_raw,
-            )
-            index_path.write_text(html, encoding="utf-8")
+        html = render_html(
+            posts=archive_data[today_raw],
+            banner_message="",
+            archive_data=archive_data,
+            selected_date=today_raw,
+        )
+        index_path.write_text(html, encoding="utf-8")
         print(f"Skip refresh for {today_raw}: daily snapshot is locked.")
         return
 
