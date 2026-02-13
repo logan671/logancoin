@@ -126,6 +126,10 @@
       white-space: pre-wrap;
       font-weight: 550;
     }
+    .text-ko.collapsed {
+      max-height: calc(1.5em * 22);
+      overflow: hidden;
+    }
     .expand-btn {
       display: inline-flex;
       align-items: center;
@@ -208,7 +212,7 @@
   <main class="container">
     <header class="header">
       <h1 class="title">Polymarket Alpha Daily</h1>
-      <div class="meta">최근 24시간 Polymarket 알파 포스트 | 생성 시각: 2026-02-13 13:13 KST</div>
+      <div class="meta">최근 24시간 Polymarket 알파 포스트 | 생성 시각: 2026-02-13 13:19 KST</div>
       
     </header>
 
@@ -264,22 +268,19 @@
           const textEl = node.querySelector(".text-ko");
           const actions = node.querySelector(".image-actions");
           const fullText = decodeHtml((post.text_ko || "").trim());
-          const shortLimit = window.innerWidth <= 860 ? 1300 : 2300;
           textEl.textContent = fullText;
+          textEl.dataset.fullText = fullText;
           const expandBtn = node.querySelector(".expand-btn");
-          if (fullText.length > shortLimit) {
-            const shortText = `${fullText.slice(0, shortLimit)}...`;
-            textEl.textContent = shortText;
-            textEl.dataset.fullText = fullText;
-            textEl.dataset.shortText = shortText;
+          textEl.classList.add("collapsed");
+          const needsToggle = textEl.scrollHeight > textEl.clientHeight + 2;
+          if (needsToggle) {
             textEl.dataset.expanded = "false";
             expandBtn.hidden = false;
             expandBtn.textContent = "펼치기";
           } else {
-            expandBtn.hidden = true;
-            textEl.dataset.fullText = fullText;
-            textEl.dataset.shortText = fullText;
+            textEl.classList.remove("collapsed");
             textEl.dataset.expanded = "true";
+            expandBtn.hidden = true;
           }
           const btn = node.querySelector(".btn");
           btn.href = post.url || "#";
@@ -312,11 +313,12 @@
         if (!textEl) return;
         const isExpanded = textEl.dataset.expanded === "true";
         if (isExpanded) {
-          textEl.textContent = textEl.dataset.shortText || textEl.textContent;
+          textEl.classList.add("collapsed");
           textEl.dataset.expanded = "false";
           btn.textContent = "펼치기";
         } else {
           textEl.textContent = textEl.dataset.fullText || textEl.textContent;
+          textEl.classList.remove("collapsed");
           textEl.dataset.expanded = "true";
           btn.textContent = "접기";
         }
