@@ -63,6 +63,8 @@ jobs:
           X_MIN_SCORE=12
           X_TIMEOUT=30
           EXCLUDE_TODAY_FROM_DEDUP=true
+          FREEZE_DAILY_SNAPSHOT=true
+          FORCE_REFRESH_TODAY=false
           EOF
 
       - name: Generate daily page

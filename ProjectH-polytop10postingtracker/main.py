@@ -901,7 +901,7 @@ def save_archive(archive: dict[str, list[dict[str, Any]]]) -> None:
 
 
 def render_html(
-    posts: list[TweetItem],
+    posts: list[TweetItem] | list[dict[str, Any]],
     banner_message: str,
     archive_data: dict[str, list[dict[str, Any]]],
     selected_date: str,
@@ -911,9 +911,16 @@ def render_html(
         autoescape=select_autoescape(["html", "xml"]),
     )
     template = env.get_template(TEMPLATE_PATH.name)
+    normalized_posts: list[dict[str, Any]] = []
+    for row in posts:
+        if isinstance(row, TweetItem):
+            normalized_posts.append(asdict(row))
+        elif isinstance(row, dict):
+            normalized_posts.append(row)
+
     return template.render(
         generated_at=datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
-        posts=[asdict(x) for x in posts],
+        posts=normalized_posts,
         banner_message=banner_message,
         selected_date=selected_date,
         archive_data=archive_data,
@@ -935,6 +942,23 @@ def main() -> None:
     use_x_search_fallback = os.getenv("GROK_REF_X_SEARCH_FALLBACK", "true").lower() == "true"
     use_grok_rank_on_x_candidates = os.getenv("USE_GROK_RANK_ON_X_CANDIDATES", "true").lower() == "true"
     exclude_today_from_dedup = os.getenv("EXCLUDE_TODAY_FROM_DEDUP", "true").lower() == "true"
+    freeze_daily_snapshot = os.getenv("FREEZE_DAILY_SNAPSHOT", "true").lower() == "true"
+    force_refresh_today = os.getenv("FORCE_REFRESH_TODAY", "false").lower() == "true"
+
+    today_raw = datetime.now(KST).strftime("%Y-%m-%d")
+    archive_data = load_archive()
+    index_path = PUBLIC_DIR / "index.html"
+    if freeze_daily_snapshot and not force_refresh_today and today_raw in archive_data:
+        if not index_path.exists():
+            html = render_html(
+                posts=archive_data[today_raw],
+                banner_message="",
+                archive_data=archive_data,
+                selected_date=today_raw,
+            )
+            index_path.write_text(html, encoding="utf-8")
+        print(f"Skip refresh for {today_raw}: daily snapshot is locked.")
+        return
 
     status = load_status()
     status.setdefault("is_mock_data", False)
@@ -1098,10 +1122,7 @@ def main() -> None:
     elif status.get("is_mock_data"):
         banner_message = "실데이터 수집 실패로 샘플 데이터가 표시 중입니다."
 
-    index_path = PUBLIC_DIR / "index.html"
     wrote_new_page = False
-    today_raw = datetime.now(KST).strftime("%Y-%m-%d")
-    archive_data = load_archive()
     if selected_items:
         archive_data[today_raw] = [asdict(x) for x in selected_items]
         save_archive(archive_data)
