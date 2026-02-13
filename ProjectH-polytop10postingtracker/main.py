@@ -302,9 +302,10 @@ def fetch_top_refs_from_grok(
     model: str,
     target_count: int = 10,
 ) -> tuple[list[dict[str, Any]], str]:
+    lookback_hours = int(os.getenv("LOOKBACK_HOURS", "48"))
     system_prompt = "You are a ranking assistant. Return valid JSON only."
     user_prompt = (
-        f"Find the top {target_count} hottest X posts from the last 24 hours about Polymarket alpha/strategy/whale/copy-trade. "
+        f"Find the top {target_count} hottest X posts from the last {lookback_hours} hours about Polymarket alpha/strategy/whale/copy-trade. "
         "Return JSON object with key 'posts'. "
         "Each post must include: rank (1..N), tweet_id, url. "
         "url must be real x.com or twitter.com status link. "
@@ -531,12 +532,13 @@ def fetch_posts_from_grok(
     candidate_count: int = 20,
     range_label: str = "top 1-10",
 ) -> list[dict[str, Any]]:
+    lookback_hours = int(os.getenv("LOOKBACK_HOURS", "48"))
     system_prompt = (
         "You are a data extractor for social posts. "
         "Return valid JSON only."
     )
     user_prompt = (
-        f"Find {range_label} X posts from the last 24 hours about Polymarket alpha/strategy/whale/copy-trade. "
+        f"Find {range_label} X posts from the last {lookback_hours} hours about Polymarket alpha/strategy/whale/copy-trade. "
         "Return a JSON object with key 'posts'. "
         "Each post item must include only these required keys: tweet_id, text_en. "
         "Optional keys: author, url, images, rank, view_count, like_count, repost_count, reply_count. "
@@ -573,6 +575,10 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
         "user.fields": "username,name",
         "media.fields": "url,preview_image_url,type",
     }
+    lookback_hours = int(os.getenv("LOOKBACK_HOURS", "48"))
+    lookback_hours = min(max(1, lookback_hours), 168)
+    start_time_utc = (datetime.now(timezone.utc) - timedelta(hours=lookback_hours)).replace(microsecond=0)
+    params["start_time"] = start_time_utc.isoformat().replace("+00:00", "Z")
     sort_order = os.getenv("X_SORT_ORDER", "relevancy").strip().lower()
     if sort_order in {"relevancy", "recency"}:
         params["sort_order"] = sort_order
@@ -900,6 +906,28 @@ def save_archive(archive: dict[str, list[dict[str, Any]]]) -> None:
     save_json(ARCHIVE_PATH, archive)
 
 
+def previous_day_featured_ids(
+    archive_data: dict[str, list[dict[str, Any]]],
+    today_raw: str,
+) -> set[str]:
+    try:
+        today = datetime.strptime(today_raw, "%Y-%m-%d").date()
+    except ValueError:
+        return set()
+    previous_raw = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+    rows = archive_data.get(previous_raw, [])
+    if not isinstance(rows, list):
+        return set()
+    ids: set[str] = set()
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        tweet_id = str(row.get("tweet_id", "")).strip()
+        if tweet_id:
+            ids.add(tweet_id)
+    return ids
+
+
 def render_html(
     posts: list[TweetItem] | list[dict[str, Any]],
     banner_message: str,
@@ -941,7 +969,8 @@ def main() -> None:
     grok_ref_candidates = int(os.getenv("GROK_TOP_REF_CANDIDATES", "20"))
     use_x_search_fallback = os.getenv("GROK_REF_X_SEARCH_FALLBACK", "true").lower() == "true"
     use_grok_rank_on_x_candidates = os.getenv("USE_GROK_RANK_ON_X_CANDIDATES", "true").lower() == "true"
-    exclude_today_from_dedup = os.getenv("EXCLUDE_TODAY_FROM_DEDUP", "true").lower() == "true"
+    selection_pool = int(os.getenv("SELECTION_POOL_SIZE", "20"))
+    exclude_previous_day_featured = os.getenv("EXCLUDE_PREVIOUS_DAY_FEATURED", "true").lower() == "true"
     freeze_daily_snapshot = os.getenv("FREEZE_DAILY_SNAPSHOT", "true").lower() == "true"
     force_refresh_today = os.getenv("FORCE_REFRESH_TODAY", "false").lower() == "true"
 
@@ -973,7 +1002,7 @@ def main() -> None:
             refs, grok_raw_content = fetch_top_refs_from_grok(
                 api_key=api_key,
                 model=model,
-                target_count=max(target_posts, grok_ref_candidates),
+                target_count=max(target_posts, selection_pool, grok_ref_candidates),
             )
             rank_map = {str(row["tweet_id"]): int(row["rank"]) for row in refs}
             raw_posts = fetch_posts_by_ids_from_x_api(
@@ -994,7 +1023,7 @@ def main() -> None:
                         api_key=api_key,
                         model=model,
                         candidates=x_candidates,
-                        target_count=target_posts,
+                        target_count=max(target_posts, selection_pool),
                     )
                     if ordered_ids:
                         rank_map2 = {tweet_id: idx + 1 for idx, tweet_id in enumerate(ordered_ids)}
@@ -1051,9 +1080,10 @@ def main() -> None:
     raw_posts.sort(key=ranking_key)
 
     previous_posts = load_previous_posts()
-    blocked_ids = recent_tweet_ids(previous_posts, days=3, exclude_today=exclude_today_from_dedup)
-
-    filtered = [row for row in raw_posts if row["tweet_id"] not in blocked_ids]
+    pool_size = max(target_posts, selection_pool)
+    top_pool = raw_posts[:pool_size]
+    previous_day_ids = previous_day_featured_ids(archive_data, today_raw) if exclude_previous_day_featured else set()
+    filtered = [row for row in top_pool if row["tweet_id"] not in previous_day_ids]
     selected_raw = filtered[:target_posts]
 
     if len(selected_raw) < target_posts:
@@ -1063,7 +1093,7 @@ def main() -> None:
                     bearer_token=x_bearer_token,
                     candidate_count=max(candidate_count, target_posts * 4),
                 )
-                extra_rows = [x for x in extra_rows if x["tweet_id"] not in blocked_ids and x not in selected_raw]
+                extra_rows = [x for x in extra_rows if x not in raw_posts]
                 raw_posts.extend(extra_rows)
             except Exception as exc:  # noqa: BLE001
                 status["last_error"] = f"x_fallback_error: {exc}"
@@ -1075,28 +1105,28 @@ def main() -> None:
                 extra_rows = fetch_posts_from_grok(
                     api_key=api_key,
                     model=model,
-                    candidate_count=max(target_posts, 10),
-                    range_label="rank 11-20",
+                    candidate_count=max(pool_size, 20),
+                    range_label="top 21-40",
                 )
-                extra_rows = [x for x in extra_rows if x["tweet_id"] not in blocked_ids and x not in selected_raw]
+                extra_rows = [x for x in extra_rows if x not in raw_posts]
                 raw_posts.extend(extra_rows)
             except Exception as exc:  # noqa: BLE001
                 status["last_error"] = f"extra_fetch_error: {exc}"
 
         raw_posts.sort(key=ranking_key)
-        needed = target_posts - len(selected_raw)
-        fallback_pool = [row for row in raw_posts if row not in selected_raw and row["tweet_id"] not in blocked_ids]
-        selected_raw.extend(fallback_pool[:needed])
+        top_pool = raw_posts[:pool_size]
+        filtered = [row for row in top_pool if row["tweet_id"] not in previous_day_ids]
+        selected_raw = filtered[:target_posts]
 
-    # Always try to fill up to target_posts. If strict 3-day de-dup leaves too few posts,
-    # relax de-dup as a last resort so the page does not show fewer cards.
+    # Keep the intended rule strict (top pool then previous-day exclusion), but
+    # still avoid underfilled UI when candidate quality is temporarily low.
     if len(selected_raw) < target_posts:
         needed = target_posts - len(selected_raw)
         relaxed_pool = [row for row in raw_posts if row not in selected_raw]
         selected_raw.extend(relaxed_pool[:needed])
         if len(selected_raw) < target_posts:
             status["last_error"] = (
-                f"{status.get('last_error', '')} | insufficient_posts_after_relaxed_dedup".strip(" |")
+                f"{status.get('last_error', '')} | insufficient_posts_after_relaxed_fallback".strip(" |")
             )
 
     text_ko_map: dict[str, str] = {}
