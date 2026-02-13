@@ -255,6 +255,7 @@ def normalize_post(row: dict[str, Any]) -> dict[str, Any] | None:
         "images": [x for x in images if x],
         "rank": rank,
         "view_count": to_number(row.get("view_count") or row.get("views") or row.get("impressions")),
+        "bookmark_count": to_number(row.get("bookmark_count") or row.get("bookmarks") or row.get("saves")) or 0,
         "like_count": to_number(row.get("like_count") or row.get("likes") or row.get("favorite_count")) or 0,
         "repost_count": to_number(row.get("repost_count") or row.get("retweet_count") or row.get("reposts")) or 0,
         "reply_count": to_number(row.get("reply_count") or row.get("replies")) or 0,
@@ -439,6 +440,8 @@ def fetch_posts_by_ids_from_x_api(
         repost_count = metrics.get("retweet_count", 0) if isinstance(metrics, dict) else 0
         reply_count = metrics.get("reply_count", 0) if isinstance(metrics, dict) else 0
         quote_count = metrics.get("quote_count", 0) if isinstance(metrics, dict) else 0
+        view_count = metrics.get("impression_count", 0) if isinstance(metrics, dict) else 0
+        bookmark_count = metrics.get("bookmark_count", 0) if isinstance(metrics, dict) else 0
 
         images: list[str] = []
         attachments = row.get("attachments", {})
@@ -461,7 +464,8 @@ def fetch_posts_by_ids_from_x_api(
                 "text_en": text_en,
                 "images": images,
                 "rank": (rank_map or {}).get(tweet_id),
-                "view_count": None,
+                "view_count": view_count,
+                "bookmark_count": bookmark_count,
                 "like_count": like_count,
                 "repost_count": repost_count + quote_count,
                 "reply_count": reply_count,
@@ -490,9 +494,12 @@ def rank_x_candidates_with_grok(
                 "tweet_id": row.get("tweet_id"),
                 "author": row.get("author"),
                 "text_en": str(row.get("text_en", ""))[:220],
+                "priority_score": round(compute_priority_score(row), 3),
+                "bookmark_count": row.get("bookmark_count", 0),
                 "like_count": row.get("like_count", 0),
                 "repost_count": row.get("repost_count", 0),
                 "reply_count": row.get("reply_count", 0),
+                "view_count": row.get("view_count", 0),
                 "url": row.get("url"),
             }
         )
@@ -500,6 +507,7 @@ def rank_x_candidates_with_grok(
     system_prompt = "You are a ranking assistant. Return valid JSON only."
     user_prompt = (
         f"From ONLY the provided candidates, pick top {target_count} hottest posts for Polymarket alpha audience. "
+        "Prioritize bookmark_count first, then repost_count, then view_count, then like_count/reply_count. "
         "Do not invent new IDs. Use only candidate tweet_id values. "
         "Return JSON object: {\"ordered_tweet_ids\": [\"id1\", ...]}. "
         f"Candidates: {json.dumps(compact, ensure_ascii=False)}"
@@ -541,7 +549,7 @@ def fetch_posts_from_grok(
         f"Find {range_label} X posts from the last {lookback_hours} hours about Polymarket alpha/strategy/whale/copy-trade. "
         "Return a JSON object with key 'posts'. "
         "Each post item must include only these required keys: tweet_id, text_en. "
-        "Optional keys: author, url, images, rank, view_count, like_count, repost_count, reply_count. "
+        "Optional keys: author, url, images, rank, view_count, bookmark_count, like_count, repost_count, reply_count. "
         "IMPORTANT: url must be real x.com or twitter.com status links only (no example.com, no placeholders). "
         "If you are unsure about factual links, return an empty posts array. "
         "If optional fields are unavailable, set them to null or empty list. "
@@ -585,6 +593,7 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
 
     min_likes = int(os.getenv("X_MIN_LIKES", "5"))
     min_score = int(os.getenv("X_MIN_SCORE", "12"))
+    min_bookmarks = int(os.getenv("X_MIN_BOOKMARKS", "0"))
 
     response = requests.get(url, headers=headers, params=params, timeout=int(os.getenv("X_TIMEOUT", "30")))
     response.raise_for_status()
@@ -637,8 +646,17 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
         repost_count = metrics.get("retweet_count", 0) if isinstance(metrics, dict) else 0
         reply_count = metrics.get("reply_count", 0) if isinstance(metrics, dict) else 0
         quote_count = metrics.get("quote_count", 0) if isinstance(metrics, dict) else 0
-        score = int(like_count) + (2 * int(repost_count)) + int(reply_count) + int(quote_count)
-        if int(like_count) < min_likes or score < min_score:
+        view_count = metrics.get("impression_count", 0) if isinstance(metrics, dict) else 0
+        bookmark_count = metrics.get("bookmark_count", 0) if isinstance(metrics, dict) else 0
+        tmp_row = {
+            "bookmark_count": bookmark_count,
+            "repost_count": int(repost_count) + int(quote_count),
+            "view_count": view_count,
+            "like_count": like_count,
+            "reply_count": reply_count,
+        }
+        score = compute_priority_score(tmp_row)
+        if int(like_count) < min_likes or int(bookmark_count) < min_bookmarks or score < float(min_score):
             continue
 
         images: list[str] = []
@@ -662,7 +680,8 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
                 "text_en": text_en,
                 "images": images,
                 "rank": None,
-                "view_count": None,
+                "view_count": view_count,
+                "bookmark_count": bookmark_count,
                 "like_count": like_count,
                 "repost_count": repost_count + quote_count,
                 "reply_count": reply_count,
@@ -670,9 +689,7 @@ def fetch_posts_from_x_api(bearer_token: str, candidate_count: int = 20) -> list
         )
 
     posts.sort(
-        key=lambda x: (
-            -(float(x.get("like_count") or 0) + 2 * float(x.get("repost_count") or 0) + float(x.get("reply_count") or 0))
-        )
+        key=lambda x: (-compute_priority_score(x))
     )
     return normalize_posts(posts)
 
@@ -806,20 +823,33 @@ def fallback_korean_text(text_en: str) -> str:
     return f"[자동 번역] {converted}"
 
 
-def ranking_key(row: dict[str, Any]) -> tuple[int, float]:
+def compute_priority_score(row: dict[str, Any]) -> float:
+    bookmark_weight = float(os.getenv("WEIGHT_BOOKMARK", "7.0"))
+    repost_weight = float(os.getenv("WEIGHT_REPOST", "4.0"))
+    view_weight = float(os.getenv("WEIGHT_VIEW", "0.003"))
+    like_weight = float(os.getenv("WEIGHT_LIKE", "1.0"))
+    reply_weight = float(os.getenv("WEIGHT_REPLY", "0.7"))
+
+    bookmark_count = float(row.get("bookmark_count") or 0)
+    repost_count = float(row.get("repost_count") or 0)
+    view_count = float(row.get("view_count") or 0)
+    like_count = float(row.get("like_count") or 0)
+    reply_count = float(row.get("reply_count") or 0)
+    return (
+        (bookmark_count * bookmark_weight)
+        + (repost_count * repost_weight)
+        + (view_count * view_weight)
+        + (like_count * like_weight)
+        + (reply_count * reply_weight)
+    )
+
+
+def ranking_key(row: dict[str, Any]) -> tuple[int, float, float]:
     rank = row.get("rank")
+    priority_score = compute_priority_score(row)
     if isinstance(rank, int):
-        return (0, float(rank))
-
-    view_count = row.get("view_count")
-    if isinstance(view_count, (int, float)):
-        return (1, -float(view_count))
-
-    like_count = row.get("like_count") if isinstance(row.get("like_count"), (int, float)) else 0
-    repost_count = row.get("repost_count") if isinstance(row.get("repost_count"), (int, float)) else 0
-    reply_count = row.get("reply_count") if isinstance(row.get("reply_count"), (int, float)) else 0
-    score = float(like_count) + float(repost_count) + float(reply_count)
-    return (2, -score)
+        return (0, -priority_score, float(rank))
+    return (1, -priority_score, 9999.0)
 
 
 def build_tweet_item(row: dict[str, Any], text_ko_map: dict[str, str]) -> TweetItem | None:
@@ -848,6 +878,7 @@ def build_tweet_item(row: dict[str, Any], text_ko_map: dict[str, str]) -> TweetI
         rank_meta={
             "rank": row.get("rank"),
             "view_count": row.get("view_count"),
+            "bookmark_count": row.get("bookmark_count"),
             "like_count": row.get("like_count"),
             "repost_count": row.get("repost_count"),
             "reply_count": row.get("reply_count"),
@@ -869,6 +900,7 @@ def get_mock_posts(count: int = 20) -> list[dict[str, Any]]:
                 "images": [],
                 "rank": i,
                 "view_count": 10000 - i * 100,
+                "bookmark_count": 180 - i,
                 "like_count": 1000 - i * 10,
                 "repost_count": 250 - i,
                 "reply_count": 120 - i,

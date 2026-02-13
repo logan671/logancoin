@@ -64,6 +64,12 @@ jobs:
           X_SORT_ORDER=relevancy
           X_MIN_LIKES=5
           X_MIN_SCORE=12
+          X_MIN_BOOKMARKS=0
+          WEIGHT_BOOKMARK=7.0
+          WEIGHT_REPOST=4.0
+          WEIGHT_VIEW=0.003
+          WEIGHT_LIKE=1.0
+          WEIGHT_REPLY=0.7
           X_TIMEOUT=30
           FREEZE_DAILY_SNAPSHOT=true
           FORCE_REFRESH_TODAY=false
