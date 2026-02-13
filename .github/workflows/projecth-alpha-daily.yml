@@ -55,7 +55,7 @@ jobs:
           ENABLE_GROK_TRANSLATION=true
           USE_GROK_TOP_REFS=true
           GROK_TOP_REF_CANDIDATES=20
-          GROK_REF_X_SEARCH_FALLBACK=false
+          GROK_REF_X_SEARCH_FALLBACK=true
           USE_GROK_RANK_ON_X_CANDIDATES=true
           X_SEARCH_QUERY=(polymarket (alpha OR whale OR strategy OR "copy trade")) -is:retweet -is:reply lang:en
           X_SORT_ORDER=relevancy

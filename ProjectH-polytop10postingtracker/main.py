@@ -1064,6 +1064,17 @@ def main() -> None:
         fallback_pool = [row for row in raw_posts if row not in selected_raw and row["tweet_id"] not in blocked_ids]
         selected_raw.extend(fallback_pool[:needed])
 
+    # Always try to fill up to target_posts. If strict 3-day de-dup leaves too few posts,
+    # relax de-dup as a last resort so the page does not show fewer cards.
+    if len(selected_raw) < target_posts:
+        needed = target_posts - len(selected_raw)
+        relaxed_pool = [row for row in raw_posts if row not in selected_raw]
+        selected_raw.extend(relaxed_pool[:needed])
+        if len(selected_raw) < target_posts:
+            status["last_error"] = (
+                f"{status.get('last_error', '')} | insufficient_posts_after_relaxed_dedup".strip(" |")
+            )
+
     text_ko_map: dict[str, str] = {}
     if api_key and selected_raw and not status.get("is_mock_data") and enable_translation:
         try:
