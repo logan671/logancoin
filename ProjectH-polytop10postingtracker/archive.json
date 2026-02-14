@@ -368,5 +368,202 @@
       },
       "fetched_at": "2026-02-13T11:28:31.665098+09:00"
     }
+  ],
+  "2026-02-14": [
+    {
+      "tweet_id": "2022366047907823782",
+      "author": "nursexxl",
+      "url": "https://x.com/nursexxl/status/2022366047907823782",
+      "text_en": "This bot found a real edge in the 5-minute markets on Polymarket\n\nIn one day after the markets appeared, he earned $80k (avg yearly salary)\n\nHe didn’t adapt, he started earning from the first minutes with 5% profit\n\nNo big team, a Canadian student coded this bot alone:\n\nStrategy is simple as always: buying both Up and Down sides with a cost lower than 100c, the difference = clean profit\n\nThe added fees on the market didn’t kill him, it made bot better\n\nIn a week on 15m markets he earned $85k, now he’s making $80k a day, making him 7x more efficient\n\nProfile this bot: https://t.co/c2QBSkswMA\n\nIf you don’t have your own bot, copytrading seems like an attractive option\n\nCopytrade: https://t.co/4jesYHtBzg",
+      "text_ko": "이 봇이 Polymarket의 5분 시장에서 진짜 이득을 찾았어요\n\n시장이 생긴 지 하루 만에 8만 달러(평균 연봉)를 벌었어요\n\n적응하지 않고, 처음 몇 분부터 5% 수익으로 벌기 시작했어요\n\n큰 팀도 없고, 캐나다 학생이 이 봇을 혼자 코딩했어요:\n\n전략은 항상처럼 간단해요: Up과 Down 양쪽을 100센트보다 낮은 비용으로 사는 거예요, 차이 = 순수익\n\n시장에서 추가된 수수료가 그를 죽이지 않았어요, 오히려 봇을 더 좋게 만들었어요\n\n15분 시장에서 일주일 만에 8만 5천 달러를 벌었고, 지금은 하루에 8만 달러를 벌고 있어서 7배 더 효율적이에요\n\n이 봇의 프로필: https://t.co/c2QBSkswMA\n\n자신만의 봇이 없다면, 카피트레이딩이 매력적인 옵션처럼 보입니다\n\n카피트레이드: https://t.co/4jesYHtBzg",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2022365990445813762/img/BmY7H_ZzPN_D3aZh.jpg",
+        "https://pbs.twimg.com/media/HBDjNArakAUUirA.jpg"
+      ],
+      "rank_meta": {
+        "rank": 1,
+        "view_count": 29589.0,
+        "bookmark_count": 401.0,
+        "like_count": 292.0,
+        "repost_count": 7.0,
+        "reply_count": 27.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775529+09:00"
+    },
+    {
+      "tweet_id": "2022299540032815201",
+      "author": "0xPhantomDefi",
+      "url": "https://x.com/0xPhantomDefi/status/2022299540032815201",
+      "text_en": "🚨 This Polymarket bot printed $373,000… with $4 entries.\n\nNo narratives. No predictions. No “insider alpha.”\n\nJust software.\n\nStats:\n• 862 trades per hour\n• ~43 trades per minute\n• Only 15-min crypto markets\n\nThe strategy?\n\n→ Buys BOTH “Up” and “Down”\n→ Median size: $4\n→ Scales in with micro-entries\n→ Builds positions in series\nCopytrade: https://t.co/xwVKYk3j6y\n\nHe’s not betting direction. He’s farming structure.\n\nWhen spreads open, when liquidity thins, when pricing drifts -\nthe bot clips tiny edges over and over again.\n\nMost traders look for 10x moves. This guy looks for 4 cents. Then repeats it 40 times per minute.\n\nProfile:\nhttps://t.co/vljJBN83WU",
+      "text_ko": "🚨 이 Polymarket 봇이 37만 3천 달러를 찍어냈어요... 4달러씩 투자해서요.\n\n내레이션이 없어요. 예측도 없어요. '내부 정보'도 없어요.\n\n그냥 소프트웨어예요.\n\n통계:\n• 시간당 862번의 거래\n• 분당 약 43번의 거래\n• 오직 15분 암호화폐 시장\n\n전략은?\n\n→ 'Up'과 'Down' 둘 다 사요\n→ 평균 크기: 4달러\n→ 마이크로 엔트리로 스케일 인\n→ 시리즈로 포지션을 구축\n카피트레이드: https://t.co/xwVKYk3j6y\n\n그는 방향을 베팅하지 않아요. 구조를 농사짓고 있어요.\n\n스프레드가 열릴 때, 유동성이 줄어들 때, 가격이 변할 때 -\n봇은 계속해서 작은 이득을 챙겨요.\n\n대부분의 트레이더는 10배 움직임을 찾지만, 이 사람은 4센트를 찾고 분당 40번 반복해요.\n\n프로필:\nhttps://t.co/vljJBN83WU",
+      "images": [
+        "https://pbs.twimg.com/media/HBCmiO0XkAEynri.jpg",
+        "https://pbs.twimg.com/amplify_video_thumb/2022299477848014848/img/SOyl_zchfds7IXgS.jpg"
+      ],
+      "rank_meta": {
+        "rank": 2,
+        "view_count": 30085.0,
+        "bookmark_count": 367.0,
+        "like_count": 329.0,
+        "repost_count": 18.0,
+        "reply_count": 12.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775553+09:00"
+    },
+    {
+      "tweet_id": "2021916702183669921",
+      "author": "antpalkin",
+      "url": "https://x.com/antpalkin/status/2021916702183669921",
+      "text_en": "Polymarket drops 5-minute crypto markets - bots already farming 10k/day.\n\nUser bbbbott has already made 26 successful trades since launch.\n\nHis profile: https://t.co/CVH0Yv6Yph\n\nHis strategy dead simple: enter positions at 33–37 cents and hold until resolution.\n\nInsane win rate - in the first 24 hours, he won 92% of his trades.",
+      "text_ko": "Polymarket이 5분 암호화폐 시장을 출시 - 봇들이 이미 하루에 1만 달러씩 농사짓고 있어요.\n\n유저 bbbbott는 출시 이후로 이미 26번의 성공적인 거래를 했어요.\n\n그의 프로필: https://t.co/CVH0Yv6Yph\n\n그의 전략은 정말 간단해요: 33~37센트에 포지션을 진입하고 결론까지 보유해요.\n\n미친 승률 - 첫 24시간 동안 그의 거래의 92%를 이겼어요.",
+      "images": [
+        "https://pbs.twimg.com/media/HA9ITpqW8AAsiPh.jpg",
+        "https://pbs.twimg.com/amplify_video_thumb/2021914275493949441/img/M7mHpta2weZ-g9TM.jpg"
+      ],
+      "rank_meta": {
+        "rank": 4,
+        "view_count": 3829.0,
+        "bookmark_count": 53.0,
+        "like_count": 56.0,
+        "repost_count": 6.0,
+        "reply_count": 12.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775562+09:00"
+    },
+    {
+      "tweet_id": "2022028834649124893",
+      "author": "dextrabot",
+      "url": "https://x.com/dextrabot/status/2022028834649124893",
+      "text_en": "Bots have dominated for too long on Polymarket.\nWe’re committed to making it accessible to all users.\nLet the better strategy win. https://t.co/zLVCFWrTzD",
+      "text_ko": "폴리마켓에서 봇이 너무 오랫동안 지배해왔습니다.\n모든 사용자가 접근할 수 있도록 노력하고 있습니다.\n더 나은 전략이 이기게 하세요. https://t.co/zLVCFWrTzD",
+      "images": [
+        "https://pbs.twimg.com/media/HA-vEN6bsAAGb99.png"
+      ],
+      "rank_meta": {
+        "rank": 5,
+        "view_count": 5276.0,
+        "bookmark_count": 51.0,
+        "like_count": 55.0,
+        "repost_count": 2.0,
+        "reply_count": 7.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775569+09:00"
+    },
+    {
+      "tweet_id": "2021954499603046584",
+      "author": "0x_Discover",
+      "url": "https://x.com/0x_Discover/status/2021954499603046584",
+      "text_en": "A Polymarket user just turned $1,000 into $150K.\n\n157x.\n\nAnd it was essentially risk-free.\n\nHere’s what happened:\n\nA whale aggressively bonded the “SOLV Energy IPO Closing Market Cap” market.\n\nWhen the trading day closed, most public platforms were showing a valuation around $6B.\nThat made the “Over $5.4B” market look like a guaranteed YES.\nThe whale bought 286,000 YES shares at $0.98, treating it like a near-certain payout.\n\nBut here’s where it gets interesting:\n\nThe publicly visible valuation wasn’t accurate.\n\nThe only reliable closing market cap was on Bloomberg Terminal —\nand it showed $3.4B, not $6B.\n\nUser:https://t.co/fV0ERTz5Oi\n\nCopytrade -https://t.co/GNQBeFgIre\n\nA trader with Bloomberg access spotted the discrepancy and bought\n 157,000 NO shares at $0.006.\nThe market corrected fast.\n\nNO is now trading around $0.97 and is set to resolve as the winning side.\nCurrent result:\n\n• The Bloomberg trader: + $150K\n• The whale: – $270K\n\nOne of the cleanest information asymmetry flips seen on Polymarket.\n\nSpeed matters.\nData matters.\nAccess matters.",
+      "text_ko": "폴리마켓 사용자가 $1,000을 $150K로 바꿨습니다.\n\n157배.\n\n그리고 사실상 무위험.\n\n이런 일이 있었습니다:\n\n고래가 'SOLV Energy IPO 마감 시장 가치' 시장을 공격적으로 묶었습니다.\n\n거래일이 끝났을 때, 대부분의 공개 플랫폼은 약 $6B의 가치를 보여주고 있었습니다.\n이로 인해 '$5.4B 초과' 시장은 확실한 YES로 보였습니다.\n고래는 $0.98에 286,000개의 YES 주식을 사들였으며, 거의 확실한 지급으로 간주했습니다.\n\n하지만 여기서 흥미로운 점:\n\n공개적으로 보이는 가치는 정확하지 않았습니다.\n\n유일하게 신뢰할 수 있는 마감 시장 가치는 블룸버그 터미널에 있었습니다 —\n그리고 $3.4B, $6B가 아닌 것을 보여주었습니다.\n\n사용자:https://t.co/fV0ERTz5Oi\n\nCopytrade -https://t.co/GNQBeFgIre\n\n블룸버그 접근 권한이 있는 트레이더가 이 discrepancies를 발견하고 $0.006에 157,000개의 NO 주식을 샀습니다.\n시장은 빠르게 정정되었습니다.\n\nNO는 현재 약 $0.97에 거래되고 있으며 승리 측으로 해결될 예정입니다.\n현재 결과:\n\n• 블룸버그 트레이더: + $150K\n• 고래: – $270K\n\n폴리마켓에서 본 가장 깨끗한 정보 비대칭 전환 중 하나입니다.\n\n속도가 중요합니다.\n데이터가 중요합니다.\n접근이 중요합니다.",
+      "images": [
+        "https://pbs.twimg.com/media/HA9s3RcbsAY69Qj.jpg",
+        "https://pbs.twimg.com/media/HA9s4y1XQAAqPJz.jpg"
+      ],
+      "rank_meta": {
+        "rank": 6,
+        "view_count": 6507.0,
+        "bookmark_count": 49.0,
+        "like_count": 57.0,
+        "repost_count": 3.0,
+        "reply_count": 5.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775575+09:00"
+    },
+    {
+      "tweet_id": "2022026889511285239",
+      "author": "alphabatcher",
+      "url": "https://x.com/alphabatcher/status/2022026889511285239",
+      "text_en": "Bot catch 270x and turned $1K in $273K on Polymarket in under a month\n\nScript made by AI exploits 30-second odds lag vs. live price\n\nNot arbitrage, pure directional conviction at mispriced entries\n\n$69M volume, wallet younger than your last haircut:\n\nExpected typical spread farming. Found surgical momentum extraction instead\n\nBTC spikes on Binance, Polymarket odds frozen → buys the obvious side cheap, exits at $1\n\n> 15-min ETH dump: NO shares loaded 1.5¢ → 15¢ → 785% return\n> Average $7K position size, dozens of entries daily\n> Losses exist ($54 max) but wins routinely hit five figures each\n\nbot profile: https://t.co/ztlYGkO0R5",
+      "text_ko": "봇이 한 달도 안 되어 폴리마켓에서 $1K를 $273K로 바꾸며 270배를 달성했습니다.\n\nAI가 만든 스크립트가 30초의 오즈 지연과 실시간 가격 차이를 이용했습니다.\n\n아비트리지는 아니고, 잘못된 가격에 대한 순수한 방향성 확신입니다.\n\n$69M 거래량, 지갑은 당신의 마지막 헤어컷보다 더 젊습니다:\n\n일반적인 스프레드 농사를 기대했지만, 대신 정밀한 모멘텀 추출을 발견했습니다.\n\n바이낸스에서 BTC가 급등하면, 폴리마켓 오즈는 얼어붙음 → 저렴하게 명백한 쪽을 사서 $1에 나갑니다.\n\n> 15분 ETH 폭락: NO 주식 1.5¢ → 15¢ → 785% 수익\n> 평균 $7K 포지션 크기, 매일 수십 개의 진입\n> 손실도 있음 ($54 최대) 하지만 승리는 routinely 다섯 자리씩\n\n봇 프로필: https://t.co/ztlYGkO0R5",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2022026823996190720/img/3YEMfL4-gP8iLs2H.jpg",
+        "https://pbs.twimg.com/media/HA-uvJobsAM-X6t.jpg"
+      ],
+      "rank_meta": {
+        "rank": 7,
+        "view_count": 3226.0,
+        "bookmark_count": 43.0,
+        "like_count": 61.0,
+        "repost_count": 6.0,
+        "reply_count": 17.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775581+09:00"
+    },
+    {
+      "tweet_id": "2021935003572036075",
+      "author": "serpentxbt",
+      "url": "https://x.com/serpentxbt/status/2021935003572036075",
+      "text_en": "This might be one of the most advanced bots I’ve seen on Polymarket so far\n\nAnnica pulled in $500K in profits within six months just by betting on Elon Musk’s tweets\n\nHis biggest profit of $193,688 was made a week ago, and it seems like I’ve figured out his strategy\n\nHow he acts:\n\n• Buying shares of various outcomes at 10-39¢\n• Calculating potential profits for each one\n• Selling high those that are likely to resolve soon\n\nHe has made only 1,500 bets, with an $80,000 profit so far this week - truly impressive since he only trades in this category",
+      "text_ko": "지금까지 Polymarket에서 본 것 중 가장 진보된 봇 중 하나일 것입니다\n\nAnnica는 엘론 머스크의 트윗에 베팅해서 6개월 만에 50만 달러의 수익을 올렸습니다\n\n그의 최대 수익인 193,688달러는 일주일 전에 벌었고, 그의 전략을 알아낸 것 같습니다\n\n그의 행동 방식:\n\n• 10-39센트에 다양한 결과의 주식을 사들임\n• 각각의 잠재 수익을 계산함\n• 곧 해결될 가능성이 높은 것을 고가에 판매함\n\n그는 지금까지 1,500번의 베팅을 했고, 이번 주에 80,000달러의 수익을 올렸습니다 - 정말 인상적입니다, 특히 그가 이 카테고리에서만 거래한다는 점에서",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2021934843840626688/img/YbDMCzzYdavDNTn4.jpg"
+      ],
+      "rank_meta": {
+        "rank": 8,
+        "view_count": 2755.0,
+        "bookmark_count": 41.0,
+        "like_count": 74.0,
+        "repost_count": 1.0,
+        "reply_count": 16.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775587+09:00"
+    },
+    {
+      "tweet_id": "2022132550379118804",
+      "author": "boneGPT",
+      "url": "https://x.com/boneGPT/status/2022132550379118804",
+      "text_en": "amazing shit is happening in the bitcoin 5m on polymarket\n\nyou can see the whale manipulating it and ride his wave if you are smart https://t.co/zJtyQjIPtU",
+      "text_ko": "Polymarket의 비트코인 5분 차트에서 엄청난 일이 벌어지고 있습니다\n\n당신이 똑똑하다면 고래가 조작하는 것을 보고 그의 파도에 올라탈 수 있습니다 https://t.co/zJtyQjIPtU",
+      "images": [
+        "https://pbs.twimg.com/media/HBAOx7aW8AANFun.jpg"
+      ],
+      "rank_meta": {
+        "rank": 9,
+        "view_count": 5466.0,
+        "bookmark_count": 30.0,
+        "like_count": 106.0,
+        "repost_count": 5.0,
+        "reply_count": 13.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775596+09:00"
+    },
+    {
+      "tweet_id": "2022415374994805154",
+      "author": "Chilearmy123",
+      "url": "https://x.com/Chilearmy123/status/2022415374994805154",
+      "text_en": "After losing thousands of dollars, I finally found a profitable Polymarket trading strategy (crazy I know) https://t.co/fkIS4hXono",
+      "text_ko": "수천 달러를 잃은 후에, 마침내 수익성 있는 Polymarket 거래 전략을 찾았습니다 (미쳤다는 건 알지만) https://t.co/fkIS4hXono",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2022415029983940614/img/Xo3_UsC4wcdhSduh.jpg"
+      ],
+      "rank_meta": {
+        "rank": 10,
+        "view_count": 6546.0,
+        "bookmark_count": 24.0,
+        "like_count": 127.0,
+        "repost_count": 3.0,
+        "reply_count": 34.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775602+09:00"
+    },
+    {
+      "tweet_id": "2022040164080537609",
+      "author": "mahera777",
+      "url": "https://x.com/mahera777/status/2022040164080537609",
+      "text_en": "This trader makes money on Polymarket with a risk-free strategy \n\nHe buys NO forecast every day from February 9th for a US strike on Iran\n\nHe bets $100-350k at 98-99c per bet and takes profit after the event\n\nHis profile: https://t.co/jy7yh9Ggn7\n\nTrade and copy: https://t.co/xvBRWVZFsQ",
+      "text_ko": "이 트레이더는 무위험 전략으로 Polymarket에서 돈을 번다\n\n그는 2월 9일부터 매일 이란에 대한 미국의 공격에 대한 NO 예측을 사들인다\n\n그는 $100-350k를 베팅당 98-99c에 베팅하고 이벤트 후에 수익을 챙긴다\n\n그의 프로필: https://t.co/jy7yh9Ggn7\n\n거래 및 복사: https://t.co/xvBRWVZFsQ",
+      "images": [
+        "https://pbs.twimg.com/media/HA-6z4Aa8AARtU2.jpg"
+      ],
+      "rank_meta": {
+        "rank": 11,
+        "view_count": 3128.0,
+        "bookmark_count": 27.0,
+        "like_count": 83.0,
+        "repost_count": 0,
+        "reply_count": 18.0
+      },
+      "fetched_at": "2026-02-14T14:02:24.775607+09:00"
+    }
   ]
 }
