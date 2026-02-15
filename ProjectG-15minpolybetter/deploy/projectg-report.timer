@@ -1,0 +1,10 @@
+[Unit]
+Description=ProjectG Email Report Timer
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=1h
+Unit=projectg-report.service
+
+[Install]
+WantedBy=timers.target

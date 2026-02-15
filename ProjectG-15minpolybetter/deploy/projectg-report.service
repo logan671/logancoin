@@ -1,0 +1,9 @@
+[Unit]
+Description=ProjectG Email Report
+After=network.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/app/ProjectG-15minpolybetter
+EnvironmentFile=/etc/projectg-report.env
+ExecStart=/home/ubuntu/app/ProjectG-15minpolybetter/.venv/bin/python -m src.report_email
