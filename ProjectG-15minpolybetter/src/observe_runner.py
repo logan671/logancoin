@@ -11,7 +11,14 @@ from .observation_store import Observation, init_db, log_observation
 from .odds_feed import MarketBook, passes_liquidity_filter
 from .polymarket_orchestrator import run_market_subscription
 from .price_feed import SymbolPriceBuffer
-from .signal_engine import SignalInput, calculate_bet_size, determine_zone, should_trade
+from .result_updater import update_resolved_results
+from .signal_engine import (
+    SignalDecision,
+    SignalInput,
+    calculate_bet_size,
+    determine_zone,
+    should_trade,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -33,12 +40,14 @@ async def run_btc_observer(stop_event: asyncio.Event | None = None) -> None:
     logger.info("BTC observer started (db=%s)", settings.DB_PATH)
     last_logged_ts: datetime | None = None
     price_buffer = SymbolPriceBuffer(max_window_seconds=300)
-    current_market = {"yes": None, "no": None, "end": None}
+    current_market = {"yes": None, "no": None, "end": None, "slug": None, "condition": None}
 
     async def on_market(market) -> None:
         current_market["yes"] = market.yes_token_id
         current_market["no"] = market.no_token_id
         current_market["end"] = market.end_date_iso
+        current_market["slug"] = market.slug
+        current_market["condition"] = market.condition_id
         logger.info("market set slug=%s", market.slug)
 
     def _side_for_token(token_id: str | None) -> str | None:
@@ -91,21 +100,30 @@ async def run_btc_observer(stop_event: asyncio.Event | None = None) -> None:
                 now=now,
             )
 
-        decision = should_trade(
-            SignalInput(
-                odds=odds,
-                side=side or "up",
-                momentum_5m=momentum,
-                direction=direction,
-                is_data_fresh=price_buffer.is_fresh(settings.DATA_FRESHNESS_SECONDS, now=now),
-                liquidity_ok=liquidity_ok,
-                remaining_seconds=_remaining_seconds(now),
-                has_open_position=False,
-                buyin_balance=settings.BUYIN_SIZE,
-                min_bet_size=1.0,
-                circuit_breaker_active=False,
+        if side is None:
+            decision = SignalDecision(False, zone, 0.0, "unknown-side")
+        else:
+            decision = should_trade(
+                SignalInput(
+                    odds=odds,
+                    side=side,
+                    momentum_5m=momentum,
+                    direction=direction,
+                    is_data_fresh=price_buffer.is_fresh(settings.DATA_FRESHNESS_SECONDS, now=now),
+                    liquidity_ok=liquidity_ok,
+                    remaining_seconds=_remaining_seconds(now),
+                    has_open_position=False,
+                    buyin_balance=settings.BUYIN_SIZE,
+                    min_bet_size=1.0,
+                    circuit_breaker_active=False,
+                )
             )
-        )
+        filled = False
+        fill_price = None
+        if decision.should_trade and book.best_ask and book.best_ask.size >= (bet_size or 0):
+            filled = True
+            fill_price = book.best_ask.price
+
         obs = Observation(
             ts=now,
             coin="BTC",
@@ -114,15 +132,26 @@ async def run_btc_observer(stop_event: asyncio.Event | None = None) -> None:
             momentum_5m=momentum,
             would_trade=decision.should_trade,
             actual_result=None,
+            pnl=None,
+            filled=filled,
+            fill_price=fill_price,
+            market_slug=current_market["slug"],
+            condition_id=current_market["condition"],
+            token_id=book.token_id,
+            side=side,
+            entry_odds=fill_price or odds,
+            bet_size=decision.bet_size if decision.should_trade else None,
+            reason=decision.reason,
         )
         log_observation(settings.DB_PATH, obs)
         last_logged_ts = now
         logger.info(
-            "BTC odds=%.4f price=%s 5m=%s trade=%s reason=%s",
+            "BTC odds=%.4f price=%s 5m=%s trade=%s filled=%s reason=%s",
             odds,
             f"{latest_price.price:.2f}" if latest_price else "na",
             f"{momentum:.4f}" if momentum is not None else "na",
             "Y" if decision.should_trade else "N",
+            "Y" if filled else "N",
             decision.reason,
         )
 
@@ -146,7 +175,22 @@ async def run_btc_observer(stop_event: asyncio.Event | None = None) -> None:
             on_market=on_market,
         )
 
-    await asyncio.gather(price_task(), market_task())
+    async def result_task() -> None:
+        while not stop_event.is_set():
+            try:
+                await update_resolved_results(
+                    db_path=settings.DB_PATH,
+                    gamma_url=settings.GAMMA_API_URL,
+                    coin="BTC",
+                )
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("result updater error: %s", exc)
+            try:
+                await asyncio.wait_for(stop_event.wait(), timeout=120.0)
+            except asyncio.TimeoutError:
+                continue
+
+    await asyncio.gather(price_task(), market_task(), result_task())
 
 
 def main() -> None:
