@@ -1,0 +1,10 @@
+[Unit]
+Description=ProjectG Auto Deploy Timer
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+Unit=projectg-autodeploy.service
+
+[Install]
+WantedBy=timers.target
