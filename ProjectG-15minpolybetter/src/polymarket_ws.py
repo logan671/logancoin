@@ -39,27 +39,13 @@ def _extract_orderbook_payload(message: dict) -> dict | None:
     return None
 
 
-def _normalize_message(raw: object) -> dict | None:
-    if isinstance(raw, dict):
-        return raw
-    if isinstance(raw, list):
-        for item in raw:
-            if isinstance(item, dict):
-                return item
-    return None
-
-
 def parse_clob_message(message: dict) -> ClobMessage:
-    normalized = _normalize_message(message)
-    if normalized is None:
+    payload = _extract_orderbook_payload(message)
+    if payload is None:
         return ClobMessage(raw=message, book=None)
 
-    payload = _extract_orderbook_payload(normalized)
-    if payload is None:
-        return ClobMessage(raw=normalized, book=None)
-
     book = parse_orderbook_message(payload)
-    return ClobMessage(raw=normalized, book=book)
+    return ClobMessage(raw=message, book=book)
 
 
 def build_subscribe_message(token_ids: Iterable[str]) -> dict:
@@ -90,11 +76,15 @@ async def _consume_clob_stream(
             message_count += 1
             if message_count == 1 or message_count % 50 == 0:
                 logger.info("polymarket ws message count=%d", message_count)
-            parsed = parse_clob_message(payload)
-            if on_message:
-                await on_message(parsed)
-            if parsed.book and on_book:
-                await on_book(parsed.book)
+            messages = payload if isinstance(payload, list) else [payload]
+            for item in messages:
+                if not isinstance(item, dict):
+                    continue
+                parsed = parse_clob_message(item)
+                if on_message:
+                    await on_message(parsed)
+                if parsed.book and on_book:
+                    await on_book(parsed.book)
 
 
 async def run_clob_feed(
