@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from .compat import dataclass
 
 
 @dataclass(slots=True)

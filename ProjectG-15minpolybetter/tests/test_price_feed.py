@@ -1,7 +1,8 @@
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta
 
 import unittest
 
+from src.compat import UTC
 from src.price_feed import SymbolPriceBuffer
 
 

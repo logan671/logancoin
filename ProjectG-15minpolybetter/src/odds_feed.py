@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta
+
+from .compat import UTC, dataclass
 
 
 @dataclass(slots=True)
@@ -39,8 +40,11 @@ def parse_orderbook_message(message: dict) -> MarketBook:
     if not token_id:
         raise ValueError("orderbook message missing token id")
 
-    bids = message.get("bids", [])
-    asks = message.get("asks", [])
+    bids = message.get("bids", None)
+    asks = message.get("asks", None)
+    if bids is None and asks is None:
+        bids = message.get("buys", [])
+        asks = message.get("sells", [])
 
     best_bid = None
     best_ask = None
@@ -56,7 +60,10 @@ def parse_orderbook_message(message: dict) -> MarketBook:
     ts = None
     raw_ts = message.get("timestamp")
     if raw_ts is not None:
-        ts = datetime.fromtimestamp(float(raw_ts), tz=UTC)
+        ts_value = float(raw_ts)
+        if ts_value > 1_000_000_000_000:
+            ts_value = ts_value / 1000.0
+        ts = datetime.fromtimestamp(ts_value, tz=UTC)
 
     return MarketBook(
         token_id=token_id,

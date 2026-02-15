@@ -1,7 +1,8 @@
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta
 
 import unittest
 
+from src.compat import UTC
 from src.odds_feed import parse_orderbook_message, passes_liquidity_filter
 
 
@@ -20,6 +21,21 @@ class TestOddsFeed(unittest.TestCase):
         self.assertAlmostEqual(book.best_bid.price, 0.91)
         self.assertAlmostEqual(book.best_ask.price, 0.92)
         self.assertAlmostEqual(book.spread or 0, 0.01)
+        self.assertEqual(book.last_trade_ts, datetime.fromtimestamp(1770979200, tz=UTC))
+
+    def test_parse_orderbook_message_ms_timestamp_and_buys_sells(self) -> None:
+        message = {
+            "token_id": "token-2",
+            "buys": [{"price": "0.40", "size": "10"}],
+            "sells": [{"price": "0.41", "size": "11"}],
+            "timestamp": 1770979200000,
+        }
+        book = parse_orderbook_message(message)
+        assert book.best_bid is not None
+        assert book.best_ask is not None
+        self.assertAlmostEqual(book.best_bid.price, 0.40)
+        self.assertAlmostEqual(book.best_ask.price, 0.41)
+        self.assertEqual(book.last_trade_ts, datetime.fromtimestamp(1770979200, tz=UTC))
 
     def test_passes_liquidity_filter_ok(self) -> None:
         now = datetime(2026, 2, 13, 12, 0, 0, tzinfo=UTC)
