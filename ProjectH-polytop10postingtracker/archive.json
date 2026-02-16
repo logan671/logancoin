@@ -763,5 +763,200 @@
       },
       "fetched_at": "2026-02-15T14:14:33.907190+09:00"
     }
+  ],
+  "2026-02-16": [
+    {
+      "tweet_id": "2023056790515003457",
+      "author": "polydao",
+      "url": "https://x.com/polydao/status/2023056790515003457",
+      "text_en": "CLAUDE + POLYMARKET: FROM IDEA TO BOT IN HOURS\n\nyou don't need to be a developer anymore to build trading tools\n\nWith Claude you can:\n\n> generate a Polymarket API bot\n> build a whale-tracking alert system\n> scan 99%+ markets with liquidity\n> monitor 5-minute BTC up/down volatility\n> backtest simple strategies\n\nInstead of staring at markets manually, you can ask: \"Build a script that tracks X and alerts me when Y happens\"\n\n>  Claude writes the code. You test the idea\n\nThe real value is not automation\n\n> It’s how fast you can go from idea -> execution -> iteration\n\nClaude won't magically trade for you\n\nBut it lets you test, build, and refine your own setups way faster than doing everything from scratch\n\n👉 bookmark it - you'll thank me later",
+      "text_ko": "CLAUDE + POLYMARKET: 아이디어에서 봇까지 몇 시간 만에\n\n더 이상 개발자가 아니어도 트레이딩 도구를 만들 수 있습니다\n\nClaude로 할 수 있는 것:\n\n> Polymarket API 봇 생성\n> 고래 추적 경보 시스템 구축\n> 유동성이 있는 99%+ 시장 스캔\n> 5분 BTC 상승/하락 변동성 모니터링\n> 간단한 전략 백테스트\n\n시장을 수동으로 바라보는 대신, \"X를 추적하고 Y가 발생하면 알림을 주는 스크립트를 만들어줘\"라고 요청할 수 있습니다\n\n> Claude가 코드를 작성합니다. 당신은 아이디어를 테스트합니다\n\n진정한 가치는 자동화가 아닙니다\n\n> 아이디어 -> 실행 -> 반복까지 얼마나 빨리 갈 수 있는지입니다\n\nClaude가 당신을 위해 마법처럼 거래해주지는 않습니다\n\n하지만 스크래치에서 모든 것을 하는 것보다 훨씬 빠르게 당신의 설정을 테스트하고, 구축하고, 개선할 수 있게 해줍니다\n\n👉 북마크 해두세요 - 나중에 감사할 겁니다",
+      "images": [
+        "https://pbs.twimg.com/media/HBNWRGqWoAAMsSE.jpg"
+      ],
+      "rank_meta": {
+        "rank": 2,
+        "view_count": 49827.0,
+        "bookmark_count": 472.0,
+        "like_count": 383.0,
+        "repost_count": 39.0,
+        "reply_count": 21.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570200+09:00"
+    },
+    {
+      "tweet_id": "2023000249027965264",
+      "author": "noisyb0y1",
+      "url": "https://x.com/noisyb0y1/status/2023000249027965264",
+      "text_en": "+$386,755 in a month using the OpenClaw bot\n\nbot trades one simple strategy  Fast-Loop\n\nIt sees the price faster than polymarket\n> real price move: (t = 0ms)\n> bot reaction: (t = +10-15ms)\n> polymarket reaction: (t = +20-35ms)\n\nresult: it can open trades on 5 min BTC/ETH markets before the price even adjusts on polymarket\n\n~5ms exploitable window\n\nLast week alone, he made over $184,811\n\nprofile:https://t.co/xWgSnfbebe",
+      "text_ko": "한 달 동안 OpenClaw 봇으로 +$386,755\n\n봇은 단순한 전략인 Fast-Loop을 거래합니다\n\nPolymarket보다 가격을 더 빨리 인식합니다\n> 실제 가격 변동: (t = 0ms)\n> 봇 반응: (t = +10-15ms)\n> polymarket 반응: (t = +20-35ms)\n\n결과: 5분 BTC/ETH 시장에서 가격이 polymarket에 반영되기 전에 거래를 개설할 수 있습니다\n\n~5ms 활용 가능한 창\n\n지난 주만 해도 $184,811 이상을 벌었습니다\n\n프로필:https://t.co/xWgSnfbebe",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2022996387978498048/img/0eaUyzR5D3JtZFW9.jpg",
+        "https://pbs.twimg.com/media/HBMhUMqXMAAVfbi.jpg"
+      ],
+      "rank_meta": {
+        "rank": 3,
+        "view_count": 33368.0,
+        "bookmark_count": 320.0,
+        "like_count": 186.0,
+        "repost_count": 10.0,
+        "reply_count": 21.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570221+09:00"
+    },
+    {
+      "tweet_id": "2022670420005064905",
+      "author": "krajekis",
+      "url": "https://x.com/krajekis/status/2022670420005064905",
+      "text_en": "My friend made 120x on @Polymarket using my strategy [BTC 15\\5 min]\n\nHe started with just $10 plus the knowledge I gave him on how to succeed on BTC 15m.\n\nNow he's profit $1216 in few days, 454 predictions with risk management.\n\nHis account: \nhttps://t.co/kaqjVmnihS\n\nI've written many posts on how to succeed with it, completely free. Just spend some time reading them, practice a bit, and you'll make it too!",
+      "text_ko": "내 친구가 @Polymarket에서 내 전략 [BTC 15\\5분]을 사용해 120배 수익을 냈어요\n\n그는 단 $10과 내가 준 BTC 15분 성공 방법에 대한 지식으로 시작했습니다.\n\n이제 그는 며칠 만에 $1216의 수익을 냈고, 리스크 관리와 함께 454개의 예측을 했습니다.\n\n그의 계정: \nhttps://t.co/kaqjVmnihS\n\n성공하는 방법에 대해 많은 글을 무료로 작성했습니다. 시간을 내서 읽고 조금 연습하면 당신도 성공할 수 있습니다!",
+      "images": [
+        "https://pbs.twimg.com/media/HBH2xlGakAE5rnd.jpg"
+      ],
+      "rank_meta": {
+        "rank": 4,
+        "view_count": 24516.0,
+        "bookmark_count": 258.0,
+        "like_count": 206.0,
+        "repost_count": 21.0,
+        "reply_count": 44.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570228+09:00"
+    },
+    {
+      "tweet_id": "2022808723303866491",
+      "author": "CarOnPolymarket",
+      "url": "https://x.com/CarOnPolymarket/status/2022808723303866491",
+      "text_en": "Suffering from success.\n\nA trader found a strategy correctly predicting the price of eggs every single month.\n\nHe has made $97,000 so far.\n\nHowever, he became so successful that he had to stop trading these markets because too many copy traders started copying him, reducing his profits.",
+      "text_ko": "성공으로 고통받고 있습니다.\n\n한 트레이더가 매달 달걀 가격을 정확히 예측하는 전략을 찾았습니다.\n\n지금까지 $97,000를 벌었습니다.\n\n하지만 너무 성공해서 이 시장을 거래하는 것을 중단해야 했습니다. 너무 많은 복사 트레이더들이 그를 따라 하기 시작하면서 그의 수익이 줄어들었기 때문입니다.",
+      "images": [
+        "https://pbs.twimg.com/media/HBJ0uOTWwAAw3Dv.jpg"
+      ],
+      "rank_meta": {
+        "rank": 10,
+        "view_count": 60154.0,
+        "bookmark_count": 186.0,
+        "like_count": 365.0,
+        "repost_count": 23.0,
+        "reply_count": 39.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570236+09:00"
+    },
+    {
+      "tweet_id": "2023158959666840012",
+      "author": "recogard",
+      "url": "https://x.com/recogard/status/2023158959666840012",
+      "text_en": "I just found a super underrated Polymarket bot for trading 5 min BTC markets on GitHub and its absolutely free\n\nThank God it comes with a detailed step by step usage guide, so its actually pretty easy to get it running \n\nThis bot caught my eye because of its uncommon strategy:\n\nAt each new 5 min market, Polymarket sets the odds at 50/50, so u bet $10 to win $10. And at the same time, bot watches and analyses the last few results of these markets and looks for streaks - several identical outcomes in a row. When this happens, the real statistic shows a 70-75% reversal probability for the next 5 min btc, while the market still prices at 50%. In such case, bot places a bet in advance, predicting a reversal. The bot dev has already completed over 280 trades with 70%+ win rate. The whole process is fully automated, without even the human involvement.\n\nHere is one more example - another 5 min BTC trading bot, which is using similar strategy. Launched only 2 days ago and it already turned a $277 deposit into over $26,000. Again, only in TWO DAYS, imagine the results in 1 week or a month… crazyyy",
+      "text_ko": "방금 GitHub에서 5분 BTC 시장을 거래하는 매우 과소평가된 Polymarket 봇을 발견했는데, 완전히 무료입니다.\n\n감사하게도 상세한 단계별 사용 가이드가 포함되어 있어서 실행하는 것이 꽤 쉽습니다.\n\n이 봇이 눈에 띈 이유는 그 전략이 흔하지 않기 때문입니다:\n\n각 새로운 5분 시장에서 Polymarket은 확률을 50/50으로 설정하므로 $10을 걸어 $10을 얻습니다. 동시에 봇은 이 시장의 최근 결과를 분석하고 연속된 동일한 결과를 찾습니다. 이런 일이 발생하면 실제 통계는 다음 5분 BTC의 반전 확률이 70-75%임을 보여주지만, 시장은 여전히 50%로 가격을 매깁니다. 이런 경우, 봇은 반전을 예측하며 미리 베팅을 합니다. 봇 개발자는 이미 280건 이상의 거래를 완료했고 승률이 70% 이상입니다. 이 과정은 완전히 자동화되어 있으며 인간의 개입 없이 진행됩니다.\n\n여기 또 다른 예가 있습니다 - 비슷한 전략을 사용하는 또 다른 5분 BTC 거래 봇입니다. 2일 전에 출시되었고 이미 $277의 예치금을 $26,000 이상으로 바꿨습니다. 다시 말하지만, 단 이틀 만에, 1주일이나 한 달 후의 결과를 상상해보세요... 미쳤어요",
+      "images": [
+        "https://pbs.twimg.com/media/HBO0WOdacAA-EaB.jpg",
+        "https://pbs.twimg.com/media/HBO0WOZbEAAj6Gp.jpg"
+      ],
+      "rank_meta": {
+        "rank": 6,
+        "view_count": 8115.0,
+        "bookmark_count": 253.0,
+        "like_count": 111.0,
+        "repost_count": 10.0,
+        "reply_count": 10.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570242+09:00"
+    },
+    {
+      "tweet_id": "2023076877406024185",
+      "author": "ArchiveExplorer",
+      "url": "https://x.com/ArchiveExplorer/status/2023076877406024185",
+      "text_en": "Some trader withdrew all money from polymarket\n\nand came back a month later\n\ndeposited $2,000 with a new strategy\n\nnow sitting at $137,000 profit\n\nhe switched to weather markets\n\nevery day collects data from 5 APIs simultaneously:\n\n→ Open-Meteo (GFS, ECMWF models) \n→ OpenWeatherMap \n→ WeatherAPI \n→ Tomorrow(.)io \n→ Visual Crossing\n\nif 4 out of 5 models agree on one forecast edge exists\n\nbut the most interesting part - temporal arbitrage\n\ncities with best liquidity: NYC, London, Atlanta, Dallas\n\ni'm copying his trades using @PolyCop_Trader\nstarted with $500\n\naddress: 0xcbbc5e035504421b084ad9248b660f6e9618b5d0\n\nhttps://t.co/adE4G8l8Y6",
+      "text_ko": "어떤 트레이더가 polymarket에서 모든 돈을 인출하고\n\n한 달 후에 돌아와서\n\n새로운 전략으로 $2,000를 예치했습니다\n\n지금은 $137,000의 수익을 내고 있습니다\n\n그는 날씨 시장으로 전환했습니다\n\n매일 5개의 API에서 동시에 데이터를 수집합니다:\n\n→ Open-Meteo (GFS, ECMWF 모델)\n→ OpenWeatherMap\n→ WeatherAPI\n→ Tomorrow(.)io\n→ Visual Crossing\n\n5개 모델 중 4개가 한 가지 예측에 동의하면 기회가 있습니다\n\n하지만 가장 흥미로운 부분은 시간 차익 거래입니다\n\n유동성이 가장 좋은 도시: NYC, London, Atlanta, Dallas\n\n@PolyCop_Trader를 사용해 그의 거래를 복사하고 있습니다\n$500로 시작했습니다\n\n주소: 0xcbbc5e035504421b084ad9248b660f6e9618b5d0\n\nhttps://t.co/adE4G8l8Y6",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2023076464975888384/img/ZeVN3nDKiLBvPdio.jpg"
+      ],
+      "rank_meta": {
+        "rank": 7,
+        "view_count": 11466.0,
+        "bookmark_count": 198.0,
+        "like_count": 116.0,
+        "repost_count": 5.0,
+        "reply_count": 12.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570248+09:00"
+    },
+    {
+      "tweet_id": "2022634738863751531",
+      "author": "SolSt1ne",
+      "url": "https://x.com/SolSt1ne/status/2022634738863751531",
+      "text_en": "This trader on @Polymarket wins even before he enters a position.\n\nHis profile: https://t.co/njIQnURa4F\n\nHe has a win rate close to 95%, but how does he do it?\n\nHis possible strategy:\n> He only bets on sports\n> He gets information from \"traditional bookmakers,\" who get information first\n> He enters a position immediately, before the market has a chance to react\n> If the market goes in his favor, he keeps holding, and if not, he exits the position\n\nResult:\nWin rate: 95%+\n$4k - $200k in two months\n\nThis is another proof that in a competitive market, you need to find an advantage over others.\n\nThis is probably a good profile for copytrading.",
+      "text_ko": "@Polymarket의 이 트레이더는 포지션을 잡기도 전에 이미 이깁니다.\n\n프로필: https://t.co/njIQnURa4F\n\n승률이 거의 95%에 달하는데, 어떻게 하는 걸까요?\n\n그의 가능한 전략:\n> 스포츠에만 베팅\n> 정보를 가장 먼저 얻는 '전통적인 북메이커'로부터 정보를 얻음\n> 시장이 반응하기 전에 즉시 포지션을 잡음\n> 시장이 유리하게 가면 계속 보유하고, 그렇지 않으면 포지션을 청산\n\n결과:\n승률: 95%+\n두 달 만에 $4k - $200k\n\n이것은 경쟁적인 시장에서 남들보다 우위를 찾아야 한다는 또 다른 증거입니다.\n\n이것은 아마도 카피트레이딩에 좋은 프로필일 것입니다.",
+      "images": [
+        "https://pbs.twimg.com/media/HBHXiOaakAg-s74.png"
+      ],
+      "rank_meta": {
+        "rank": 8,
+        "view_count": 10865.0,
+        "bookmark_count": 181.0,
+        "like_count": 114.0,
+        "repost_count": 8.0,
+        "reply_count": 16.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570253+09:00"
+    },
+    {
+      "tweet_id": "2022982053046669736",
+      "author": "bored2boar",
+      "url": "https://x.com/bored2boar/status/2022982053046669736",
+      "text_en": "I've never seen anything like that before...\n\nThis trader deposited just $12 to Polymarket.\n\nThen doubled it 16 times in a row trading crypto markets.\n\nResult? $100k PnL in a few days.\n\nI spent 48h analyzing his trades and was shocked.\n\nHis strategy lies in deep understanding of TA, RSI and macro.\n\nStep by step, he turned nothing into everything:\n\n• from $12 to $24\n• from $24 to $40\n• from $40 to $79\n• from $79 to $101...\n\nHe was betting everything he had until he hit $100,000.\n\nCheck his account: https://t.co/a6b5HpgXFf\n\nRight now he's still trading those markets daily.\n\nHis Win Rate is clean 86%, which proves that turning a few bucks into $100k was not luck, but a skill.\n\nAdding him to my follow list.\n\nLeaving a full copy trading guide quoted below.\n\n$12 and a dream.",
+      "text_ko": "이런 건 처음 봤어요...\n\n이 트레이더는 Polymarket에 단 $12만 입금했습니다.\n\n그런 다음 crypto 시장을 거래하며 16번 연속으로 두 배로 늘렸습니다.\n\n결과? 며칠 만에 $100k PnL.\n\n그의 거래를 48시간 분석했는데 충격적이었습니다.\n\n그의 전략은 TA, RSI, 매크로에 대한 깊은 이해에 있습니다.\n\n단계별로, 그는 아무것도 없는 상태에서 모든 것을 만들어냈습니다:\n\n• $12에서 $24로\n• $24에서 $40로\n• $40에서 $79로\n• $79에서 $101로...\n\n그는 $100,000에 도달할 때까지 가지고 있던 모든 것을 베팅했습니다.\n\n그의 계정 확인: https://t.co/a6b5HpgXFf\n\n지금도 그는 매일 그 시장을 거래하고 있습니다.\n\n그의 승률은 깨끗한 86%로, 몇 달러를 $100k로 만드는 것이 운이 아니라 기술임을 증명합니다.\n\n내 팔로우 리스트에 추가합니다.\n\n아래에 전체 카피 트레이딩 가이드를 인용합니다.\n\n$12와 꿈 하나.",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2022981940769619968/img/FUK8iw0m5w8x-tFE.jpg"
+      ],
+      "rank_meta": {
+        "rank": 9,
+        "view_count": 16637.0,
+        "bookmark_count": 163.0,
+        "like_count": 105.0,
+        "repost_count": 10.0,
+        "reply_count": 11.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570262+09:00"
+    },
+    {
+      "tweet_id": "2022692134562693406",
+      "author": "banan_crypto",
+      "url": "https://x.com/banan_crypto/status/2022692134562693406",
+      "text_en": "All ppl are obsessed with 5-Min markets, and we're missing a manual trader with $3M profit\n\nRn, all CT is focused on 5-Min markets, bots, or a Quantum Strategy.\n\nThat's why we missed @Polymarket trader with $3M in all-time profit and 19 years of predicting exp.\n\nHis profile: https://t.co/XtonG3Kg3X\n\nHe is the legendary anonymous bettor, formerly a professional online poker player, who's turned prediction markets into a full-time career since 2007.\n\nHis the biggest wins:\n\n- Turned $4000 into $250,000 on JD Vance\n- Made $100,000 by guessing the new Pope\n- Kamala Harris is his most profitable bet on Polymarket\n\nAnd I'm gonna copy him on https://t.co/owH3HO9GyZ\n\nCopying such a smart trader is much more reliable than copying some random bots on 5-Min markets.\n\nYou can lose on a bot script error or delay.\nBut a trader's exp will never let you down.\n\nNFA. Always DYOR.",
+      "text_ko": "모두 5분 시장에 집착하고, 우리는 $3M 이익을 낸 수동 트레이더를 놓치고 있습니다.\n\n현재 모든 CT는 5분 시장, 봇, 또는 Quantum 전략에 집중하고 있습니다.\n\n그래서 우리는 @Polymarket 트레이더를 놓쳤습니다. 이 트레이더는 총 이익 $3M과 19년의 예측 경력을 가졌습니다.\n\n프로필: https://t.co/XtonG3Kg3X\n\n그는 전설적인 익명의 베터로, 전직 프로 온라인 포커 플레이어였으며, 2007년부터 예측 시장을 전업으로 삼았습니다.\n\n그의 가장 큰 승리:\n\n- JD Vance에 $4000을 $250,000로\n- 새로운 교황을 맞춰 $100,000를 벌음\n- Polymarket에서 가장 수익성 높은 베팅은 카말라 해리스\n\n그리고 나는 https://t.co/owH3HO9GyZ에서 그를 카피할 것입니다.\n\n이런 똑똑한 트레이더를 카피하는 것이 5분 시장의 무작위 봇을 카피하는 것보다 훨씬 더 신뢰할 수 있습니다.\n\n봇 스크립트 오류나 지연으로 손실을 볼 수 있지만, 트레이더의 경험은 절대 실망시키지 않을 것입니다.\n\nNFA. 항상 DYOR.",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2022691869726212096/img/e9Ns1c_W286vAdvV.jpg",
+        "https://pbs.twimg.com/media/HBILwjMW0AAwUTp.png"
+      ],
+      "rank_meta": {
+        "rank": 11,
+        "view_count": 7528.0,
+        "bookmark_count": 67.0,
+        "like_count": 70.0,
+        "repost_count": 2.0,
+        "reply_count": 22.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570269+09:00"
+    },
+    {
+      "tweet_id": "2023120260505755743",
+      "author": "hanakoxbt",
+      "url": "https://x.com/hanakoxbt/status/2023120260505755743",
+      "text_en": "live-arbitrage bot turned $1,080 into $614k on polymarket\n\nnobody is talking about this bot right now\n\nfound his account, looked at it, and figured out the strategy\n\nwith it, he has already retired, earning $614,275\n\nhow does he do it? it's actually simple\n\nbot is connected directly to sports data providers or directly to the API of game servers\n\nusing sources, he learns about a goal scored, a touchdown, or a victory in a second\n\nwhen an event has already occurred but the odds have not yet changed, bot instantly buys shares of the desired outcome at old price\n\naverage, script outperforms an ordinary trader by 20-30 seconds\n\nprofile: https://t.co/QHUKhlyBAo",
+      "text_ko": "라이브-중재 봇이 polymarket에서 $1,080를 $614k로 바꿨어요\n\n지금 이 봇에 대해 아무도 이야기하지 않아요\n\n계정을 찾아서 봤는데, 전략을 알아냈어요\n\n이걸로 이미 은퇴했어요, $614,275를 벌었어요\n\n어떻게 하는 걸까요? 사실 간단해요\n\n봇은 스포츠 데이터 제공자나 게임 서버의 API에 직접 연결돼 있어요\n\n소스를 통해 골이 들어갔거나 터치다운이 됐거나 승리가 난 걸 1초 만에 알게 돼요\n\n이벤트가 이미 일어났지만 아직 확률이 변하지 않았을 때, 봇은 즉시 예전 가격에 원하는 결과의 주식을 사요\n\n평균적으로, 스크립트는 일반 트레이더보다 20-30초 더 빠르게 움직여요\n\n프로필: https://t.co/QHUKhlyBAo",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2023119754601373696/img/HWdET7r22g1Ds6O5.jpg"
+      ],
+      "rank_meta": {
+        "rank": 12,
+        "view_count": 4529.0,
+        "bookmark_count": 58.0,
+        "like_count": 70.0,
+        "repost_count": 4.0,
+        "reply_count": 13.0
+      },
+      "fetched_at": "2026-02-16T14:46:19.570274+09:00"
+    }
   ]
 }
