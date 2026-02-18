@@ -1155,5 +1155,197 @@
       },
       "fetched_at": "2026-02-17T14:16:00.208747+09:00"
     }
+  ],
+  "2026-02-18": [
+    {
+      "tweet_id": "2023702325055951318",
+      "author": "AIexey_Stark",
+      "url": "https://x.com/AIexey_Stark/status/2023702325055951318",
+      "text_en": "I’ve tried this Chainlink strategy and it’s actually works\n\nIf you didn't know, Polymarket uses Chainlink's API for data in 5-minute markets.\n\nPolymarket can't update data in milliseconds.\n\nChainlink data is ahead by a few seconds. That's the edge you need to exploit.\n\nMy positions never exceeded $3, and within 15 minutes I already walked away with over $20 in profit.\n\n700% ROI in 15 minutes? As you can see, it's absolutely possible.\n\nThe key is to not over-risk, keep improving your strategy and gain more experience.",
+      "text_ko": "이 Chainlink 전략을 시도해 봤는데 실제로 효과가 있어요\n\n모르셨다면, Polymarket는 5분 시장 데이터를 위해 Chainlink의 API를 사용합니다.\n\nPolymarket는 밀리초 단위로 데이터를 업데이트할 수 없습니다.\n\nChainlink 데이터는 몇 초 앞서 있습니다. 이것이 당신이 이용해야 할 이점입니다.\n\n내 포지션은 절대 $3를 넘지 않았고, 15분 안에 이미 $20 이상의 수익을 챙겼습니다.\n\n15분 만에 700% ROI? 보시다시피, 절대 가능합니다.\n\n중요한 것은 과도한 리스크를 지지 말고, 전략을 계속 개선하며 더 많은 경험을 쌓는 것입니다.",
+      "images": [
+        "https://pbs.twimg.com/media/HBWihvVa0AAgPaj.jpg",
+        "https://pbs.twimg.com/media/HBWihvTbcAAcrvL.jpg"
+      ],
+      "rank_meta": {
+        "rank": 1,
+        "view_count": 125958.0,
+        "bookmark_count": 1238.0,
+        "like_count": 765.0,
+        "repost_count": 46.0,
+        "reply_count": 61.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998551+09:00"
+    },
+    {
+      "tweet_id": "2023381800790143244",
+      "author": "SolSt1ne",
+      "url": "https://x.com/SolSt1ne/status/2023381800790143244",
+      "text_en": "5-Min Polymarket Edge Just Got Juicier (Now with Explicit Bias in PolyAssist)\n\nQuick 5-min strategy guide:\n\nOpen market: https://t.co/Wp7VkI8DmE\n\nWatch these in order:\n\nBias % (main filter)  65–70% BULLISH - strong Buy Yes if Up odds <55%\n\n65% BEARISH -  strong Buy No if Down odds <55%\n\n40–60% NEUTRAL - skip or wait for confirmation\n\nMispricing check  Bias 75%+ BULLISH but Up odds 0.40–0.50 - asymmetric Yes buy\n\nBias strong one way but odds > 0.75–0.80 with flat price - fade (bet opposite)\n\nEntry sweet spot: last 60–90 sec before resolve\nRisk: 3–5% bank per trade\nMax: 3–5 conv. trades/hour\nHold or lock 3–10% early\n\nTest small, log results.\n\nEdge on 5m still juicy while bots catch up.",
+      "text_ko": "5분 Polymarket 이점이 더 맛있어졌어요 (이제 PolyAssist에 명확한 편향 포함)\n\n빠른 5분 전략 가이드:\n\n오픈 마켓: https://t.co/Wp7VkI8DmE\n\n이 순서대로 지켜보세요:\n\n편향 % (주요 필터) 65–70% BULLISH - Up 확률 <55%면 강한 Yes 구매\n\n65% BEARISH - Down 확률 <55%면 강한 No 구매\n\n40–60% NEUTRAL - 스킵하거나 확인을 기다리세요\n\n가격 오류 확인 편향 75%+ BULLISH 하지만 Up 확률 0.40–0.50 - 비대칭 Yes 구매\n\n편향이 한 쪽으로 강하지만 확률 > 0.75–0.80이고 가격이 평평할 때 - 반대 베팅 (fade)\n\n진입 최적 지점: 해결 전 60–90초\n리스크: 거래당 3–5% 은행\n최대: 시간당 3–5개의 연속 거래\n초기 3–10% 보유 또는 잠금\n\n작게 테스트하고 결과를 기록하세요.\n\n5분 이점은 여전히 맛있고, 봇들이 따라잡는 동안.",
+      "images": [
+        "https://pbs.twimg.com/media/HBR-1qBaUAAlOH-.png"
+      ],
+      "rank_meta": {
+        "rank": 2,
+        "view_count": 24594.0,
+        "bookmark_count": 352.0,
+        "like_count": 218.0,
+        "repost_count": 21.0,
+        "reply_count": 13.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998573+09:00"
+    },
+    {
+      "tweet_id": "2023520215754306046",
+      "author": "joncoopertweets",
+      "url": "https://x.com/joncoopertweets/status/2023520215754306046",
+      "text_en": "If the Supreme Court rules against Trump’s tariffs (currently ~74% odds on Polymarket), it would deal a body blow to his core economic agenda—undermining his America First trade strategy, potential revenue plans, and leverage in global negotiations.\n\nTrump’s about to get screwed! https://t.co/g76h8irtWg",
+      "text_ko": "대법원이 트럼프의 관세에 반대 판결을 내린다면 (현재 Polymarket에서 약 74% 확률), 그의 핵심 경제 의제에 큰 타격을 줄 것입니다—그의 America First 무역 전략, 잠재적 수익 계획, 그리고 글로벌 협상에서의 레버리지를 약화시키는 것입니다.\n\n트럼프는 곧 큰일 날 거야! https://t.co/g76h8irtWg",
+      "images": [],
+      "rank_meta": {
+        "rank": 3,
+        "view_count": 39547.0,
+        "bookmark_count": 20.0,
+        "like_count": 850.0,
+        "repost_count": 227.0,
+        "reply_count": 69.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998581+09:00"
+    },
+    {
+      "tweet_id": "2023682292351131772",
+      "author": "cryptovcdegen",
+      "url": "https://x.com/cryptovcdegen/status/2023682292351131772",
+      "text_en": "Strategy for trading 5-minute BTC on Polymarket for guaranteed profit\n\n- Get current BTC price from Chainlink (realtime)\n\n- Calculate momentum from Binance (movement direction)\n\n- Get odds of current 5-minute market from Polymarket - https://t.co/6wHB61tihp\n\n- Find discrepancy: if real price moves 0.5%+,\nbut market odds don't reflect it -> entry signal\nPlace order through Polymarket API\n\n- Exit 15 seconds before market close\n\n& implementation via Simmer\n\nArchitecture:\n\n> Discovery - each cycle searches for active 5/15-minute markets through Gamma API (doesn't depend on Simmer catalog)\n> Signal - gets momentum from Binance (price over last 5 minutes)\n> Analysis - compares momentum with current odds on Polymarket\n> Execution - if discrepancy > threshold -> trades through Simmer SDK",
+      "text_ko": "Polymarket에서 5분 BTC 거래를 위한 확실한 수익 전략\n\n- Chainlink에서 현재 BTC 가격을 실시간으로 가져옵니다\n\n- Binance에서 모멘텀을 계산합니다 (이동 방향)\n\n- Polymarket에서 현재 5분 시장의 배당률을 가져옵니다 - https://t.co/6wHB61tihp\n\n- 불일치를 찾습니다: 실제 가격이 0.5% 이상 움직이지만, 시장 배당률이 이를 반영하지 않으면 -> 진입 신호\nPolymarket API를 통해 주문합니다\n\n- 시장이 닫히기 15초 전에 나갑니다\n\n& Simmer를 통한 구현\n\n아키텍처:\n\n> 발견 - 각 사이클에서 Gamma API를 통해 활성 5/15분 시장을 검색합니다 (Simmer 카탈로그에 의존하지 않음)\n> 신호 - Binance에서 모멘텀을 가져옵니다 (지난 5분 동안의 가격)\n> 분석 - 모멘텀과 Polymarket의 현재 배당률을 비교합니다\n> 실행 - 불일치가 임계값을 초과하면 -> Simmer SDK를 통해 거래",
+      "images": [
+        "https://pbs.twimg.com/media/HBWIsSmaMAAtshv.jpg",
+        "https://pbs.twimg.com/media/HBWQG-BbcAAFLXX.png",
+        "https://pbs.twimg.com/media/HBWQSaybcAUKYpC.jpg"
+      ],
+      "rank_meta": {
+        "rank": 4,
+        "view_count": 7206.0,
+        "bookmark_count": 112.0,
+        "like_count": 97.0,
+        "repost_count": 7.0,
+        "reply_count": 13.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998591+09:00"
+    },
+    {
+      "tweet_id": "2023655329255321626",
+      "author": "defi_explora",
+      "url": "https://x.com/defi_explora/status/2023655329255321626",
+      "text_en": "polymarket is HARAM not MASHA ALLAH, btw my top 3 currently:\n\n- base\n- hyperunit \n- conduit \n\nwill be posting more alpha, leave the notification bell on.",
+      "text_ko": "polymarket은 HARAM이지 MASHA ALLAH가 아님, 참고로 현재 내 상위 3개는:\n\n- base\n- hyperunit\n- conduit\n\n더 많은 알파를 공유할 예정이니 알림 벨을 켜두세요.",
+      "images": [],
+      "rank_meta": {
+        "rank": 5,
+        "view_count": 12592.0,
+        "bookmark_count": 52.0,
+        "like_count": 204.0,
+        "repost_count": 4.0,
+        "reply_count": 40.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998597+09:00"
+    },
+    {
+      "tweet_id": "2023754332659646512",
+      "author": "0xashensoul",
+      "url": "https://x.com/0xashensoul/status/2023754332659646512",
+      "text_en": "$3,000 per hour on polymarket\n\nthat is what top tier bots are extracting from 5m crypto markets rn\n\nretail thinks they are trading price action\n\nin reality, you are trading latency. and you are getting cooked\n\nhere is the actual alpha\n\n> there is a structural delay between the chainlink oracle update and the polymarket resolution\n> bots run dedicated RPC nodes\n> they parse the oracle data on-chain before the polymarket UI even renders it\n> then they sweep the order book before the market locks\n\npure latency arbitrage\n\nseveral wallets are already approaching $1M PnL using this loop",
+      "text_ko": "polymarket에서 시간당 $3,000\n\n이것이 현재 상위급 봇들이 5분 암호화폐 시장에서 추출하는 금액입니다\n\n소매 투자자는 가격 행동을 거래한다고 생각하지만\n\n실제로는 지연 시간을 거래하고 있고, 당신은 당하고 있습니다\n\n여기 실제 알파가 있습니다\n\n> 체인링크 오라클 업데이트와 polymarket 해결 사이에 구조적인 지연이 있습니다\n> 봇들은 전용 RPC 노드를 운영합니다\n> 그들은 polymarket UI가 렌더링하기도 전에 온체인에서 오라클 데이터를 파싱합니다\n> 그런 다음 시장이 잠기기 전에 주문서를 쓸어버립니다\n\n순수한 지연 차익 거래\n\n이 방법을 사용해 여러 지갑이 이미 $1M PnL에 접근하고 있습니다",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2023752235943862272/img/FFzsOnLud9_GFnSP.jpg"
+      ],
+      "rank_meta": {
+        "rank": 6,
+        "view_count": 7949.0,
+        "bookmark_count": 61.0,
+        "like_count": 71.0,
+        "repost_count": 5.0,
+        "reply_count": 16.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998603+09:00"
+    },
+    {
+      "tweet_id": "2023760343667728856",
+      "author": "slash1sol",
+      "url": "https://x.com/slash1sol/status/2023760343667728856",
+      "text_en": "I have a working strategy for 5/15-min btc markets that brings profit in the long term\nAll you need is a Polymarket account and your hands\n\nmany people lose money on the new Polymarket 5-min markets because they have no advantage over the crowd and rely solely on luck\n\nbut unfortunately, you won't earn anything in the long term by doing so\n\nfor example, here is one of the winning strategy with advantage described by a smart guy below ,,\n\nin short:\n\nPolymarket uses Chainlink data -> its terminal has a 60-sec delay -> you take Chainlink API, integrate the chart, and set up the server -> the profit rises to 6 figs, easy money\n\nbut I want to tell you about another strategy for 5/15-min btc markets that I use myself\n\nits advantage lies in probability theory and statistics only\n\nfor it, you won't need anything except a Polymarket account, hands, and statistics\n\nthe strategy is to place limit orders at 45 cents for both UP and DOWN outcomes in advance, before the start of the 5/15-min btc market\n\nin 9 out of 10 cases, there is a probability that it will be filled on both sides, which happens quite often, literally every market\n\ntherefore, statistically, if we take the average value of winnings, we only need 6 wins to make a profit in the long term\n\nhere is an example, if both limit purchases are filled:\n\n> we buy 100 shares at 45 cents for $45 on DOWN\n\n> and also 100 shares at 45 cents for $45 on UP\n\n> in total, we spend $90\n\n> and with any outcome, one bet wins\n\n> we sell 100 shares for $100 and get an easy profit of $10\n\n> we repeat the cycle, easy money again\n\nif you automate this with a simple bot and use large sizes, you can also easily rise to 6 figs in a short time\n\nsoon I will write a complete guide with all the details and statistics, and I may also make a simple open-sourced bot for automation\n\nso create accounts on Polymarket and try trading using this strategy live: https://t.co/kLQos8ulbB\n\nalso, bookmark this post so you don't lose it",
+      "text_ko": "5/15분 비트코인 시장에서 장기적으로 수익을 내는 전략이 있습니다\n필요한 건 Polymarket 계정과 당신의 손뿐입니다\n\n많은 사람들이 새로운 Polymarket 5분 시장에서 돈을 잃는 이유는 군중보다 유리한 점이 없고 오로지 운에 의존하기 때문입니다\n\n하지만 안타깝게도 그렇게 하면 장기적으로는 아무것도 벌 수 없습니다\n\n예를 들어, 아래 똑똑한 사람이 설명한 유리한 전략 중 하나입니다 ,,\n\n간단히 말해서:\n\nPolymarket은 Chainlink 데이터를 사용 -> 터미널이 60초 지연 -> Chainlink API를 가져와서 차트를 통합하고 서버를 설정 -> 수익이 6자리까지 올라가, 쉬운 돈\n\n하지만 제가 직접 사용하는 5/15분 비트코인 시장에 대한 또 다른 전략을 말씀드리고 싶습니다\n\n이 전략의 장점은 확률론과 통계에만 있습니다\n\n이를 위해 필요한 것은 Polymarket 계정, 손, 그리고 통계뿐입니다\n\n전략은 5/15분 비트코인 시장이 시작되기 전에 UP와 DOWN 결과에 대해 각각 45센트에 리밋 주문을 미리 설정하는 것입니다\n\n10번 중 9번은 양쪽 모두 체결될 확률이 있으며, 이는 거의 모든 시장에서 자주 발생합니다\n\n따라서 통계적으로, 평균 수익을 고려하면 6번의 승리로 장기적으로 수익을 낼 수 있습니다\n\n예를 들어, 두 리밋 구매가 모두 체결되면:\n\n> DOWN에 45센트에 100주를 $45에 구매\n\n> UP에도 45센트에 100주를 $45에 구매\n\n> 총 $90를 지출\n\n> 어떤 결과든 한 쪽이 이김\n\n> 100주를 $100에 판매하고 쉽게 $10의 수익을 얻음\n\n> 반복하면 다시 쉬운 돈\n\n이걸 간단한 봇으로 자동화하고 큰 규모로 사용하면 짧은 시간에 6자리까지 쉽게 올라갈 수 있습니다\n\n곧 모든 세부 사항과 통계를 포함한 완전한 가이드를 작성하고, 자동화를 위한 간단한 오픈소스 봇도 만들 수 있습니다\n\nPolymarket에 계정을 만들고 이 전략을 실시간으로 시도해 보세요: https://t.co/kLQos8ulbB\n\n이 포스트를 북마크해서 잃어버리지 않도록 하세요",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2023759201861083136/img/RdcgzeuskRss0NAv.jpg"
+      ],
+      "rank_meta": {
+        "rank": 7,
+        "view_count": 5213.0,
+        "bookmark_count": 61.0,
+        "like_count": 76.0,
+        "repost_count": 3.0,
+        "reply_count": 13.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998609+09:00"
+    },
+    {
+      "tweet_id": "2023439997223739676",
+      "author": "Mnilax",
+      "url": "https://x.com/Mnilax/status/2023439997223739676",
+      "text_en": "Bro coded a passive money printer on Polymarket: $17,000/day. \n\n> 11,000 predictions\n> $850k Profit in just 2 months.\n\nstrategy?\n\nthe bot detects events that are factually done but not yet settled on-chain.\nIt scoops up the free money while the rest of the market is snoozing.\n\n- instant buy when price <$1.00 (risk-free spread).\n\n- catching wicks during crashes.\n\n- layering volatility on top of mechanical edges.\n\nopenclaw? vibe coding? genius script?\n\ndoesn't matter.\n\nthe fact is: he is absolutely cleaning house.\n\ncould you replicate this?",
+      "text_ko": "형이 Polymarket에서 수동적 돈 프린터를 코딩했어: 하루 $17,000.\n\n> 11,000개의 예측\n> 단 2개월 만에 $850k 수익\n\n전략?\n\n봇이 사실상 완료되었지만 아직 온체인에서 정산되지 않은 이벤트를 감지해.\n나머지 시장이 자고 있을 때 무료 돈을 쓸어 담는 거야.\n\n- 가격이 $1.00 미만일 때 즉시 구매 (리스크 없는 스프레드).\n\n- 크래시 중에 위크를 잡아.\n\n- 기계적 이점 위에 변동성을 쌓아.\n\n오픈클로? 바이브 코딩? 천재 스크립트?\n\n상관없어.\n\n사실은: 그는 완전히 청소하고 있어.\n\n이걸 복제할 수 있을까?",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2023439273895026688/img/8vTqT0EEDfGJtaXR.jpg"
+      ],
+      "rank_meta": {
+        "rank": 9,
+        "view_count": 2755.0,
+        "bookmark_count": 45.0,
+        "like_count": 55.0,
+        "repost_count": 5.0,
+        "reply_count": 14.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998619+09:00"
+    },
+    {
+      "tweet_id": "2023443709270937863",
+      "author": "RetroValix",
+      "url": "https://x.com/RetroValix/status/2023443709270937863",
+      "text_en": "This guy made $50,000 in 4 days on 5-minute Polymarket markets using software\n\nHis strategy is simple:\n\n> Median trade size is $2.8\n> Uses MERGE and SPLIT\n> Average edge from arbitrage is about 3.7%\n\nYou can track him via TG bot:\nhttps://t.co/JnsNu5osKl\n\nHere is the link to this guy’s Polymarket account:\nhttps://t.co/PaZHuEV9wb",
+      "text_ko": "이 사람이 5분 Polymarket 시장에서 소프트웨어를 사용해 4일 만에 $50,000를 벌었습니다\n\n그의 전략은 간단합니다:\n\n> 평균 거래 크기는 $2.8\n> MERGE와 SPLIT 사용\n> arbitrage에서 평균 이점은 약 3.7%\n\n그를 TG 봇으로 추적할 수 있습니다:\nhttps://t.co/JnsNu5osKl\n\n이 사람의 Polymarket 계정 링크입니다:\nhttps://t.co/PaZHuEV9wb",
+      "images": [
+        "https://pbs.twimg.com/media/HBS3Re9bcAES-bn.jpg",
+        "https://pbs.twimg.com/amplify_video_thumb/2023443643592556544/img/rzBpQDQHZkhbwwaD.jpg"
+      ],
+      "rank_meta": {
+        "rank": 10,
+        "view_count": 3203.0,
+        "bookmark_count": 33.0,
+        "like_count": 50.0,
+        "repost_count": 2.0,
+        "reply_count": 11.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998625+09:00"
+    },
+    {
+      "tweet_id": "2023483601648533802",
+      "author": "adiix_official",
+      "url": "https://x.com/adiix_official/status/2023483601648533802",
+      "text_en": "Political INSIDER turned $1 into $170,000 on Polymarket\n\nCopy his trades and earn with him: https://t.co/jRuw8Xrtvl\n\nI want to disappoint you,this is not an insider at all, as others like to write\n\nHe has good and fairly simple strategy:\n\n- buy cheap , sell higher, when everyone is talking about it\n\nNo magic, just a disciplined approach to his strategy",
+      "text_ko": "정치 내부자가 Polymarket에서 $1을 $170,000로 바꾸다\n\n그의 거래를 따라하고 그와 함께 수익을 내보세요: https://t.co/jRuw8Xrtvl\n\n실망시켜드리지만, 이것은 전혀 내부자가 아닙니다, 다른 사람들이 쓰듯이\n\n그는 좋은 그리고 꽤 간단한 전략을 가지고 있습니다:\n\n- 싸게 사서, 사람들이 다 이야기할 때 더 비싸게 팔기\n\n마법은 없고, 단지 그의 전략에 대한 규율 있는 접근뿐입니다",
+      "images": [
+        "https://pbs.twimg.com/media/HBTbm9fbMAAhs26.jpg"
+      ],
+      "rank_meta": {
+        "rank": 11,
+        "view_count": 1981.0,
+        "bookmark_count": 30.0,
+        "like_count": 57.0,
+        "repost_count": 1.0,
+        "reply_count": 16.0
+      },
+      "fetched_at": "2026-02-18T14:17:53.998631+09:00"
+    }
   ]
 }
