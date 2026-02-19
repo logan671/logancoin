@@ -1,7 +1,9 @@
 import json
 import logging
+import os
 import re
 import sqlite3
+import socket
 import time
 from dataclasses import dataclass
 from typing import Any
@@ -32,10 +34,12 @@ class AddPairDraft:
     source_alias: str | None = None
     follower_label: str | None = None
     step: str = STEP_SOURCE
+    created_at: float = 0.0
 
 
 PENDING_ADDPAIR: dict[str, AddPairDraft] = {}
 _LOCK_FILE = "/tmp/projectk-register-bot.lock"
+PENDING_TTL_SECONDS = 180
 
 
 def _is_hex_address(value: str) -> bool:
@@ -163,7 +167,7 @@ def _handle_addpair(chat_id: str, parts: list[str]) -> None:
         if existing:
             _send_message(chat_id, f"이미 페어 추가 진행 중입니다.\n{_addpair_step_message(existing.step)}", use_keyboard=True)
             return
-        PENDING_ADDPAIR[chat_id] = AddPairDraft()
+        PENDING_ADDPAIR[chat_id] = AddPairDraft(created_at=time.time())
         _send_message(chat_id, _addpair_start_message(), use_keyboard=True)
         return
 
@@ -266,6 +270,13 @@ def _handle_addpair_wizard(chat_id: str, text: str) -> bool:
     draft = PENDING_ADDPAIR.get(chat_id)
     if not draft:
         return False
+
+    if draft.created_at <= 0:
+        draft.created_at = time.time()
+    if (time.time() - draft.created_at) > PENDING_TTL_SECONDS:
+        PENDING_ADDPAIR.pop(chat_id, None)
+        _send_message(chat_id, "이전 /addpair 입력이 시간 초과로 종료되었습니다. 다시 /addpair 를 입력해주세요.", use_keyboard=True)
+        return True
 
     value = text.strip()
     if not value:
@@ -382,7 +393,9 @@ def _handle_whereami(chat_id: str) -> None:
         db_path = DB_PATH
     except Exception:
         db_path = "unknown"
-    _send_message(chat_id, f"bot db_path: {db_path}\nactive_pairs: {len(rows)}", use_keyboard=True)
+    host = socket.gethostname()
+    pid = os.getpid()
+    _send_message(chat_id, f"bot db_path: {db_path}\nactive_pairs: {len(rows)}\ninstance: {host}:{pid}", use_keyboard=True)
 
 
 def _handle_site(chat_id: str) -> None:
