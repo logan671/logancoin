@@ -59,7 +59,7 @@ def _main_keyboard() -> dict[str, Any]:
             [{"text": "/help"}, {"text": "/listpairs"}],
             [{"text": "/addpair"}, {"text": "/rmpair"}],
             [{"text": "/rmpairall"}, {"text": "/whereami"}],
-            [{"text": "/site"}],
+            [{"text": "/site"}, {"text": "/howto"}],
         ],
         "resize_keyboard": True,
     }
@@ -118,7 +118,31 @@ def _cmd_help() -> str:
         "5) 현재 봇 DB 확인\n"
         "/whereami\n\n"
         "6) 대시보드 주소 보기\n"
-        "/site"
+        "/site\n\n"
+        "7) 등록 가이드 보기\n"
+        "/howto"
+    )
+
+
+def _cmd_howto() -> str:
+    return (
+        "ProjectK 빠른 등록 가이드\n\n"
+        "1) 볼트 먼저 등록(서버 터미널)\n"
+        "python3 -m backend.wallet_cli add <볼트이름>\n"
+        "예: python3 -m backend.wallet_cli add bera11\n\n"
+        "2) 텔레그램에서 /addpair 입력\n"
+        "순서대로 6개 입력:\n"
+        "- source 주소(카피할 지갑)\n"
+        "- follower 주소(내 지갑)\n"
+        "- 예산(USDC)\n"
+        "- key_ref (예: vault://bera11)\n"
+        "- source 별칭('-' 가능)\n"
+        "- follower 별칭('-' 가능)\n\n"
+        "3) 여러 개 등록할 때\n"
+        "- 한 개 끝나면 다시 /addpair\n"
+        "- 중간에 취소는 /cancel\n"
+        "- 목록 확인은 /listpairs\n"
+        "- 전체 삭제는 /rmpairall"
     )
 
 
@@ -414,6 +438,9 @@ def _handle_text(chat_id: str, text: str) -> None:
             PENDING_ADDPAIR.pop(chat_id, None)
         if cmd in ("/start", "/help"):
             _send_message(chat_id, _cmd_help(), use_keyboard=True)
+            return
+        if cmd == "/howto":
+            _send_message(chat_id, _cmd_howto(), use_keyboard=True)
             return
         if cmd == "/cancel":
             if chat_id in PENDING_ADDPAIR:

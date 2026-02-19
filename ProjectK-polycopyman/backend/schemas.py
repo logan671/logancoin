@@ -18,6 +18,7 @@ class PairItem(BaseModel):
     budget_usdc: float
     initial_matic: float
     min_matic_alert: float
+    cumulative_source_volume_usdc: float
 
 
 class PairCreateRequest(BaseModel):

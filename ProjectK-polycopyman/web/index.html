@@ -89,6 +89,7 @@
             <th>초기 MATIC</th>
             <th>MATIC 알림 기준</th>
             <th>슬리피지(bps)</th>
+            <th>누적 거래량(USDC)</th>
           </tr>
         </thead>
         <tbody id="rows"></tbody>
@@ -171,6 +172,7 @@
                 <td>${p.initial_matic}</td>
                 <td>${p.min_matic_alert}</td>
                 <td>${p.max_slippage_bps}</td>
+                <td>${Number(p.cumulative_source_volume_usdc || 0).toFixed(4)}</td>
               </tr>`
             )
             .join("");

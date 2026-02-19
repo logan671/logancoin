@@ -20,7 +20,12 @@ def list_pairs() -> list[dict[str, Any]]:
       f.label AS follower_label,
       f.budget_usdc,
       f.initial_matic,
-      f.min_matic_alert
+      f.min_matic_alert,
+      COALESCE((
+        SELECT SUM(t.source_notional_usdc)
+        FROM trade_signals t
+        WHERE t.source_wallet_id = p.source_wallet_id
+      ), 0) AS cumulative_source_volume_usdc
     FROM wallet_pairs p
     JOIN source_wallets s ON s.id = p.source_wallet_id
     JOIN follower_wallets f ON f.id = p.follower_wallet_id
@@ -45,7 +50,12 @@ def get_pair(pair_id: int) -> dict[str, Any] | None:
       f.label AS follower_label,
       f.budget_usdc,
       f.initial_matic,
-      f.min_matic_alert
+      f.min_matic_alert,
+      COALESCE((
+        SELECT SUM(t.source_notional_usdc)
+        FROM trade_signals t
+        WHERE t.source_wallet_id = p.source_wallet_id
+      ), 0) AS cumulative_source_volume_usdc
     FROM wallet_pairs p
     JOIN source_wallets s ON s.id = p.source_wallet_id
     JOIN follower_wallets f ON f.id = p.follower_wallet_id
