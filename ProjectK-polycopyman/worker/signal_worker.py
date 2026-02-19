@@ -49,10 +49,25 @@ def active_pair_count() -> int:
     return int(row["cnt"])
 
 
-def _calc_adjusted_notional(source_notional: float, min_order_usdc: float, max_order_usdc: float | None) -> float:
+def _calc_adjusted_notional(
+    source_notional: float,
+    min_order_usdc: float,
+    max_order_usdc: float | None,
+    follower_budget_usdc: float,
+    source_price: float | None,
+) -> float:
     adjusted = max(source_notional, min_order_usdc)
     if max_order_usdc is not None:
         adjusted = min(adjusted, max_order_usdc)
+    if follower_budget_usdc >= adjusted:
+        return adjusted
+
+    # Fallback: if budget is short, try buying at least one share.
+    if source_price is not None and source_price > 0 and follower_budget_usdc >= source_price:
+        return source_price
+
+    # If one share is not affordable, use remaining budget (or 0 => blocked).
+    return max(min(adjusted, follower_budget_usdc), 0.0)
     return adjusted
 
 
@@ -62,9 +77,27 @@ def process_once() -> int:
     for row in pending:
         requested = float(row["source_notional_usdc"])
         min_order = float(row["min_order_usdc"] or 1.0)
+        budget = float(row["budget_usdc"] or 0.0)
+        source_price = float(row["source_price"]) if row["source_price"] is not None else None
         max_order = row["max_order_usdc"]
         max_order_val = float(max_order) if max_order is not None else None
-        adjusted = _calc_adjusted_notional(requested, min_order, max_order_val)
+        adjusted = _calc_adjusted_notional(
+            source_notional=requested,
+            min_order_usdc=min_order,
+            max_order_usdc=max_order_val,
+            follower_budget_usdc=budget,
+            source_price=source_price,
+        )
+        if adjusted <= 0:
+            create_mirror_order(
+                pair_id=int(row["pair_id"]),
+                trade_signal_id=int(row["trade_signal_id"]),
+                requested_notional_usdc=requested,
+                adjusted_notional_usdc=0.0,
+                status="blocked",
+                blocked_reason="insufficient_budget_for_one_share",
+            )
+            continue
         create_mirror_order(
             pair_id=int(row["pair_id"]),
             trade_signal_id=int(row["trade_signal_id"]),

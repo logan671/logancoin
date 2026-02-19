@@ -153,11 +153,14 @@ def list_unmirrored_signals(limit: int = 50) -> list[dict[str, Any]]:
               t.source_price,
               p.id AS pair_id,
               p.min_order_usdc,
-              p.max_order_usdc
+              p.max_order_usdc,
+              f.budget_usdc
             FROM trade_signals t
             JOIN wallet_pairs p
               ON p.source_wallet_id = t.source_wallet_id
              AND p.active = 1
+            JOIN follower_wallets f
+              ON f.id = p.follower_wallet_id
             LEFT JOIN mirror_orders m
               ON m.trade_signal_id = t.id
              AND m.pair_id = p.id
