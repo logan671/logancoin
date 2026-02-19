@@ -40,6 +40,7 @@ class AddPairDraft:
 PENDING_ADDPAIR: dict[str, AddPairDraft] = {}
 _LOCK_FILE = "/tmp/projectk-register-bot.lock"
 PENDING_TTL_SECONDS = 180
+BOT_INSTANCE = f"{socket.gethostname()}:{os.getpid()}"
 
 
 def _is_hex_address(value: str) -> bool:
@@ -393,13 +394,11 @@ def _handle_whereami(chat_id: str) -> None:
         db_path = DB_PATH
     except Exception:
         db_path = "unknown"
-    host = socket.gethostname()
-    pid = os.getpid()
-    _send_message(chat_id, f"bot db_path: {db_path}\nactive_pairs: {len(rows)}\ninstance: {host}:{pid}", use_keyboard=True)
+    _send_message(chat_id, f"bot db_path: {db_path}\nactive_pairs: {len(rows)}\ninstance: {BOT_INSTANCE}", use_keyboard=True)
 
 
 def _handle_site(chat_id: str) -> None:
-    _send_message(chat_id, f"ProjectK 대시보드 주소:\n{DASHBOARD_URL}", use_keyboard=True)
+    _send_message(chat_id, f"ProjectK 대시보드 주소:\n{DASHBOARD_URL}\ninstance: {BOT_INSTANCE}", use_keyboard=True)
 
 
 def _handle_text(chat_id: str, text: str) -> None:
@@ -501,6 +500,7 @@ def run() -> None:
                 text = message.get("text") or ""
                 if not chat_id or not text:
                     continue
+                logging.info("telegram_update chat_id=%s text=%s instance=%s", chat_id, text.strip(), BOT_INSTANCE)
                 if not _is_owner(chat_id):
                     _send_message(chat_id, "권한이 없습니다.")
                     continue
