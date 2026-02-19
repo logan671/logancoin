@@ -593,6 +593,7 @@ def handle_telegram_commands(settings: Settings, hiro: HiroClient, notifier: Tel
 
     for cmd in commands:
         command = cmd.text.split()[0].lower()
+        command = command.split("@", 1)[0]
         if command != "/status":
             continue
         if not settings.trading_address:
@@ -605,7 +606,7 @@ def handle_telegram_commands(settings: Settings, hiro: HiroClient, notifier: Tel
             total_stx = balances.stx_balance + ststx_as_stx
             text = "\n".join(
                 [
-                    "[지갑 상태]",
+                    "지갑 상태",
                     f"주소: {settings.trading_address}",
                     f"STX: {balances.stx_balance:.6f}",
                     f"stSTX: {balances.ststx_balance:.6f}",
