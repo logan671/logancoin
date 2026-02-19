@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProjectK 대시보드</title>
+    <style>
+      :root {
+        --bg: #f4f6f8;
+        --card: #ffffff;
+        --text: #13212f;
+        --muted: #4c5b68;
+        --accent: #0f766e;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+        background: radial-gradient(circle at top right, #d9f4f1, var(--bg));
+        font-family: "Pretendard", "Noto Sans KR", sans-serif;
+        color: var(--text);
+      }
+      h1 {
+        margin: 0 0 16px 0;
+      }
+      .card {
+        background: var(--card);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 6px 24px rgba(13, 33, 47, 0.08);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 10px 8px;
+        border-bottom: 1px solid #e5e9ee;
+        text-align: left;
+      }
+      th { color: var(--muted); font-weight: 600; }
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #def7f5;
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .hint {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .box {
+        margin-top: 14px;
+        margin-bottom: 14px;
+        padding: 12px;
+        border: 1px solid #e5e9ee;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ProjectK 대시보드</h1>
+    <div class="card">
+      <p>연결 상태: <span id="status" class="badge">연결중</span></p>
+      <p class="hint">API 주소: <code id="apiBase"></code></p>
+
+      <div class="box">
+        <h3>등록 정책 안내</h3>
+        <p class="hint">
+          이 웹은 읽기 전용이다. 지갑 페어 등록/삭제는 텔레그램 등록 봇에서만 가능하다.<br />
+          등록 봇 명령어: <code>/addpair</code>, <code>/rmpair</code>, <code>/listpairs</code>
+        </p>
+      </div>
+
+      <h3>지갑 페어 목록</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>소스 지갑</th>
+            <th>팔로워 지갑</th>
+            <th>모드</th>
+            <th>현재 예산(USDC)</th>
+            <th>초기 MATIC</th>
+            <th>MATIC 알림 기준</th>
+            <th>슬리피지(bps)</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <h3 style="margin-top:16px;">최근 복제 주문</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>주문 ID</th>
+            <th>페어 ID</th>
+            <th>시그널 ID</th>
+            <th>요청 금액</th>
+            <th>조정 금액</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody id="orderRows"></tbody>
+      </table>
+      <h3 style="margin-top:16px;">최근 실행 결과</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>실행 ID</th>
+            <th>주문 ID</th>
+            <th>페어 ID</th>
+            <th>방향</th>
+            <th>금액</th>
+            <th>상태</th>
+            <th>사유</th>
+          </tr>
+        </thead>
+        <tbody id="execRows"></tbody>
+      </table>
+    </div>
+    <script>
+      const API_BASE = (() => {
+        const host = window.location.hostname || "127.0.0.1";
+        if (host === "127.0.0.1" || host === "localhost") return "http://127.0.0.1:8081";
+        return `${window.location.protocol}//${host}:8081`;
+      })();
+
+      document.getElementById("apiBase").textContent = API_BASE;
+
+      async function loadDashboard() {
+        const status = document.getElementById("status");
+        const rows = document.getElementById("rows");
+        const orderRows = document.getElementById("orderRows");
+        const execRows = document.getElementById("execRows");
+        try {
+          const [pairsRes, ordersRes, executionsRes] = await Promise.all([
+            fetch(`${API_BASE}/pairs`),
+            fetch(`${API_BASE}/mirror-orders`),
+            fetch(`${API_BASE}/executions`),
+          ]);
+          if (!pairsRes.ok || !ordersRes.ok || !executionsRes.ok) throw new Error("api error");
+          const pairs = await pairsRes.json();
+          const orders = await ordersRes.json();
+          const executions = await executionsRes.json();
+          status.textContent = "정상";
+          rows.innerHTML = pairs
+            .map(
+              (p) => `<tr>
+                <td>${p.id}</td>
+                <td>${p.source_alias || "-"}<br/><small>${p.source_address}</small></td>
+                <td>${p.follower_label || "-"}<br/><small>${p.follower_address}</small></td>
+                <td>${p.mode}</td>
+                <td>${p.budget_usdc}</td>
+                <td>${p.initial_matic}</td>
+                <td>${p.min_matic_alert}</td>
+                <td>${p.max_slippage_bps}</td>
+              </tr>`
+            )
+            .join("");
+          orderRows.innerHTML = orders
+            .map(
+              (o) => `<tr>
+                <td>${o.id}</td>
+                <td>${o.pair_id}</td>
+                <td>${o.trade_signal_id}</td>
+                <td>${o.requested_notional_usdc}</td>
+                <td>${o.adjusted_notional_usdc}</td>
+                <td>${o.status}</td>
+              </tr>`
+            )
+            .join("");
+          execRows.innerHTML = executions
+            .map(
+              (e) => `<tr>
+                <td>${e.id}</td>
+                <td>${e.mirror_order_id}</td>
+                <td>${e.pair_id}</td>
+                <td>${e.executed_side || "-"}</td>
+                <td>${e.executed_notional_usdc ?? "-"}</td>
+                <td>${e.status}</td>
+                <td>${e.fail_reason || "-"}</td>
+              </tr>`
+            )
+            .join("");
+        } catch (err) {
+          status.textContent = "연결끊김";
+          rows.innerHTML = "";
+          orderRows.innerHTML = "";
+          execRows.innerHTML = "";
+        }
+      }
+      loadDashboard();
+      setInterval(loadDashboard, 5000);
+    </script>
+  </body>
+</html>
