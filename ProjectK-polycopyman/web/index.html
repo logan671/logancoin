@@ -64,12 +64,16 @@
     <div class="card">
       <p>연결 상태: <span id="status" class="badge">연결중</span></p>
       <p class="hint">API 주소: <code id="apiBase"></code></p>
+      <p class="hint">DB 일치 상태: <span id="dbStatus" class="badge">확인중</span></p>
+      <div id="dbWarn" class="hint" style="display:none;color:#b42318;font-weight:700;">
+        경고: 서비스별 DB 경로가 다릅니다. 봇/API/웹이 서로 다른 데이터를 보고 있을 수 있습니다.
+      </div>
 
       <div class="box">
         <h3>등록 정책 안내</h3>
         <p class="hint">
           이 웹은 읽기 전용이다. 지갑 페어 등록/삭제는 텔레그램 등록 봇에서만 가능하다.<br />
-          등록 봇 명령어: <code>/addpair</code>, <code>/rmpair</code>, <code>/listpairs</code>
+          등록 봇 명령어: <code>/addpair</code>, <code>/rmpair</code>, <code>/rmpairall</code>, <code>/listpairs</code>
         </p>
       </div>
 
@@ -130,20 +134,32 @@
 
       async function loadDashboard() {
         const status = document.getElementById("status");
+        const dbStatus = document.getElementById("dbStatus");
+        const dbWarn = document.getElementById("dbWarn");
         const rows = document.getElementById("rows");
         const orderRows = document.getElementById("orderRows");
         const execRows = document.getElementById("execRows");
         try {
-          const [pairsRes, ordersRes, executionsRes] = await Promise.all([
+          const [pairsRes, ordersRes, executionsRes, runtimeRes] = await Promise.all([
             fetch(`${API_BASE}/pairs`),
             fetch(`${API_BASE}/mirror-orders`),
             fetch(`${API_BASE}/executions`),
+            fetch(`${API_BASE}/runtime/services`),
           ]);
-          if (!pairsRes.ok || !ordersRes.ok || !executionsRes.ok) throw new Error("api error");
+          if (!pairsRes.ok || !ordersRes.ok || !executionsRes.ok || !runtimeRes.ok) throw new Error("api error");
           const pairs = await pairsRes.json();
           const orders = await ordersRes.json();
           const executions = await executionsRes.json();
+          const runtime = await runtimeRes.json();
           status.textContent = "정상";
+          const dbPaths = Array.from(new Set(runtime.map((x) => x.db_path)));
+          if (dbPaths.length <= 1) {
+            dbStatus.textContent = "일치";
+            dbWarn.style.display = "none";
+          } else {
+            dbStatus.textContent = "불일치";
+            dbWarn.style.display = "block";
+          }
           rows.innerHTML = pairs
             .map(
               (p) => `<tr>
@@ -185,6 +201,8 @@
             .join("");
         } catch (err) {
           status.textContent = "연결끊김";
+          dbStatus.textContent = "확인실패";
+          dbWarn.style.display = "none";
           rows.innerHTML = "";
           orderRows.innerHTML = "";
           execRows.innerHTML = "";

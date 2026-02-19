@@ -1,10 +1,10 @@
 # ProjectK - polycopyman
 
 ## Structure
-- `backend/`: API server (`/health`, `/pairs`)
+- `backend/`: API server (`/health`, `/pairs`, `/runtime/services`)
 - `backend/wallet_cli.py`: vault key_ref registration CLI (`add`, `list`)
-- `bot/`: Telegram registration bot (`/addpair`, `/rmpair`, `/listpairs`)
-- `worker/`: signal worker skeleton
+- `bot/`: Telegram registration bot (`/addpair`, `/rmpair`, `/rmpairall`, `/listpairs`, `/whereami`)
+- `worker/`: signal worker + source watcher
 - `web/`: dashboard skeleton
 - `schema.sql`: database schema
 - `seed.sql`: initial sample data

@@ -6,13 +6,19 @@ from web3 import Web3
 
 from backend.config import (
     RPC_URL,
+    WATCHER_BACKOFF_ERROR_STREAK,
+    WATCHER_BACKOFF_SLOW_TICK_MS,
     WATCHER_CONFIRMATIONS,
     WATCHER_EXCHANGES,
     WATCHER_MAX_BLOCK_RANGE,
     WATCHER_MAX_LAG_BLOCKS,
+    WATCHER_POLL_MAX_SECONDS,
+    WATCHER_POLL_MIN_SECONDS,
     WATCHER_POLL_SECONDS,
+    WATCHER_RECOVERY_HEALTHY_TICKS,
 )
 from backend.db import get_conn
+from backend.repositories.runtime import heartbeat
 from backend.repositories.signals import create_chain_signal, list_active_source_wallet_addresses
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -106,9 +112,19 @@ def run() -> None:
         raise SystemExit("PROJECTK_WATCHER_EXCHANGES is empty")
 
     last_block = int(_get_state("watcher_last_block") or "0")
+    min_poll = max(1, WATCHER_POLL_MIN_SECONDS)
+    max_poll = max(min_poll, WATCHER_POLL_MAX_SECONDS)
+    poll_seconds = WATCHER_POLL_SECONDS
+    if poll_seconds < min_poll or poll_seconds > max_poll:
+        poll_seconds = min_poll
+    error_streak = 0
+    healthy_streak = 0
 
     while True:
+        tick_started = time.monotonic()
+        had_error = False
         try:
+            heartbeat("watcher", extra={"poll_seconds": poll_seconds})
             latest = int(w3.eth.block_number)
             target = max(latest - WATCHER_CONFIRMATIONS, 0)
 
@@ -117,7 +133,7 @@ def run() -> None:
                 _set_state("watcher_last_block", str(last_block))
 
             if target <= last_block:
-                time.sleep(WATCHER_POLL_SECONDS)
+                time.sleep(poll_seconds)
                 continue
 
             lag = target - last_block
@@ -125,14 +141,14 @@ def run() -> None:
                 last_block = target
                 _set_state("watcher_last_block", str(last_block))
                 logging.warning("watcher_lag_jump target=%s lag_blocks=%s", target, lag)
-                time.sleep(WATCHER_POLL_SECONDS)
+                time.sleep(poll_seconds)
                 continue
 
             watch = set(list_active_source_wallet_addresses())
             if not watch:
                 last_block = target
                 _set_state("watcher_last_block", str(last_block))
-                time.sleep(WATCHER_POLL_SECONDS)
+                time.sleep(poll_seconds)
                 continue
 
             from_block = last_block + 1
@@ -197,16 +213,41 @@ def run() -> None:
             last_block = to_block
             _set_state("watcher_last_block", str(last_block))
             logging.info(
-                "watcher_tick blocks=%s->%s logs=%s inserted_signals=%s watched_wallets=%s",
+                "watcher_tick blocks=%s->%s logs=%s inserted_signals=%s watched_wallets=%s poll=%s",
                 from_block,
                 to_block,
                 len(logs),
                 inserted,
                 len(watch),
+                poll_seconds,
             )
         except Exception:
+            had_error = True
             logging.exception("watcher_error")
-        time.sleep(WATCHER_POLL_SECONDS)
+
+        tick_ms = int((time.monotonic() - tick_started) * 1000)
+        is_slow = tick_ms >= WATCHER_BACKOFF_SLOW_TICK_MS
+        if had_error:
+            error_streak += 1
+            healthy_streak = 0
+        else:
+            error_streak = 0
+            healthy_streak = healthy_streak + 1 if not is_slow else 0
+
+        if had_error or is_slow:
+            if error_streak >= WATCHER_BACKOFF_ERROR_STREAK or is_slow:
+                poll_seconds = max_poll
+        elif poll_seconds == max_poll and healthy_streak >= WATCHER_RECOVERY_HEALTHY_TICKS:
+            poll_seconds = min_poll
+
+        logging.info(
+            "watcher_perf tick_ms=%s poll=%s error_streak=%s healthy_streak=%s",
+            tick_ms,
+            poll_seconds,
+            error_streak,
+            healthy_streak,
+        )
+        time.sleep(poll_seconds)
 
 
 if __name__ == "__main__":

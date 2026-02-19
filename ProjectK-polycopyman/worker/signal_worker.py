@@ -12,6 +12,7 @@ from backend.repositories.orders import (
     mark_mirror_order_status,
     set_mirror_order_executor_ref,
 )
+from backend.repositories.runtime import heartbeat
 from backend.repositories.signals import list_unmirrored_signals
 from worker.executor import build_executor
 
@@ -68,7 +69,6 @@ def _calc_adjusted_notional(
 
     # If one share is not affordable, use remaining budget (or 0 => blocked).
     return max(min(adjusted, follower_budget_usdc), 0.0)
-    return adjusted
 
 
 def process_once() -> int:
@@ -172,6 +172,7 @@ def process_executor_once() -> tuple[int, int]:
 
 def run(poll_seconds: int = 10) -> None:
     while True:
+        heartbeat("worker")
         cnt = active_pair_count()
         created = process_once()
         filled, failed = process_executor_once()

@@ -7,9 +7,11 @@ from dataclasses import dataclass
 from typing import Any
 from urllib import parse, request
 from urllib.error import URLError
+import fcntl
 
 from backend.config import TELEGRAM_BOT_TOKEN, TELEGRAM_OWNER_CHAT_ID
 from backend.repositories.pairs import create_pair, delete_pair, list_pairs
+from backend.repositories.runtime import heartbeat
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
@@ -33,6 +35,7 @@ class AddPairDraft:
 
 
 PENDING_ADDPAIR: dict[str, AddPairDraft] = {}
+_LOCK_FILE = "/tmp/projectk-register-bot.lock"
 
 
 def _is_hex_address(value: str) -> bool:
@@ -50,6 +53,7 @@ def _main_keyboard() -> dict[str, Any]:
         "keyboard": [
             [{"text": "/help"}, {"text": "/listpairs"}],
             [{"text": "/addpair"}, {"text": "/rmpair"}],
+            [{"text": "/rmpairall"}, {"text": "/whereami"}],
         ],
         "resize_keyboard": True,
     }
@@ -101,7 +105,9 @@ def _cmd_help() -> str:
         "/rmpair <pair_id>\n"
         "/rmpairall\n\n"
         "4) 진행중 입력 취소\n"
-        "/cancel"
+        "/cancel\n\n"
+        "5) 현재 봇 DB 확인\n"
+        "/whereami"
     )
 
 
@@ -111,6 +117,22 @@ def _addpair_start_message() -> str:
         "1/6 카피할 주소(source)를 입력해주세요.\n"
         "예: 0x1111111111111111111111111111111111111111"
     )
+
+
+def _addpair_step_message(step: str) -> str:
+    if step == STEP_SOURCE:
+        return "1/6 카피할 주소(source)를 입력해주세요.\n예: 0x1111111111111111111111111111111111111111"
+    if step == STEP_FOLLOWER:
+        return "2/6 따라할 지갑(follower) 주소를 입력해주세요.\n예: 0xa111111111111111111111111111111111111111"
+    if step == STEP_BUDGET:
+        return "3/6 시작 예산(USDC)을 입력해주세요.\n예: 200"
+    if step == STEP_KEY_REF:
+        return "4/6 key_ref를 입력해주세요.\n예: vault://wallet_1"
+    if step == STEP_SOURCE_ALIAS:
+        return "5/6 source 별칭을 입력해주세요. 없으면 '-' 입력"
+    if step == STEP_FOLLOWER_LABEL:
+        return "6/6 follower 별칭을 입력해주세요. 없으면 '-' 입력"
+    return "입력 상태를 알 수 없습니다. /cancel 후 /addpair 로 다시 시작해주세요."
 
 
 def _handle_listpairs(chat_id: str) -> None:
@@ -131,6 +153,10 @@ def _handle_listpairs(chat_id: str) -> None:
 
 def _handle_addpair(chat_id: str, parts: list[str]) -> None:
     if len(parts) == 1:
+        existing = PENDING_ADDPAIR.get(chat_id)
+        if existing:
+            _send_message(chat_id, f"이미 페어 추가 진행 중입니다.\n{_addpair_step_message(existing.step)}", use_keyboard=True)
+            return
         PENDING_ADDPAIR[chat_id] = AddPairDraft()
         _send_message(chat_id, _addpair_start_message(), use_keyboard=True)
         return
@@ -329,11 +355,28 @@ def _handle_rmpairall(chat_id: str) -> None:
         _send_message(chat_id, "삭제할 페어가 없습니다.", use_keyboard=True)
         return
     deleted = 0
+    deleted_ids: list[str] = []
     for row in rows:
         pair_id = int(row["id"])
         if delete_pair(pair_id):
             deleted += 1
-    _send_message(chat_id, f"전체 삭제 완료: {deleted}개", use_keyboard=True)
+            deleted_ids.append(str(pair_id))
+    if deleted_ids:
+        detail = ",".join(deleted_ids)
+        _send_message(chat_id, f"전체 삭제 완료: {deleted}개\n삭제된 pair_id: {detail}", use_keyboard=True)
+        return
+    _send_message(chat_id, "전체 삭제를 시도했지만 삭제된 페어가 없습니다.", use_keyboard=True)
+
+
+def _handle_whereami(chat_id: str) -> None:
+    rows = list_pairs()
+    try:
+        from backend.config import DB_PATH
+
+        db_path = DB_PATH
+    except Exception:
+        db_path = "unknown"
+    _send_message(chat_id, f"bot db_path: {db_path}\nactive_pairs: {len(rows)}", use_keyboard=True)
 
 
 def _handle_text(chat_id: str, text: str) -> None:
@@ -366,6 +409,9 @@ def _handle_text(chat_id: str, text: str) -> None:
         if cmd == "/rmpairall":
             _handle_rmpairall(chat_id)
             return
+        if cmd == "/whereami":
+            _handle_whereami(chat_id)
+            return
         _send_message(chat_id, "알 수 없는 명령어입니다. 아래 버튼이나 /help를 사용하세요.", use_keyboard=True)
         return
 
@@ -392,9 +438,16 @@ def run() -> None:
     if not TELEGRAM_OWNER_CHAT_ID:
         raise SystemExit("PROJECTK_TELEGRAM_OWNER_CHAT_ID is not set")
 
+    lock_fd = open(_LOCK_FILE, "w", encoding="utf-8")
+    try:
+        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError as exc:
+        raise SystemExit(f"another register_bot instance is already running: {_LOCK_FILE}") from exc
+
     offset = 0
     while True:
         try:
+            heartbeat("bot")
             data = _get_updates(offset)
             if not data.get("ok"):
                 time.sleep(2)

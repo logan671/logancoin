@@ -87,3 +87,11 @@ class ExecutionItem(BaseModel):
     status: str
     fail_reason: str | None = None
     executed_at: int | None = None
+
+
+class RuntimeServiceItem(BaseModel):
+    component: str
+    pid: int
+    db_path: str
+    updated_at: int
+    extra_json: str | None = None

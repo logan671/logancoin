@@ -156,6 +156,15 @@ CREATE TABLE IF NOT EXISTS alerts (
     FOREIGN KEY (follower_wallet_id) REFERENCES follower_wallets (id) ON DELETE SET NULL
 );
 
+-- Runtime service registry (which component points to which DB path)
+CREATE TABLE IF NOT EXISTS service_runtime (
+    component TEXT PRIMARY KEY,
+    pid INTEGER NOT NULL,
+    db_path TEXT NOT NULL,
+    updated_at INTEGER NOT NULL,
+    extra_json TEXT
+);
+
 -- Indexes
 CREATE INDEX IF NOT EXISTS idx_source_wallets_status ON source_wallets (status);
 CREATE INDEX IF NOT EXISTS idx_follower_wallets_status ON follower_wallets (status);
@@ -181,5 +190,6 @@ CREATE INDEX IF NOT EXISTS idx_balances_asset ON balances (asset_symbol, snapsho
 CREATE INDEX IF NOT EXISTS idx_alerts_pair_created ON alerts (pair_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_alerts_status_created ON alerts (sent_status, created_at DESC);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_alerts_dedupe_key ON alerts (dedupe_key) WHERE dedupe_key IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_service_runtime_updated ON service_runtime (updated_at DESC);
 
 COMMIT;

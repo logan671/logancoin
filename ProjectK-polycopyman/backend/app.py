@@ -1,10 +1,12 @@
 import sqlite3
+import threading
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from .repositories.orders import list_recent_executions, list_recent_mirror_orders
 from .repositories.pairs import create_pair, delete_pair, get_pair, list_pairs
+from .repositories.runtime import heartbeat, list_runtime_services
 from .repositories.signals import create_mock_signal, list_recent_signals
 from .schemas import (
     HealthResponse,
@@ -13,6 +15,7 @@ from .schemas import (
     PairCreateRequest,
     PairDeleteResponse,
     PairItem,
+    RuntimeServiceItem,
     SignalMockRequest,
     TradeSignalItem,
 )
@@ -26,9 +29,32 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+_stop_event = threading.Event()
+
+
+def _runtime_heartbeat_loop() -> None:
+    while not _stop_event.is_set():
+        try:
+            heartbeat("api")
+        except Exception:
+            pass
+        _stop_event.wait(10)
+
+
+@app.on_event("startup")
+def startup_event() -> None:
+    heartbeat("api")
+    threading.Thread(target=_runtime_heartbeat_loop, daemon=True).start()
+
+
+@app.on_event("shutdown")
+def shutdown_event() -> None:
+    _stop_event.set()
+
 
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
+    heartbeat("api")
     return HealthResponse(status="ok")
 
 
@@ -114,3 +140,9 @@ def list_mirror_orders_endpoint(limit: int = 20) -> list[MirrorOrderItem]:
 def list_executions_endpoint(limit: int = 20) -> list[ExecutionItem]:
     rows = list_recent_executions(limit=limit)
     return [ExecutionItem(**row) for row in rows]
+
+
+@app.get("/runtime/services", response_model=list[RuntimeServiceItem])
+def runtime_services_endpoint() -> list[RuntimeServiceItem]:
+    rows = list_runtime_services()
+    return [RuntimeServiceItem(**row) for row in rows]
