@@ -1,0 +1,15 @@
+{
+  "name": "stx-ststx-signer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local signer API for STX/stSTX bot",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@stacks/common": "^6.0.0",
+    "@stacks/network": "^6.0.0",
+    "@stacks/transactions": "^6.0.0"
+  }
+}
