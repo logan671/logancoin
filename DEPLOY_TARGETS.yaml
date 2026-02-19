@@ -1,0 +1,38 @@
+# Global deployment target map for this monorepo.
+# Keep this file updated whenever server topology changes.
+
+version: 1
+default_target: company
+
+targets:
+  company:
+    description: "회사 운영 서버"
+    host: "47.80.2.58"
+    user: "ecs-user"
+    port: 22
+    notes: "현재 저장소에서 확인된 배포 서버"
+
+  personal:
+    description: "개인 실험 서버"
+    host: "43.203.122.192"
+    ipv6: "2406:da12:54c:4d00:6be7:715e:fe16:8199"
+    user: "ubuntu"
+    port: 22
+    ssh_key_name: "logantestlightsail"
+    notes: "키 파일(.pem) 자체는 저장소/채팅에 공유 금지. 키 이름만 기록."
+
+natural_language_aliases:
+  company:
+    - "회사서버"
+    - "회사 서버"
+    - "company server"
+    - "company"
+  personal:
+    - "개인서버"
+    - "개인 서버"
+    - "personal server"
+    - "personal"
+
+policy:
+  require_explicit_target_for_deploy: true
+  stop_when_target_missing_or_ambiguous: true
