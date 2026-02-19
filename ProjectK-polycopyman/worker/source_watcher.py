@@ -99,6 +99,8 @@ def run() -> None:
 
     w3 = Web3(Web3.HTTPProvider(RPC_URL, request_kwargs={"timeout": 20}))
     topic0 = w3.keccak(text=EVENT_SIG).hex()
+    if not topic0.startswith("0x"):
+        topic0 = f"0x{topic0}"
     exchanges = [Web3.to_checksum_address(x.strip()) for x in WATCHER_EXCHANGES.split(",") if x.strip()]
     if not exchanges:
         raise SystemExit("PROJECTK_WATCHER_EXCHANGES is empty")
