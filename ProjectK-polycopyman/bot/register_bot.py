@@ -98,7 +98,8 @@ def _cmd_help() -> str:
         "2) 페어 추가하기(대화형)\n"
         "/addpair\n\n"
         "3) 페어 삭제하기\n"
-        "/rmpair <pair_id>\n\n"
+        "/rmpair <pair_id>\n"
+        "/rmpairall\n\n"
         "4) 진행중 입력 취소\n"
         "/cancel"
     )
@@ -322,28 +323,65 @@ def _handle_rmpair(chat_id: str, parts: list[str]) -> None:
         _send_message(chat_id, f"삭제 실패: pair_id={pair_id} not found")
 
 
-def _handle_text(chat_id: str, text: str) -> None:
-    if _handle_addpair_wizard(chat_id, text):
+def _handle_rmpairall(chat_id: str) -> None:
+    rows = list_pairs()
+    if not rows:
+        _send_message(chat_id, "삭제할 페어가 없습니다.", use_keyboard=True)
         return
+    deleted = 0
+    for row in rows:
+        pair_id = int(row["id"])
+        if delete_pair(pair_id):
+            deleted += 1
+    _send_message(chat_id, f"전체 삭제 완료: {deleted}개", use_keyboard=True)
 
+
+def _handle_text(chat_id: str, text: str) -> None:
     parts = text.strip().split()
     if not parts:
         return
     cmd = parts[0].lower()
+
+    # Commands must always work even during addpair wizard.
+    if cmd.startswith("/"):
+        if cmd in ("/start", "/help"):
+            _send_message(chat_id, _cmd_help(), use_keyboard=True)
+            return
+        if cmd == "/cancel":
+            if chat_id in PENDING_ADDPAIR:
+                PENDING_ADDPAIR.pop(chat_id, None)
+                _send_message(chat_id, "진행 중인 /addpair 입력을 취소했습니다.", use_keyboard=True)
+            else:
+                _send_message(chat_id, "취소할 진행 작업이 없습니다.", use_keyboard=True)
+            return
+        if cmd == "/listpairs":
+            _handle_listpairs(chat_id)
+            return
+        if cmd == "/addpair":
+            _handle_addpair(chat_id, parts)
+            return
+        if cmd == "/rmpair":
+            _handle_rmpair(chat_id, parts)
+            return
+        if cmd == "/rmpairall":
+            _handle_rmpairall(chat_id)
+            return
+        _send_message(chat_id, "알 수 없는 명령어입니다. 아래 버튼이나 /help를 사용하세요.", use_keyboard=True)
+        return
+
+    if _handle_addpair_wizard(chat_id, text):
+        return
+
     if cmd in ("/start", "/help"):
         _send_message(chat_id, _cmd_help(), use_keyboard=True)
-    elif cmd == "/cancel":
-        if chat_id in PENDING_ADDPAIR:
-            PENDING_ADDPAIR.pop(chat_id, None)
-            _send_message(chat_id, "진행 중인 /addpair 입력을 취소했습니다.", use_keyboard=True)
-        else:
-            _send_message(chat_id, "취소할 진행 작업이 없습니다.", use_keyboard=True)
     elif cmd == "/listpairs":
         _handle_listpairs(chat_id)
     elif cmd == "/addpair":
         _handle_addpair(chat_id, parts)
     elif cmd == "/rmpair":
         _handle_rmpair(chat_id, parts)
+    elif cmd == "/rmpairall":
+        _handle_rmpairall(chat_id)
     else:
         _send_message(chat_id, "알 수 없는 명령어입니다. 아래 버튼이나 /help를 사용하세요.", use_keyboard=True)
 
