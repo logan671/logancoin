@@ -5,11 +5,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.environ.get("PROJECTK_DB_PATH", "/tmp/projectk_local.db")
 API_HOST = os.environ.get("PROJECTK_API_HOST", "127.0.0.1")
 API_PORT = int(os.environ.get("PROJECTK_API_PORT", "8081"))
+WEB_HOST = os.environ.get("PROJECTK_WEB_HOST", "127.0.0.1")
+WEB_PORT = int(os.environ.get("PROJECTK_WEB_PORT", "8082"))
 
 TELEGRAM_BOT_TOKEN = os.environ.get("PROJECTK_TELEGRAM_BOT_TOKEN", "").strip()
 TELEGRAM_CHAT_ID = os.environ.get("PROJECTK_TELEGRAM_CHAT_ID", "").strip()
 TELEGRAM_MAX_RETRIES = int(os.environ.get("PROJECTK_TELEGRAM_MAX_RETRIES", "3"))
 TELEGRAM_OWNER_CHAT_ID = os.environ.get("PROJECTK_TELEGRAM_OWNER_CHAT_ID", "").strip()
+DASHBOARD_URL = os.environ.get("PROJECTK_DASHBOARD_URL", f"http://127.0.0.1:{WEB_PORT}").strip()
 
 VAULT_PASSPHRASE = os.environ.get("PROJECTK_VAULT_PASSPHRASE", "").strip()
 

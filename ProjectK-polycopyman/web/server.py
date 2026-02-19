@@ -4,6 +4,7 @@ from functools import partial
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 
+from backend.config import WEB_HOST, WEB_PORT
 from backend.repositories.runtime import heartbeat
 
 
@@ -19,10 +20,10 @@ def _heartbeat_loop() -> None:
 def run() -> None:
     web_dir = Path(__file__).resolve().parent
     handler = partial(SimpleHTTPRequestHandler, directory=str(web_dir))
-    server = HTTPServer(("127.0.0.1", 8082), handler)
+    server = HTTPServer((WEB_HOST, WEB_PORT), handler)
     heartbeat("web")
     threading.Thread(target=_heartbeat_loop, daemon=True).start()
-    print("web server running at http://127.0.0.1:8082")
+    print(f"web server running at http://{WEB_HOST}:{WEB_PORT}")
     server.serve_forever()
 
 

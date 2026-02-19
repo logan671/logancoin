@@ -3,7 +3,7 @@
 ## Structure
 - `backend/`: API server (`/health`, `/pairs`, `/runtime/services`)
 - `backend/wallet_cli.py`: vault key_ref registration CLI (`add`, `list`)
-- `bot/`: Telegram registration bot (`/addpair`, `/rmpair`, `/rmpairall`, `/listpairs`, `/whereami`)
+- `bot/`: Telegram registration bot (`/addpair`, `/rmpair`, `/rmpairall`, `/listpairs`, `/whereami`, `/site`)
 - `worker/`: signal worker + source watcher
 - `web/`: dashboard skeleton
 - `schema.sql`: database schema

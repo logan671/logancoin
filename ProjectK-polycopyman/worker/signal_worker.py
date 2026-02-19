@@ -44,6 +44,48 @@ def _notify_failed_execution(
         logging.warning("telegram_alert_skipped_or_failed order_id=%s reason=%s", order_id, fail_reason)
 
 
+def _notify_blocked_order(
+    pair_id: int,
+    trade_signal_id: int,
+    requested_notional: float,
+    blocked_reason: str,
+) -> None:
+    message = (
+        "ProjectK order blocked\n"
+        f"pair_id: {pair_id}\n"
+        f"trade_signal_id: {trade_signal_id}\n"
+        f"requested_notional_usdc: {requested_notional:.4f}\n"
+        f"blocked_reason: {blocked_reason}"
+    )
+    sent = send_telegram_message(message)
+    if not sent:
+        logging.warning("telegram_alert_skipped_or_failed pair_id=%s reason=%s", pair_id, blocked_reason)
+
+
+def _notify_filled_execution(
+    order_id: int,
+    pair_id: int,
+    follower_wallet_id: int,
+    side: str,
+    outcome: str | None,
+    notional: float,
+    chain_tx_hash: str | None,
+) -> None:
+    message = (
+        "ProjectK execution filled\n"
+        f"pair_id: {pair_id}\n"
+        f"order_id: {order_id}\n"
+        f"follower_wallet_id: {follower_wallet_id}\n"
+        f"side: {side}\n"
+        f"outcome: {outcome or '-'}\n"
+        f"notional_usdc: {notional:.4f}\n"
+        f"tx_hash: {chain_tx_hash or '-'}"
+    )
+    sent = send_telegram_message(message)
+    if not sent:
+        logging.warning("telegram_alert_skipped_or_failed order_id=%s reason=filled", order_id)
+
+
 def active_pair_count() -> int:
     with get_conn() as conn:
         row = conn.execute("SELECT COUNT(*) AS cnt FROM wallet_pairs WHERE active=1").fetchone()
@@ -89,13 +131,20 @@ def process_once() -> int:
             source_price=source_price,
         )
         if adjusted <= 0:
+            blocked_reason = "insufficient_budget_for_one_share"
             create_mirror_order(
                 pair_id=int(row["pair_id"]),
                 trade_signal_id=int(row["trade_signal_id"]),
                 requested_notional_usdc=requested,
                 adjusted_notional_usdc=0.0,
                 status="blocked",
-                blocked_reason="insufficient_budget_for_one_share",
+                blocked_reason=blocked_reason,
+            )
+            _notify_blocked_order(
+                pair_id=int(row["pair_id"]),
+                trade_signal_id=int(row["trade_signal_id"]),
+                requested_notional=requested,
+                blocked_reason=blocked_reason,
             )
             continue
         create_mirror_order(
@@ -142,6 +191,15 @@ def process_executor_once() -> tuple[int, int]:
                 fail_reason=None,
             )
             consume_follower_budget(follower_wallet_id, notional)
+            _notify_filled_execution(
+                order_id=order_id,
+                pair_id=pair_id,
+                follower_wallet_id=follower_wallet_id,
+                side=side,
+                outcome=outcome,
+                notional=notional,
+                chain_tx_hash=result.chain_tx_hash,
+            )
             filled += 1
         else:
             fail_reason = result.fail_reason or "executor_failed"

@@ -9,7 +9,7 @@ from urllib import parse, request
 from urllib.error import URLError
 import fcntl
 
-from backend.config import TELEGRAM_BOT_TOKEN, TELEGRAM_OWNER_CHAT_ID
+from backend.config import DASHBOARD_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_OWNER_CHAT_ID
 from backend.repositories.pairs import create_pair, delete_pair, list_pairs
 from backend.repositories.runtime import heartbeat
 
@@ -54,6 +54,7 @@ def _main_keyboard() -> dict[str, Any]:
             [{"text": "/help"}, {"text": "/listpairs"}],
             [{"text": "/addpair"}, {"text": "/rmpair"}],
             [{"text": "/rmpairall"}, {"text": "/whereami"}],
+            [{"text": "/site"}],
         ],
         "resize_keyboard": True,
     }
@@ -107,7 +108,9 @@ def _cmd_help() -> str:
         "4) 진행중 입력 취소\n"
         "/cancel\n\n"
         "5) 현재 봇 DB 확인\n"
-        "/whereami"
+        "/whereami\n\n"
+        "6) 대시보드 주소 보기\n"
+        "/site"
     )
 
 
@@ -379,6 +382,10 @@ def _handle_whereami(chat_id: str) -> None:
     _send_message(chat_id, f"bot db_path: {db_path}\nactive_pairs: {len(rows)}", use_keyboard=True)
 
 
+def _handle_site(chat_id: str) -> None:
+    _send_message(chat_id, f"ProjectK 대시보드 주소:\n{DASHBOARD_URL}", use_keyboard=True)
+
+
 def _handle_text(chat_id: str, text: str) -> None:
     parts = text.strip().split()
     if not parts:
@@ -411,6 +418,9 @@ def _handle_text(chat_id: str, text: str) -> None:
             return
         if cmd == "/whereami":
             _handle_whereami(chat_id)
+            return
+        if cmd == "/site":
+            _handle_site(chat_id)
             return
         _send_message(chat_id, "알 수 없는 명령어입니다. 아래 버튼이나 /help를 사용하세요.", use_keyboard=True)
         return
