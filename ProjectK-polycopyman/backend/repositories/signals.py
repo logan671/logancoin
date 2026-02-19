@@ -57,6 +57,68 @@ def create_mock_signal(
     return int(cur.lastrowid)
 
 
+def list_active_source_wallet_addresses() -> list[str]:
+    query = """
+    SELECT DISTINCT s.address
+    FROM source_wallets s
+    JOIN wallet_pairs p ON p.source_wallet_id = s.id
+    WHERE p.active = 1
+    """
+    with get_conn() as conn:
+        rows = conn.execute(query).fetchall()
+    return [str(row["address"]).lower() for row in rows]
+
+
+def create_chain_signal(
+    source_address: str,
+    tx_hash: str,
+    log_index: int,
+    block_number: int,
+    side: str,
+    source_notional_usdc: float,
+    source_price: float | None,
+    token_id: str | None,
+    outcome: str | None = None,
+    market_slug: str | None = None,
+    chain_id: int = 137,
+) -> int | None:
+    source_wallet_id = _get_source_wallet_id(source_address)
+    if source_wallet_id is None:
+        return None
+
+    now = int(time.time())
+    idem = f"chain:{chain_id}:{source_wallet_id}:{tx_hash}:{log_index}"
+    with get_conn() as conn:
+        cur = conn.execute(
+            """
+            INSERT OR IGNORE INTO trade_signals(
+              source_wallet_id, chain_id, tx_hash, log_index, block_number,
+              market_slug, token_id, outcome, side,
+              source_notional_usdc, source_price, idempotency_key,
+              observed_at, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                source_wallet_id,
+                chain_id,
+                tx_hash,
+                log_index,
+                block_number,
+                market_slug,
+                token_id,
+                outcome,
+                side.lower(),
+                source_notional_usdc,
+                source_price,
+                idem,
+                now,
+                now,
+            ),
+        )
+    inserted_id = int(cur.lastrowid or 0)
+    return inserted_id if inserted_id > 0 else None
+
+
 def list_recent_signals(limit: int = 20) -> list[dict[str, Any]]:
     with get_conn() as conn:
         rows = conn.execute(
