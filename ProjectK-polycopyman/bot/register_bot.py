@@ -88,8 +88,11 @@ def _send_message(chat_id: str, text: str, use_keyboard: bool = False) -> None:
         logging.exception("telegram_send_failed")
 
 
-def _get_updates(offset: int) -> dict[str, Any]:
-    params = parse.urlencode({"timeout": 25, "offset": offset + 1})
+def _get_updates(offset: int | None = None, timeout: int = 25) -> dict[str, Any]:
+    params_dict: dict[str, Any] = {"timeout": timeout}
+    if offset is not None:
+        params_dict["offset"] = offset
+    params = parse.urlencode(params_dict)
     url = f"{_api_base()}/getUpdates?{params}"
     with request.urlopen(url, timeout=35) as resp:
         return json.loads(resp.read().decode("utf-8"))
@@ -394,6 +397,9 @@ def _handle_text(chat_id: str, text: str) -> None:
 
     # Commands must always work even during addpair wizard.
     if cmd.startswith("/"):
+        # If user runs a normal command, end wizard state implicitly.
+        if cmd not in ("/addpair", "/cancel") and chat_id in PENDING_ADDPAIR:
+            PENDING_ADDPAIR.pop(chat_id, None)
         if cmd in ("/start", "/help"):
             _send_message(chat_id, _cmd_help(), use_keyboard=True)
             return
@@ -454,16 +460,27 @@ def run() -> None:
     except OSError as exc:
         raise SystemExit(f"another register_bot instance is already running: {_LOCK_FILE}") from exc
 
-    offset = 0
+    offset: int | None = None
+    # Drain stale backlog once at startup to avoid replaying old wizard messages.
+    try:
+        initial = _get_updates(offset=None, timeout=0)
+        if initial.get("ok") and initial.get("result"):
+            max_id = max(int(u.get("update_id", 0)) for u in initial["result"])
+            offset = max_id + 1
+    except Exception:
+        logging.exception("register_bot_bootstrap_updates_error")
+
     while True:
         try:
             heartbeat("bot")
-            data = _get_updates(offset)
+            data = _get_updates(offset=offset, timeout=25)
             if not data.get("ok"):
                 time.sleep(2)
                 continue
             for update in data.get("result", []):
-                offset = update.get("update_id", offset)
+                update_id = int(update.get("update_id", 0))
+                if update_id:
+                    offset = update_id + 1
                 message = update.get("message")
                 if not message:
                     continue
