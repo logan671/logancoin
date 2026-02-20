@@ -71,6 +71,7 @@ def create_pair_endpoint(payload: PairCreateRequest) -> PairItem:
             source_address=payload.source_address.lower(),
             follower_address=payload.follower_address.lower(),
             source_alias=payload.source_alias,
+            source_portfolio_usdc=payload.source_portfolio_usdc,
             follower_label=payload.follower_label,
             budget_usdc=payload.budget_usdc,
             key_ref=payload.key_ref,

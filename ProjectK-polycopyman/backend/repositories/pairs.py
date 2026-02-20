@@ -16,6 +16,7 @@ def list_pairs() -> list[dict[str, Any]]:
       p.max_consecutive_failures,
       s.address AS source_address,
       s.alias AS source_alias,
+      s.source_portfolio_usdc,
       f.address AS follower_address,
       f.label AS follower_label,
       f.budget_usdc,
@@ -46,6 +47,7 @@ def get_pair(pair_id: int) -> dict[str, Any] | None:
       p.max_consecutive_failures,
       s.address AS source_address,
       s.alias AS source_alias,
+      s.source_portfolio_usdc,
       f.address AS follower_address,
       f.label AS follower_label,
       f.budget_usdc,
@@ -66,23 +68,33 @@ def get_pair(pair_id: int) -> dict[str, Any] | None:
     return dict(row) if row else None
 
 
-def _ensure_source_wallet(conn: sqlite3.Connection, address: str, alias: str | None) -> int:
+def _ensure_source_wallet(
+    conn: sqlite3.Connection,
+    address: str,
+    alias: str | None,
+    source_portfolio_usdc: float | None,
+) -> int:
     now = int(time.time())
     row = conn.execute("SELECT id FROM source_wallets WHERE address=?", (address,)).fetchone()
+    portfolio_val = (
+        float(source_portfolio_usdc)
+        if source_portfolio_usdc is not None and float(source_portfolio_usdc) > 0
+        else None
+    )
     if row:
         source_id = int(row["id"])
-        if alias:
+        if alias or portfolio_val is not None:
             conn.execute(
-                "UPDATE source_wallets SET alias=?, updated_at=? WHERE id=?",
-                (alias, now, source_id),
+                "UPDATE source_wallets SET alias=COALESCE(?, alias), source_portfolio_usdc=COALESCE(?, source_portfolio_usdc), updated_at=? WHERE id=?",
+                (alias, portfolio_val, now, source_id),
             )
         return source_id
     cur = conn.execute(
         """
-        INSERT INTO source_wallets(address, alias, status, created_at, updated_at)
-        VALUES(?, ?, 'active', ?, ?)
+        INSERT INTO source_wallets(address, alias, source_portfolio_usdc, status, created_at, updated_at)
+        VALUES(?, ?, ?, 'active', ?, ?)
         """,
-        (address, alias, now, now),
+        (address, alias, portfolio_val, now, now),
     )
     return int(cur.lastrowid)
 
@@ -126,6 +138,7 @@ def create_pair(
     source_address: str,
     follower_address: str,
     source_alias: str | None,
+    source_portfolio_usdc: float | None,
     follower_label: str | None,
     budget_usdc: float,
     key_ref: str,
@@ -141,7 +154,7 @@ def create_pair(
 ) -> int:
     now = int(time.time())
     with get_conn() as conn:
-        source_id = _ensure_source_wallet(conn, source_address, source_alias)
+        source_id = _ensure_source_wallet(conn, source_address, source_alias, source_portfolio_usdc)
         follower_id = _ensure_follower_wallet(
             conn=conn,
             address=follower_address,

@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS source_wallets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     address TEXT NOT NULL UNIQUE,
     alias TEXT,
+    source_portfolio_usdc REAL,
     status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'paused', 'archived')),
     created_at INTEGER NOT NULL,
     updated_at INTEGER NOT NULL

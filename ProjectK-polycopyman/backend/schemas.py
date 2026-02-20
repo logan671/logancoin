@@ -13,6 +13,7 @@ class PairItem(BaseModel):
     max_consecutive_failures: int
     source_address: str
     source_alias: str | None = None
+    source_portfolio_usdc: float | None = None
     follower_address: str
     follower_label: str | None = None
     budget_usdc: float
@@ -25,6 +26,7 @@ class PairCreateRequest(BaseModel):
     source_address: str
     follower_address: str
     source_alias: str | None = None
+    source_portfolio_usdc: float | None = None
     follower_label: str | None = None
     budget_usdc: float = 100.0
     key_ref: str

@@ -11,7 +11,7 @@ from urllib import parse, request
 from urllib.error import URLError
 import fcntl
 
-from backend.config import DASHBOARD_URL, RPC_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_OWNER_CHAT_ID, USDC_TOKEN_ADDRESS
+from backend.config import DASHBOARD_URL, DB_PATH, RPC_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_OWNER_CHAT_ID, USDC_TOKEN_ADDRESS
 from backend.repositories.pairs import create_pair, delete_pair, list_pairs
 from backend.repositories.runtime import heartbeat
 
@@ -60,6 +60,7 @@ def _main_keyboard() -> dict[str, Any]:
             [{"text": "/addpair"}, {"text": "/rmpair"}],
             [{"text": "/rmpairall"}, {"text": "/whereami"}],
             [{"text": "/site"}, {"text": "/status"}],
+            [{"text": "/analyze"}],
             [{"text": "/howto"}],
         ],
         "resize_keyboard": True,
@@ -122,7 +123,10 @@ def _cmd_help() -> str:
         "/site\n\n"
         "7) 팔로워 실잔고 보기(USDC/MATIC)\n"
         "/status\n\n"
-        "8) 등록 가이드 보기\n"
+        "8) 페어별 미체결/실패 원인 진단\n"
+        "/analyze\n"
+        "/analyze <pair_id>\n\n"
+        "9) 등록 가이드 보기\n"
         "/howto"
     )
 
@@ -234,6 +238,7 @@ def _handle_addpair(chat_id: str, parts: list[str]) -> None:
             source_address=source,
             follower_address=follower,
             source_alias=source_alias,
+            source_portfolio_usdc=None,
             follower_label=follower_label,
             budget_usdc=budget,
             key_ref=key_ref,
@@ -270,6 +275,7 @@ def _create_pair_from_draft(chat_id: str, draft: AddPairDraft) -> None:
             source_address=draft.source,
             follower_address=draft.follower,
             source_alias=draft.source_alias,
+            source_portfolio_usdc=None,
             follower_label=draft.follower_label,
             budget_usdc=draft.budget_usdc,
             key_ref=draft.key_ref,
@@ -422,13 +428,7 @@ def _handle_rmpairall(chat_id: str) -> None:
 
 def _handle_whereami(chat_id: str) -> None:
     rows = list_pairs()
-    try:
-        from backend.config import DB_PATH
-
-        db_path = DB_PATH
-    except Exception:
-        db_path = "unknown"
-    _send_message(chat_id, f"bot db_path: {db_path}\nactive_pairs: {len(rows)}\ninstance: {BOT_INSTANCE}", use_keyboard=True)
+    _send_message(chat_id, f"bot db_path: {DB_PATH}\nactive_pairs: {len(rows)}\ninstance: {BOT_INSTANCE}", use_keyboard=True)
 
 
 def _handle_site(chat_id: str) -> None:
@@ -538,6 +538,199 @@ def _handle_status(chat_id: str) -> None:
     _send_message(chat_id, "\n".join(lines).strip(), use_keyboard=True)
 
 
+def _format_local_ts(ts: int | None) -> str:
+    if not ts:
+        return "-"
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(ts)))
+
+
+def _fetch_pair_diag_rows(pair_id: int | None = None) -> list[dict[str, Any]]:
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    try:
+        if pair_id is None:
+            rows = conn.execute(
+                """
+                SELECT
+                  p.id AS pair_id,
+                  p.created_at AS pair_created_at,
+                  s.address AS source_address,
+                  COALESCE(s.alias, '-') AS source_alias,
+                  f.address AS follower_address,
+                  COALESCE(f.label, '-') AS follower_label,
+                  COALESCE(f.budget_usdc, 0) AS budget_usdc
+                FROM wallet_pairs p
+                JOIN source_wallets s ON s.id = p.source_wallet_id
+                JOIN follower_wallets f ON f.id = p.follower_wallet_id
+                WHERE p.active = 1
+                ORDER BY p.id ASC
+                """
+            ).fetchall()
+            return [dict(r) for r in rows]
+        row = conn.execute(
+            """
+            SELECT
+              p.id AS pair_id,
+              p.created_at AS pair_created_at,
+              s.address AS source_address,
+              COALESCE(s.alias, '-') AS source_alias,
+              f.address AS follower_address,
+              COALESCE(f.label, '-') AS follower_label,
+              COALESCE(f.budget_usdc, 0) AS budget_usdc
+            FROM wallet_pairs p
+            JOIN source_wallets s ON s.id = p.source_wallet_id
+            JOIN follower_wallets f ON f.id = p.follower_wallet_id
+            WHERE p.id = ?
+            """,
+            (pair_id,),
+        ).fetchone()
+        return [dict(row)] if row else []
+    finally:
+        conn.close()
+
+
+def _analyze_one_pair(pair_id: int) -> str:
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    try:
+        pair = conn.execute(
+            """
+            SELECT
+              p.id AS pair_id,
+              p.created_at AS pair_created_at,
+              p.source_wallet_id,
+              s.address AS source_address,
+              COALESCE(s.alias, '-') AS source_alias,
+              f.address AS follower_address,
+              COALESCE(f.label, '-') AS follower_label,
+              COALESCE(f.budget_usdc, 0) AS budget_usdc
+            FROM wallet_pairs p
+            JOIN source_wallets s ON s.id = p.source_wallet_id
+            JOIN follower_wallets f ON f.id = p.follower_wallet_id
+            WHERE p.id = ?
+            """,
+            (pair_id,),
+        ).fetchone()
+        if not pair:
+            return f"pair_id={pair_id} 를 찾지 못했습니다."
+
+        last_signal = conn.execute(
+            """
+            SELECT id, side, source_notional_usdc, source_price, tx_hash, market_slug, created_at
+            FROM trade_signals
+            WHERE source_wallet_id = ?
+              AND created_at >= ?
+            ORDER BY id DESC
+            LIMIT 1
+            """,
+            (int(pair["source_wallet_id"]), int(pair["pair_created_at"])),
+        ).fetchone()
+        unmirrored_cnt = conn.execute(
+            """
+            SELECT COUNT(*) AS cnt
+            FROM trade_signals t
+            LEFT JOIN mirror_orders m
+              ON m.trade_signal_id = t.id
+             AND m.pair_id = ?
+            WHERE t.source_wallet_id = ?
+              AND t.created_at >= ?
+              AND m.id IS NULL
+            """,
+            (pair_id, int(pair["source_wallet_id"]), int(pair["pair_created_at"])),
+        ).fetchone()
+        last_order = conn.execute(
+            """
+            SELECT
+              m.id AS order_id,
+              m.trade_signal_id,
+              m.status,
+              m.blocked_reason,
+              m.requested_notional_usdc,
+              m.adjusted_notional_usdc,
+              m.created_at
+            FROM mirror_orders m
+            WHERE m.pair_id = ?
+            ORDER BY m.id DESC
+            LIMIT 1
+            """,
+            (pair_id,),
+        ).fetchone()
+        status_counts = conn.execute(
+            """
+            SELECT m.status AS status, COUNT(*) AS cnt
+            FROM mirror_orders m
+            WHERE m.pair_id = ?
+              AND m.created_at >= ?
+            GROUP BY m.status
+            ORDER BY cnt DESC
+            """,
+            (pair_id, int(time.time()) - 7200),
+        ).fetchall()
+
+        lines = [
+            f"[진단] pair_id={pair_id}",
+            f"- source: {_short_address(str(pair['source_address']))} ({pair['source_alias']})",
+            f"- follower: {_short_address(str(pair['follower_address']))} ({pair['follower_label']})",
+            f"- 현재 budget_usdc: {float(pair['budget_usdc']):.6f}",
+            f"- pair 생성시각: {_format_local_ts(int(pair['pair_created_at']))}",
+        ]
+
+        if last_signal:
+            lines.append(
+                (
+                    f"- 마지막 소스 신호: id={int(last_signal['id'])}, side={last_signal['side']}, "
+                    f"notional={float(last_signal['source_notional_usdc']):.4f}, "
+                    f"가격={float(last_signal['source_price'] or 0):.6f}, "
+                    f"시각={_format_local_ts(int(last_signal['created_at']))}"
+                )
+            )
+        else:
+            lines.append("- 마지막 소스 신호: 없음(pair 생성 이후)")
+
+        lines.append(f"- 미처리 신호 수: {int(unmirrored_cnt['cnt'] if unmirrored_cnt else 0)}")
+
+        if last_order:
+            lines.append(
+                (
+                    f"- 마지막 미러오더: order_id={int(last_order['order_id'])}, "
+                    f"signal_id={int(last_order['trade_signal_id'])}, status={last_order['status']}, "
+                    f"blocked_reason={last_order['blocked_reason'] or '-'}, "
+                    f"requested={float(last_order['requested_notional_usdc']):.4f}, "
+                    f"adjusted={float(last_order['adjusted_notional_usdc']):.4f}, "
+                    f"시각={_format_local_ts(int(last_order['created_at']))}"
+                )
+            )
+        else:
+            lines.append("- 마지막 미러오더: 없음")
+
+        if status_counts:
+            compact = ", ".join(f"{str(r['status'])}:{int(r['cnt'])}" for r in status_counts)
+            lines.append(f"- 최근 2시간 상태요약: {compact}")
+        else:
+            lines.append("- 최근 2시간 상태요약: 데이터 없음")
+        return "\n".join(lines)
+    finally:
+        conn.close()
+
+
+def _handle_analyze(chat_id: str, parts: list[str]) -> None:
+    if len(parts) >= 2:
+        try:
+            pair_id = int(parts[1])
+        except ValueError:
+            _send_message(chat_id, "사용법: /analyze 또는 /analyze <pair_id>", use_keyboard=True)
+            return
+        _send_message(chat_id, _analyze_one_pair(pair_id), use_keyboard=True)
+        return
+
+    rows = _fetch_pair_diag_rows(None)
+    if not rows:
+        _send_message(chat_id, "활성 페어가 없습니다.", use_keyboard=True)
+        return
+    chunks = [_analyze_one_pair(int(r["pair_id"])) for r in rows]
+    _send_message(chat_id, "\n\n".join(chunks), use_keyboard=True)
+
+
 def _handle_text(chat_id: str, text: str) -> None:
     parts = text.strip().split()
     if not parts:
@@ -582,6 +775,9 @@ def _handle_text(chat_id: str, text: str) -> None:
             return
         if cmd == "/status":
             _handle_status(chat_id)
+            return
+        if cmd == "/analyze":
+            _handle_analyze(chat_id, parts)
             return
         _send_message(chat_id, "알 수 없는 명령어입니다. 아래 버튼이나 /help를 사용하세요.", use_keyboard=True)
         return
