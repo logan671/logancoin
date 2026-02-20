@@ -165,6 +165,7 @@ def list_unmirrored_signals(limit: int = 50) -> list[dict[str, Any]]:
               ON m.trade_signal_id = t.id
              AND m.pair_id = p.id
             WHERE m.id IS NULL
+              AND t.created_at >= p.created_at
             ORDER BY t.id ASC
             LIMIT ?
             """,
