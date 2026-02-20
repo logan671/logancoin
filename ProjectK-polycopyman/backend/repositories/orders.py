@@ -204,3 +204,25 @@ def list_recent_executions(limit: int = 20) -> list[dict[str, Any]]:
             (limit,),
         ).fetchall()
     return [dict(row) for row in rows]
+
+
+def has_recent_balance_or_allowance_failure(pair_id: int, within_seconds: int) -> bool:
+    cutoff = int(time.time()) - max(within_seconds, 0)
+    with get_conn() as conn:
+        row = conn.execute(
+            """
+            SELECT 1
+            FROM executions
+            WHERE pair_id = ?
+              AND status = 'failed'
+              AND COALESCE(executed_at, created_at) >= ?
+              AND (
+                lower(COALESCE(fail_reason, '')) LIKE '%not enough balance / allowance%'
+                OR lower(COALESCE(fail_reason, '')) LIKE '%insufficient_balance%'
+              )
+            ORDER BY id DESC
+            LIMIT 1
+            """,
+            (pair_id, cutoff),
+        ).fetchone()
+    return row is not None

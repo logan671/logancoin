@@ -11,7 +11,7 @@ from urllib import parse, request
 from urllib.error import URLError
 import fcntl
 
-from backend.config import DASHBOARD_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_OWNER_CHAT_ID
+from backend.config import DASHBOARD_URL, RPC_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_OWNER_CHAT_ID, USDC_TOKEN_ADDRESS
 from backend.repositories.pairs import create_pair, delete_pair, list_pairs
 from backend.repositories.runtime import heartbeat
 
@@ -59,7 +59,8 @@ def _main_keyboard() -> dict[str, Any]:
             [{"text": "/help"}, {"text": "/listpairs"}],
             [{"text": "/addpair"}, {"text": "/rmpair"}],
             [{"text": "/rmpairall"}, {"text": "/whereami"}],
-            [{"text": "/site"}, {"text": "/howto"}],
+            [{"text": "/site"}, {"text": "/status"}],
+            [{"text": "/howto"}],
         ],
         "resize_keyboard": True,
     }
@@ -119,7 +120,9 @@ def _cmd_help() -> str:
         "/whereami\n\n"
         "6) 대시보드 주소 보기\n"
         "/site\n\n"
-        "7) 등록 가이드 보기\n"
+        "7) 팔로워 실잔고 보기(USDC/MATIC)\n"
+        "/status\n\n"
+        "8) 등록 가이드 보기\n"
         "/howto"
     )
 
@@ -432,6 +435,109 @@ def _handle_site(chat_id: str) -> None:
     _send_message(chat_id, f"ProjectK 대시보드 주소:\n{DASHBOARD_URL}\ninstance: {BOT_INSTANCE}", use_keyboard=True)
 
 
+def _rpc_call(method: str, params: list[Any]) -> Any:
+    if not RPC_URL:
+        raise ValueError("PROJECTK_RPC_URL is not set")
+    payload = json.dumps(
+        {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": method,
+            "params": params,
+        }
+    ).encode("utf-8")
+    req = request.Request(
+        RPC_URL,
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with request.urlopen(req, timeout=10) as resp:
+        body = json.loads(resp.read().decode("utf-8"))
+    if body.get("error"):
+        raise ValueError(str(body["error"]))
+    return body.get("result")
+
+
+def _erc20_balance_call_data(address: str) -> str:
+    clean = address.lower().replace("0x", "")
+    return "0x70a08231" + clean.rjust(64, "0")
+
+
+def _get_matic_balance(address: str) -> float:
+    raw = _rpc_call("eth_getBalance", [address, "latest"])
+    return int(str(raw), 16) / 1_000_000_000_000_000_000
+
+
+def _get_usdc_balance(address: str) -> float:
+    if not USDC_TOKEN_ADDRESS:
+        raise ValueError("PROJECTK_USDC_TOKEN_ADDRESS is not set")
+    call_obj = {
+        "to": USDC_TOKEN_ADDRESS,
+        "data": _erc20_balance_call_data(address),
+    }
+    raw = _rpc_call("eth_call", [call_obj, "latest"])
+    return int(str(raw), 16) / 1_000_000
+
+
+def _handle_status(chat_id: str) -> None:
+    rows = list_pairs()
+    if not rows:
+        _send_message(chat_id, "등록된 페어가 없습니다.", use_keyboard=True)
+        return
+
+    by_follower: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        follower_address = str(row["follower_address"]).lower()
+        existing = by_follower.get(follower_address)
+        if not existing:
+            by_follower[follower_address] = {
+                "follower_address": follower_address,
+                "follower_label": row.get("follower_label") or "-",
+                "budget_usdc": float(row.get("budget_usdc") or 0.0),
+                "pair_ids": [int(row["id"])],
+            }
+            continue
+        existing["pair_ids"].append(int(row["id"]))
+        existing["budget_usdc"] = max(float(existing["budget_usdc"]), float(row.get("budget_usdc") or 0.0))
+
+    lines = [
+        "ProjectK /status",
+        f"instance: {BOT_INSTANCE}",
+        f"rpc: {RPC_URL or 'not_set'}",
+        "",
+    ]
+
+    for item in by_follower.values():
+        follower_address = str(item["follower_address"])
+        pair_ids = ",".join(str(v) for v in item["pair_ids"])
+        label = str(item["follower_label"])
+        budget_usdc = float(item["budget_usdc"])
+        try:
+            usdc = _get_usdc_balance(follower_address)
+            matic = _get_matic_balance(follower_address)
+            lines.append(
+                (
+                    f"pairs={pair_ids} | {label}({_short_address(follower_address)})\n"
+                    f"- onchain_usdc: {usdc:.4f}\n"
+                    f"- onchain_matic: {matic:.6f}\n"
+                    f"- configured_budget_usdc: {budget_usdc:.4f}"
+                )
+            )
+        except Exception as exc:
+            lines.append(
+                (
+                    f"pairs={pair_ids} | {label}({_short_address(follower_address)})\n"
+                    f"- status: balance_check_failed ({exc})\n"
+                    f"- configured_budget_usdc: {budget_usdc:.4f}"
+                )
+            )
+        lines.append("")
+
+    lines.append("note: onchain_usdc/matic 기준이며, 포지션 토큰 잔고는 포함되지 않습니다.")
+    _send_message(chat_id, "\n".join(lines).strip(), use_keyboard=True)
+
+
 def _handle_text(chat_id: str, text: str) -> None:
     parts = text.strip().split()
     if not parts:
@@ -473,6 +579,9 @@ def _handle_text(chat_id: str, text: str) -> None:
             return
         if cmd == "/site":
             _handle_site(chat_id)
+            return
+        if cmd == "/status":
+            _handle_status(chat_id)
             return
         _send_message(chat_id, "알 수 없는 명령어입니다. 아래 버튼이나 /help를 사용하세요.", use_keyboard=True)
         return

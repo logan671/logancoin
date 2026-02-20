@@ -1,13 +1,19 @@
 import logging
 import time
 
-from backend.config import EXECUTOR_MODE, EXECUTOR_POLL_SECONDS
+from backend.config import (
+    EXECUTOR_BALANCE_FAIL_COOLDOWN_SECONDS,
+    EXECUTOR_MARKET_MIN_BUY_USDC,
+    EXECUTOR_MODE,
+    EXECUTOR_POLL_SECONDS,
+)
 from backend.db import get_conn
 from backend.notifier import send_telegram_message
 from backend.repositories.orders import (
     consume_follower_budget,
     create_execution_record,
     create_mirror_order,
+    has_recent_balance_or_allowance_failure,
     list_queued_mirror_orders,
     mark_mirror_order_status,
     set_mirror_order_executor_ref,
@@ -18,6 +24,7 @@ from worker.executor import build_executor
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 EXECUTOR = build_executor()
+LOCAL_PAIR_COOLDOWN_UNTIL: dict[int, int] = {}
 
 
 def _notify_failed_execution(
@@ -113,6 +120,23 @@ def _calc_adjusted_notional(
     return max(min(adjusted, follower_budget_usdc), 0.0)
 
 
+def _is_balance_or_allowance_failure(fail_reason: str | None) -> bool:
+    if not fail_reason:
+        return False
+    normalized = fail_reason.lower()
+    return (
+        "not enough balance / allowance" in normalized
+        or "insufficient_balance" in normalized
+    )
+
+
+def _is_market_min_size_failure(fail_reason: str | None) -> bool:
+    if not fail_reason:
+        return False
+    normalized = fail_reason.lower()
+    return "min size: $1" in normalized and "invalid amount for a marketable buy order" in normalized
+
+
 def process_once() -> int:
     pending = list_unmirrored_signals(limit=100)
     created = 0
@@ -123,6 +147,23 @@ def process_once() -> int:
         source_price = float(row["source_price"]) if row["source_price"] is not None else None
         max_order = row["max_order_usdc"]
         max_order_val = float(max_order) if max_order is not None else None
+        pair_id = int(row["pair_id"])
+        trade_signal_id = int(row["trade_signal_id"])
+
+        if has_recent_balance_or_allowance_failure(
+            pair_id=pair_id,
+            within_seconds=EXECUTOR_BALANCE_FAIL_COOLDOWN_SECONDS,
+        ):
+            create_mirror_order(
+                pair_id=pair_id,
+                trade_signal_id=trade_signal_id,
+                requested_notional_usdc=requested,
+                adjusted_notional_usdc=0.0,
+                status="blocked",
+                blocked_reason="recent_balance_or_allowance_failure_cooldown",
+            )
+            continue
+
         adjusted = _calc_adjusted_notional(
             source_notional=requested,
             min_order_usdc=min_order,
@@ -130,26 +171,43 @@ def process_once() -> int:
             follower_budget_usdc=budget,
             source_price=source_price,
         )
-        if adjusted <= 0:
-            blocked_reason = "insufficient_budget_for_one_share"
+        if adjusted > 0 and adjusted < max(min_order, EXECUTOR_MARKET_MIN_BUY_USDC):
+            blocked_reason = "insufficient_budget_for_market_min_order"
             create_mirror_order(
-                pair_id=int(row["pair_id"]),
-                trade_signal_id=int(row["trade_signal_id"]),
+                pair_id=pair_id,
+                trade_signal_id=trade_signal_id,
                 requested_notional_usdc=requested,
                 adjusted_notional_usdc=0.0,
                 status="blocked",
                 blocked_reason=blocked_reason,
             )
             _notify_blocked_order(
-                pair_id=int(row["pair_id"]),
-                trade_signal_id=int(row["trade_signal_id"]),
+                pair_id=pair_id,
+                trade_signal_id=trade_signal_id,
+                requested_notional=requested,
+                blocked_reason=blocked_reason,
+            )
+            continue
+        if adjusted <= 0:
+            blocked_reason = "insufficient_budget_for_one_share"
+            create_mirror_order(
+                pair_id=pair_id,
+                trade_signal_id=trade_signal_id,
+                requested_notional_usdc=requested,
+                adjusted_notional_usdc=0.0,
+                status="blocked",
+                blocked_reason=blocked_reason,
+            )
+            _notify_blocked_order(
+                pair_id=pair_id,
+                trade_signal_id=trade_signal_id,
                 requested_notional=requested,
                 blocked_reason=blocked_reason,
             )
             continue
         create_mirror_order(
-            pair_id=int(row["pair_id"]),
-            trade_signal_id=int(row["trade_signal_id"]),
+            pair_id=pair_id,
+            trade_signal_id=trade_signal_id,
             requested_notional_usdc=requested,
             adjusted_notional_usdc=adjusted,
             status="queued",
@@ -170,6 +228,12 @@ def process_executor_once() -> tuple[int, int]:
         outcome = row["outcome"]
         price = row["source_price"]
         notional = float(row["adjusted_notional_usdc"])
+        now = int(time.time())
+
+        local_cooldown_until = LOCAL_PAIR_COOLDOWN_UNTIL.get(pair_id, 0)
+        if local_cooldown_until > now:
+            mark_mirror_order_status(order_id, "blocked", "pair_local_balance_failure_cooldown")
+            continue
 
         mark_mirror_order_status(order_id, "sent", None)
         result = EXECUTOR.execute(row)
@@ -203,7 +267,10 @@ def process_executor_once() -> tuple[int, int]:
             filled += 1
         else:
             fail_reason = result.fail_reason or "executor_failed"
-            mark_mirror_order_status(order_id, "failed", fail_reason)
+            if _is_market_min_size_failure(fail_reason):
+                mark_mirror_order_status(order_id, "blocked", "market_min_order_size")
+            else:
+                mark_mirror_order_status(order_id, "failed", fail_reason)
             create_execution_record(
                 mirror_order_id=order_id,
                 pair_id=pair_id,
@@ -215,15 +282,19 @@ def process_executor_once() -> tuple[int, int]:
                 status="failed",
                 fail_reason=fail_reason,
             )
-            _notify_failed_execution(
-                order_id=order_id,
-                pair_id=pair_id,
-                follower_wallet_id=follower_wallet_id,
-                side=side,
-                outcome=outcome,
-                notional=notional,
-                fail_reason=fail_reason,
-            )
+            if _is_balance_or_allowance_failure(fail_reason):
+                LOCAL_PAIR_COOLDOWN_UNTIL[pair_id] = now + EXECUTOR_BALANCE_FAIL_COOLDOWN_SECONDS
+
+            if not _is_market_min_size_failure(fail_reason):
+                _notify_failed_execution(
+                    order_id=order_id,
+                    pair_id=pair_id,
+                    follower_wallet_id=follower_wallet_id,
+                    side=side,
+                    outcome=outcome,
+                    notional=notional,
+                    fail_reason=fail_reason,
+                )
             failed += 1
     return filled, failed
 
