@@ -20,7 +20,6 @@ from config import (
     CTF_EXCHANGE,
     MAX_RETRIES,
     MIN_USDC_ALERT,
-    MIN_USDC_EXEMPT,
     SENT_EVENTS_TTL_DAYS,
     SENT_EVENTS_CLEANUP_INTERVAL_SECONDS,
     LOG_DIR,
@@ -461,12 +460,6 @@ def poll() -> None:
                 if is_sent_any(item["tx_hash"], item["addr"]):
                     continue
                 usdc_amount = item["usdc_amount"]
-                if (
-                    usdc_amount is not None
-                    and (usdc_amount / 1_000_000) < MIN_USDC_ALERT
-                    and item["addr"] != MIN_USDC_EXEMPT
-                ):
-                    continue
                 market_key = None
                 if item["market"] and item["market"].get("slug"):
                     market_key = item["market"]["slug"]
@@ -491,8 +484,20 @@ def poll() -> None:
 
                 if item["side"] == "매수":
                     if streak_count == 1:
-                        pass
-                    elif is_milestone and usdc_amount is not None and (usdc_amount / 1_000_000) >= MIN_USDC_ALERT:
+                        mark_sent_any(item["tx_hash"], item["addr"])
+                        continue
+                    elif is_milestone:
+                        if usdc_amount is not None and (usdc_amount / 1_000_000) < MIN_USDC_ALERT:
+                            mark_sent_any(item["tx_hash"], item["addr"])
+                            logging.info(
+                                "suppressed_small_add_only address=%s tx=%s streak=%s usdc=%s min=%s",
+                                item["addr"],
+                                item["tx_hash"],
+                                streak_count,
+                                usdc_amount / 1_000_000,
+                                MIN_USDC_ALERT,
+                            )
+                            continue
                         msg = build_add_message(
                             item["addr"],
                             item["alias"],
@@ -517,6 +522,18 @@ def poll() -> None:
                     else:
                         mark_sent_any(item["tx_hash"], item["addr"])
                         continue
+
+                if usdc_amount is not None and (usdc_amount / 1_000_000) < MIN_USDC_ALERT:
+                    mark_sent_any(item["tx_hash"], item["addr"])
+                    logging.info(
+                        "suppressed_small_alert address=%s tx=%s side=%s usdc=%s min=%s",
+                        item["addr"],
+                        item["tx_hash"],
+                        item["side"],
+                        usdc_amount / 1_000_000,
+                        MIN_USDC_ALERT,
+                    )
+                    continue
 
                 warn_multi = block_counts.get((item["addr"], item["block_number"]), 0) > 1
                 msg = build_message(

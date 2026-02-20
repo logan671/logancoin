@@ -49,7 +49,7 @@ MARKET_CACHE_TTL_SECONDS = int(
 
 MAX_RETRIES = int(os.environ.get("PROJECTE_MAX_RETRIES", "3"))
 
-MIN_USDC_ALERT = float(os.environ.get("PROJECTE_MIN_USDC_ALERT", "100"))
+MIN_USDC_ALERT = float(os.environ.get("PROJECTE_MIN_USDC_ALERT", "50"))
 MIN_USDC_EXEMPT = os.environ.get(
     "PROJECTE_MIN_USDC_EXEMPT",
     "0x811192618fb0c7fcc678a81bb7c796a554bcb832",

@@ -53,8 +53,7 @@
 
 - 등록되지 않은 지갑 주소 거래
 - 거래 규모가 최소값 미만:
-  - 기본 최소: `$100` (`PROJECTE_MIN_USDC_ALERT`)
-  - 예외 주소 1개는 최소값 필터 면제 (`PROJECTE_MIN_USDC_EXEMPT`)
+  - 기본 최소: `$50` (`PROJECTE_MIN_USDC_ALERT`)
 - `market_key`를 못 만든 경우(희귀 케이스)
 - 추매 압축 구간(예: 2,3,4,6,7,8,9...)
 
@@ -81,3 +80,4 @@
 - 연속 추매 카운트는 DB `directional_streaks` 테이블에 저장된다.
 - 키 구조: `(address, market_key, outcome)` + 현재 `side`
 - milestone은 현재 코드에서 고정값 `{5, 10, 20}`이다.
+- 최소 금액 미만이어도 streak 카운트는 계속 누적된다(알림만 억제).
