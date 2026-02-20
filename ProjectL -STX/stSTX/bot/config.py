@@ -76,6 +76,10 @@ class Settings:
     execution_buffer_pct: float
     max_daily_loss_pct: float
     max_consecutive_losses: int
+    max_consecutive_exec_failures: int
+    require_prev_tx_success: bool
+    prev_fail_retry_cooldown_sec: int
+    min_side_balance_for_trading: float
 
     # Network fee policy
     network_fee_cap_stx: float
@@ -93,6 +97,14 @@ class Settings:
 
     # Runtime loop
     poll_interval_sec: int
+    cycle_hint_check_interval_sec: int
+    cycle_hint_threshold_blocks: int
+    cycle_hint_enabled: bool
+    high_gap_alert_enabled: bool
+    high_gap_threshold_pct: float
+    high_gap_repeat_sec: int
+    high_gap_step_pct: float
+    block_alert_cooldown_sec: int
     dex_fee_pct: float
     daily_start_equity_stx: float
     db_path: str
@@ -138,6 +150,10 @@ def load_settings() -> Settings:
         execution_buffer_pct=_get_float("EXECUTION_BUFFER_PCT", 0.2),
         max_daily_loss_pct=_get_float("MAX_DAILY_LOSS_PCT", 2.0),
         max_consecutive_losses=_get_int("MAX_CONSECUTIVE_LOSSES", 5),
+        max_consecutive_exec_failures=_get_int("MAX_CONSECUTIVE_EXEC_FAILURES", 3),
+        require_prev_tx_success=_get_bool("REQUIRE_PREV_TX_SUCCESS", True),
+        prev_fail_retry_cooldown_sec=_get_int("PREV_FAIL_RETRY_COOLDOWN_SEC", 600),
+        min_side_balance_for_trading=_get_float("MIN_SIDE_BALANCE_FOR_TRADING", 10.0),
         network_fee_cap_stx=_get_float("NETWORK_FEE_CAP_STX", 0.25),
         min_fee_floor_stx=_get_float("MIN_FEE_FLOOR_STX", 0.001),
         fee_multiplier=_get_float("FEE_MULTIPLIER", 1.2),
@@ -159,6 +175,14 @@ def load_settings() -> Settings:
         stx_coingecko_id=_get_str("STX_COINGECKO_ID", "blockstack"),
         ststx_coingecko_id=_get_str("STSTX_COINGECKO_ID", "stacking-dao"),
         poll_interval_sec=_get_int("POLL_INTERVAL_SEC", 30),
+        cycle_hint_check_interval_sec=_get_int("CYCLE_HINT_CHECK_INTERVAL_SEC", 900),
+        cycle_hint_threshold_blocks=_get_int("CYCLE_HINT_THRESHOLD_BLOCKS", 432),
+        cycle_hint_enabled=_get_bool("CYCLE_HINT_ENABLED", True),
+        high_gap_alert_enabled=_get_bool("HIGH_GAP_ALERT_ENABLED", True),
+        high_gap_threshold_pct=_get_float("HIGH_GAP_THRESHOLD_PCT", 5.0),
+        high_gap_repeat_sec=_get_int("HIGH_GAP_REPEAT_SEC", 60),
+        high_gap_step_pct=_get_float("HIGH_GAP_STEP_PCT", 1.0),
+        block_alert_cooldown_sec=_get_int("BLOCK_ALERT_COOLDOWN_SEC", 300),
         dex_fee_pct=_get_float("DEX_FEE_PCT", 0.3),
         daily_start_equity_stx=_get_float("DAILY_START_EQUITY_STX", 1000.0),
         db_path=_get_str("DB_PATH", str(base_dir / "bot.sqlite3")),
@@ -200,8 +224,26 @@ def _validate(settings: Settings) -> None:
         raise ValueError("MAX_DAILY_LOSS_PCT must be > 0")
     if settings.max_consecutive_losses <= 0:
         raise ValueError("MAX_CONSECUTIVE_LOSSES must be > 0")
+    if settings.max_consecutive_exec_failures <= 0:
+        raise ValueError("MAX_CONSECUTIVE_EXEC_FAILURES must be > 0")
+    if settings.prev_fail_retry_cooldown_sec < 0:
+        raise ValueError("PREV_FAIL_RETRY_COOLDOWN_SEC must be >= 0")
+    if settings.min_side_balance_for_trading < 0:
+        raise ValueError("MIN_SIDE_BALANCE_FOR_TRADING must be >= 0")
     if settings.poll_interval_sec <= 0:
         raise ValueError("POLL_INTERVAL_SEC must be > 0")
+    if settings.cycle_hint_check_interval_sec <= 0:
+        raise ValueError("CYCLE_HINT_CHECK_INTERVAL_SEC must be > 0")
+    if settings.cycle_hint_threshold_blocks < 0:
+        raise ValueError("CYCLE_HINT_THRESHOLD_BLOCKS must be >= 0")
+    if settings.high_gap_threshold_pct < 0:
+        raise ValueError("HIGH_GAP_THRESHOLD_PCT must be >= 0")
+    if settings.high_gap_repeat_sec <= 0:
+        raise ValueError("HIGH_GAP_REPEAT_SEC must be > 0")
+    if settings.high_gap_step_pct <= 0:
+        raise ValueError("HIGH_GAP_STEP_PCT must be > 0")
+    if settings.block_alert_cooldown_sec < 0:
+        raise ValueError("BLOCK_ALERT_COOLDOWN_SEC must be >= 0")
     if settings.daily_start_equity_stx <= 0:
         raise ValueError("DAILY_START_EQUITY_STX must be > 0")
     if settings.tx_estimated_bytes <= 0:

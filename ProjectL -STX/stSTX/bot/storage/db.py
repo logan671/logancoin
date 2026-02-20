@@ -277,6 +277,20 @@ class BotDB:
             ).fetchone()
             return str(row["event_time_utc"]) if row else None
 
+    def fetch_latest_trade_order(self) -> Optional[sqlite3.Row]:
+        with self.connect() as conn:
+            row = conn.execute(
+                """
+                SELECT id, event_time_utc, side, status, reason, txid
+                FROM orders
+                WHERE side IN ('BUY_STSTX', 'SELL_STSTX')
+                  AND status IN ('submitted', 'filled', 'failed')
+                ORDER BY id DESC
+                LIMIT 1
+                """
+            ).fetchone()
+            return row
+
 
 def _to_json(payload: Any) -> str:
     if is_dataclass(payload):

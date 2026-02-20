@@ -102,8 +102,7 @@ class TelegramNotifier:
             raise RuntimeError(f"Failed to fetch telegram updates: {exc}") from exc
 
         if not payload.get("ok"):
-            description = str(payload.get("description", "unknown telegram getUpdates error"))
-            raise RuntimeError(f"Telegram getUpdates failed: {description}")
+            return []
         results = payload.get("result", [])
         if not isinstance(results, list):
             return []
@@ -150,18 +149,11 @@ class TelegramNotifier:
             with urlopen(req, timeout=10) as resp:
                 if resp.status != 200:
                     raise RuntimeError(f"Telegram API returned status {resp.status}")
-                payload = json.loads(resp.read().decode("utf-8"))
         except URLError as exc:
             raise RuntimeError(f"Failed to send telegram notification: {exc}") from exc
-        except json.JSONDecodeError as exc:
-            raise RuntimeError(f"Failed to decode telegram response: {exc}") from exc
-
-        if not payload.get("ok"):
-            description = str(payload.get("description", "unknown telegram sendMessage error"))
-            raise RuntimeError(f"Telegram sendMessage failed: {description}")
 
     def _render(self, p: BotEventPayload) -> str:
-        title = f"{self._event_kr(p.event_type)} | {p.strategy}"
+        title = f"[{self._event_kr(p.event_type)}] {p.strategy}"
         lines = [title, f"시간: {self._format_time(p.event_time_utc)}"]
 
         if p.side:
@@ -227,6 +219,7 @@ class TelegramNotifier:
             "order_submitted": "주문접수",
             "order_filled": "주문체결",
             "order_failed": "주문실패",
+            "risk_alert": "리스크경보",
         }
         return mapping.get(event_type, event_type.upper())
 
@@ -248,6 +241,8 @@ class TelegramNotifier:
             "failed": "실패",
             "blocked": "차단됨",
             "skipped": "건너뜀",
+            "warning": "경보",
+            "resolved": "해제",
         }
         return mapping.get(status, status)
 
