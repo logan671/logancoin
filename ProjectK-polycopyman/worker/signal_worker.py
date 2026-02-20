@@ -318,6 +318,12 @@ def _is_market_min_size_failure(fail_reason: str | None) -> bool:
     return "min size: $1" in normalized and "invalid amount for a marketable buy order" in normalized
 
 
+def _is_reprice_after_timeout_reason(reason: str | None) -> bool:
+    if not reason:
+        return False
+    return "reprice_after_timeout" in str(reason)
+
+
 def process_once() -> int:
     pending = list_unmirrored_signals(limit=100)
     created = 0
@@ -550,17 +556,23 @@ def cancel_stale_sent_orders_once() -> tuple[int, int]:
         pair_id = int(row["pair_id"])
         follower_wallet_id = int(row["follower_wallet_id"])
         side = str(row["side"])
+        blocked_reason = str(row.get("blocked_reason") or "")
         result = EXECUTOR.cancel(row)
         if result.status == "canceled":
-            mark_mirror_order_status(order_id, "canceled", "open_order_timeout")
-            _notify_canceled_order(
-                order_id=order_id,
-                pair_id=pair_id,
-                follower_wallet_id=follower_wallet_id,
-                side=side,
-                reason=f"open_order_timeout>{EXECUTOR_OPEN_ORDER_CANCEL_AFTER_SECONDS}s",
-            )
-            canceled += 1
+            if side.lower() == "buy" and not _is_reprice_after_timeout_reason(blocked_reason):
+                # One-time retry: requeue with aggressive price (+0.1) in executor.
+                set_mirror_order_executor_ref(order_id=order_id, executor_ref="")
+                mark_mirror_order_status(order_id, "queued", "reprice_after_timeout")
+            else:
+                mark_mirror_order_status(order_id, "canceled", "open_order_timeout")
+                _notify_canceled_order(
+                    order_id=order_id,
+                    pair_id=pair_id,
+                    follower_wallet_id=follower_wallet_id,
+                    side=side,
+                    reason=f"open_order_timeout>{EXECUTOR_OPEN_ORDER_CANCEL_AFTER_SECONDS}s",
+                )
+                canceled += 1
         else:
             reason = result.fail_reason or "cancel_failed"
             mark_mirror_order_status(order_id, "failed", reason)

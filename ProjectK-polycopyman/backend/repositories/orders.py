@@ -1,5 +1,4 @@
 import time
-import uuid
 from typing import Any
 
 from ..db import get_conn
@@ -71,6 +70,8 @@ def list_queued_mirror_orders(limit: int = 50) -> list[dict[str, Any]]:
               m.pair_id,
               m.trade_signal_id,
               m.adjusted_notional_usdc,
+              m.blocked_reason,
+              t.tx_hash AS source_tx_hash,
               t.side,
               t.outcome,
               t.market_slug,
@@ -78,18 +79,52 @@ def list_queued_mirror_orders(limit: int = 50) -> list[dict[str, Any]]:
               t.source_price,
               p.follower_wallet_id,
               p.max_slippage_bps,
+              s.address AS source_address,
               f.address AS follower_address,
               f.key_ref,
               f.budget_usdc
             FROM mirror_orders m
             JOIN trade_signals t ON t.id = m.trade_signal_id
             JOIN wallet_pairs p ON p.id = m.pair_id
+            JOIN source_wallets s ON s.id = t.source_wallet_id
             JOIN follower_wallets f ON f.id = p.follower_wallet_id
             WHERE m.status = 'queued'
             ORDER BY m.id ASC
             LIMIT ?
             """,
             (limit,),
+        ).fetchall()
+    return [dict(row) for row in rows]
+
+
+def list_stale_sent_mirror_orders(max_age_seconds: int, limit: int = 100) -> list[dict[str, Any]]:
+    cutoff = int(time.time()) - max(max_age_seconds, 0)
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            SELECT
+              m.id,
+              m.pair_id,
+              m.trade_signal_id,
+              m.blocked_reason,
+              m.executor_ref,
+              t.side,
+              t.outcome,
+              p.follower_wallet_id,
+              f.address AS follower_address,
+              f.key_ref,
+              m.updated_at
+            FROM mirror_orders m
+            JOIN trade_signals t ON t.id = m.trade_signal_id
+            JOIN wallet_pairs p ON p.id = m.pair_id
+            JOIN follower_wallets f ON f.id = p.follower_wallet_id
+            WHERE m.status = 'sent'
+              AND m.executor_ref IS NOT NULL
+              AND m.updated_at <= ?
+            ORDER BY m.id ASC
+            LIMIT ?
+            """,
+            (cutoff, limit),
         ).fetchall()
     return [dict(row) for row in rows]
 
@@ -134,8 +169,6 @@ def create_execution_record(
 ) -> int:
     now = int(time.time())
     tx_hash = chain_tx_hash
-    if not tx_hash and status in ("filled", "partial"):
-        tx_hash = f"stub-{uuid.uuid4().hex}"
     with get_conn() as conn:
         cur = conn.execute(
             """
@@ -224,5 +257,27 @@ def has_recent_balance_or_allowance_failure(pair_id: int, within_seconds: int) -
             LIMIT 1
             """,
             (pair_id, cutoff),
+        ).fetchone()
+    return row is not None
+
+
+def has_filled_buy_for_pair_token(pair_id: int, token_id: str | None) -> bool:
+    if not token_id:
+        return False
+    with get_conn() as conn:
+        row = conn.execute(
+            """
+            SELECT 1
+            FROM executions e
+            JOIN mirror_orders m ON m.id = e.mirror_order_id
+            JOIN trade_signals t ON t.id = m.trade_signal_id
+            WHERE e.pair_id = ?
+              AND e.status = 'filled'
+              AND lower(COALESCE(e.executed_side, '')) = 'buy'
+              AND t.token_id = ?
+            ORDER BY e.id DESC
+            LIMIT 1
+            """,
+            (pair_id, token_id),
         ).fetchone()
     return row is not None
