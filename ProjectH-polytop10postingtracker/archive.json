@@ -1543,5 +1543,204 @@
       },
       "fetched_at": "2026-02-19T14:15:56.843893+09:00"
     }
+  ],
+  "2026-02-20": [
+    {
+      "tweet_id": "2024619544703357291",
+      "author": "seelffff",
+      "url": "https://x.com/seelffff/status/2024619544703357291",
+      "text_en": "woke up with a $2,347 profit on Polymarket BTC 5-minute markets\n\nmy friend developer launched my fresh strategy \"Liquidity Sweep Reversal\" overnight\n\nkicked off with a $400 bankroll on a test account\n\nfades the fakeout before odds flip\n\n19 trades  \n$99 avg win  \n58% hit rate  \n\nsimple instructions for you to start making money  \n\n→ on the 15-min BTC chart, add EMA 200  if price is above, bias is up; if below, bias is down  \n\n→ switch to the 5-min chart and find liquidity pools: fresh swing highs/lows or equal highs/lows  \n\n→ wait for a sweep: a wick breaks the high/low, but the candle closes inside the range \n \n→ after the sweep, look for a reversal pattern like pin bar / hammer / engulfing high volume on the sweep, low volume on the next candle  \n\n→ enter on Polymarket: after the 5-min signal, fade the contrarian side downside sweep but up bias? Buy YES  \n\ncoded in JavaScript with zero lag  \n\nyou just need CLOB to trade on Polymarket  \n\nnow auto-trades 24/7\n\nwhat do you think about this strategy?",
+      "text_ko": "폴리마켓 BTC 5분 시장에서 $2,347의 수익으로 일어났어요\n\n제 친구 개발자가 제 새로운 전략 \"Liquidity Sweep Reversal\"을 밤새 실행했어요\n\n테스트 계정에 $400로 시작했어요\n\n오즈가 뒤집히기 전에 페이크아웃을 페이드했어요\n\n19번의 거래\n평균 승리 $99\n적중률 58%\n\n돈을 벌기 시작하는 간단한 지침\n\n→ 15분 BTC 차트에서 EMA 200을 추가하세요. 가격이 위에 있으면 상승 편향, 아래에 있으면 하락 편향\n\n→ 5분 차트로 전환하고 유동성 풀을 찾으세요: 최근 스윙 고점/저점이나 동일한 고점/저점\n\n→ 스윕을 기다리세요: 심지가 고점/저점을 돌파하지만 캔들이 범위 내에서 닫힘\n\n→ 스윕 후, 핀 바 / 해머 / 역햄머 등의 반전 패턴을 찾으세요. 스윕 시 고볼륨, 다음 캔들 시 저볼륨\n\n→ 폴리마켓에서 진입: 5분 신호 후, 반대편을 페이드하세요. 하락 스윕이지만 상승 편향? YES를 사세요\n\nJavaScript로 제로 랙으로 코딩됨\n\n폴리마켓에서 거래하려면 CLOB만 있으면 됩니다\n\n이제 24/7 자동 거래\n\n이 전략에 대해 어떻게 생각하세요?",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2024619376134041600/img/fSJdGIkrQKr5HxmW.jpg"
+      ],
+      "rank_meta": {
+        "rank": 1,
+        "view_count": 3305.0,
+        "bookmark_count": 61.0,
+        "like_count": 30.0,
+        "repost_count": 3.0,
+        "reply_count": 7.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242004+09:00"
+    },
+    {
+      "tweet_id": "2024574223206011118",
+      "author": "bl888m_eth",
+      "url": "https://x.com/bl888m_eth/status/2024574223206011118",
+      "text_en": "$211K in 7 days while you were checking your portfolio\n\nprofile here - https://t.co/BbhsgqCjK7\n\nsomeone joined Polymarket in January and figured out the pattern\n\nthis week alone:\n$32,875\n$26,969\n$16,473\n\nstrategy: 5-min BTC markets, both sides when volatility dies\n\nhere's what changes everything:\n\n@ratio_dot_you just launched copy trading for Polymarket\n\nyou can now auto-copy wallets like this in real-time\n\nfollow top traders, mirror their positions, compete on leaderboards\n\nearly access - https://t.co/uvHC8JuOE2",
+      "text_ko": "당신이 포트폴리오를 확인하는 동안 7일 만에 $211K\n\n프로필 여기 - https://t.co/BbhsgqCjK7\n\n누군가 1월에 폴리마켓에 가입하고 패턴을 알아냈어요\n\n이번 주만:\n$32,875\n$26,969\n$16,473\n\n전략: 5분 BTC 시장, 변동성이 줄어들 때 양쪽\n\n모든 것을 바꾸는 것:\n\n@ratio_dot_you가 폴리마켓을 위한 카피 트레이딩을 막 출시했어요\n\n이제 실시간으로 이런 지갑을 자동으로 복사할 수 있습니다\n\n탑 트레이더를 팔로우하고, 그들의 포지션을 미러링하고, 리더보드에서 경쟁하세요\n\n얼리 액세스 - https://t.co/uvHC8JuOE2",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2024571459599798272/img/tSLo8GiJsde8fyrm.jpg",
+        "https://pbs.twimg.com/amplify_video_thumb/2024573286995087360/img/WWWcUy9douYDW5fO.jpg"
+      ],
+      "rank_meta": {
+        "rank": 2,
+        "view_count": 1333.0,
+        "bookmark_count": 16.0,
+        "like_count": 42.0,
+        "repost_count": 2.0,
+        "reply_count": 11.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242026+09:00"
+    },
+    {
+      "tweet_id": "2024262657961054644",
+      "author": "0xFrogify",
+      "url": "https://x.com/0xFrogify/status/2024262657961054644",
+      "text_en": "🚨 IT WENT PUBLIC:\n\nKing of ALL 5m, 15m BTC Polymarket Clawdbot trading setups.\n\nStarted with $300. \nEnded up with $1.6M\n\nIt took this bot 2 month to make a colleague nerd a millionaire.\n\nThe truth: ANYONE CAN DO IT.\n\nHere's the full breakdown of his strategy:\n\nHis profile:\nhttps://t.co/SRhnDXbhws \n\nI'm copy trading him here right now:\nhttps://t.co/JfdQQ3nyys\n\nThis Polymarket bot doesn’t care if BTC goes up or down.\n\nIt waits until the outcome is already decided by market structure - then it buys certainty at a discount.\n\nBasically waiting moments when BTC liquidity collapses on one side.\n\nAnd enters AFTER liquidation sweeps or absorption events.\n\nHumans can’t trade this:\nYou can’t reliably identify “decision-complete” moments in real time.\n\nWhat info does the bot is being fed?\n\n- BTC spot + perp (Binance / Bybit)\n- Order-book depth (top levels only)\n- Liquidation & delta feeds.\n- Polymarket odds (1-2s polling)\n\nSetting you NEED to have:\n\n- Trade only during volatility expansion.\n- Enter only when Polymarket odds lag real probability.\n- Minimum edge threshold (≈10–15%)\n- No averaging, no martingale.\n- Hold to expiry.\n\nI've been into this market for 10 years, DO NOT skip what's coming next. \n\nFollow me.",
+      "text_ko": "🚨 공개되었습니다:\n\n모든 5분, 15분 BTC 폴리마켓 Clawdbot 트레이딩 설정의 킹\n\n$300으로 시작.\n$1.6M으로 끝남\n\n이 봇이 동료 너드를 백만장자로 만드는 데 2개월이 걸렸어요.\n\n진실: 누구나 할 수 있습니다.\n\n그의 전략 전체 분석:\n\n그의 프로필:\nhttps://t.co/SRhnDXbhws \n\n지금 여기서 그를 카피 트레이딩 중:\nhttps://t.co/JfdQQ3nyys\n\n이 폴리마켓 봇은 BTC가 오르든 내리든 신경 쓰지 않습니다.\n\n시장 구조에 의해 이미 결정된 결과를 기다렸다가 할인된 가격에 확실성을 사들입니다.\n\n기본적으로 BTC 유동성이 한쪽에서 붕괴하는 순간을 기다립니다.\n\n청산 스윕이나 흡수 이벤트 후에 진입합니다.\n\n인간은 이걸 거래할 수 없습니다:\n실시간으로 \"결정 완료\" 순간을 신뢰성 있게 식별할 수 없습니다.\n\n봇이 입력받는 정보는?\n\n- BTC 현물 + 퍼펙 (바이낸스 / 바이비트)\n- 주문서 깊이 (상위 레벨만)\n- 청산 및 델타 피드\n- 폴리마켓 오즈 (1-2초 폴링)\n\n설정해야 할 것:\n\n- 변동성 확장 중에만 거래\n- 폴리마켓 오즈가 실제 확률보다 느릴 때만 진입\n- 최소 에지 임계값 (≈10–15%)\n- 평균화 없음, 마팅게일 없음\n- 만기까지 보유\n\n저는 이 시장에 10년째입니다, 다음에 오는 것을 절대 놓치지 마세요. \n\n저를 팔로우하세요.",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2024256358447525888/img/sRdpWXVK4xq4grD_.jpg",
+        "https://pbs.twimg.com/media/HBef4vxXcAA1KhY.jpg"
+      ],
+      "rank_meta": {
+        "rank": 3,
+        "view_count": 1727.0,
+        "bookmark_count": 16.0,
+        "like_count": 19.0,
+        "repost_count": 2.0,
+        "reply_count": 3.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242039+09:00"
+    },
+    {
+      "tweet_id": "2024492434793910372",
+      "author": "AlterEgo_eth",
+      "url": "https://x.com/AlterEgo_eth/status/2024492434793910372",
+      "text_en": "Strategy with 200% APY on Polymarket and minimal risk\n\nWhile others try to guess one outcome, this strategy covers multiple\n\nNo analysis, no bots - just basic math\n\nHow it works:\n\n1. Find markets with 4+ outcomes (tech, Fed rates, sports)\n2. Buy YES on top 2-4 most likely outcomes\n3. Total cost < $1 (e.g., 85¢)\n4. One outcome resolves YES → you get $1 back\n5. Profit: $0.15 (18% ROI)\n\nLive example:\n\nWhich company has the best AI model end of March?\n\nMarket: https://t.co/UBR4LUN1MJ\n\nTop 2 outcomes:\n- Google: 59¢\n- Anthropic: 26¢\n\nTotal: 85¢ → 18% profit guaranteed\n\nThe risk: only if a rare underdog wins (typically <5% chance)\n\nBest markets: Fed rates, major sports, tech leadership\n\nLow risk + predictable events = consistent returns",
+      "text_ko": "Polymarket에서 200% APY의 전략과 최소한의 리스크\n\n다른 사람들은 한 가지 결과를 예측하려고 하지만, 이 전략은 여러 결과를 커버합니다\n\n분석도, 봇도 필요없고 - 기본적인 수학만 필요합니다\n\n작동 방식:\n\n1. 4개 이상의 결과가 있는 시장을 찾습니다 (기술, 연준 금리, 스포츠)\n2. 가장 가능성이 높은 상위 2-4개 결과에 YES를 구매합니다\n3. 총 비용은 $1 미만 (예: 85¢)\n4. 한 가지 결과가 YES로 결정되면 → $1을 돌려받습니다\n5. 수익: $0.15 (18% ROI)\n\n실시간 예시:\n\n3월 말에 어떤 회사가 최고의 AI 모델을 가지고 있을까요?\n\n시장: https://t.co/UBR4LUN1MJ\n\n상위 2개 결과:\n- Google: 59¢\n- Anthropic: 26¢\n\n총액: 85¢ → 18% 수익 보장\n\n리스크: 드문 언더독이 이기는 경우에만 (일반적으로 <5% 확률)\n\n최적의 시장: 연준 금리, 주요 스포츠, 기술 리더십\n\n낮은 리스크 + 예측 가능한 이벤트 = 일관된 수익",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2024492050922819585/img/WnSqWQdFv0Qcecjq.jpg",
+        "https://pbs.twimg.com/media/HBhw3vNaYAAq7oQ.jpg"
+      ],
+      "rank_meta": {
+        "rank": 4,
+        "view_count": 250.0,
+        "bookmark_count": 10.0,
+        "like_count": 27.0,
+        "repost_count": 2.0,
+        "reply_count": 14.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242045+09:00"
+    },
+    {
+      "tweet_id": "2024487149836390599",
+      "author": "SpeculatorArt",
+      "url": "https://x.com/SpeculatorArt/status/2024487149836390599",
+      "text_en": "Some Polymarket Alpha:\n\nI'm taking the NO on US strikes Iran by February 23rd. \n\nWhy?\n\nTrump's State of the Union address is on February 24th.\n\nAttacking Iran before the SOTU carries a lot of risk. \n\nWhat if US soldiers are killed? The strike goes bad?\n\nTrump risks having to reshape his entire speech, which instead he likely wants to use to lay the groundwork of accomplishments. \n\nOne of his big accomplishments is fighting for peace, not more war. \n\nAdditionally, Iran has been given two weeks to send a written proposal with an offer. \n\nMy guess would be if a strike happens, it would happen in middle of March.",
+      "text_ko": "Polymarket 알파:\n\n나는 2월 23일까지 미국이 이란을 공격하지 않을 것에 NO를 걸었습니다.\n\n왜냐하면?\n\n트럼프의 국정연설이 2월 24일에 있습니다.\n\nSOTU 전에 이란을 공격하는 것은 많은 리스크를 동반합니다.\n\n만약 미군이 사망하거나 공격이 잘못되면 어떻게 될까요?\n\n트럼프는 전체 연설을 다시 구성해야 할 위험이 있습니다. 대신 그는 성과를 다지는 데 사용하고 싶어할 것입니다.\n\n그의 큰 성과 중 하나는 평화를 위해 싸우는 것이지, 더 많은 전쟁이 아닙니다.\n\n또한, 이란은 서면 제안서를 제출할 2주를 받았습니다.\n\n제 추측은 만약 공격이 있다면, 3월 중순에 있을 것입니다.",
+      "images": [
+        "https://pbs.twimg.com/media/HBhroBrW0AE1Rum.jpg"
+      ],
+      "rank_meta": {
+        "rank": 6,
+        "view_count": 2485.0,
+        "bookmark_count": 2.0,
+        "like_count": 22.0,
+        "repost_count": 0,
+        "reply_count": 13.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242051+09:00"
+    },
+    {
+      "tweet_id": "2024381852849705307",
+      "author": "Sonu99488957",
+      "url": "https://x.com/Sonu99488957/status/2024381852849705307",
+      "text_en": "Finally @Polymarket paid me fees for my 6 month subscription 🥳🙌🏼\n\nNow I am going to reveal my strategy from which I have made almost 8X on Polymarket \n\nA great thanks to @cryptoanirudh\nFor the guidance on X subscription 🙌🏼\n\nOpen thread  for strategy 👇🏼\n\nI know the Technical analysis first of all  :\n1. I only trade the 15 minute crypto market.\n2. I always took up/down according to the 5 min candle chart \n3. I place bids as per the candlesticks.\n4. I hedge the same bid with another bid ( amount total always <1$ )\nIn simple : if you know the next candle will be down so you buy Down bid first (like 50 cents of 100 qty)  \nNow for hedge you place bid for yes below 50 cents like ( limit order on down bid < 50 cents )\n\nIn this case you will always win one side.\n\nUsing this technique I am making around 10$ per day with only 5-10 trades. \n\nYou can close any one bid if you are sure now it will be up/down.\n\nThere is much risk of your capital but I suggest you to only take a bid with less than 50 qty and make sure you always purchase the same qty with sum <1$ .\n\nIf you have any questions you can DM me.\n\n$Poly #prediction #polymarket #stategy",
+      "text_ko": "드디어 @Polymarket에서 6개월 구독료를 받았어요 🥳🙌🏼\n\n이제 제가 Polymarket에서 거의 8배의 수익을 낸 전략을 공개하겠습니다\n\n@cryptoanirudh에게 큰 감사를\nX 구독에 대한 지침을 주셔서 🙌🏼\n\n전략에 대한 오픈 스레드 👇🏼\n\n먼저 기술적 분석을 알고 있습니다:\n1. 저는 15분 단위 암호화폐 시장만 거래합니다.\n2. 항상 5분 캔들 차트에 따라 상/하를 결정합니다\n3. 캔들스틱에 따라 입찰을 합니다.\n4. 같은 입찰을 다른 입찰로 헤지합니다 (총액은 항상 <1$)\n간단히 말해서: 다음 캔들이 하락할 것이라고 알면 먼저 Down 입찰을 삽니다 (예: 100개의 50센트)\n이제 헤지를 위해 50센트 이하로 YES 입찰을 합니다 (Down 입찰에 대한 리밋 오더 < 50센트)\n\n이 경우 항상 한 쪽에서 이깁니다.\n\n이 기술을 사용해서 하루에 약 10$를 벌고 있으며, 5-10번의 거래만 합니다.\n\n확실히 상/하로 갈 것 같으면 어느 한 쪽 입찰을 종료할 수 있습니다.\n\n자본에 대한 리스크가 있지만, 저는 50개 이하의 수량으로만 입찰하고 항상 총액이 <1$가 되도록 같은 수량을 구매하라고 제안합니다.\n\n질문이 있으면 DM 주세요.\n\n$Poly #prediction #polymarket #strategy",
+      "images": [
+        "https://pbs.twimg.com/media/HBgMjwMbUAIFgjz.jpg",
+        "https://pbs.twimg.com/media/HBgMj4FbUAMaVXT.jpg"
+      ],
+      "rank_meta": {
+        "rank": 7,
+        "view_count": 209.0,
+        "bookmark_count": 3.0,
+        "like_count": 8.0,
+        "repost_count": 0,
+        "reply_count": 8.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242057+09:00"
+    },
+    {
+      "tweet_id": "2024414207924490402",
+      "author": "kirillk_web3",
+      "url": "https://x.com/kirillk_web3/status/2024414207924490402",
+      "text_en": "This Trader Bet $54,000 on the return of Jesus Christ.\n\nIf it happens, the bet will turn into $1,400,000 on Polymarket.\n\nWhile everyone fights over cents on 5-minute BTC charts, one whale went big on the \"biblical\" play. He bought $54,272 worth of \"Yes\" shares on Christ returning before 2027.\n\nThe current probability is only 4%.\n\nThis guy is either crazy or has the most expensive memeand potentially the best faith-based trade in history.\n\nWhat do you think about this prediction?",
+      "text_ko": "이 트레이더는 예수 그리스도의 재림에 54,000달러를 걸었습니다.\n\n만약 그 일이 일어난다면, 이 베팅은 Polymarket에서 1,400,000달러로 변할 것입니다.\n\n모두가 5분짜리 BTC 차트에서 센트를 두고 싸우는 동안, 한 고래는 '성경적' 플레이에 큰돈을 걸었습니다. 그는 2027년 전에 그리스도가 재림할 '예' 주식에 54,272달러어치를 샀습니다.\n\n현재 확률은 겨우 4%입니다.\n\n이 사람은 미쳤거나 아니면 역사상 가장 비싼 밈, 그리고 잠재적으로 최고의 신앙 기반 거래를 한 것입니다.\n\n이 예측에 대해 어떻게 생각하시나요?",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2024411574073475072/img/U7T3fZFuxOdfZMsE.jpg",
+        "https://pbs.twimg.com/media/HBgp7-oXcAA5ECR.jpg"
+      ],
+      "rank_meta": {
+        "rank": 8,
+        "view_count": 451.0,
+        "bookmark_count": 1.0,
+        "like_count": 17.0,
+        "repost_count": 1.0,
+        "reply_count": 6.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242062+09:00"
+    },
+    {
+      "tweet_id": "2024384947629543604",
+      "author": "eksoaWeb3",
+      "url": "https://x.com/eksoaWeb3/status/2024384947629543604",
+      "text_en": "A trader on @Polymarket blew over $8 million in just two months. And this wasn’t strategy or volatility — just a regular gambling addict mindlessly betting on sports and calling it “trading.”\n\nIf you want to gamble like that, go to a sportsbook — at least they offer cashback and bonuses there.",
+      "text_ko": "@Polymarket의 한 트레이더가 단 두 달 만에 800만 달러 이상을 날렸습니다. 이건 전략도 변동성도 아닌, 그냥 평범한 도박 중독자가 스포츠에 무작정 베팅하면서 '거래'라고 부른 것입니다.\n\n그렇게 도박하고 싶다면 스포츠북에 가세요 — 적어도 거기서는 캐시백과 보너스를 제공합니다.",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2024384877584375808/img/henQExyJsKt5ln4w.jpg",
+        "https://pbs.twimg.com/media/HBgPUgwXcAAQWGF.jpg"
+      ],
+      "rank_meta": {
+        "rank": 12,
+        "view_count": 631.0,
+        "bookmark_count": 0,
+        "like_count": 18.0,
+        "repost_count": 0,
+        "reply_count": 9.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242071+09:00"
+    },
+    {
+      "tweet_id": "2024444724774322685",
+      "author": "Sonu99488957",
+      "url": "https://x.com/Sonu99488957/status/2024444724774322685",
+      "text_en": "😣Don't know why everyone is confused.\n\nCheck the \"Screenshot\" below as per my strategy I am going to win in both situations It's that simple.\n\nThe main thing is understanding between candles and charts of $BTC\n\n@polymarket is not too difficult \n\nIt's not gambling it's risking what you can lose. 🙌🏼",
+      "text_ko": "😣왜 모두가 헷갈려하는지 모르겠네요.\n\n아래 '스크린샷'을 확인해 보세요. 제 전략대로라면 두 상황 모두에서 이길 겁니다. 이렇게 간단해요.\n\n중요한 건 $BTC의 캔들과 차트 사이의 이해입니다.\n\n@polymarket은 그렇게 어렵지 않아요.\n\n이건 도박이 아니라 잃어도 될 만큼만 risiking 하는 겁니다. 🙌🏼",
+      "images": [
+        "https://pbs.twimg.com/media/HBhFvhOboAAEsqP.jpg"
+      ],
+      "rank_meta": {
+        "rank": 9,
+        "view_count": 185.0,
+        "bookmark_count": 1.0,
+        "like_count": 10.0,
+        "repost_count": 1.0,
+        "reply_count": 5.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242077+09:00"
+    },
+    {
+      "tweet_id": "2024086750789058628",
+      "author": "0XPiyushX",
+      "url": "https://x.com/0XPiyushX/status/2024086750789058628",
+      "text_en": "someone made $45,918 in a single day trading 5-min BTC prediction markets.\n\nnot luck. latency arbitrage.\n\nthe strategy is called Fast-Loop. here's the actual edge:\n\n→ real BTC price moves (t = 0ms) \n→ Fast-Loop detects + executes (t = +10–15ms) \n→ Polymarket updates (t = +20–35ms)\n\nthat 5–15ms gap is where the trade lives.\n\nyou're not predicting price. you're front-running the market's reaction to price.\n\n81.4% win rate. 288 opportunities per day (one every 5 minutes). when a single winning trade can double your position, compounding gets violent.\n\nthe OpenClaw strategy automates this. fully transparent. provable onchain.\n\nmost prediction market traders are still analyzing narratives. the fastest ones are reading packet delay.\n\nwhat's your current edge on sub-15min markets?",
+      "text_ko": "누군가 5분 BTC 예측 시장에서 단 하루 만에 $45,918를 벌었습니다.\n\n운이 아닙니다. 지연 차익 거래입니다.\n\n이 전략은 Fast-Loop라고 합니다. 실제 이점은 다음과 같습니다:\n\n→ 실제 BTC 가격 변동 (t = 0ms)\n→ Fast-Loop가 감지 및 실행 (t = +10–15ms)\n→ Polymarket 업데이트 (t = +20–35ms)\n\n이 5–15ms 차이가 거래가 살아남는 곳입니다.\n\n당신은 가격을 예측하는 것이 아닙니다. 시장의 가격 반응을 앞서가는 것입니다.\n\n81.4%의 승률. 하루에 288번의 기회 (5분마다 한 번씩). 단 하나의 승리 거래가 당신의 포지션을 두 배로 만들 수 있을 때, 복리는 폭력적이 됩니다.\n\nOpenClaw 전략은 이를 자동화합니다. 완전히 투명하고, 온체인에서 증명 가능합니다.\n\n대부분의 예측 시장 트레이더들은 여전히 narratives를 분석하고 있습니다. 가장 빠른 사람들은 패킷 지연을 읽고 있습니다.\n\n당신의 현재 15분 미만 시장에서의 이점은 무엇인가요?",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2024086614205661184/img/uPE73-URwScrqnUt.jpg",
+        "https://pbs.twimg.com/media/HBcAGOyb0AA1S-s.jpg"
+      ],
+      "rank_meta": {
+        "rank": 13,
+        "view_count": 128.0,
+        "bookmark_count": 0,
+        "like_count": 13.0,
+        "repost_count": 0,
+        "reply_count": 11.0
+      },
+      "fetched_at": "2026-02-20T14:09:52.242082+09:00"
+    }
   ]
 }
