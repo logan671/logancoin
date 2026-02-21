@@ -1742,5 +1742,200 @@
       },
       "fetched_at": "2026-02-20T14:09:52.242082+09:00"
     }
+  ],
+  "2026-02-21": [
+    {
+      "tweet_id": "2024486122231853187",
+      "author": "stacyonchain",
+      "url": "https://x.com/stacyonchain/status/2024486122231853187",
+      "text_en": "I reverse-engineered the 3 most profitable bots on Polymarket\n\nStrategy #1 is literally printing money right now.\n\nDon't scroll past this\n\nStrategy #1: The \"Volatility Split\" (The Strongest Edge)\n\nTargets: 15-minute BTC markets.\nThe Alpha: It doesn't guess the direction. It farms the panic.\n\n>The Setup: Before the market opens, it mints (splits) equal YES/NO shares. Cost basis: $0.50 each ($1.00 total risk).\n> The Trap: When the market opens, it sells the pumping side into retail FOMO (e.g., at $0.70).\n>The Swing: If the price reverses, it sells the other side (e.g., at $0.70).\n\nResult: $1.40 return on a $1.00 risk. Pure volatility farming.\n\nStrategy #2: The \"Penny Sniper\" (Bonding Bot)\n\nTargets: Markets that are already 99% decided.\n> Scans for shares priced at $0.99 – $0.995.\n> Looks for expiration in < 5 hours.\n> Bids aggressively with size.\n\nYes, there is a \"Black Swan\" risk. But over thousands of trades, it farms small, consistent gains. You sleep while the bot compounds.\n\nStrategy #3: The \"Probability Closer\"\n\nTargets: The final 2 minutes of 15m BTC markets.\n> Automatically enters the side holding an 80%+ probability.\n\nIs it foolproof? No. A sudden wick can still flip the resolution.\n\nBut statistically, once odds hit 80% that late, the market usually resolves that way. Lower reward, but an insanely high win rate.\n\nThe Blueprint:\n\nYou don't need to know how to code to take advantage of this. I track the smart wallets running these exact strategies daily.\n\nObserve them, learn the edge, and copy their flow.\n\nHere is the tool I use to copy-trade them:\nhttps://t.co/rDpc69pu9H\n\nFollow for more alpha. 🚀",
+      "text_ko": "폴리마켓에서 가장 수익이 좋은 3개의 봇을 역공학했어요\n\n현재 전략 #1이 돈을 찍어내고 있어요.\n\n이 글을 그냥 지나치지 마세요\n\n전략 #1: \"변동성 분할\" (가장 강력한 에지)\n\n타겟: 15분 BTC 마켓\n알파: 방향을 예측하지 않고 공황을 농사짓습니다.\n\n> 설정: 시장이 열리기 전에 동일한 YES/NO 주식을 민트(분할)합니다. 비용 기준: 각각 $0.50 ($1.00 총 리스크).\n> 함정: 시장이 열리면 펌핑하는 쪽을 소매 FOMO에 팔아요 (예: $0.70).\n> 스윙: 가격이 반전되면 반대쪽을 팔아요 (예: $0.70).\n\n결과: $1.00 리스크에 $1.40 수익. 순수한 변동성 농사.\n\n전략 #2: \"페니 스나이퍼\" (본딩 봇)\n\n타겟: 이미 99% 결정된 마켓\n> $0.99 – $0.995에 거래되는 주식을 스캔합니다.\n> 만료 시간이 5시간 이내인 것을 찾습니다.\n> 적극적으로 큰 규모로 입찰합니다.\n\n네, \"블랙 스완\" 리스크가 있어요. 하지만 수천 건의 거래를 통해 작은, 일관된 이득을 농사짓습니다. 봇이 복리로 늘어나는 동안 당신은 잠을 자요.\n\n전략 #3: \"확률 클로저\"\n\n타겟: 15분 BTC 마켓의 마지막 2분\n> 80% 이상의 확률을 가진 쪽으로 자동으로 진입합니다.\n\n이게 완벽한가요? 아니요. 갑작스러운 위크가 결과를 뒤집을 수 있어요.\n\n하지만 통계적으로, 그 시점에서 확률이 80%에 도달하면 시장은 보통 그대로 결론납니다. 낮은 보상이지만 엄청나게 높은 승률.\n\n청사진:\n\n코딩을 몰라도 이걸 활용할 수 있어요. 이 전략을 매일 실행하는 스마트 지갑을 추적해요.\n\n그들을 관찰하고, 에지를 배우고, 그들의 흐름을 따라해요.\n\n여기 제가 그들을 카피 트레이드하는 데 사용하는 도구입니다:\nhttps://t.co/rDpc69pu9H\n\n더 많은 알파를 위해 팔로우하세요. 🚀",
+      "images": [
+        "https://pbs.twimg.com/media/HBhrZVkXsAA6YQx.jpg"
+      ],
+      "rank_meta": {
+        "rank": 1,
+        "view_count": 12983.0,
+        "bookmark_count": 334.0,
+        "like_count": 204.0,
+        "repost_count": 16.0,
+        "reply_count": 23.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688857+09:00"
+    },
+    {
+      "tweet_id": "2024826967493681290",
+      "author": "Haseeb_eth",
+      "url": "https://x.com/Haseeb_eth/status/2024826967493681290",
+      "text_en": "🎉 YOSO ALPHA INVITE CODES GIVEAWAY! 🔥\n\nJust got 4 exclusive @yososocial invite codes from my connections! Each comes with $10 free trading credit to start predicting on short-cycle, fun markets (community-driven like Polymarket but more social & regional vibes).\n\nYoso is heating up—early users might see perks in future points/token drops 👀\n\nTo enter (simple & fair):\n✅ Follow @yososocial + @Haseeb_eth\n✅ Like ❤️ + RT ♻️ this post\n✅ Tag 3 friends below (real ones, no spam!)\n\nWinners picked randomly in 12-14 hours via DM (open your DMs!)\n\nDon't fade this early alpha! 🚀 #Yoso #PredictionMarkets #CryptoGiveaway #Web3\n\nGood luck degens! 👁️",
+      "text_ko": "🎉 YOSO ALPHA 초대 코드 증정 이벤트! 🔥\n\n제 연결망을 통해 4개의 독점 @yososocial 초대 코드를 받았어요! 각각 $10의 무료 거래 크레딧이 포함되어 있어, 짧은 주기의 재미있는 마켓에서 예측을 시작할 수 있어요 (폴리마켓처럼 커뮤니티 주도적이지만 더 소셜하고 지역적인 분위기).\n\nYoso가 뜨겁게 달아오르고 있어요—초기 사용자들은 미래의 포인트/토큰 드롭에서 혜택을 볼 수 있어요 👀\n\n참여 방법 (간단하고 공정하게):\n✅ @yososocial + @Haseeb_eth 팔로우\n✅ 이 글 좋아요 ❤️ + 리트윗 ♻️\n✅ 아래에 3명의 친구 태그 (진짜 친구, 스팸 금지!)\n\n12-14시간 후에 DM으로 무작위로 당첨자를 선정할게요 (DM을 열어놓으세요!)\n\n이 초기 알파를 놓치지 마세요! 🚀 #Yoso #PredictionMarkets #CryptoGiveaway #Web3\n\n행운을 빌어요, 디겐들! 👁️",
+      "images": [
+        "https://pbs.twimg.com/media/HBmhZYgXIAAmYID.jpg"
+      ],
+      "rank_meta": {
+        "rank": 10,
+        "view_count": 1608.0,
+        "bookmark_count": 3.0,
+        "like_count": 104.0,
+        "repost_count": 109.0,
+        "reply_count": 102.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688882+09:00"
+    },
+    {
+      "tweet_id": "2024694151565209920",
+      "author": "hiwhaledegen",
+      "url": "https://x.com/hiwhaledegen/status/2024694151565209920",
+      "text_en": "🚨 NEW: Traders on Polymarket now price a 22% chance the U.S. confirms aliens exist before 2027 👽\n\nLet that sink in.\nAlmost 1 in 4 odds.\n\nSo what happens first?\n\n👽 Government says “aliens are real” or\n📜 Crypto finally gets clear rules with the CLARITY Act?\n\n2026 is shaping up to be wild.\n\nWhat are you betting on?👀",
+      "text_ko": "🚨 뉴스: 폴리마켓의 트레이더들은 2027년 이전에 미국이 외계인의 존재를 확인할 확률을 22%로 평가하고 있어요 👽\n\n잠시 생각해보세요.\n거의 4분의 1 확률이에요.\n\n그럼 뭐가 먼저일까요?\n\n👽 정부가 \"외계인이 실제로 존재한다\"고 말하거나\n📜 크립토가 CLARITY 법안으로 명확한 규칙을 얻게 될까요?\n\n2026년이 정말 흥미로워질 것 같아요.\n\n당신은 뭐에 걸겠어요? 👀",
+      "images": [
+        "https://pbs.twimg.com/media/HBkomULbUAIx9uA.jpg",
+        "https://pbs.twimg.com/media/HBkomUJbUAExfCu.jpg"
+      ],
+      "rank_meta": {
+        "rank": 5,
+        "view_count": 32259.0,
+        "bookmark_count": 13.0,
+        "like_count": 108.0,
+        "repost_count": 70.0,
+        "reply_count": 70.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688890+09:00"
+    },
+    {
+      "tweet_id": "2024515290726285477",
+      "author": "DashaMalyk",
+      "url": "https://x.com/DashaMalyk/status/2024515290726285477",
+      "text_en": "How did this guy turn $284 into $857,000 in 3 months on 15-minute markets⁉️⁉️⁉️\n\ngabagool22 made 857k by launching a bot on\nPolymarket, starting with only $284.\n\nHis strategy:\n\n🚩Waits until one side drops below 30%\n🚩Starts building a position at a low average\n🚩Closely monitors\nthe opposite\nside\n🚩Makes sure the combined average stays below $0.99\nIf the hedge doesn’t work out – exits at breakeven\n\nProfile : https://t.co/GP1T4NhppQ",
+      "text_ko": "이 사람이 어떻게 3개월 만에 $284를 $857,000로 바꿨을까요? 15분 시장에서 말이죠⁉️⁉️⁉️\n\ngabagool22는 Polymarket에 봇을 런칭해서 단 $284로 857k를 벌었습니다.\n\n그의 전략:\n\n🚩한 쪽이 30% 아래로 떨어질 때까지 기다림\n🚩낮은 평균가로 포지션을 구축\n🚩반대쪽을 면밀히 모니터링\n🚩합산 평균이 $0.99 아래로 유지되도록 함\n헷지가 안 맞으면 - 손익분기점에서 청산\n\n프로필 : https://t.co/GP1T4NhppQ",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2024515234426183680/img/oLYHpOaT3ykXCCbo.jpg"
+      ],
+      "rank_meta": {
+        "rank": 3,
+        "view_count": 3847.0,
+        "bookmark_count": 41.0,
+        "like_count": 97.0,
+        "repost_count": 3.0,
+        "reply_count": 10.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688918+09:00"
+    },
+    {
+      "tweet_id": "2024431989278069206",
+      "author": "dukexbt_",
+      "url": "https://x.com/dukexbt_/status/2024431989278069206",
+      "text_en": "polymarket market copy trade >>>\n\nbtw insane profit hehe \n\njust paste the trader wallet and copy easy money https://t.co/lXzBj60nNR",
+      "text_ko": "polymarket 시장 카피 트레이드 >>>\n\n미쳤네요 이익 ㅋㅋ\n\n트레이더 지갑만 붙여넣으면 쉽게 돈 복사 https://t.co/lXzBj60nNR",
+      "images": [
+        "https://pbs.twimg.com/media/HBg6KYkaAAA1_IV.jpg"
+      ],
+      "rank_meta": {
+        "rank": 9,
+        "view_count": 1938.0,
+        "bookmark_count": 7.0,
+        "like_count": 115.0,
+        "repost_count": 11.0,
+        "reply_count": 37.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688926+09:00"
+    },
+    {
+      "tweet_id": "2024502512233979987",
+      "author": "RetroValix",
+      "url": "https://x.com/RetroValix/status/2024502512233979987",
+      "text_en": "This guy made $240,000 on Polymarket using software, buying markets for $1\n\nHis trading bot makes 206 trades per hour or 3.44 trades per minute. He builds positions with limit orders and takes profit on tiny price swings\n\nHis strategy is simple:\n\n> Median trade size is $1\n> He trades several adjacent markets at the same time\n> He scalps and does micro marketmaking\n\nHere is the link to this guy’s Polymarket account:\nhttps://t.co/6EoQpeRYNI\n\nYou can copy trade smart money via the mobile app:\nhttps://t.co/jMUgXhfXIf\n\nThis app was developed by \n@ratio_dot_you",
+      "text_ko": "이 사람이 Polymarket에서 소프트웨어를 사용해 $1에 시장을 사서 $240,000를 벌었어요\n\n그의 트레이딩 봇은 시간당 206건, 분당 3.44건의 거래를 합니다. 그는 리밋 오더로 포지션을 구축하고 작은 가격 변동에서 이익을 실현합니다\n\n그의 전략은 간단합니다:\n\n> 평균 거래 크기는 $1\n> 동시에 여러 인접 시장을 거래\n> 스캘핑과 마이크로 마켓메이킹을 함\n\n이 사람의 Polymarket 계정 링크:\nhttps://t.co/6EoQpeRYNI\n\n모바일 앱으로 스마트 머니를 카피 트레이딩할 수 있습니다:\nhttps://t.co/jMUgXhfXIf\n\n이 앱은 @ratio_dot_you에 의해 개발되었습니다",
+      "images": [
+        "https://pbs.twimg.com/media/HBh6POpWgAAuanM.jpg",
+        "https://pbs.twimg.com/amplify_video_thumb/2024502434567979008/img/gOaq0LcyyXeZHx8W.jpg"
+      ],
+      "rank_meta": {
+        "rank": 4,
+        "view_count": 2638.0,
+        "bookmark_count": 22.0,
+        "like_count": 42.0,
+        "repost_count": 6.0,
+        "reply_count": 14.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688932+09:00"
+    },
+    {
+      "tweet_id": "2024357232264056910",
+      "author": "Rufat31947337",
+      "url": "https://x.com/Rufat31947337/status/2024357232264056910",
+      "text_en": "GM CT ☕\n\nRacing into another day of alpha 🏁\nMarkets open. Engines on. Let’s cook today with @Polymarket https://t.co/7BXUI8yvfU",
+      "text_ko": "GM CT ☕\n\n알파를 향해 또 하루를 질주합니다 🏁\n시장이 열렸습니다. 엔진을 켜세요. 오늘은 @Polymarket와 함께 요리해봅시다 https://t.co/7BXUI8yvfU",
+      "images": [
+        "https://pbs.twimg.com/media/HBf2LDGWUAAg2WC.jpg"
+      ],
+      "rank_meta": {
+        "rank": 6,
+        "view_count": 395.0,
+        "bookmark_count": 11.0,
+        "like_count": 58.0,
+        "repost_count": 0,
+        "reply_count": 32.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688938+09:00"
+    },
+    {
+      "tweet_id": "2024602595625468191",
+      "author": "0xashensoul",
+      "url": "https://x.com/0xashensoul/status/2024602595625468191",
+      "text_en": "btc is bleeding and your alt bags are fully cooked\n\nmeanwhile one polymarket trader is extracting $24k/month from your exact delusion\n\n$120,000 net pnl in 5 months\n\nthe strategy? shorting astronomical valuations on polymarket\n\neveryone wants to long the shiny new tech\n\nhe just provides the reality check to the order book\n\nmeet \"NeverYes\", he sweeps the \"No\" side on every overhyped TGE:\n\n> Lighter FDV >$4B? NO -> +$51k\n> Based FDV >$500M? NO -> +$11.3k\n> Metamask FDV >$1B? NO -> +$5.5k\n\nmetamask hasnt even launched a token yet\n\nhe just arbed the timeline and locked the profit\n\nprofile: https://t.co/Efh75NmpuO\n\nyou can copy his trades automatically using the app: https://t.co/mMmfWpDCDM \nCODE:  UK7FS33L",
+      "text_ko": "btc는 피를 흘리고 있고 당신의 알트코인 가방은 완전히 익었어요\n\n한편 한 Polymarket 트레이더는 당신의 그 환상에서 매달 $24k를 뽑아내고 있어요\n\n5개월 동안 순수익 $120,000\n\n전략? Polymarket에서 터무니없는 가치를 공매도하는 것\n\n모두가 번쩍이는 새 기술에 롱 포지션을 취하고 싶어해요\n\n그는 단지 주문서에 현실 점검을 제공할 뿐이에요\n\n\"NeverYes\"를 만나보세요, 그는 모든 과대광고된 TGE에서 \"No\" 쪽을 쓸어버립니다:\n\n> Lighter FDV >$4B? NO -> +$51k\n> Based FDV >$500M? NO -> +$11.3k\n> Metamask FDV >$1B? NO -> +$5.5k\n\nMetamask는 아직 토큰도 출시하지 않았어요\n\n그는 단지 타임라인을 아비트리지하고 수익을 잠갔어요\n\n프로필: https://t.co/Efh75NmpuO\n\n앱을 사용해 그의 거래를 자동으로 복사할 수 있습니다: https://t.co/mMmfWpDCDM \nCODE:  UK7FS33L",
+      "images": [
+        "https://pbs.twimg.com/media/HBjUv-eXwAApw7v.jpg",
+        "https://pbs.twimg.com/amplify_video_thumb/2024602107341312000/img/HUzoNC5dzwRKtU40.jpg"
+      ],
+      "rank_meta": {
+        "rank": 7,
+        "view_count": 1693.0,
+        "bookmark_count": 12.0,
+        "like_count": 49.0,
+        "repost_count": 0,
+        "reply_count": 16.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688947+09:00"
+    },
+    {
+      "tweet_id": "2024914663029285080",
+      "author": "mztaprince",
+      "url": "https://x.com/mztaprince/status/2024914663029285080",
+      "text_en": "Nic just shared an alpha!\n\nHe explains how the smarter guys leverage latency to farm normal traders on Polymarket. https://t.co/ywhU2czGQN",
+      "text_ko": "Nic가 방금 알파를 공유했어요!\n\n그는 Polymarket에서 똑똑한 사람들이 어떻게 지연 시간을 활용해 일반 트레이더를 농사짓는지 설명합니다. https://t.co/ywhU2czGQN",
+      "images": [
+        "https://pbs.twimg.com/ext_tw_video_thumb/2024914106864537600/pu/img/OmgZPyoB1foUKSZg.jpg"
+      ],
+      "rank_meta": {
+        "rank": 15,
+        "view_count": 2041.0,
+        "bookmark_count": 0,
+        "like_count": 50.0,
+        "repost_count": 10.0,
+        "reply_count": 24.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688953+09:00"
+    },
+    {
+      "tweet_id": "2024540634816926037",
+      "author": "Valerie_Onchain",
+      "url": "https://x.com/Valerie_Onchain/status/2024540634816926037",
+      "text_en": "Quick update on today's crypto news | DAY 12 🔥\n\n> Crypto market has been in Extreme Fear for 19 days\n> Dragonfly raises $650m for new crypto fund\n> Strategy & Bitmine buy more BTC & ETH\n> Polymarket launches 5-minute up/down crypto markets\n> Logan Paul sold his Pokémon card for $16 million\n> Andre Cronje’s Flying Tulip project just went live\n> Tether invested in the Hyperliquid equity first frontend Dreamcash",
+      "text_ko": "오늘의 크립토 뉴스 빠른 업데이트 | DAY 12 🔥\n\n> 크립토 시장이 19일째 극도의 공포 상태\n> Dragonfly, 새로운 크립토 펀드를 위해 6억 5천만 달러 모금\n> Strategy & Bitmine, 더 많은 BTC & ETH 구매\n> Polymarket, 5분 단위 상/하락 크립토 마켓 출시\n> Logan Paul, 그의 포켓몬 카드를 1,600만 달러에 판매\n> Andre Cronje의 Flying Tulip 프로젝트가 방금 공개됨\n> Tether, Hyperliquid 주식 첫 프론트엔드 Dreamcash에 투자",
+      "images": [
+        "https://pbs.twimg.com/amplify_video_thumb/2024540499726761984/img/lmkSjRS9jrhhmufa.jpg"
+      ],
+      "rank_meta": {
+        "rank": 11,
+        "view_count": 932.0,
+        "bookmark_count": 1.0,
+        "like_count": 58.0,
+        "repost_count": 0,
+        "reply_count": 18.0
+      },
+      "fetched_at": "2026-02-21T13:55:00.688960+09:00"
+    }
   ]
 }
